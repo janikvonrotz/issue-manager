@@ -1,0 +1,11 @@
+// java project plugin
+apply plugin: 'java'
+
+// eclipse project plugin
+apply plugin: 'eclipse'
+
+
+// source for 3rd party libraries
+repositories {
+    mavenCentral()
+}
