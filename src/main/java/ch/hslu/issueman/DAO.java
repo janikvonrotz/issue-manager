@@ -1,14 +1,8 @@
-/**
- * 
- */
 package ch.hslu.issueman;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Data Access Object Interface
- */
 public interface DAO<T, Id extends Serializable> {
 	
 	public void persist(T t);

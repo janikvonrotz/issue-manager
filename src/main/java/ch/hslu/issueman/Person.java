@@ -1,4 +1,5 @@
 package ch.hslu.issueman;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="person")
-public class Person{
+public class Person implements Model{
 	
 	@Id
 	@Column(name="id")
@@ -38,9 +39,8 @@ public class Person{
 		this.name = name;
 	}
 	
-	@Override
-	public String toString() {
-		return "Person: " + getId() + ", " + getName();
+	public String toJson() {
+		return "{\"id\": \"" + getId() + "\", \"name\":\"" + getName() + "\"}";
 	}
 
 } 

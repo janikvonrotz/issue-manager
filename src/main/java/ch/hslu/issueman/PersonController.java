@@ -4,63 +4,43 @@ import java.util.List;
 
 public class PersonController implements DAO<Person, Integer>{
 	
-	private static PersonDAO personDao;
+	private static Controller<Person, Integer> controller;
 	
 	public PersonController() {
-		personDao = new PersonDAO();
+		controller = new Controller<Person, Integer>(Person.class);
 	}
 	
-	public PersonDAO personDao() {
-		return personDao;
-	}
-	
-	@Override
 	public void persist(Person person) {
-		personDao.openCurrentSessionwithTransaction();
-		personDao.persist(person);
-		personDao.closeCurrentSessionwithTransaction();
+		controller.persist(person);
 	}
 
-	@Override
 	public Person getById(Integer id) {
-		personDao.openCurrentSession();
-		Person person = personDao.getById(id);
-		personDao.closeCurrentSession();
+		Person person = controller.getById(id);
 		return person;
 	}
 
-	@Override
 	public List<Person> getAll() {
-		personDao.openCurrentSession();
-		List<Person> people = personDao.getAll();
-		personDao.closeCurrentSession();
+		List<Person> people = controller.getAll();
 		return people;
 	}
 
-	@Override
 	public void update(Person person) {
-		personDao.openCurrentSessionwithTransaction();
-		personDao.update(person);
-		personDao.closeCurrentSessionwithTransaction();
+		controller.update(person);
 	}
 
 	public void deleteById(Integer id) {
-		personDao.openCurrentSessionwithTransaction();
-		personDao.delete(personDao.getById(id));
-		personDao.closeCurrentSessionwithTransaction();
+		controller.delete(controller.getById(id));
 	}
 
-	@Override
 	public void delete(Person person) {
-		personDao.openCurrentSessionwithTransaction();
-		personDao.delete(person);
-		personDao.closeCurrentSessionwithTransaction();
+		controller.delete(person);
 	}
 	
 	public void deleteAll() {
-		personDao.openCurrentSessionwithTransaction();
-		personDao.deleteAll();
-		personDao.closeCurrentSessionwithTransaction();
+		controller.deleteAll();
 	}
-	
+
+	public void printToJson(List<Person> people) {
+		controller.printToJson(people);	
+	}
 }

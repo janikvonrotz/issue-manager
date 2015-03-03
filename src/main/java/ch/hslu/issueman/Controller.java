@@ -1,8 +1,6 @@
-/**
- * 
- */
 package ch.hslu.issueman;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,14 +9,16 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Person implementation of the DAO interface
- */
-public class PersonDAO implements DAO<Person, Integer> {
+public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
+	private final Class<T> clazz;
 	private Session currentSession;
 	private Transaction currentTransaction;
-
+	
+	protected Controller(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+	
 	public Session openCurrentSession() {
 		currentSession = getSessionFactory().openSession();
 		return currentSession;
@@ -56,36 +56,57 @@ public class PersonDAO implements DAO<Person, Integer> {
 		this.currentTransaction = currentTransaction;
 	}
 	 
-	@Override
-	public void persist(Person person) {
-		getCurrentSession().save(person);
+	public void persist(T t) {
+		openCurrentSessionwithTransaction();
+		getCurrentSession().save(t);
+		closeCurrentSessionwithTransaction();
 	}
 
-	@Override
-	public Person getById(Integer id) {
-		return (Person) getCurrentSession().get(Person.class, id);
+	public T getById(Id id) {
+		openCurrentSession();
+		@SuppressWarnings("unchecked")
+		T t = (T) getCurrentSession().get(clazz, id);
+		closeCurrentSession();
+		return t;
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
-	public List<Person> getAll() {
-		return (List<Person>) getCurrentSession().createQuery("from Person").list();
+	public List<T> getAll() {
+		openCurrentSession();
+		List<T> list = (List<T>) getCurrentSession().createQuery("from " + clazz.getName()).list();
+		closeCurrentSession();
+		return list;
 	}
 
-	@Override
-	public void update(Person person) {
-		getCurrentSession().update(person);
+	public void update(T t) {
+		openCurrentSessionwithTransaction();
+		getCurrentSession().update(t);
+		closeCurrentSessionwithTransaction();
 	}
 
-	@Override
-	public void delete(Person person) {
-		getCurrentSession().delete(person);
+	public void delete(T t) {
+		openCurrentSessionwithTransaction();
+		getCurrentSession().delete(t);
+		closeCurrentSessionwithTransaction();
 	}
 	
 	public void deleteAll() {
-		List<Person> people = getAll();
-		for (Person person : people) {
-			delete(person);
+		openCurrentSessionwithTransaction();
+		List<T> people = getAll();
+		for (T t : people) {
+			delete(t);
 		}
+		closeCurrentSessionwithTransaction();
+	}
+
+	public void printToJson(List<T> l) {
+		
+		int size = l.size();
+		System.out.println("[");
+		for (T i : l) {
+			System.out.println(((Model) i).toJson());
+			if (--size != 0){System.out.print(",");}
+		}
+		System.out.print("]");			
 	}
 }
