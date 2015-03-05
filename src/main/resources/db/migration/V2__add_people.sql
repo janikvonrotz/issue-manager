@@ -1,3 +1,3 @@
-insert into PERSON (ID, NAME) values (1, 'Axel');
-insert into PERSON (ID, NAME) values (2, 'Mr. Foo');
-insert into PERSON (ID, NAME) values (3, 'Ms. Bar');
+insert into PERSON (NAME) values ('Axel');
+insert into PERSON (NAME) values ('Mr. Foo');
+insert into PERSON (NAME) values ('Ms. Bar');

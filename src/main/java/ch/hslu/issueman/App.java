@@ -6,17 +6,17 @@ public class App {
 		
 		PersonController PersonController = new PersonController();
 //		PersonController.deleteAll();
-//		
-//		Person person4 = new Person(4, "Fyodor Dostoevsky");
-//		Person person5 = new Person(5, "Leo Tolstoy");
-//		Person person6 = new Person(6, "Jane Austen");
+		
+//		Person person4 = new Person("Fyodor Dostoevsky");
+//		Person person5 = new Person("Leo Tolstoy");
+//		Person person6 = new Person("Jane Austen");
 //		
 //		PersonController.persist(person4);
 //		PersonController.persist(person5);
 //		PersonController.persist(person6);
-//		
+
 //		PersonController.deleteById(6);
-//		
+		
 //		person4.setName("Frodo");
 //		PersonController.update(person4);
 				

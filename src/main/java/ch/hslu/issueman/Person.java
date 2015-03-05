@@ -2,6 +2,8 @@ package ch.hslu.issueman;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class Person implements Model{
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
     private int id; 
 	
@@ -18,19 +21,14 @@ public class Person implements Model{
 	
 	public Person() {}
 
-	public Person(int id, String name) {
-		setId(id);
+	public Person(String name) {
 		setName(name);
 	}
 	
 	public int getId() {
 		return id;
 	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
+		
 	public String getName() {
 		return name;
 	}

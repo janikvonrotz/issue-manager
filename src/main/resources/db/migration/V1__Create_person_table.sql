@@ -1,4 +1,4 @@
 create table person(
-    id int not null,PRIMARY KEY (id),
-    name varchar(100) not null
+    id int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id),
+    name varchar(100) NOT NULL
 );
