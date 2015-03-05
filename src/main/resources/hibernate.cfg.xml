@@ -11,6 +11,6 @@
    <property name="hibernate.connection.password">issuemanager</property>
    <property name="show_sql">true</property>
    <property name="hibernate.current_session_context_class">thread</property>
-   <mapping class="ch.hslu.issueman.Person"/>
+   <mapping class="ch.hslu.issueman.model.Person"/>
 </session-factory>
 </hibernate-configuration>

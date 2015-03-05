@@ -1,4 +1,4 @@
-package ch.hslu.issueman;
+package ch.hslu.issueman.controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+
+import ch.hslu.issueman.model.Model;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 

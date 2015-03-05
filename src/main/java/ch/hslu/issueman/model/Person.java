@@ -1,4 +1,4 @@
-package ch.hslu.issueman;
+package ch.hslu.issueman.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

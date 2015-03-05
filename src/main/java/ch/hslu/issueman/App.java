@@ -1,28 +1,24 @@
 package ch.hslu.issueman;
-
-public class App {
-
-	public static void main(String[] args) {
-		
-		PersonController PersonController = new PersonController();
-//		PersonController.deleteAll();
-		
-//		Person person4 = new Person("Fyodor Dostoevsky");
-//		Person person5 = new Person("Leo Tolstoy");
-//		Person person6 = new Person("Jane Austen");
-//		
-//		PersonController.persist(person4);
-//		PersonController.persist(person5);
-//		PersonController.persist(person6);
-
-//		PersonController.deleteById(6);
-		
-//		person4.setName("Frodo");
-//		PersonController.update(person4);
-				
-		PersonController.printToJson(PersonController.getAll());
 	
-		System.exit(0);
-	}
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
+public class App extends Application {
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			primaryStage.setResizable(false);
+			primaryStage.setTitle("Issue Manager");
+			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Home.fxml"))));
+			primaryStage.show();			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

@@ -1,4 +1,4 @@
-package ch.hslu.issueman;
+package ch.hslu.issueman.controller;
 
 import java.io.Serializable;
 import java.util.List;
