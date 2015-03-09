@@ -1,0 +1,1 @@
+insert into project (title, employee_id) values ('project XY', 1);

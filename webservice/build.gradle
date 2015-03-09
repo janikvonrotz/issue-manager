@@ -1,0 +1,37 @@
+apply plugin: 'flyway'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'mysql:mysql-connector-java:5.1.34'
+        classpath 'org.flywaydb:flyway-gradle-plugin:3.1'
+    }
+}
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306'
+    user = 'issuemanager'
+    password = 'issuemanager'
+    schemas = ['issuemanager']
+}
+
+jettyRun{
+	reload = "automatic"
+	scanIntervalSeconds = 2
+}
+
+dependencies {
+  compile project(':common')
+  compile 'log4j:log4j:1.2.17'
+  compile 'mysql:mysql-connector-java:5.1.34'
+  compile 'org.jboss.resteasy:resteasy-jackson-provider:2.3.2.Final'
+  providedCompile 'javax.servlet:servlet-api:2.5'
+  runtime 'javax.servlet:jstl:1.1.2'
+  compile 'com.google.code.gson:gson:2.3.1'
+}
