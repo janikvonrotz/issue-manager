@@ -33,5 +33,4 @@ dependencies {
   compile 'org.jboss.resteasy:resteasy-jackson-provider:2.3.2.Final'
   providedCompile 'javax.servlet:servlet-api:2.5'
   runtime 'javax.servlet:jstl:1.1.2'
-  compile 'com.google.code.gson:gson:2.3.1'
 }

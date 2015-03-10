@@ -3,4 +3,5 @@ dependencies {
   compile 'org.hibernate:hibernate-core:4.3.8.Final'
   compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
   compile 'org.jboss.resteasy:resteasy-jaxrs:2.3.0.GA'
+  compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
 }

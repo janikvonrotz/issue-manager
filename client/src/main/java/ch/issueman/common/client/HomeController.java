@@ -3,13 +3,12 @@ package ch.issueman.common.client;
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
+import ch.issueman.common.Employee;
 import ch.issueman.common.Person;
-
-import com.google.gson.Gson;
-
 
 public class HomeController {
 
@@ -25,17 +24,17 @@ public class HomeController {
 			if (response.getStatus() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
-			Gson gson = new Gson();
-			Person p = gson.fromJson(response.getEntity().toString(), Person.class);
+			ObjectMapper mapper = new ObjectMapper();
+			Person p = mapper.readValue(response.getEntity().toString(), Person.class);
+			 
 			System.out.println(p.getName());
 			
 			// create person
-			p = new Person();
-			p.setName("Poo");
-			request = new ClientRequest("http://localhost:8080/webservice/person/persist");
+			p.setName("Neuer Name");
+			request = new ClientRequest("http://localhost:8080/webservice/person/update");
 			request.accept("application/json");
-			request.body("application/json", gson.toJson(p));
-			System.out.println(gson.toJson(p));
+			request.body("application/json", mapper.writeValueAsString(p));
+			System.out.println(mapper.writeValueAsString(p));
 			response = request.post(String.class);
 			if (response.getStatus() != 201) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
