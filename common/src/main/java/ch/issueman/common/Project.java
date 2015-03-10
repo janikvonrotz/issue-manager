@@ -1,5 +1,6 @@
 package ch.issueman.common;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,20 @@ public class Project implements Model {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
-	private Integer id;
+	private int id;
 
 	@Column(name = "title")
 	private String title;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Employee employee;
+	
+	public Project(){}
+	
+	public Project(String title) {
+		super();
+		this.title = title;
+	}
 
 	public Integer getId() {
 		return id;

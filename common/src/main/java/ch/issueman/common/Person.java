@@ -1,31 +1,42 @@
 package ch.issueman.common;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name="person")
 public class Person implements Model{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	@Column(name="id")
     private int id; 
 	
 	@Column(name="name")
     private String name;
 	
-	@OneToOne(mappedBy="person")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="person")
+	@JsonManagedReference
     private User user;
 
-	@OneToOne(mappedBy="person")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy="person")
+	@JsonManagedReference
     private Employee employee;
 	
+	public Person(){}
+	
+	public Person(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}

@@ -1,4 +1,7 @@
 package ch.issueman.common.webservice;
+
+import ch.issueman.common.Employee;
+import ch.issueman.common.Person;
  
 public class App {
  
@@ -8,12 +11,15 @@ public class App {
     	UserController userc = new UserController();
     	ProjectController projectc = new ProjectController();
     	EmployeeController employeec = new EmployeeController();
-                 
-        System.out.println(personc.getById(1).getName());
-        System.out.println(userc.getById(1).getPerson().getName());
-        System.out.println(projectc.getById(1).getEmployee().getPerson().getName());
-        System.out.println(employeec.getById(1).getPerson().getName());
-       
+
+        Employee e = new Employee();
+		e.setCompany("Redhat");
+		Person p = new Person();
+		p.setName("Test");
+		e.setPerson(p);
+		
+		employeec.persist(e);
+        
         System.exit(0);
     }
  

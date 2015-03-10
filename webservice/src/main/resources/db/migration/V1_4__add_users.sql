@@ -1,1 +1,1 @@
-insert into user (email, password, role) values ('i@m.ch', 'hello', 'Administrator');
+insert into user (id, email, password, role) values (2, 'i@m.ch', 'hello', 'Administrator');
