@@ -2,12 +2,13 @@ package ch.issueman.common.client;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
+import org.codehaus.jackson.map.type.TypeFactory;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
@@ -53,7 +54,6 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public T getById(Id id) {			
 		try {
-			System.out.println(url + "/get/" + id);
 			request = new ClientRequest(url + "/get/" + id);
 			request.accept("application/json");
 			response = request.get(String.class);
@@ -72,17 +72,17 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
 		try {
 			request = new ClientRequest(url + "/get");
 			request.accept("application/json");
 			response = request.get(String.class);
+			TypeFactory t = TypeFactory.defaultInstance();
 			if (response.getStatus() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
-			return (List<T>) mapper.readValue(response.getEntity().toString(), new TypeReference<List<T>>(){});
+			return mapper.readValue(response.getEntity().toString(), t.constructCollectionType(ArrayList.class,clazz));//new TypeReference<List<T>>(){});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
