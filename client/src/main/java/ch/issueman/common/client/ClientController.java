@@ -12,7 +12,7 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
-import ch.issueman.common.webservice.DAO;
+import ch.issueman.common.DAO;
 
 public class ClientController<T, Id extends Serializable> implements DAO<T, Id> {
 
@@ -46,7 +46,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			e.printStackTrace();
 		}
 		
-		if (response.getStatus() != 200) {
+		if (response.getStatus() != 201) {
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
 	}
@@ -107,7 +107,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			request.accept("application/json");
 			request.body("application/json", mapper.writeValueAsString(t));
 			response = request.post(String.class);
-			if (response.getStatus() != 200) {
+			if (response.getStatus() != 201) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
 		} catch (IOException e) {
@@ -126,7 +126,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			request.accept("application/json");
 			request.body("application/json", mapper.writeValueAsString(t));
 			response = request.delete(String.class);
-			if (response.getStatus() != 200) {
+			if (response.getStatus() != 201) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
 		} catch (IOException e) {

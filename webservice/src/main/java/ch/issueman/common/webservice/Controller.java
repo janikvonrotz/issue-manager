@@ -2,11 +2,14 @@ package ch.issueman.common.webservice;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+
+import ch.issueman.common.DAO;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 

@@ -2,8 +2,8 @@ package ch.issueman.common.client;
 
 import java.util.List;
 
+import ch.issueman.common.DAO;
 import ch.issueman.common.Person;
-import ch.issueman.common.webservice.DAO;
 
 public class PersonClientController implements DAO<Person, Integer> {
 	

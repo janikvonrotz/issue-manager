@@ -1,6 +1,8 @@
 package ch.issueman.common.webservice;
 
 import java.util.List;
+
+import ch.issueman.common.DAO;
 import ch.issueman.common.Person;
 
 public class PersonController implements DAO<Person, Integer>{
