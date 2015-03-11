@@ -1,7 +1,5 @@
 apply plugin: 'flyway'
-apply plugin: 'war'
 apply plugin: 'jetty'
-apply plugin: 'eclipse-wtp'
 
 
 buildscript {
