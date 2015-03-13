@@ -15,7 +15,7 @@ import ch.issueman.common.Employee;
 import ch.issueman.common.Person;
 import ch.issueman.common.User;
 import ch.issueman.common.Project;
- 
+
 @Path("/")
 public class Route {
 
@@ -23,7 +23,7 @@ public class Route {
 	private EmployeeController employeec = new EmployeeController();
 	private ProjectController projectc = new ProjectController();
 	private UserController userc = new UserController();
-		
+	
 	@GET
 	@Path("/person/get/{id}")
 	@Produces("application/json")

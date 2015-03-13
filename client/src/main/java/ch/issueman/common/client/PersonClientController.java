@@ -7,12 +7,8 @@ import ch.issueman.common.Person;
 
 public class PersonClientController implements DAO<Person, Integer> {
 	
-	private static ClientController<Person, Integer> controller;
-	
-	public PersonClientController() {
-		controller = new ClientController<Person, Integer>(Person.class, "http://localhost:8080/webservice/person");
-	}
-	
+	private static ClientController<Person, Integer> controller = new ClientController<Person, Integer>(Person.class);
+
 	@Override
 	public void persist(Person t) {
 		controller.persist(t);
@@ -41,5 +37,4 @@ public class PersonClientController implements DAO<Person, Integer> {
 	@Override
 	public void deleteAll() {
 	}
-
 }

@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-
 import ch.issueman.common.DAO;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
@@ -22,11 +18,11 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
     }
 	
 	public Session openCurrentSession() {
-		currentSession = getSessionFactory().openSession();
+		currentSession = Hibernate.getSessionFactory().openSession();
 		return currentSession;
 	}
 	public Session openCurrentSessionwithTransaction() {
-		currentSession = getSessionFactory().openSession();
+		currentSession = Hibernate.getSessionFactory().openSession();
 		currentTransaction = currentSession.beginTransaction();
 		return currentSession;
 	}	
@@ -36,13 +32,6 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public void closeCurrentSessionwithTransaction() {
 		currentTransaction.commit();
 		currentSession.close();
-	}	
-	private static SessionFactory getSessionFactory() {
-		Configuration configuration = new Configuration().configure();
-		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-				.applySettings(configuration.getProperties());
-		SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-		return sessionFactory;
 	}
 
 	public Session getCurrentSession() {

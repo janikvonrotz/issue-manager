@@ -30,7 +30,7 @@ public class Employee implements Model {
 	private Person person;
 		
 	public Employee(){}
-	
+		
 	public Employee(String company) {
 		super();
 		this.company = company;

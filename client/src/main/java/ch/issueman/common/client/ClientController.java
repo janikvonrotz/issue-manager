@@ -12,23 +12,21 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import org.jboss.resteasy.client.ClientRequest;
 import org.jboss.resteasy.client.ClientResponse;
 
+import com.typesafe.config.ConfigFactory;
+
 import ch.issueman.common.DAO;
 
 public class ClientController<T, Id extends Serializable> implements DAO<T, Id> {
 
-	private String url;
-	private ClientRequest request = new ClientRequest("http://localhost:8080/webservice");
+	private String url = ConfigFactory.load().getString("webservice.url");
+	private ClientRequest request = new ClientRequest(ConfigFactory.load().getString("webservice.url"));
 	private ClientResponse<String> response;
 	private ObjectMapper mapper = new ObjectMapper();
 	private Class<T> clazz;
-		
+
 	public ClientController(Class<T> clazz) {
         this.clazz = clazz;
-    }
-	
-	public ClientController(Class<T> clazz, String url) {
-		this(clazz);
-		this.url = url;
+        url = url + "/" + clazz.getSimpleName().toLowerCase();
 	}
 
 	@Override
@@ -141,5 +139,4 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public void deleteAll() {
 	}
-
 }
