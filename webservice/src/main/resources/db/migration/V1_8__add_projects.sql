@@ -1,1 +1,1 @@
-insert into project (title, employee_id) values ('project XY', 1);
+insert into project (title, employer_id) values ('project XY', 1);

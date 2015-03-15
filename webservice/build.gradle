@@ -19,11 +19,6 @@ flyway {
     schemas = ['issuemanager']
 }
 
-jettyRun{
-	reload = "automatic"
-	scanIntervalSeconds = 2
-}
-
 dependencies {
   compile project(':common')
   compile 'log4j:log4j:1.2.17'

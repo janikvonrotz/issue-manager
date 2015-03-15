@@ -23,7 +23,7 @@ public class Hibernate
 					.addAnnotatedClass(ch.issueman.common.Person.class)
 					.addAnnotatedClass(ch.issueman.common.User.class)
 					.addAnnotatedClass(ch.issueman.common.Project.class)
-					.addAnnotatedClass(ch.issueman.common.Employee.class)
+					.addAnnotatedClass(ch.issueman.common.Employer.class)
 					.setProperty("hibernate.dialect", config.getString("hibernate.dialect"))
 					.setProperty("hibernate.connection.driver_class", config.getString("hibernate.connection.driver_class"))
 					.setProperty("hibernate.connection.url", config.getString("hibernate.connection.url"))

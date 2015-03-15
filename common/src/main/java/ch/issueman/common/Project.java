@@ -22,7 +22,7 @@ public class Project implements Model {
 	private String title;
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	private Employee employee;
+	private Employer employer;
 	
 	public Project(){}
 	
@@ -47,11 +47,11 @@ public class Project implements Model {
 		this.title = title;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Employer getEmployer() {
+		return employer;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 }

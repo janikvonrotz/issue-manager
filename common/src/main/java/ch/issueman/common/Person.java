@@ -28,7 +28,7 @@ public class Person implements Model{
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy="person")
 	@JsonManagedReference
-    private Employee employee;
+    private Employer employer;
 	
 	public Person(){}
 	
@@ -37,12 +37,12 @@ public class Person implements Model{
 		this.name = name;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Employer getEmployer() {
+		return employer;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployer(Employer employer) {
+		this.employer = employer;
 	}
 
 	public int getId() {

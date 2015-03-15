@@ -32,7 +32,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public void persist(T t) {
 		try {
-			request = new ClientRequest(url + "/persist");
+			request = new ClientRequest(url);
 			request.accept("application/json");
 			request.body("application/json", mapper.writeValueAsString(t));
 			response = request.post(String.class);
@@ -52,7 +52,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public T getById(Id id) {			
 		try {
-			request = new ClientRequest(url + "/get/" + id);
+			request = new ClientRequest(url + "/" + id);
 			request.accept("application/json");
 			response = request.get(String.class);
 			if (response.getStatus() != 200) {
@@ -73,14 +73,14 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public List<T> getAll() {
 		try {
-			request = new ClientRequest(url + "/get");
+			request = new ClientRequest(url);
 			request.accept("application/json");
 			response = request.get(String.class);
 			TypeFactory t = TypeFactory.defaultInstance();
 			if (response.getStatus() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
-			return mapper.readValue(response.getEntity().toString(), t.constructCollectionType(ArrayList.class,clazz));//new TypeReference<List<T>>(){});
+			return mapper.readValue(response.getEntity().toString(), t.constructCollectionType(ArrayList.class,clazz));
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,10 +101,10 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public void update(T t) {
 		try {
-			request = new ClientRequest(url + "/update");
+			request = new ClientRequest(url);
 			request.accept("application/json");
 			request.body("application/json", mapper.writeValueAsString(t));
-			response = request.post(String.class);
+			response = request.put(String.class);
 			if (response.getStatus() != 201) {
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
@@ -120,7 +120,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 	@Override
 	public void delete(T t) {
 		try {
-			request = new ClientRequest(url + "/delete");
+			request = new ClientRequest(url);
 			request.accept("application/json");
 			request.body("application/json", mapper.writeValueAsString(t));
 			response = request.delete(String.class);
