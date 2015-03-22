@@ -12,7 +12,7 @@ public class EclipseLink {
 	
 	static {
 		try {
-			emf = Persistence.createEntityManagerFactory("issueman");
+			emf = Persistence.createEntityManagerFactory("issue-manager");
 		} catch (Throwable e) {
 		}
 	}
