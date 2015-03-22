@@ -1,48 +1,25 @@
 package ch.issueman.common;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import org.codehaus.jackson.annotate.JsonManagedReference;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-@Table(name="person")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Person implements Model{
 	
 	@Id
 	@GeneratedValue
-	@Column(name="id")
     private int id; 
-	
-	@Column(name="name")
     private String name;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="person")
-	@JsonManagedReference
-    private User user;
-
-	@OneToOne(cascade = CascadeType.ALL, mappedBy="person")
-	@JsonManagedReference
-    private Employer employer;
 	
 	public Person(){}
 	
 	public Person(String name) {
 		super();
 		this.name = name;
-	}
-
-	public Employer getEmployer() {
-		return employer;
-	}
-
-	public void setEmployer(Employer employer) {
-		this.employer = employer;
 	}
 
 	public int getId() {
@@ -59,13 +36,5 @@ public class Person implements Model{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 } 

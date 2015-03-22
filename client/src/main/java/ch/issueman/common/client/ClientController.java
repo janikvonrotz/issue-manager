@@ -37,11 +37,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			request.body("application/json", mapper.writeValueAsString(t));
 			response = request.post(String.class);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		if (response.getStatus() != 201) {
@@ -60,11 +56,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			}
 			return mapper.readValue(response.getEntity().toString(), this.clazz);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		return null;
@@ -82,17 +74,9 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 			}
 			return mapper.readValue(response.getEntity().toString(), t.constructCollectionType(ArrayList.class,clazz));
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		return null;
@@ -109,11 +93,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
@@ -128,11 +108,7 @@ public class ClientController<T, Id extends Serializable> implements DAO<T, Id> 
 				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

@@ -1,34 +1,31 @@
 package ch.issueman.common;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "project")
 public class Project implements Model {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue
 	private int id;
-
-	@Column(name = "title")
 	private String title;
-
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Employer employer;
+	@ManyToMany
+	private List<Comment> comments;
 	
 	public Project(){}
 	
-	public Project(String title) {
+	public Project(String title, Employer employer) {
 		super();
 		this.title = title;
+		this.employer = employer;
 	}
 
 	public Integer getId() {
