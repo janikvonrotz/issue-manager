@@ -1,9 +1,11 @@
 dependencies {
   compile 'org.apache.commons:commons-lang3:3.+'
   compile 'org.eclipse.persistence:javax.persistence:2.+'
+  compile 'org.eclipse.persistence:eclipselink:2.+'
   compile 'org.codehaus.jackson:jackson-core-asl:1.+'
   compile 'org.jboss.resteasy:resteasy-jaxrs:3.+'
   compile 'org.codehaus.jackson:jackson-mapper-asl:1.+'
   compile 'com.typesafe:config:1.+'
   compile 'org.slf4j:slf4j-simple:1.+'
+  compile 'com.github.javafaker:javafaker:0.+'
 }

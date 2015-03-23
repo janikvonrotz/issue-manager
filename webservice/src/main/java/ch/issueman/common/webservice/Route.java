@@ -16,15 +16,17 @@ import ch.issueman.common.Employer;
 import ch.issueman.common.Person;
 import ch.issueman.common.User;
 import ch.issueman.common.Project;
+import ch.issueman.common.Comment;
 
 @Path("/")
 public class Route {
-
-	private PersonController personc = new PersonController();
-	private EmployerController employerc = new EmployerController();
-	private ProjectController projectc = new ProjectController();
-	private UserController userc = new UserController();
 	
+	Controller<Person, Integer> personc = new Controller<Person, Integer>(Person.class);
+	Controller<User, Integer> userc = new Controller<User, Integer>(User.class);
+	Controller<Employer, Integer> employerc = new Controller<Employer, Integer>(Employer.class);
+	Controller<Project, Integer> projectc = new Controller<Project, Integer>(Project.class);
+	Controller<Comment, Integer> commentc = new Controller<Comment, Integer>(Comment.class);
+		
 	@GET
 	@Path("/person/{id}")
 	@Produces("application/json")
@@ -159,5 +161,39 @@ public class Route {
 	public Response persistUser(User user) {
 		userc.persist(user);
 		return Response.status(201).entity("User added").build();
+	}
+	
+	@GET
+	@Path("/comment/{id}")
+	@Produces("application/json")
+	public Comment getCommentById(@PathParam("id") int id) {
+		return commentc.getById(id);
+	} 
+	@GET
+	@Path("/comment")
+	@Produces("application/json")
+	public List<Comment> getComment() {
+		return commentc.getAll();
+	}	
+	@DELETE
+	@Path("/comment")
+	@Consumes("application/json")
+	public Response deleteComment(Comment comment) {
+		commentc.delete(comment);
+		return Response.status(201).entity("Comment deleted").build();
+	}
+	@PUT
+	@Path("/comment")
+	@Consumes("application/json")
+	public Response updateComment(Comment comment) {
+		commentc.update(comment);
+		return Response.status(201).entity("Comment updated").build();
+	}
+	@POST
+	@Path("/comment")
+	@Consumes("application/json")
+	public Response persistComment(Comment comment) {
+		commentc.persist(comment);
+		return Response.status(201).entity("Comment added").build();
 	}
 }

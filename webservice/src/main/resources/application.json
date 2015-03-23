@@ -1,12 +1,31 @@
 {
-"hibernate" : {
-    "dialect" : "org.hibernate.dialect.MySQLDialect",
-    "connection" : {
-    	"driver_class" : "com.mysql.jdbc.Driver",
-    	"url" : "jdbc:mysql://localhost/issuemanager",
-    	"username" : "issuemanager",
-    	"password" : "issuemanager"    	
+  "hibernate": {
+    "dialect": "org.hibernate.dialect.MySQLDialect",
+    "connection": {
+      "driver_class": "com.mysql.jdbc.Driver",
+      "url": "jdbc:mysql://localhost/issuemanager",
+      "username": "issuemanager",
+      "password": "issuemanager"
     },
-    "current_session_context_class" : "thread"
-}
+    "current_session_context_class": "thread"
+  },
+  "javax": {
+    "persistence": {
+      "jdbc": {
+        "driver": "com.mysql.jdbc.Driver",
+        "url": "jdbc:mysql://localhost/issuemanager",
+        "user": "issuemanager",
+        "password": "issuemanager"
+      }
+    }
+  },
+  "eclipselink": {
+    "logging": {
+      "level": "off"
+    },
+    "ddl-generation": {
+    	"value": "create-tables",
+    	"output-mode": "database"
+	}
+  }
 }
