@@ -1,118 +1,68 @@
 package ch.issueman.common.client;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
-import org.jboss.resteasy.client.ClientRequest;
-import org.jboss.resteasy.client.ClientResponse;
-
 import com.typesafe.config.ConfigFactory;
 
 import ch.issueman.common.DAO;
 
 public class ClientController<T, Id extends Serializable> implements DAO<T, Id> {
-
-	private String url = ConfigFactory.load().getString("webservice.url");
-	private ClientRequest request = new ClientRequest(ConfigFactory.load().getString("webservice.url"));
-	private ClientResponse<String> response;
+		
+	private Client client = ClientBuilder.newClient();
+	private WebTarget target = client.target(ConfigFactory.load().getString("webservice.url"));
 	private ObjectMapper mapper = new ObjectMapper();
-	private Class<T> clazz;
-
-	public ClientController(Class<T> clazz) {
-        this.clazz = clazz;
-        url = url + "/" + clazz.getSimpleName().toLowerCase();
+	private final Class<T> clazz;
+	
+	
+	public ClientController(Class<T> clazz){
+		this.clazz = clazz;
+		this.target = client.target(ConfigFactory.load().getString("webservice.url" + "/" + clazz.getSimpleName().toLowerCase()));
 	}
 
-	@Override
 	public void persist(T t) {
-		try {
-			request = new ClientRequest(url);
-			request.accept("application/json");
-			request.body("application/json", mapper.writeValueAsString(t));
-			response = request.post(String.class);
-		} catch (IOException e) {
-		} catch (Exception e) {
-		}
-		
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-		}
 	}
 
-	@Override
-	public T getById(Id id) {			
-		try {
-			request = new ClientRequest(url + "/" + id);
-			request.accept("application/json");
-			response = request.get(String.class);
-			if (response.getStatus() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-			}
-			return mapper.readValue(response.getEntity().toString(), this.clazz);
-		} catch (IOException e) {
-		} catch (Exception e) {
-		}
-		
+
+	public void persistList(List<T> l) {
+	}
+
+
+	public T getById(Id id) {
 		return null;
 	}
 
-	@Override
 	public List<T> getAll() {
-		try {
-			request = new ClientRequest(url);
-			request.accept("application/json");
-			response = request.get(String.class);
-			TypeFactory t = TypeFactory.defaultInstance();
-			if (response.getStatus() != 200) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-			}
-			return mapper.readValue(response.getEntity().toString(), t.constructCollectionType(ArrayList.class,clazz));
-		} catch (JsonParseException e) {
-		} catch (JsonMappingException e) {
-		} catch (IOException e) {
-		} catch (Exception e) {
-		}
-		
 		return null;
 	}
 
-	@Override
+
+	public List<T> getByQuery(String JPQLquery) {
+		return null;
+	}
+
+
 	public void update(T t) {
-		try {
-			request = new ClientRequest(url);
-			request.accept("application/json");
-			request.body("application/json", mapper.writeValueAsString(t));
-			response = request.put(String.class);
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-			}
-		} catch (IOException e) {
-		} catch (Exception e) {
-		}
 	}
 
-	@Override
+
+	public void updateList(List<T> l) {
+	
+	}
+
+
 	public void delete(T t) {
-		try {
-			request = new ClientRequest(url);
-			request.accept("application/json");
-			request.body("application/json", mapper.writeValueAsString(t));
-			response = request.delete(String.class);
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-			}
-		} catch (IOException e) {
-		} catch (Exception e) {
-		}
 	}
 
-	@Override
+
 	public void deleteAll() {
+	}
+
+
+	public void deleteList(List<T> l) {
 	}
 }

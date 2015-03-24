@@ -1,6 +1,8 @@
 package ch.issueman.common.webservice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -13,187 +15,61 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ch.issueman.common.Employer;
+import ch.issueman.common.Model;
 import ch.issueman.common.Person;
 import ch.issueman.common.User;
 import ch.issueman.common.Project;
 import ch.issueman.common.Comment;
+import ch.issueman.common.DAO;
 
 @Path("/")
-public class Route {
+public class Route{
 	
-	Controller<Person, Integer> personc = new Controller<Person, Integer>(Person.class);
-	Controller<User, Integer> userc = new Controller<User, Integer>(User.class);
-	Controller<Employer, Integer> employerc = new Controller<Employer, Integer>(Employer.class);
-	Controller<Project, Integer> projectc = new Controller<Project, Integer>(Project.class);
-	Controller<Comment, Integer> commentc = new Controller<Comment, Integer>(Comment.class);
-		
-	@GET
-	@Path("/person/{id}")
-	@Produces("application/json")
-	public Person getPersonById(@PathParam("id") int id) {
-		return personc.getById(id);
-	} 
-	@GET
-	@Path("/person")
-	@Produces("application/json")
-	public List<Person> getPerson() {
-		return personc.getAll();
-	}	
-	@DELETE
-	@Path("/person")
-	@Consumes("application/json")
-	public Response deletePerson(Person person) {
-		personc.delete(person);
-		return Response.status(201).entity("Person deleted").build();
-	}
-	@PUT
-	@Path("/person")
-	@Consumes("application/json")
-	public Response updatePerson(Person person) {
-		personc.update(person);
-		return Response.status(201).entity("Person updated").build();
-	}
-	@POST
-	@Path("/person")
-	@Consumes("application/json")
-	public Response persistPerson(Person person) {
-		personc.persist(person);
-		return Response.status(201).entity("Person added").build();
+	private Map <String, DAO<?, Integer>> hm = new HashMap<String, DAO<?, Integer>>();
+
+	public Route(){
+		hm.put("person", new Controller<Person, Integer>(Person.class));
+		hm.put("user", new Controller<User, Integer>(User.class));
+		hm.put("employer", new Controller<Employer, Integer>(Employer.class));
+		hm.put("project", new Controller<Project, Integer>(Project.class));
+		hm.put("comment", new Controller<Comment, Integer>(Comment.class));	
 	}
 	
 	@GET
-	@Path("/project/{id}")
+	@Path("{entity}/{id}")
 	@Produces("application/json")
-	public Project getProjectById(@PathParam("id") int id) {
-		return projectc.getById(id);
+	public Model getEntityById(@PathParam("entity") String entity, @PathParam("id") int id) {
+		return (Model) hm.get(entity).getById(id);
 	} 
+	@SuppressWarnings("unchecked")
 	@GET
-	@Path("/project")
+	@Path("{entity}")
 	@Produces("application/json")
-	public List<Project> getProject() {
-		return projectc.getAll();
+	public List<Model> getAll(@PathParam("entity") String entity) {
+		return (List<Model>) hm.get(entity).getAll();
 	}	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DELETE
-	@Path("/project")
+	@Path("{entity}")
 	@Consumes("application/json")
-	public Response deleteProject(Project project) {
-		projectc.delete(project);
-		return Response.status(201).entity("Project deleted").build();
+	public Response deleteEntity(@PathParam("entity") String entity, Model m) {
+		((DAO) hm.get(entity)).delete(m);
+		return Response.status(201).entity("Entiy deleted").build();
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PUT
-	@Path("/project")
+	@Path("{entity}")
 	@Consumes("application/json")
-	public Response updateProject(Project project) {
-		projectc.update(project);
-		return Response.status(201).entity("Project updated").build();
+	public Response updateEntiy(@PathParam("entity") String entity, Model m) {
+		((DAO) hm.get(entity)).update(m);
+		return Response.status(201).entity("Entiy updated").build();
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@POST
-	@Path("/project")
+	@Path("{entity}")
 	@Consumes("application/json")
-	public Response persistProject(Project project) {
-		projectc.persist(project);
-		return Response.status(201).entity("Project added").build();
-	}
-	
-	@GET
-	@Path("/employer/{id}")
-	@Produces("application/json")
-	public Employer getEmployerById(@PathParam("id") int id) {
-		return employerc.getById(id);
-	} 
-	@GET
-	@Path("/employer")
-	@Produces("application/json")
-	public List<Employer> getEmployer() {
-		return employerc.getAll();
-	}	
-	@DELETE
-	@Path("/employer")
-	@Consumes("application/json")
-	public Response deleteEmployer(Employer employer) {
-		employerc.delete(employer);
-		return Response.status(201).entity("Employer deleted").build();
-	}
-	@PUT
-	@Path("/employer")
-	@Consumes("application/json")
-	public Response updateEmployer(Employer employer) {
-		employerc.update(employer);
-		return Response.status(201).entity("Employer updated").build();
-	}
-	@POST
-	@Path("/employer")
-	@Consumes("application/json")
-	public Response persistEmployer(Employer employer) {
-		employerc.persist(employer);
-		return Response.status(201).entity("Employer added").build();
-	}
-	
-	@GET
-	@Path("/user/{id}")
-	@Produces("application/json")
-	public User getUserById(@PathParam("id") int id) {
-		return userc.getById(id);
-	} 
-	@GET
-	@Path("/user")
-	@Produces("application/json")
-	public List<User> getUser() {
-		return userc.getAll();
-	}	
-	@DELETE
-	@Path("/user")
-	@Consumes("application/json")
-	public Response deleteUser(User user) {
-		userc.delete(user);
-		return Response.status(201).entity("User deleted").build();
-	}
-	@PUT
-	@Path("/user")
-	@Consumes("application/json")
-	public Response updateUser(User user) {
-		userc.update(user);
-		return Response.status(201).entity("User updated").build();
-	}
-	@POST
-	@Path("/user")
-	@Consumes("application/json")
-	public Response persistUser(User user) {
-		userc.persist(user);
-		return Response.status(201).entity("User added").build();
-	}
-	
-	@GET
-	@Path("/comment/{id}")
-	@Produces("application/json")
-	public Comment getCommentById(@PathParam("id") int id) {
-		return commentc.getById(id);
-	} 
-	@GET
-	@Path("/comment")
-	@Produces("application/json")
-	public List<Comment> getComment() {
-		return commentc.getAll();
-	}	
-	@DELETE
-	@Path("/comment")
-	@Consumes("application/json")
-	public Response deleteComment(Comment comment) {
-		commentc.delete(comment);
-		return Response.status(201).entity("Comment deleted").build();
-	}
-	@PUT
-	@Path("/comment")
-	@Consumes("application/json")
-	public Response updateComment(Comment comment) {
-		commentc.update(comment);
-		return Response.status(201).entity("Comment updated").build();
-	}
-	@POST
-	@Path("/comment")
-	@Consumes("application/json")
-	public Response persistComment(Comment comment) {
-		commentc.persist(comment);
-		return Response.status(201).entity("Comment added").build();
+	public Response persistEntity(@PathParam("entity") String entity, Model m) {
+		((DAO) hm.get(entity)).persist(m);
+		return Response.status(201).entity("Entiy added").build();
 	}
 }
