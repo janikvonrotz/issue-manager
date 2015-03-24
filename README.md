@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/janikvonrotz/issue-manager.png?label=ready&title=Ready)](https://waffle.io/janikvonrotz/issue-manager)
 # Issue Manager
 
 Learn how to setup the project.
