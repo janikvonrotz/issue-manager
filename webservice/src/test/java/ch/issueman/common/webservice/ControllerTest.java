@@ -22,6 +22,10 @@ public class ControllerTest {
 		Controller<User, Integer> uc = new Controller<User, Integer>(User.class);
 		Controller<Employer, Integer> ec = new Controller<Employer, Integer>(Employer.class);
 		
+		pc.deleteAll();
+		uc.deleteAll();
+		ec.deleteAll();
+		
 		for(int i = 0; i<20;i++){
 			Person p = new Person(faker.name().firstName());
 			User u = new User(faker.name().firstName(), faker.internet().emailAddress(), faker.letterify("??????"), "Administrator");
@@ -34,7 +38,7 @@ public class ControllerTest {
 		
 		List<Person> people = pc.getAll();
 		
-		assertTrue("Excpect 60 people, retrieved: " + people.size() , people.size() == 60);		
+		assertTrue("Expect 60 people, retrieved: " + people.size() , people.size() == 60);		
 	}
 
 }

@@ -1,17 +1,16 @@
 package ch.issueman.common.client;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.type.TypeFactory;
+import org.codehaus.jackson.type.TypeReference;
 
+import ch.issueman.common.Employer;
 import ch.issueman.common.Person;
 
 import com.typesafe.config.ConfigFactory;
@@ -20,9 +19,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-
 			String url = ConfigFactory.load().getString("webservice.url")
-					+ "/person/1";
+					+ "/employer/156";
 			Client client = ClientBuilder.newClient();
 			WebTarget target = client.target(url);
 			ObjectMapper mapper = new ObjectMapper();
@@ -33,19 +31,26 @@ public class Main {
 			System.out.println(url);
 			System.out.println(response);
 
-			Person p = mapper.readValue(response, Person.class);
+			Person p;
+
+			p = mapper.readValue(response, Employer.class);
+
 			System.out.println(p.getName());
-			
-			url = ConfigFactory.load().getString("webservice.url")
-					+ "/person";
-			TypeFactory t = TypeFactory.defaultInstance();
-			target = client.target(url);
-			List<Person> l = mapper.readValue(response, t.constructCollectionType(ArrayList.class, Person.class));
+
+			url = ConfigFactory.load().getString("webservice.url") + "/employer";
 			System.out.println(url);
+			target = client.target(url);
+			response = target.request("application/json").get(String.class);
+			System.out.println(response);
+
+			List<Employer> l = mapper.readValue(response,
+					new TypeReference<List<Employer>>() {
+					});
+
 			System.out.println(l.size() + "s");
 
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
-
 }

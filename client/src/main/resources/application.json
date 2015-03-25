@@ -1,5 +1,5 @@
 {
-"webservice" : {
-	"url" : "http://localhost:8080/webservice"
-}
+	"webservice": {
+		"url": "http://localhost:8080/webservice"
+	}
 }

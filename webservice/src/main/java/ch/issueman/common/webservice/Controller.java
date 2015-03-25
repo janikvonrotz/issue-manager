@@ -25,25 +25,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		em.close();
 	}
 
-	public void persistList(List<T> l) {
-		em = EclipseLink.getEntityManager();
-		em.getTransaction().begin();
-		for (T t : l) {
-			em.persist(t);
-		}
-		em.getTransaction().commit();
-		em.close();
-	}
-
 	public T getById(Id id) {
 		em = EclipseLink.getEntityManager();
 		return em.find(clazz, id);
-	}
-	
-	public List<T> getByQuery(String JPQLquery) {
-		em = EclipseLink.getEntityManager();
-		TypedQuery<T> query = em.createQuery(JPQLquery, clazz);
-		return (List<T>) query.getResultList();
 	}
 
 	public List<T> getAll() {
@@ -61,30 +45,10 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		em.close();
 	}
 
-	public void updateList(List<T> l) {
-		em = EclipseLink.getEntityManager();
-		em.getTransaction().begin();
-		for (T t : l) {
-			em.merge(t);
-		}
-		em.getTransaction().commit();
-		em.close();
-	}
-
 	public void delete(T t) {
 		em = EclipseLink.getEntityManager();
 		em.getTransaction().begin();
 		em.detach(t);
-		em.getTransaction().commit();
-		em.close();
-	}
-
-	public void deleteList(List<T> l) {
-		em = EclipseLink.getEntityManager();
-		em.getTransaction().begin();
-		for (T t : l) {
-			em.detach(t);
-		}
 		em.getTransaction().commit();
 		em.close();
 	}

@@ -50,11 +50,12 @@ public class Route{
 	}	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DELETE
-	@Path("{entity}")
+	@Path("{entity}/{id}")
 	@Consumes("application/json")
-	public Response deleteEntity(@PathParam("entity") String entity, Model m) {
-		((DAO) hm.get(entity)).delete(m);
-		return Response.status(201).entity("Entiy deleted").build();
+	public Response deleteEntity(@PathParam("entity") String entity, @PathParam("id") int id) {
+		((DAO) hm.get(entity)).delete(hm.get(entity).getById(id));
+		return Response.status(410).entity("Entiy deleted").build();
+		
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PUT
@@ -70,6 +71,6 @@ public class Route{
 	@Consumes("application/json")
 	public Response persistEntity(@PathParam("entity") String entity, Model m) {
 		((DAO) hm.get(entity)).persist(m);
-		return Response.status(201).entity("Entiy added").build();
+		return Response.status(200).entity("Entiy added").build();
 	}
 }

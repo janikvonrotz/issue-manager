@@ -28,7 +28,7 @@ public class Project implements Model {
 		this.employer = employer;
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
