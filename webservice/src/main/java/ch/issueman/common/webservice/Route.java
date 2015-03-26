@@ -53,7 +53,7 @@ public class Route{
 	@Path("{entity}/{id}")
 	@Consumes("application/json")
 	public Response deleteEntity(@PathParam("entity") String entity, @PathParam("id") int id) {
-		((DAO) hm.get(entity)).delete(hm.get(entity).getById(id));
+		((DAO) hm.get(entity)).delete(((DAO) hm.get(entity)).getById(id));
 		return Response.status(410).entity("Entiy deleted").build();
 		
 	}

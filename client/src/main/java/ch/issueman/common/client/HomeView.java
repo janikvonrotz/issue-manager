@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ch.issueman.common.Employer;
-import ch.issueman.common.Person;
 
 public class HomeView implements Initializable {
 

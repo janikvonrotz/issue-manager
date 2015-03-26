@@ -15,7 +15,6 @@ import org.codehaus.jackson.type.TypeReference;
 import com.typesafe.config.ConfigFactory;
 
 import ch.issueman.common.DAO;
-import ch.issueman.common.Employer;
 import ch.issueman.common.Model;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
@@ -47,7 +46,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public List<T> getAll() {
 		try {
 			WebTarget target = client.target(url);
-			return mapper.readValue(target.request("application/json").get(String.class), new TypeReference<List<Employer>>() {});
+			return mapper.readValue(target.request("application/json").get(String.class), new TypeReference<List<T>>() {});
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
