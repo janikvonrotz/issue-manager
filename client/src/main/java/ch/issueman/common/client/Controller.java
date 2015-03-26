@@ -10,8 +10,7 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-
+import org.codehaus.jackson.map.type.TypeFactory;
 import com.typesafe.config.ConfigFactory;
 
 import ch.issueman.common.DAO;
@@ -46,7 +45,8 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public List<T> getAll() {
 		try {
 			WebTarget target = client.target(url);
-			return mapper.readValue(target.request("application/json").get(String.class), new TypeReference<List<T>>() {});
+			TypeFactory t = TypeFactory.defaultInstance();
+			return mapper.readValue(target.request("application/json").get(String.class), t.constructCollectionType(List.class,clazz));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -81,7 +81,5 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	@Override
 	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
 	}
 }

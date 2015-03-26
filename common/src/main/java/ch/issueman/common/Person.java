@@ -6,8 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person implements Model{
 	
 	@Id
