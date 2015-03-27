@@ -31,7 +31,7 @@ public class Main {
 			System.out.println(json);
 			l = null;
 			l = mapper.readValue(json, new TypeReference<List<Person>>() {});
-			System.out.print(l.get(0));
+			System.out.println(l.get(0));
 			System.out.println("Size:" + l.size());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -40,12 +40,15 @@ public class Main {
 		Controller<Employer, Integer> controller = new Controller<Employer, Integer>(Employer.class);
 		Employer e = controller.getById(353);
 		System.out.println(e.getName());
+		
 		List<Employer> employers = controller.getAll();
 		System.out.println("Size:" + l.size());
-		System.out.println(employers.get(0).getName());
-		//Employer e = employers.get(0).g;
-//		for(Employer e : employers){
-//			System.out.println(e.getName());
-//		}
+		System.out.println(employers.get(0));
+		
+//		controller.persist(b);
+//		b.setId(451);
+//		b.setName("Peter");
+//		controller.update(b);
+		controller.delete(controller.getById(453));
 	}
 }

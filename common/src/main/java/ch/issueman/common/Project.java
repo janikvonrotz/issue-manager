@@ -2,6 +2,7 @@ package ch.issueman.common;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,9 +18,17 @@ public class Project implements Model {
 	private String title;
 	@ManyToOne
 	private Employer employer;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Comment> comments;
 	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public Project(){}
 	
 	public Project(String title, Employer employer) {

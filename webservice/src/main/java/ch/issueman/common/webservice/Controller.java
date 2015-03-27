@@ -48,7 +48,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public void delete(T t) {
 		em = EclipseLink.getEntityManager();
 		em.getTransaction().begin();
-		em.detach(t);
+		em.remove(em.merge(t));
 		em.getTransaction().commit();
 		em.close();
 	}
