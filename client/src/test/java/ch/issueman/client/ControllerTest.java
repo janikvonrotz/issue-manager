@@ -1,4 +1,4 @@
-package ch.issueman.common.client;
+package ch.issueman.client;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import ch.issueman.client.Controller;
 import ch.issueman.common.Employer;
 
 public class ControllerTest {

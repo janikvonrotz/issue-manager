@@ -6,3 +6,9 @@ dependencies {
   compile 'org.jboss.resteasy:resteasy-jackson-provider:2.+'
   providedCompile "javax.servlet:javax.servlet-api:3.+"
 }
+
+
+task seed(type:JavaExec) {
+   main = 'ch.issueman.webservice.Seed'
+   classpath = sourceSets.main.runtimeClasspath
+}

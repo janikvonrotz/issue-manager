@@ -24,7 +24,7 @@
       "level": "off"
     },
     "ddl-generation": {
-    	"value": "create-tables",
+    	"value": "drop-and-create-tables",
     	"output-mode": "database"
 	}
   }
