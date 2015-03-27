@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ch.issuema.webservice.Controller;
 import ch.issueman.common.Comment;
 import ch.issueman.common.Employer;
 import ch.issueman.common.Person;

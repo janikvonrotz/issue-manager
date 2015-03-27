@@ -1,4 +1,4 @@
-package ch.issueman.client;
+package ch.issueman.common.client;
 
 import java.net.URL;
 import java.util.ResourceBundle;

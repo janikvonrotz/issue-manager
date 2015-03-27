@@ -1,4 +1,4 @@
-package ch.issueman.client;
+package ch.issueman.common.client;
 
 import java.io.IOException;
 import java.io.Serializable;

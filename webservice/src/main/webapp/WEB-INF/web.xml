@@ -6,7 +6,7 @@
 
 	<context-param>
 		<param-name>resteasy.resources</param-name>
-		<param-value>ch.issueman.webservice.Route</param-value>
+		<param-value>ch.issueman.common.webservice.Route</param-value>
 	</context-param>
 	
 	<servlet>

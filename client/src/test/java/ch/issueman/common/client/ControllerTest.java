@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import ch.issueman.client.Controller;
 import ch.issueman.common.Employer;
 
 public class ControllerTest {
