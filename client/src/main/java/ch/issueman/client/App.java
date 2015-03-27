@@ -1,4 +1,4 @@
-package ch.issueman.common.client;
+package ch.issueman.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

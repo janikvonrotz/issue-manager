@@ -1,4 +1,4 @@
-package ch.issueman.common.webservice;
+package ch.issuema.webservice;
 
 import java.io.Serializable;
 import java.util.List;

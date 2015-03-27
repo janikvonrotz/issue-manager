@@ -1,4 +1,4 @@
-package ch.issueman.common.webservice;
+package ch.issuema.webservice;
 
 import java.util.HashMap;
 import java.util.List;
