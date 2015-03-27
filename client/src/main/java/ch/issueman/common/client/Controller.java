@@ -57,9 +57,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public void persist(T t) {
 		try {
 			WebTarget target = client.target(url);
-			String json = mapper.writeValueAsString(t);
-			System.out.println(json);
-			target.request("application/json").post(Entity.json(json));
+			target.request("application/json").post(Entity.json(mapper.writeValueAsString(t)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -77,7 +75,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	@Override
 	public void delete(T t) {
-		WebTarget target = client.target(url + "/" + ((Model)t).getId());
+		WebTarget target = client.target(url+"/"+ ((Model)t).getId());
 		target.request("application/json").delete();
 	}
 

@@ -51,26 +51,26 @@ public class Route{
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DELETE
 	@Path("{entity}/{id}")
+	@Consumes("application/json")
 	public Response deleteEntity(@PathParam("entity") String entity, @PathParam("id") int id) {
-		
 		((DAO) hm.get(entity)).delete(((DAO) hm.get(entity)).getById(id));
-		return Response.status(200).entity("Entiy deleted").build();
+		return Response.status(410).entity("Entiy deleted").build();
+		
 	}
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PUT
-	@Path("employer")
+	@Path("{entity}")
 	@Consumes("application/json")
-	public Response updateEntiy(Employer t) {
-		((DAO) hm.get("employer")).update(t);
-		return Response.status(200).entity(t.getClass().getSimpleName() + " updated").build();
+	public Response updateEntiy(@PathParam("entity") String entity, Model m) {
+		((DAO) hm.get(entity)).update(m);
+		return Response.status(201).entity("Entiy updated").build();
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@POST
-	@Path("employer")
+	@Path("{entity}")
 	@Consumes("application/json")
-	public Response persistEntity(Employer t) {
-		((DAO) hm.get("employer")).persist(t);
-		return Response.status(200).entity(t.getClass().getSimpleName() + " added").build();
+	public Response persistEntity(@PathParam("entity") String entity, Model m) {
+		((DAO) hm.get(entity)).persist(m);
+		return Response.status(200).entity("Entiy added").build();
 	}
 }

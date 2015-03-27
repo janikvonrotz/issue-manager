@@ -3,7 +3,6 @@ package ch.issueman.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -12,7 +11,6 @@ public class Comment implements Model{
 	@Id
 	@GeneratedValue
 	private int id;
-	@Lob
 	private String comment;
 	@OneToOne
 	private User user;
