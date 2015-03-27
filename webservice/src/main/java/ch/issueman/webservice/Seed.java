@@ -44,7 +44,7 @@ public class Seed {
 
 			if (i % 4 == 0) {
 				
-				Project project = new Project(faker.name().lastName(), employer);
+				Project project = new Project("Project: " + faker.name().lastName(), employer);
 				
 				List<Comment> comments = new ArrayList<Comment>();
 				

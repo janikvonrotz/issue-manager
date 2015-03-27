@@ -7,45 +7,30 @@ import java.util.List;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
+import ch.issueman.common.Comment;
 import ch.issueman.common.Employer;
 import ch.issueman.common.Person;
+import ch.issueman.common.Project;
 import ch.issueman.common.User;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Person a = new Person("Janik");
-		Employer b = new Employer("Sandro", "HSLU");
-		User c = new User("Stefan","yodo","hello123","Admin");
-		
-		List<Person> l = new ArrayList<Person>();
-		
-		l.add(a);
-		l.add(b);
-		l.add(c);
-		
+
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			String json = mapper.writeValueAsString(l);
-			System.out.println(json);
-			l = null;
-			l = mapper.readValue(json, new TypeReference<List<Person>>() {});
-			System.out.print(l.get(0));
-			System.out.println("Size:" + l.size());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
 		
-		Controller<Employer, Integer> controller = new Controller<Employer, Integer>(Employer.class);
-		Employer e = controller.getById(353);
-		System.out.println(e.getName());
-		List<Employer> employers = controller.getAll();
-		System.out.println("Size:" + l.size());
-		System.out.println(employers.get(0).getName());
-		//Employer e = employers.get(0).g;
-//		for(Employer e : employers){
-//			System.out.println(e.getName());
-//		}
+		Controller<Person, Integer> personcontroller = new Controller<Person, Integer>(Person.class);
+		Controller<User, Integer> usercontroller = new Controller<User, Integer>(User.class);
+		Controller<Employer, Integer> employercontroller = new Controller<Employer, Integer>(Employer.class);
+		Controller<Project, Integer> projectcontroller = new Controller<Project, Integer>(Project.class);
+		Controller<Comment, Integer> commentcontroller = new Controller<Comment, Integer>(Comment.class);
+		
+		List<Project> projects = projectcontroller.getAll();
+		for(Project p : projects){
+			System.out.println(p.getTitle());
+			for(Comment c : p.getComments()){
+				System.out.println(c.getUser().getName() + ": " + c.getComment());				
+			}
+		}	
 	}
 }
