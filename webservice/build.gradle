@@ -7,6 +7,7 @@ dependencies {
   providedCompile "javax.servlet:javax.servlet-api:3.+"
 }
 
+jettyRun.webAppSourceDirectory = file("src/main/resources")
 
 task seed(type:JavaExec) {
    main = 'ch.issueman.webservice.Seed'
