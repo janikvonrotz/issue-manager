@@ -8,11 +8,17 @@
 		<param-name>resteasy.resources</param-name>
 		<param-value>ch.issueman.webservice.Route</param-value>
 	</context-param>
-	
+
+	<context-param>
+		<param-name>resteasy.providers</param-name>
+		<param-value>ch.issueman.webservice.Authenticator</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>resteasy-servlet</servlet-name>
 		<servlet-class>
-			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
 	</servlet>
 
 	<servlet-mapping>

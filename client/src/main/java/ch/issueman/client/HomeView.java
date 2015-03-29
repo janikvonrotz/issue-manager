@@ -7,15 +7,18 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import ch.issueman.common.Employer;
+import ch.issueman.common.User;
 
 public class HomeView implements Initializable {
 
-	private static Controller<Employer, Integer> controller = new Controller<Employer, Integer>(Employer.class);
+	private static Controller<Employer, Integer> controller = new Controller<Employer, Integer>(Employer.class, null);
 
 	@FXML
 	private Button btAdd;
@@ -27,10 +30,25 @@ public class HomeView implements Initializable {
 	private Button btDelete;
 
 	@FXML
+	private Button btLogin;
+	
+	@FXML
+	private Pane pnLogin;
+	
+	@FXML
+	private Pane pnData;
+	
+	@FXML
+	private TextField txUsername;
+	
+	@FXML
 	private TextField txName;
 	
 	@FXML
 	private TextField txCompany;
+	
+	@FXML
+	private PasswordField pfPassword;
 	
 	@FXML
 	private TableView<Employer> tvEmployer;
@@ -82,5 +100,18 @@ public class HomeView implements Initializable {
 	public void clickDelete() {
 		controller.delete(tvEmployer.getSelectionModel().getSelectedItem());
 		refreshPersonTable();
+	}
+	
+	@FXML
+	public void clickLogin(){
+		User user = new User("", txUsername.getText(), pfPassword.getText(), "");
+		controller = new Controller<Employer, Integer>(Employer.class, user);
+		if(controller.login()){
+			pnData.setVisible(true);
+			pnLogin.setVisible(false);
+		}else{
+			txUsername.setText("");
+			pfPassword.setText("");
+		}
 	}
 }

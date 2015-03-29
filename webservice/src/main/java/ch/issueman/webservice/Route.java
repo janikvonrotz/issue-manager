@@ -3,7 +3,10 @@ package ch.issueman.webservice;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,7 +15,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import ch.issueman.common.Employer;
 import ch.issueman.common.Model;
@@ -35,42 +40,73 @@ public class Route{
 		hm.put("comment", new Controller<Comment, Integer>(Comment.class));	
 	}
 	
+	@RolesAllowed("Administrator")
 	@GET
 	@Path("{entity}/{id}")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Model getEntityById(@PathParam("entity") String entity, @PathParam("id") int id) {
 		return (Model) hm.get(entity).getById(id);
 	} 
+	
+	@PermitAll
 	@SuppressWarnings("unchecked")
 	@GET
 	@Path("{entity}")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Model> getAll(@PathParam("entity") String entity) {
 		return (List<Model>) hm.get(entity).getAll();
 	}	
+	
+	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DELETE
 	@Path("{entity}/{id}")
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteEntity(@PathParam("entity") String entity, @PathParam("id") int id) {
 		((DAO) hm.get(entity)).delete(((DAO) hm.get(entity)).getById(id));
-		return Response.status(410).entity("Entiy deleted").build();
+		return Response.status(Status.OK).entity("Entiy deleted").build();
 		
 	}
+	
+	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PUT
 	@Path("{entity}")
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateEntiy(@PathParam("entity") String entity, Model m) {
 		((DAO) hm.get(entity)).update(m);
-		return Response.status(201).entity("Entiy updated").build();
+		return Response.status(Status.OK).entity("Entiy updated").build();
 	}
+	
+	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@POST
 	@Path("{entity}")
-	@Consumes("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistEntity(@PathParam("entity") String entity, Model m) {
 		((DAO) hm.get(entity)).persist(m);
-		return Response.status(200).entity("Entiy added").build();
+		return Response.status(Status.OK).entity("Entiy added").build();
+	}
+	
+	@PermitAll
+	@SuppressWarnings({ "unchecked" })
+	@POST
+	@Path("login")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response login(User user) {
+		
+		List<User> users = ((List<User>) hm.get("user").getAll()).stream()
+				.filter(p -> p.getEmail().equals(user.getEmail()))
+				.filter(p -> p.getPassword().equals(user.getPassword()))
+				.collect(Collectors.toList());
+		
+		System.out.println("Size" + users.size());
+		
+		if((users.get(0) != null) && (users.size() == 1)){
+			return Response.status(Status.OK).entity(users.get(0)).build();
+		}else{
+			return Response.status(Status.UNAUTHORIZED).build();
+		}
 	}
 }

@@ -14,17 +14,28 @@
       <Glow />
    </effect>
    <children>
-      <TableView fx:id="tvEmployer" onMouseClicked="#clickTableView" prefHeight="342.0" prefWidth="317.0">
-         <columns>
-            <TableColumn fx:id="tcId" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="tcName" prefWidth="135.0" text="Name" />
-            <TableColumn fx:id="tcCompany" prefWidth="131.0" text="Company" />
-         </columns>
-      </TableView>
-      <Button fx:id="btAdd" layoutX="329.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickAdd" onMouseClicked="#clickAdd" text="Add" />
-      <Button fx:id="btUpdate" layoutX="377.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickUpdate" onMouseClicked="#clickUpdate" text="Update" />
-      <Button fx:id="btDelete" layoutX="446.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickDelete" onMouseClicked="#clickDelete" text="Delete" />
-      <TextField fx:id="txName" layoutX="325.0" layoutY="24.0" />
-      <TextField fx:id="txCompany" layoutX="325.0" layoutY="61.0" />
+      <Pane fx:id="pnData" prefHeight="342.0" prefWidth="528.0" visible="false">
+         <children>
+            <TableView fx:id="tvEmployer" onMouseClicked="#clickTableView" prefHeight="342.0" prefWidth="317.0">
+               <columns>
+                  <TableColumn fx:id="tcId" prefWidth="50.0" text="ID" />
+                  <TableColumn fx:id="tcName" prefWidth="135.0" text="Name" />
+                  <TableColumn fx:id="tcCompany" prefWidth="131.0" text="Company" />
+               </columns>
+            </TableView>
+            <Button fx:id="btDelete" layoutX="443.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickDelete" onMouseClicked="#clickDelete" text="Delete" />
+            <TextField fx:id="txName" layoutX="327.0" layoutY="83.0" />
+            <TextField fx:id="txCompany" layoutX="327.0" layoutY="127.0" />
+            <Button fx:id="btAdd" layoutX="327.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickAdd" onMouseClicked="#clickAdd" text="Add" />
+            <Button fx:id="btUpdate" layoutX="374.0" layoutY="171.0" mnemonicParsing="false" onAction="#clickUpdate" onMouseClicked="#clickUpdate" text="Update" />
+         </children>
+      </Pane>
+      <Pane fx:id="pnLogin" prefHeight="342.0" prefWidth="528.0">
+         <children>
+            <TextField fx:id="txUsername" layoutX="171.0" layoutY="104.0" />
+            <PasswordField fx:id="pfPassword" layoutX="171.0" layoutY="140.0" />
+            <Button fx:id="btLogin" layoutX="236.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickLogin" text="Login" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
