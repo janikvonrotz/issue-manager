@@ -47,6 +47,7 @@ public class Route{
 	public Model getEntityById(@PathParam("entity") String entity, @PathParam("id") int id) {
 		return (Model) hm.get(entity).getById(id);
 	} 	
+	
 	@PermitAll
 	@SuppressWarnings("unchecked")
 	@GET
@@ -55,6 +56,7 @@ public class Route{
 	public List<Model> getAll(@PathParam("entity") String entity) {
 		return (List<Model>) hm.get(entity).getAll();
 	}	
+	
 	@PermitAll
 	@SuppressWarnings({ "unchecked" })
 	@POST
@@ -75,6 +77,40 @@ public class Route{
 		}
 	}
 	
+	/**
+	 * Person
+	 */
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@DELETE
+	@Path("person/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deletePerson(@PathParam("id") int id) {
+		((DAO) hm.get("person")).delete(((DAO) hm.get("person")).getById(id));
+		return Response.status(Status.OK).entity("Person deleted").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PUT
+	@Path("person")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updatePerson(Person t) {
+		((DAO) hm.get("person")).update(t);
+		return Response.status(Status.OK).entity("Person updated").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("person")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistPerson(Person t) {
+		((DAO) hm.get("person")).persist(t);
+		return Response.status(Status.OK).entity("Person added").build();
+	}
+		
+	/**
+	 * Employer
+	 */
 	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@DELETE
@@ -83,7 +119,7 @@ public class Route{
 	public Response deleteEmployer(@PathParam("id") int id) {
 		((DAO) hm.get("employer")).delete(((DAO) hm.get("employer")).getById(id));
 		return Response.status(Status.OK).entity("Employer deleted").build();
-	}	
+	}		
 	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PUT
@@ -92,7 +128,7 @@ public class Route{
 	public Response updateEmployer(Employer t) {
 		((DAO) hm.get("employer")).update(t);
 		return Response.status(Status.OK).entity("Employer updated").build();
-	}	
+	}		
 	@RolesAllowed("Administrator")
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@POST
@@ -101,5 +137,98 @@ public class Route{
 	public Response persistEmployer(Employer t) {
 		((DAO) hm.get("employer")).persist(t);
 		return Response.status(Status.OK).entity("Employer added").build();
+	}
+	
+	/**
+	 * User
+	 */
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@DELETE
+	@Path("user/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteUser(@PathParam("id") int id) {
+		((DAO) hm.get("user")).delete(((DAO) hm.get("user")).getById(id));
+		return Response.status(Status.OK).entity("User deleted").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PUT
+	@Path("user")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateUser(User t) {
+		((DAO) hm.get("user")).update(t);
+		return Response.status(Status.OK).entity("User updated").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("user")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistUser(User t) {
+		((DAO) hm.get("user")).persist(t);
+		return Response.status(Status.OK).entity("User added").build();
+	}
+	
+	/**
+	 * Project
+	 */
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@DELETE
+	@Path("project/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteProject(@PathParam("id") int id) {
+		((DAO) hm.get("project")).delete(((DAO) hm.get("project")).getById(id));
+		return Response.status(Status.OK).entity("Project deleted").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PUT
+	@Path("project")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateProject(Project t) {
+		((DAO) hm.get("project")).update(t);
+		return Response.status(Status.OK).entity("Project updated").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("project")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistProject(Project t) {
+		((DAO) hm.get("project")).persist(t);
+		return Response.status(Status.OK).entity("Project added").build();
+	}
+	
+	/**
+	 * Comment
+	 */
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@DELETE
+	@Path("comment/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteComment(@PathParam("id") int id) {
+		((DAO) hm.get("comment")).delete(((DAO) hm.get("comment")).getById(id));
+		return Response.status(Status.OK).entity("Comment deleted").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PUT
+	@Path("comment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateComment(Comment t) {
+		((DAO) hm.get("comment")).update(t);
+		return Response.status(Status.OK).entity("Comment updated").build();
+	}		
+	@RolesAllowed("Administrator")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("comment")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistComment(Comment t) {
+		((DAO) hm.get("comment")).persist(t);
+		return Response.status(Status.OK).entity("Comment added").build();
 	}
 }

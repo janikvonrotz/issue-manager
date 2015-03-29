@@ -32,8 +32,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	public List<T> getAll() {
 		em = EclipseLink.getEntityManager();
-		TypedQuery<T> query = em.createQuery("Select t FROM "
-				+ clazz.getSimpleName() + " t", clazz);
+		TypedQuery<T> query = em.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t", clazz);
 		return (List<T>) query.getResultList();
 	}
 

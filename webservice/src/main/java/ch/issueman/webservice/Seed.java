@@ -23,12 +23,12 @@ public class Seed {
 		Controller<Project, Integer> projectcontroller = new Controller<Project, Integer>(Project.class);
 		Controller<Comment, Integer> commentcontroller = new Controller<Comment, Integer>(Comment.class);
 
+		projectcontroller.deleteAll();
+		commentcontroller.deleteAll();
 		usercontroller.deleteAll();
 		employercontroller.deleteAll();
-		projectcontroller.deleteAll();
 		personcontroller.deleteAll();
-		commentcontroller.deleteAll();
-		
+				
 		int i = 0;
 		int j = 0;
 		
