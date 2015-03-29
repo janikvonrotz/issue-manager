@@ -74,10 +74,6 @@ public class Authenticator implements ContainerRequestFilter {
 			final String username = tokenizer.nextToken();
 			final String password = tokenizer.nextToken();
 
-			// Verifying Username and password
-			System.out.println(username);
-			System.out.println(password);
-
 			// Verify user access
 			if (method.isAnnotationPresent(RolesAllowed.class)) {
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);

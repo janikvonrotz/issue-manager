@@ -75,8 +75,9 @@ public class HomeView implements Initializable {
 
 	@FXML
 	public void clickTableView() {
-		txName.textProperty().set(tvEmployer.getSelectionModel().getSelectedItem().getName());
-		txCompany.textProperty().set(tvEmployer.getSelectionModel().getSelectedItem().getCompany());
+		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
+		txName.textProperty().set(e.getName());
+		txCompany.textProperty().set(e.getCompany());
 	}
 
 	@FXML
@@ -87,18 +88,17 @@ public class HomeView implements Initializable {
 
 	@FXML
 	public void clickUpdate() {
-		Employer t = tvEmployer.getSelectionModel().getSelectedItem();
-		
-		t.setName(txName.getText());
-		t.setCompany(txCompany.getText());
-		
-		controller.update(t);
+		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
+		e.setName(txName.getText());
+		e.setCompany(txCompany.getText());
+		controller.update(e);
 		refreshPersonTable();
 	}
 
 	@FXML
 	public void clickDelete() {
-		controller.delete(tvEmployer.getSelectionModel().getSelectedItem());
+		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
+		controller.delete(e);
 		refreshPersonTable();
 	}
 	

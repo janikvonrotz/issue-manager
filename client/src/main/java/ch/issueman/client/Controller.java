@@ -37,27 +37,29 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	}
 	
 	public boolean login(){
+		Boolean status = false;
 		try {
 			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/login");
 			Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(user)));
-			
 			if(response.getStatus() == Status.OK.getStatusCode()){
 				user = mapper.readValue(response.readEntity(String.class), User.class);
 				client = new ResteasyClientBuilder().register(new BasicAuthentication(user.getEmail(), user.getPassword())).build();
-				return true;
-			}else{
-				return false;
-			}
+				status = true;
+			}			
+			response.close();			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return status;
 	}
 	
 	public T getById(Id id) {
-		try {
-			WebTarget target = client.target(url + "/" + id);
-			return mapper.readValue(target.request(MediaType.APPLICATION_JSON).get(String.class), clazz);
+		WebTarget target = client.target(url + "/" + id);
+		try {			
+			Response response = target.request(MediaType.APPLICATION_JSON).get();
+			T t = mapper.readValue(response.readEntity(String.class), clazz);
+			response.close();
+			return t;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -65,10 +67,15 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	}
 
 	public List<T> getAll() {
+		
+		WebTarget target = client.target(url);
+		TypeFactory t = TypeFactory.defaultInstance();
+		
 		try {
-			WebTarget target = client.target(url);
-			TypeFactory t = TypeFactory.defaultInstance();
-			return mapper.readValue(target.request(MediaType.APPLICATION_JSON).get(String.class), t.constructCollectionType(List.class,clazz));
+			Response response = target.request(MediaType.APPLICATION_JSON).get();
+			List<T> l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class,clazz));
+			response.close();
+			return l;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -77,9 +84,10 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	@Override
 	public void persist(T t) {
-		try {
-			WebTarget target = client.target(url);
-			target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(t)));
+		WebTarget target = client.target(url);
+		try {			
+			Response response =	target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(t)));
+			response.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
@@ -89,7 +97,8 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public void update(T t) {
 		try {
 			WebTarget target = client.target(url);
-			target.request(MediaType.APPLICATION_JSON).put(Entity.json(mapper.writeValueAsString(t)));
+			Response response = target.request(MediaType.APPLICATION_JSON).put(Entity.json(mapper.writeValueAsString(t)));
+			response.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
@@ -97,8 +106,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	@Override
 	public void delete(T t) {
-		WebTarget target = client.target(url+"/"+ ((Model)t).getId());
-		target.request(MediaType.APPLICATION_JSON).delete();
+		WebTarget target = client.target(url + "/" + ((Model)t).getId());
+		Response response = target.request(MediaType.APPLICATION_JSON).delete();
+		response.close();
 	}
 
 	@Override
