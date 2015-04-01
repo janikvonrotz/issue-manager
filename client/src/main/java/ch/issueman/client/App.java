@@ -12,7 +12,7 @@ public class App extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.setTitle("Issue Manager");
 			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Home.fxml"))));
-			primaryStage.show();			
+			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

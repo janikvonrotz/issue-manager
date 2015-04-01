@@ -7,7 +7,73 @@ subprojects {
     mavenCentral()
   }
 
+  configurations {
+    lombok
+  }
+
   dependencies {
-     testCompile "junit:junit:4.+"
+     testCompile 'junit:junit:4.+'
+     compile 'org.projectlombok:lombok:1.+'
+     lombok 'org.projectlombok:lombok:1.+'
+  }
+
+  // install lombok for Eclipse
+
+  sourceSets.each{ sourceSet ->
+    sourceSet.compileClasspath += configurations.lombok
+    sourceSet.ext.delombok = new File(buildDir, "generated-src/delombok/" + sourceSet.name);
+  }
+
+  task installLombok() {
+    dependsOn configurations.lombok
+  } << {
+      File jarFile = null;
+      configurations.lombok.resolvedConfiguration.resolvedArtifacts.find {
+          if ("lombok".equals(it.name)) {
+              jarFile = it.file;
+          }
+      }
+      javaexec {
+          main="-jar"
+          args = [
+              jarFile,
+              "install",
+              "auto"
+          ]
+      }
+  }
+  eclipseProject.dependsOn installLombok
+
+  // install lombok for Javadoc
+
+  task delombok() {
+    dependsOn configurations.compile
+    dependsOn configurations.lombok
+  } << {
+      File jarFile = null;
+      configurations.lombok.resolvedConfiguration.resolvedArtifacts.find {
+          if ("lombok".equals(it.name)) {
+              jarFile = it.file;
+          }
+      }
+      sourceSets.each{ sourceSet ->
+          def classPath = sourceSet.compileClasspath.files.join(";")
+          def delombokPath = sourceSet.ext.delombok
+          delombokPath.mkdirs();
+          javaexec {
+              main = "-jar"
+              args jarFile, "delombok"
+              if (!classPath.empty) {
+                  args "-c", classPath
+              }
+              args "-d", delombokPath
+              args sourceSet.allJava.srcDirs
+          }
+      }
+  }
+
+  javadoc {
+      dependsOn delombok
+      source = sourceSets.main.ext.delombok
   }
 }

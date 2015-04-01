@@ -6,9 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import lombok.Data;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @Entity
+@Data
 @Inheritance(strategy=InheritanceType.JOINED)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person implements Model{
@@ -22,22 +25,6 @@ public class Person implements Model{
 	
 	public Person(String name) {
 		super();
-		this.name = name;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
 	}
 } 

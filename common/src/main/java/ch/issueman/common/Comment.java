@@ -6,7 +6,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Comment implements Model{
 	
 	@Id
@@ -22,24 +25,6 @@ public class Comment implements Model{
 	public Comment(String comment, User user) {
 		super();
 		this.comment = comment;
-		this.user = user;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
 		this.user = user;
 	}
 }
