@@ -53,6 +53,10 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	}
 
 	public void deleteAll() {
+		em = EclipseLink.getEntityManager();
+		em.getTransaction().begin();
 		em.createQuery("DELETE FROM " + clazz.getSimpleName() + " t").executeUpdate();
+		em.getTransaction().commit();
+		em.close();
 	}
 }
