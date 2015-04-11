@@ -7,9 +7,10 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * Klasse Ort
+ * Beschreibung hier
  * 
  * @author Janik von Rotz
+ * @version 1.0.0
  */
 @Entity
 @Data

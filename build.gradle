@@ -75,5 +75,6 @@ subprojects {
   javadoc {
       dependsOn delombok
       source = sourceSets.main.ext.delombok
+      destinationDir = file("./doc/")
   }
 }
