@@ -9,6 +9,7 @@
         <class>ch.issueman.common.Employer</class>
         <class>ch.issueman.common.Project</class>
         <class>ch.issueman.common.Comment</class>
+        <class>ch.issueman.common.Ort</class>
         
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 				

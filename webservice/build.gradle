@@ -5,6 +5,9 @@ dependencies {
   compile 'mysql:mysql-connector-java:5.+'
   compile 'org.jboss.resteasy:resteasy-jackson-provider:2.+'
   providedCompile 'javax.servlet:javax.servlet-api:3.+'
+
+  compile 'org.hibernate:hibernate-validator:5.1.+'
+  compile 'javax.el:javax.el-api:3.+'
 }
 
 jettyRun.webAppSourceDirectory = file("src/main/resources")

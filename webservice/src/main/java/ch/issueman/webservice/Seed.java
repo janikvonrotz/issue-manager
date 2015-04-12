@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.issueman.common.Comment;
 import ch.issueman.common.Employer;
+import ch.issueman.common.Ort;
 import ch.issueman.common.Person;
 import ch.issueman.common.Project;
 import ch.issueman.common.User;
@@ -22,13 +23,16 @@ public class Seed {
 		Controller<Employer, Integer> employercontroller = new Controller<Employer, Integer>(Employer.class);
 		Controller<Project, Integer> projectcontroller = new Controller<Project, Integer>(Project.class);
 		Controller<Comment, Integer> commentcontroller = new Controller<Comment, Integer>(Comment.class);
-
+		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
+		
 		projectcontroller.deleteAll();
 		commentcontroller.deleteAll();
 		usercontroller.deleteAll();
 		employercontroller.deleteAll();
 		personcontroller.deleteAll();
-				
+		
+		ortcontroller.persist(new Ort(6064 , "Kerns"));
+		
 		int i = 0;
 		int j = 0;
 		

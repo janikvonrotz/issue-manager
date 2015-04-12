@@ -3,6 +3,7 @@ package ch.issueman.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -19,7 +20,9 @@ public class Ort implements Model {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotNull
 	private int plz;
+	@NotNull
 	private String ort;
 	
 	public Ort(){}

@@ -6,6 +6,9 @@
         "url": "jdbc:mysql://localhost/issuemanager",
         "user": "issuemanager",
         "password": "issuemanager"
+      },
+      "validation": {
+      	"mode": "CALLBACK"
       }
     }
   },

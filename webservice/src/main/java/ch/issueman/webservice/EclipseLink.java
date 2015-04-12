@@ -22,6 +22,7 @@ public class EclipseLink {
 			properties.put("javax.persistence.jdbc.url", config.getString("javax.persistence.jdbc.url"));
 			properties.put("javax.persistence.jdbc.user", config.getString("javax.persistence.jdbc.user"));
 			properties.put("javax.persistence.jdbc.password", config.getString("javax.persistence.jdbc.password"));
+			properties.put("javax.persistence.validation.mode", config.getString("javax.persistence.validation.mode"));
 			properties.put("eclipselink.ddl-generation.output-mode", config.getString("eclipselink.ddl-generation.output-mode"));
 			properties.put("eclipselink.logging.level", config.getString("eclipselink.logging.level"));
 			properties.put("eclipselink.ddl-generation", config.getString("eclipselink.ddl-generation.value"));
