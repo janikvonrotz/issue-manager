@@ -8,10 +8,11 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Beschreibung hier
+ * TODO
  * 
  * @author Janik von Rotz
  * @version 1.0.0
+ * @since 1.0.0
  */
 @Entity
 @Data
