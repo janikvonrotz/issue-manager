@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -15,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -57,6 +60,27 @@ public class Route{
 		return (List<Model>) hm.get(entity).getAll();
 	}	
 	
+	@GET
+	@RolesAllowed("Administrator")
+	@Path("hello")
+	@Produces("text/plain")
+	public String hello(@Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		return user.getEmail();
+	}
+	
+	@PermitAll
+	@GET
+	@Path("comments")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Comment> getComments(@Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.toString());
+		return (new ResponseFilter<Comment, Integer>(Comment.class, "GET", user)).getAll();
+	}
+
 	@PermitAll
 	@SuppressWarnings({ "unchecked" })
 	@POST

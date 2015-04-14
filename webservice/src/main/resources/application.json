@@ -17,5 +17,13 @@
     	"value": "create-tables",
     	"output-mode": "database"
 	}
+  },
+  "permissions": {
+    "Comment": {
+    	"GET": "Administrator",
+    	"PUT": ["Sachbearbeiter"],
+    	"DELETE": ["Authenticated"],
+    	"POST": ["Anonymous"]
+    }
   }
 }

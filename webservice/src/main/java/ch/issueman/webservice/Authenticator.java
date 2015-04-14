@@ -12,8 +12,11 @@ import java.util.stream.Collectors;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -27,6 +30,8 @@ import ch.issueman.common.User;
 @Provider
 public class Authenticator implements ContainerRequestFilter {
 
+	@Context
+    HttpServletRequest request;
 	private static final String AUTHORIZATION_PROPERTY = "Authorization";
 	private static final String AUTHENTICATION_SCHEME = "Basic";
 	private static final Response ACCESS_DENIED =  Response.status(Status.UNAUTHORIZED).entity( "Access denied for this resource." ).build( );
@@ -36,6 +41,7 @@ public class Authenticator implements ContainerRequestFilter {
 	public void filter(ContainerRequestContext requestContext) {
 		ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext.getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
         Method method = methodInvoker.getMethod();
+        final HttpSession session = request.getSession();
 		
 		if (!method.isAnnotationPresent(PermitAll.class)) {
 			
@@ -69,7 +75,7 @@ public class Authenticator implements ContainerRequestFilter {
 				RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
 				Set<String> rolesSet = new HashSet<String>(Arrays.asList(rolesAnnotation.value()));
 
-				if (!isUserAllowed(username, password, rolesSet)) {
+				if (!isUserAllowed(username, password, rolesSet, session)) {
 					requestContext.abortWith(ACCESS_DENIED);
 					return;
 				}
@@ -77,7 +83,7 @@ public class Authenticator implements ContainerRequestFilter {
 		}
 	}
 
-	private boolean isUserAllowed(final String username, final String password,	final Set<String> rolesSet) {
+	private boolean isUserAllowed(final String username, final String password,	final Set<String> rolesSet, HttpSession session) {
 		boolean isAllowed = false;
 
 		Controller<User, Integer> usercontroller = new Controller<User, Integer>(User.class);
@@ -88,9 +94,12 @@ public class Authenticator implements ContainerRequestFilter {
 				.collect(Collectors.toList());
 		
 		if(users.get(0) != null){
-			String userRole = users.get(0).getRole();
 			
-			if (rolesSet.contains(userRole)) {
+			User user = users.get(0);
+			session.setAttribute("user", user);
+			session.setAttribute("foo", "authbar");
+			
+			if (rolesSet.contains(user.getRole())) {
 				isAllowed = true;
 			}
 		}
