@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -23,7 +21,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import ch.issueman.common.Employer;
-import ch.issueman.common.Model;
 import ch.issueman.common.Person;
 import ch.issueman.common.User;
 import ch.issueman.common.Project;
@@ -34,54 +31,42 @@ import ch.issueman.common.DAO;
 public class Route{
 	
 	private Map <String, DAO<?, Integer>> hm = new HashMap<String, DAO<?, Integer>>();
-
+	private Map <String, ResponseBuilder<?, Integer>> rbm = new HashMap<String, ResponseBuilder<?, Integer>>();
+	
 	public Route(){
 		hm.put("person", new Controller<Person, Integer>(Person.class));
 		hm.put("user", new Controller<User, Integer>(User.class));
 		hm.put("employer", new Controller<Employer, Integer>(Employer.class));
 		hm.put("project", new Controller<Project, Integer>(Project.class));
 		hm.put("comment", new Controller<Comment, Integer>(Comment.class));	
+		
+		rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
+		rbm.put("user", new ResponseBuilder<User, Integer>(User.class));
+		rbm.put("employer", new ResponseBuilder<Employer, Integer>(Employer.class));
+		rbm.put("project", new ResponseBuilder<Project, Integer>(Project.class));
+		rbm.put("comment", new ResponseBuilder<Comment, Integer>(Comment.class));
 	}
 	
-	@RolesAllowed("Administrator")
 	@GET
 	@Path("{entity}/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Model getEntityById(@PathParam("entity") String entity, @PathParam("id") int id) {
-		return (Model) hm.get(entity).getById(id);
+	public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") int id, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get(entity).setUser(user);
+		return rbm.get(entity).getById(id);
 	} 	
-	
-	@PermitAll
-	@SuppressWarnings("unchecked")
+
 	@GET
 	@Path("{entity}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Model> getAll(@PathParam("entity") String entity) {
-		return (List<Model>) hm.get(entity).getAll();
+	public Response getAll(@PathParam("entity") String entity, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get(entity).setUser(user);
+		return rbm.get(entity).getAll();
 	}	
 	
-	@GET
-	@RolesAllowed("Administrator")
-	@Path("hello")
-	@Produces("text/plain")
-	public String hello(@Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		User user = (User) session.getAttribute("user");
-		return user.getEmail();
-	}
-	
-	@PermitAll
-	@GET
-	@Path("comments")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Comment> getComments(@Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		User user = (User) session.getAttribute("user");
-		System.out.println(user.toString());
-		return (new ResponseFilter<Comment, Integer>(Comment.class, "GET", user)).getAll();
-	}
-
-	@PermitAll
 	@SuppressWarnings({ "unchecked" })
 	@POST
 	@Path("login")
@@ -103,156 +88,67 @@ public class Route{
 	
 	/**
 	 * Person
-	 */
-	@RolesAllowed("Administrator")
+	 */	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PUT
+	@Path("person")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updatePerson(Person t, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("person").setUser(user);
+		return ((DAOResponseBuilder) rbm.get("person")).update(t);
+	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("person")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistPerson(Person t, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("person").setUser(user);
+		return ((DAOResponseBuilder) rbm.get("person")).persist(t);
+	}
 	@DELETE
 	@Path("person/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deletePerson(@PathParam("id") int id) {
-		((DAO) hm.get("person")).delete(((DAO) hm.get("person")).getById(id));
-		return Response.status(Status.OK).entity("Person deleted").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PUT
-	@Path("person")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updatePerson(Person t) {
-		((DAO) hm.get("person")).update(t);
-		return Response.status(Status.OK).entity("Person updated").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@POST
-	@Path("person")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response persistPerson(Person t) {
-		((DAO) hm.get("person")).persist(t);
-		return Response.status(Status.OK).entity("Person added").build();
-	}
-		
+	public Response deletePerson(@PathParam("id") int id,  @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("person").setUser(user);
+		return rbm.get("person").deleteById(id);
+	}	
+
 	/**
 	 * Employer
-	 */
-	@RolesAllowed("Administrator")
+	 */	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PUT
+	@Path("employer")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateEmployer(Employer t, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("employer").setUser(user);
+		return ((DAOResponseBuilder) rbm.get("employer")).update(t);
+	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@POST
+	@Path("employer")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response persistEmployer(Employer t, @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("employer").setUser(user);
+		return ((DAOResponseBuilder) rbm.get("employer")).persist(t);
+	}
 	@DELETE
 	@Path("employer/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteEmployer(@PathParam("id") int id) {
-		((DAO) hm.get("employer")).delete(((DAO) hm.get("employer")).getById(id));
-		return Response.status(Status.OK).entity("Employer deleted").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PUT
-	@Path("employer")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateEmployer(Employer t) {
-		((DAO) hm.get("employer")).update(t);
-		return Response.status(Status.OK).entity("Employer updated").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@POST
-	@Path("employer")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response persistEmployer(Employer t) {
-		((DAO) hm.get("employer")).persist(t);
-		return Response.status(Status.OK).entity("Employer added").build();
-	}
-	
-	/**
-	 * User
-	 */
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@DELETE
-	@Path("user/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteUser(@PathParam("id") int id) {
-		((DAO) hm.get("user")).delete(((DAO) hm.get("user")).getById(id));
-		return Response.status(Status.OK).entity("User deleted").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PUT
-	@Path("user")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateUser(User t) {
-		((DAO) hm.get("user")).update(t);
-		return Response.status(Status.OK).entity("User updated").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@POST
-	@Path("user")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response persistUser(User t) {
-		((DAO) hm.get("user")).persist(t);
-		return Response.status(Status.OK).entity("User added").build();
-	}
-	
-	/**
-	 * Project
-	 */
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@DELETE
-	@Path("project/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProject(@PathParam("id") int id) {
-		((DAO) hm.get("project")).delete(((DAO) hm.get("project")).getById(id));
-		return Response.status(Status.OK).entity("Project deleted").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PUT
-	@Path("project")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateProject(Project t) {
-		((DAO) hm.get("project")).update(t);
-		return Response.status(Status.OK).entity("Project updated").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@POST
-	@Path("project")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response persistProject(Project t) {
-		((DAO) hm.get("project")).persist(t);
-		return Response.status(Status.OK).entity("Project added").build();
-	}
-	
-	/**
-	 * Comment
-	 */
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@DELETE
-	@Path("comment/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteComment(@PathParam("id") int id) {
-		((DAO) hm.get("comment")).delete(((DAO) hm.get("comment")).getById(id));
-		return Response.status(Status.OK).entity("Comment deleted").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@PUT
-	@Path("comment")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateComment(Comment t) {
-		((DAO) hm.get("comment")).update(t);
-		return Response.status(Status.OK).entity("Comment updated").build();
-	}		
-	@RolesAllowed("Administrator")
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@POST
-	@Path("comment")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response persistComment(Comment t) {
-		((DAO) hm.get("comment")).persist(t);
-		return Response.status(Status.OK).entity("Comment added").build();
+	public Response deleteEmployer(@PathParam("id") int id,  @Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		User user = (User) session.getAttribute("user");
+		rbm.get("employer").setUser(user);
+		return rbm.get("employer").deleteById(id);
 	}
 }
