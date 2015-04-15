@@ -1,6 +1,5 @@
 package ch.issueman.client;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -24,7 +23,7 @@ import ch.issueman.common.User;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
-	private static ResteasyClient client = new ResteasyClientBuilder().build();
+	private ResteasyClient client = new ResteasyClientBuilder().build();
 	private String url;
 	private ObjectMapper mapper = new ObjectMapper();
 	private final Class<T> clazz;
@@ -36,82 +35,75 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		this.user = user;
 	}
 	
-	public boolean login(){
+	public boolean login() throws Exception{
 		Boolean status = false;
-		try {
-			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/login");
-			Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(user)));
-			if(response.getStatus() == Status.OK.getStatusCode()){
-				user = mapper.readValue(response.readEntity(String.class), User.class);
-				client = new ResteasyClientBuilder().register(new BasicAuthentication(user.getEmail(), user.getPassword())).build();
-				status = true;
-			}			
-			response.close();			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/login");		
+		Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(user)));
+		if(response.getStatus() == Status.OK.getStatusCode()){
+			user = mapper.readValue(response.readEntity(String.class), User.class);
+			client = new ResteasyClientBuilder().register(new BasicAuthentication(user.getEmail(), user.getPassword())).build();
+			status = true;
+		}else{
+			
+		}		
+		response.close();			
 		return status;
 	}
 	
-	public T getById(Id id) {
+	public T getById(Id id) throws Exception {
 		WebTarget target = client.target(url + "/" + id);
-		try {			
-			Response response = target.request(MediaType.APPLICATION_JSON).get();
-			T t = mapper.readValue(response.readEntity(String.class), clazz);
-			response.close();
-			return t;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+		Response response = target.request(MediaType.APPLICATION_JSON).get();
+		T t = mapper.readValue(response.readEntity(String.class), clazz);
+		if(response.getStatus() != Status.OK.getStatusCode()){
+			
 		}
+		response.close();
+		return t;
 	}
 
-	public List<T> getAll() {
-		
+	public List<T> getAll() throws Exception {
 		WebTarget target = client.target(url);
 		TypeFactory t = TypeFactory.defaultInstance();
-		
-		try {
-			Response response = target.request(MediaType.APPLICATION_JSON).get();
-			List<T> l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class,clazz));
-			response.close();
-			return l;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+		Response response = target.request(MediaType.APPLICATION_JSON).get();
+		List<T> l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class,clazz));
+		if(response.getStatus() != Status.OK.getStatusCode()){
+			
 		}
+		response.close();
+		return l;
 	}
 
 	@Override
-	public void persist(T t) {
+	public void persist(T t) throws Exception{
 		WebTarget target = client.target(url);
-		try {			
-			Response response =	target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(t)));
-			response.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
+		Response response =	target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(t)));
+		if(response.getStatus() != Status.OK.getStatusCode()){
+			
+		}
+		response.close();	
 	}
 
 	@Override
-	public void update(T t) {
-		try {
-			WebTarget target = client.target(url);
-			Response response = target.request(MediaType.APPLICATION_JSON).put(Entity.json(mapper.writeValueAsString(t)));
-			response.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
-	}
-
-	@Override
-	public void delete(T t) {
-		WebTarget target = client.target(url + "/" + ((Model)t).getId());
-		Response response = target.request(MediaType.APPLICATION_JSON).delete();
+	public void update(T t) throws Exception {
+		WebTarget target = client.target(url);
+		Response response = target.request(MediaType.APPLICATION_JSON).put(Entity.json(mapper.writeValueAsString(t)));
+		if(response.getStatus() != Status.OK.getStatusCode()){
+			
+		}
 		response.close();
 	}
 
 	@Override
-	public void deleteAll() {
+	public void delete(T t) throws Exception{
+		WebTarget target = client.target(url + "/" + ((Model)t).getId());
+		Response response = target.request(MediaType.APPLICATION_JSON).delete();
+		if(response.getStatus() != Status.OK.getStatusCode()){
+			
+		}
+		response.close();
+	}
+
+	@Override
+	public void deleteAll() throws Exception {
 	}
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -26,13 +27,34 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		
 		try {
 			Class<?> filterclazz = Class.forName("ch.issueman.webservice." + clazz.getSimpleName() + "Filter");
+			
 			Constructor<?> constructor = filterclazz.getConstructor();
 			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
 			filter.setController(controller);
 			filter.setUser(user);
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			
+		} catch (ClassNotFoundException e) {
+			
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public void setUser(User user){
@@ -47,7 +69,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	
 	public Response persist(T t) {
 		if(filter.UserHasRoleByMethod(user, "POST") != false){
-			filter.persist(t);
+			try {
+				filter.persist(t);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Response.status(Status.OK).entity("Enity added.").build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for POST don't match").build();
@@ -56,7 +83,13 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response getById(Id id) {
 		if(filter.UserHasRoleByMethod(user, "GET") != false){
-			return Response.status(Status.OK).entity(filter.getById(id)).build();
+			try {
+				return Response.status(Status.OK).entity(filter.getById(id)).build();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for GET don't match").build();
 		}
@@ -64,7 +97,13 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response getAll() {
 		if(filter.UserHasRoleByMethod(user, "GET") != false){
-			return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
+			try {
+				return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for GET don't match").build();
 		}
@@ -72,7 +111,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response update(T t) {
 		if(filter.UserHasRoleByMethod(user, "PUT") != false){
-			filter.update(t);
+			try {
+				filter.update(t);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Response.status(Status.OK).entity("Enity updated.").build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for PUT don't match").build();
@@ -81,7 +125,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response delete(T t) {
 		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
-			filter.delete(t);
+			try {
+				filter.delete(t);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Response.status(Status.OK).entity("Enity deleted.").build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
@@ -90,7 +139,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response deleteAll() {
 		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
-			filter.deleteAll();
+			try {
+				filter.deleteAll();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Response.status(Status.OK).entity("Enities deleted.").build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
@@ -99,10 +153,28 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 
 	public Response deleteById(Id id) {
 		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
-			filter.delete(filter.getById(id));
+			try {
+				filter.delete(filter.getById(id));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return Response.status(Status.OK).entity("Enities deleted.").build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
+		}
+	}
+
+	public Response login(User user) {
+		List<User> users = (new Controller<User, Integer>(User.class)).getAll().stream()
+				.filter(p -> p.getEmail().equals(user.getEmail()))
+				.filter(p -> p.getPassword().equals(user.getPassword()))
+				.collect(Collectors.toList());
+		
+		if(users.size() == 1){
+			return Response.status(Status.OK).entity(users.get(0)).build();
+		}else{
+			return Response.status(Status.UNAUTHORIZED).entity("Login failed!").build();
 		}
 	}
 }

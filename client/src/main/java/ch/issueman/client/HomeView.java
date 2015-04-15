@@ -66,11 +66,15 @@ public class HomeView implements Initializable {
 		tcId.setCellValueFactory(new PropertyValueFactory<Employer, Integer>("id"));
 		tcName.setCellValueFactory(new PropertyValueFactory<Employer, String>("name"));
 		tcCompany.setCellValueFactory(new PropertyValueFactory<Employer, String>("company"));
-		refreshPersonTable();
 	}
 
 	public void refreshPersonTable() {
-		tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
+		try {
+			tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -82,7 +86,12 @@ public class HomeView implements Initializable {
 
 	@FXML
 	public void clickAdd() {
-		controller.persist(new Employer(txName.getText(), txCompany.getText()));
+		try {
+			controller.persist(new Employer(txName.getText(), txCompany.getText()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 
@@ -91,14 +100,24 @@ public class HomeView implements Initializable {
 		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
 		e.setName(txName.getText());
 		e.setCompany(txCompany.getText());
-		controller.update(e);
+		try {
+			controller.update(e);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 
 	@FXML
 	public void clickDelete() {
 		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
-		controller.delete(e);
+		try {
+			controller.delete(e);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 	
@@ -106,12 +125,18 @@ public class HomeView implements Initializable {
 	public void clickLogin(){
 		User user = new User("", txUsername.getText(), pfPassword.getText(), "");
 		controller = new Controller<Employer, Integer>(Employer.class, user);
-		if(controller.login()){
-			pnData.setVisible(true);
-			pnLogin.setVisible(false);
-		}else{
-			txUsername.setText("");
-			pfPassword.setText("");
+		try {
+			if(controller.login()){
+				pnData.setVisible(true);
+				pnLogin.setVisible(false);
+				refreshPersonTable();
+			}else{
+				txUsername.setText("");
+				pfPassword.setText("");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

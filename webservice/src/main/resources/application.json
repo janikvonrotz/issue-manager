@@ -26,9 +26,9 @@
     	"DELETE": ["Authenticated"]
     },
     "User": {
-    	"GET": ["Administrator","Sachbearbeiter"],
+    	"GET": ["Administrator","Sachbearbeiter", "Anonymous"],
     	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter"],
+    	"PUT": ["Sachbearbeiter", "Administrator"],
     	"DELETE": ["Authenticated"]
     },
     "Employer": {

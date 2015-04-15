@@ -20,9 +20,7 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	private Controller<T, Id> controller;
 		
 	public TypeFilter(Class<T> clazz){
-		
 		this.controller = new Controller<T, Id>(clazz);
-		
 		allowedroles.put("GET", config.getStringList("permissions." + clazz.getSimpleName() + ".GET"));
 		allowedroles.put("POST", config.getStringList("permissions." + clazz.getSimpleName() + ".POST"));
 		allowedroles.put("PUT", config.getStringList("permissions." + clazz.getSimpleName() + ".PUT"));
@@ -30,31 +28,31 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	}
 	
 	@Override
-	public void persist(T t) {
+	public void persist(T t) throws Exception {
 		controller.persist(t);
 	}
 
 	@Override
-	public T getById(Id id) {
+	public T getById(Id id) throws Exception {
 		return controller.getById(id);
 	}
 
-	public List<T> getAll(){
+	public List<T> getAll() throws Exception {
 		return controller.getAll();
 	}
 	
 	@Override
-	public void update(T t) {
+	public void update(T t) throws Exception {
 		controller.update(t);
 	}
 
 	@Override
-	public void delete(T t) {
+	public void delete(T t) throws Exception {
 		controller.delete(t);
 	}
 
 	@Override
-	public void deleteAll() {
+	public void deleteAll() throws Exception {
 		controller.deleteAll();
 	}
 	
