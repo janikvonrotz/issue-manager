@@ -6,9 +6,6 @@
         "url": "jdbc:mysql://localhost/issuemanager",
         "user": "issuemanager",
         "password": "issuemanager"
-      },
-      "validation": {
-      	"mode": "CALLBACK"
       }
     }
   },
@@ -20,5 +17,37 @@
     	"value": "create-tables",
     	"output-mode": "database"
 	}
+  },
+  "permissions": {
+    "Person": {
+    	"GET": ["Administrator","Sachbearbeiter", "Anonymous"],
+    	"POST": ["Anonymous"],
+    	"PUT": ["Sachbearbeiter"],
+    	"DELETE": ["Authenticated"]
+    },
+    "User": {
+    	"GET": ["Administrator","Sachbearbeiter", "Anonymous"],
+    	"POST": ["Anonymous"],
+    	"PUT": ["Sachbearbeiter", "Administrator"],
+    	"DELETE": ["Authenticated"]
+    },
+    "Employer": {
+    	"GET": ["Administrator","Sachbearbeiter"],
+    	"POST": ["Anonymous"],
+    	"PUT": ["Sachbearbeiter"],
+    	"DELETE": ["Authenticated"]
+    },
+    "Project": {
+    	"GET": ["Administrator","Sachbearbeiter"],
+    	"POST": ["Anonymous"],
+    	"PUT": ["Sachbearbeiter"],
+    	"DELETE": ["Authenticated"]
+    },
+    "Comment": {
+    	"GET": ["Administrator","Sachbearbeiter"],
+    	"POST": ["Anonymous"],
+    	"PUT": ["Sachbearbeiter"],
+    	"DELETE": ["Authenticated"]
+    }
   }
 }
