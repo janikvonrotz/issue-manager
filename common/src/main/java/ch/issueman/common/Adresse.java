@@ -8,29 +8,31 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * POJO class Ort
+ * POJO class Adresse
  * 
- * @author Janik von Rotz
+ * @author Sandro Klarer
  * @version 1.0.0
  * @since 1.0.0
+ *
  */
+
 @Entity
 @Data
-public class Ort implements Model {
-
+public class Adresse implements Model {
+	
 	@Id
 	@GeneratedValue
 	private int id;
 	@NotNull
-	private int plz;
+	private String strasse;
 	@NotNull
-	private String ort;
+	private Ort ort;
 	
-	public Ort(){}
+	public Adresse(){}
 	
-	public Ort(int plz, String ort) {
+	public Adresse(String strasse, Ort ort){
 		super();
-		this.plz = plz;
+		this.strasse = strasse;
 		this.ort = ort;
-	}	
+	}
 }

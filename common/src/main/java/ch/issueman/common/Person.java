@@ -14,7 +14,7 @@ import lombok.Data;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
- * Abstract class person
+ * Abstract class Person
  * 
  * @author Janik von Rotz
  * @version 1.0.0
