@@ -22,6 +22,7 @@ public class Login implements Model {
 	@Id
 	@GeneratedValue
 	private int id;
+	@OneToOne
 	@NotNull
 	private Person person;
 	@NotNull

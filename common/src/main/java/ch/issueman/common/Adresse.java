@@ -3,6 +3,7 @@ package ch.issueman.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Adresse implements Model {
 	private int id;
 	@NotNull
 	private String strasse;
+	@ManyToOne
 	@NotNull
 	private Ort ort;
 	

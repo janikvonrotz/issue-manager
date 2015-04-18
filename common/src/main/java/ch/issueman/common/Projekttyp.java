@@ -3,35 +3,31 @@ package ch.issueman.common;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 /**
- * POJO class Ort
+ * class Projekttyp
  * 
- * @author Janik von Rotz
+ * @author Reno Meyer
  * @version 1.0.0
  * @since 1.0.0
  */
 @Entity
 @Data
-public class Ort implements Model {
-
+public class Projekttyp {
+	
 	@Id
 	@GeneratedValue
-	private int id;
+    private int id; 
 	@NotNull
-	private int plz;
-	@NotNull
-	private String ort;
+    private String projekttyp;
 	
-	public Ort(){}
+	public Projekttyp(){}
 	
-	public Ort(int plz, String ort) {
-		super();
-		this.plz = plz;
-		this.ort = ort;
-	}	
+	public Projekttyp(String projekttyp){
+		this.projekttyp = projekttyp;
+	}
+
 }
