@@ -1,7 +1,7 @@
 package ch.issueman.common;
 
 /**
- * Model interface
+ * interface Model
  * 
  * @author Janik von Rotz
  * @version 1.0.0

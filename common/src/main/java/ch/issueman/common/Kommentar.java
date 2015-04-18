@@ -5,13 +5,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 /**
- * POJO class Kommentar
+ * class Kommentar
  * 
  * @author Sandro Klarer
  * @version 1.0.0
@@ -27,10 +28,10 @@ public class Kommentar implements Model {
 	@GeneratedValue
 	private int id;
 	@NotNull
+	@Lob
 	private String kommentar;
 	@NotNull
 	private Login login;
-	@NotNull
 	private Date erstelltam;
 
 	public Kommentar() {

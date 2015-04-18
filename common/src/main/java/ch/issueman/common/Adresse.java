@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * POJO class Adresse
+ * class Adresse
  * 
  * @author Sandro Klarer
  * @version 1.0.0

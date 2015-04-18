@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Generic Data Access Object interface
+ * interface Generic Data Access Object
  * 
  * @author Janik von Rotz
  * @version 1.0.0

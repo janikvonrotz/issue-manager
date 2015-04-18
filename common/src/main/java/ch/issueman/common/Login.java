@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * POJO class Login
+ * class Login
  * 
  * @author Sandro Klarer
  * @version 1.0.0
