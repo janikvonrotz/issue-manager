@@ -4,14 +4,15 @@
 package ch.issueman.common;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * TODO
+ * class Sachbearbeiter
  * 
- * @author TODO
+ * @author Erwin Willi
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -21,13 +22,25 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class Sachbearbeiter extends Person {
 
-	/* (non-Javadoc)
-	 * @see ch.issueman.common.Person#getDisplayName()
-	 */
+	@NotNull
+	private Person nachname;
+	@NotNull
+	private Person vorname;
+	@NotNull
+	private Person email;
+	
+	public Sachbearbeiter(){}
+	
+	public Sachbearbeiter(Person nachname, Person vorname, Person email){
+		super();
+		this.nachname = nachname;
+		this.vorname = vorname;
+		this.email = email;
+	}
+
 	@Override
 	public String getDisplayName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nachname + " " + this.vorname;
 	}
 
 }
