@@ -8,7 +8,7 @@
         "password": "issuemanager"
       },
       "validation": {
-      	"mode": "CALLBACK"
+        "mode": "CALLBACK"
       }
     }
   },
@@ -17,47 +17,134 @@
       "level": "off"
     },
     "ddl-generation": {
-    	"value": "create-tables",
-    	"output-mode": "database"
-	}
+      "value": "create-tables",
+      "output-mode": "database"
+    }
   },
   "permissions": {
     "Person": {
-    	"GET": ["Administrator","Sachbearbeiter", "Anonymous"],
-    	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter"],
-    	"DELETE": ["Authenticated"]
+      "GET": [
+        "Administrator",
+        "Sachbearbeiter",
+        "Anonymous"
+      ],
+      "POST": [
+        "Anonymous"
+      ],
+      "PUT": [
+        "Sachbearbeiter"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     },
     "User": {
-    	"GET": ["Administrator","Sachbearbeiter", "Anonymous"],
-    	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter", "Administrator"],
-    	"DELETE": ["Authenticated"]
+      "GET": [
+        "Administrator",
+        "Sachbearbeiter",
+        "Anonymous"
+      ],
+      "POST": [
+        "Anonymous"
+      ],
+      "PUT": [
+        "Sachbearbeiter",
+        "Administrator"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     },
     "Employer": {
-    	"GET": ["Administrator","Sachbearbeiter"],
-    	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter"],
-    	"DELETE": ["Authenticated"]
+      "GET": [
+        "Administrator",
+        "Sachbearbeiter"
+      ],
+      "POST": [
+        "Anonymous"
+      ],
+      "PUT": [
+        "Sachbearbeiter"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     },
     "Project": {
-    	"GET": ["Administrator","Sachbearbeiter"],
-    	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter"],
-    	"DELETE": ["Authenticated"]
+      "GET": [
+        "Administrator",
+        "Sachbearbeiter"
+      ],
+      "POST": [
+        "Anonymous"
+      ],
+      "PUT": [
+        "Sachbearbeiter"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     },
     "Comment": {
-    	"GET": ["Administrator","Sachbearbeiter"],
-    	"POST": ["Anonymous"],
-    	"PUT": ["Sachbearbeiter"],
-    	"DELETE": ["Authenticated"]
-    },
-    "seed": {
-    	"Arbeitstyp": ["Neubau", "Umbau", "Renovation", "Teil-Renovation"],
-    	"Mangelstatus": ["offen", "erledigt", "zur Kontrolle"],
-    	"Projekttyp": ["Einfamilienhaus", "Mehrfamilienhaus", "Wohnung", "Garage", "Gartenhaus"],
-    	"Ort": "Ortschaften.csv",
-    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"] 	
+      "GET": [
+        "Administrator",
+        "Sachbearbeiter"
+      ],
+      "POST": [
+        "Anonymous"
+      ],
+      "PUT": [
+        "Sachbearbeiter"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     }
+  },
+  "seed": {
+    "Arbeitstyp": [
+      "Neubau",
+      "Umbau",
+      "Renovation",
+      "Teil-Renovation"
+    ],
+    "Mangelstatus": [
+      {
+        "status": "offen",
+        "rollen": [
+          "Administrator",
+          "Sachbearbeiter"
+        ]
+      },
+      {
+        "status": "erledigt",
+        "rollen": [
+          "Administrator",
+          "Sachbearbeiter"
+        ]
+      },
+      {
+        "status": "zur Kontrolle",
+        "rollen": [
+          "Administrator",
+          "Sachbearbeiter"
+        ]
+      }
+    ],
+    "Projekttyp": [
+      "Einfamilienhaus",
+      "Mehrfamilienhaus",
+      "Wohnung",
+      "Garage",
+      "Gartenhaus"
+    ],
+    "Ort": "Ortschaften.csv",
+    "Rolle": [
+      "Sachbearbeiter",
+      "Bauleiter",
+      "Bauherr",
+      "Kontaktperson",
+      "Kontaktadmin"
+    ]
   }
 }

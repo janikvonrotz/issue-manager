@@ -30,7 +30,6 @@ import ch.issueman.common.Rolle;
 import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
-import com.github.javafaker.Faker;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
@@ -54,10 +53,7 @@ public class Seed {
 	private void seed(){
 		
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
-		List<String> listArbeitstyp = getConfig("seed.Arbeitstyp", new String[]{});
-		List<String> listRolle = getConfig("seed.Rolle", new String[]{});
-		List<String> listMangelstatus = getConfig("seed.Mangelstatus", new String[]{});
-		List<String> listProjekttyp = getConfig("seed.Projekttyp", new String[]{});
+		
 		ClassLoader classLoader = getClass().getClassLoader();
 		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
 		List<Ort> listOrt = new ArrayList<Ort>();
@@ -75,6 +71,11 @@ public class Seed {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		List<Arbeitstyp> listArbeitstyp = new ArrayList<Arbeitstyp>();
+		List<Rolle> listRolle = new ArrayList<Rolle>();
+		List<Mangelstatus> listMangelstatus = new ArrayList<Mangelstatus>();
+		List<Projekttyp> listProjekttyp = new ArrayList<Projekttyp>();
 		List<Adresse> listAdresse = new ArrayList<Adresse>();
 		List<Bauherr> listBauherr = new ArrayList<Bauherr>();
 		List<Bauleiter> listBauleiter = new ArrayList<Bauleiter>();
@@ -128,22 +129,64 @@ public class Seed {
 		subunternehmercontroller.deleteAll();
 		unternehmencontroller.deleteAll();
 		
-		
-		// TODO standardwerte erstellen
-		
-		for(String rolle : defaultrollen){
-			rollecontroller.persist(new Rolle(rolle));
-		}
-		
 		// TODO Daten in Listen laden
 		
+		listArbeitstyp.add(new Arbeitstyp("Neubau"));
 		listAdresse.add("");
 		listAdresse.get(0);
 		
+		listRolle.add(new Rolle("Sachbearbeiter"));
+		listSachbearbeiter.add(new Sachbearbeiter("sb","sb","sb@im.ch"));
+		listLogin.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
+		
+		listRolle.add(new Rolle("Sachbearbeiter"));
+		listSachbearbeiter.add(new Sachbearbeiter("Peter","Lustig","peter.lustig@im.ch"));
+		listLogin.add(new Login(listSachbearbeiter.get(1), "lkjsd", listRolle.get(0)));
+		
+		listRolle.add(new Rolle("Bauleiter"));
+		listBauleiter.add(new Bauleiter("bl","bl","bl@im.ch"));
+		listLogin.add(new Login(listBauleiter.get(0), "1", listRolle.get(1)));
+		
+		listRolle.add(new Rolle("Bauleiter"));
+		listBauleiter.add(new Bauleiter("Hans","Bruder","hans.bruder@im.ch"));
+		listLogin.add(new Login(listBauleiter.get(1), "asdf", listRolle.get(1)));
+		
+		listRolle.add(new Rolle("Kontaktperson"));
+		listKontakt.add(new Kontakt("kt","kt","kt@im.ch"));
+		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
+		
+		listRolle.add(new Rolle("Kontaktperson"));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
+		listLogin.add(new Login(listKontakt.get(1), "asdf", listRolle.get(2)));
+		
+		listRolle.add(new Rolle("Kontaktadmin"));
+		listKontakt.add(new Kontakt("ka","ka","ka@im.ch"));
+		listLogin.add(new Login(listKontakt.get(2), "asdf", listRolle.get(3)));
+		
+		listRolle.add(new Rolle("Kontaktadmin"));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
+		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));
+
 		// TODO daten seeden
 		
-		for(Sachbearbeiter t : listSachbearbeiter){
-			sachbearbeitercontroller.persist(t);
+		for(Arbeitstyp arbeitstyp : listArbeitstyp){
+			arbeitstypcontroller.persist(arbeitstyp);
+		}
+		
+		for(Rolle rolle : listRolle){
+			rollecontroller.persist(rolle);
+		}
+		
+		for(Mangelstatus mangelstatus : listMangelstatus){
+			mangelstatuscontroller.persist(mangelstatus);
+		}
+		
+		for(Projekttyp projekttyp : listProjekttyp){
+			projekttypcontroller.persist(projekttyp);
+		}
+		
+		for(Sachbearbeiter sachbearbeiter : listSachbearbeiter){
+			sachbearbeitercontroller.persist(sachbearbeiter);
 		}		
 		
 		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
