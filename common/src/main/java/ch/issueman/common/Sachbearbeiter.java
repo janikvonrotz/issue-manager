@@ -22,8 +22,8 @@ public class Sachbearbeiter extends Person {
 	
 	public Sachbearbeiter(){}
 	
-	public Sachbearbeiter(Person nachname, Person vorname, Person email){
-		super();
+	public Sachbearbeiter(String nachname, String vorname, String email){
+		super(nachname, vorname, email);
 	}
 
 	@Override

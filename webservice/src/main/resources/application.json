@@ -51,6 +51,11 @@
     	"POST": ["Anonymous"],
     	"PUT": ["Sachbearbeiter"],
     	"DELETE": ["Authenticated"]
+    },
+    "seed": {
+    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"],
+    	"Sachbearbeiter": 20,
+    	"Bauherr": 20
     }
   }
 }

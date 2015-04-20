@@ -1,8 +1,11 @@
 package ch.issueman.webservice;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -17,6 +20,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.reflections.Reflections;
+
 import ch.issueman.common.Employer;
 import ch.issueman.common.Person;
 import ch.issueman.common.User;
@@ -29,6 +34,15 @@ public class Route{
 	private Map <String, ResponseBuilder<?, Integer>> rbm = new HashMap<String, ResponseBuilder<?, Integer>>();
 	
 	public Route(){
+		
+		Reflections reflections = new Reflections("ch.issueman.common");
+		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Entity.class);
+
+		for (Class<?> model : annotated) {
+			
+			rbm.put(model.getSimpleName(), new ResponseBuilder<, Integer>(model));
+		}
+		
 		rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
 		rbm.put("user", new ResponseBuilder<User, Integer>(User.class));
 		rbm.put("employer", new ResponseBuilder<Employer, Integer>(Employer.class));

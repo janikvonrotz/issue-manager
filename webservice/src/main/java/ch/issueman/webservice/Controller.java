@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import ch.issueman.common.DAO;
@@ -29,6 +30,13 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	public T getById(Id id) {
 		em = EclipseLink.getEntityManager();
 		return em.find(clazz, id);
+	}
+	
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues){
+		em = EclipseLink.getEntityManager();
+		return (List<T>) ((TypedQuery<T>) em.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t WHERE " + propertyname + " IN :propertyvalues", clazz))
+				.setParameter("elements", propertyvalues)
+				.getResultList();
 	}
 
 	public List<T> getAll() {

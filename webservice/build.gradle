@@ -8,6 +8,8 @@ dependencies {
 
   compile 'org.hibernate:hibernate-validator:5.1.+'
   compile 'javax.el:javax.el-api:3.+'
+
+  compile 'org.reflections:reflections:0.9.9'
 }
 
 jettyRun.webAppSourceDirectory = file("src/main/resources")

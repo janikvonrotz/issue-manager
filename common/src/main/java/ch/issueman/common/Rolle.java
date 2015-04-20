@@ -30,5 +30,4 @@ public class Rolle {
 	public Rolle(String bezeichnung) {
 		this.bezeichnung = bezeichnung;
 	}
-
 }
