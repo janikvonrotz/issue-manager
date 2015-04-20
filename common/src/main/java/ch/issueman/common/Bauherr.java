@@ -1,5 +1,6 @@
 package ch.issueman.common;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import lombok.Data;
@@ -18,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class Bauherr extends Person {
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Unternehmen unternehmen;
 	
 	public Bauherr(){}
