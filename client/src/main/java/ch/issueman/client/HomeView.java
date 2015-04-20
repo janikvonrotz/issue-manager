@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import ch.issueman.common.Employer;
+import ch.issueman.common.Login;
+import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.User;
 
 public class HomeView implements Initializable {
@@ -104,9 +106,9 @@ public class HomeView implements Initializable {
 	
 	@FXML
 	public void clickLogin(){
-		User user = new User("", txUsername.getText(), pfPassword.getText(), "");
-		controller = new Controller<Employer, Integer>(Employer.class, user);
-		if(controller.login()){
+		Login login = new Login(new Sachbearbeiter("", "", txUsername.getText()), pfPassword.getText(), null);
+		App.setLogin(login);
+		if(App.login()){
 			pnData.setVisible(true);
 			pnLogin.setVisible(false);
 		}else{

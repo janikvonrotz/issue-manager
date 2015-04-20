@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ch.issueman.common.Comment;
-import ch.issueman.common.Employer;
 import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.Project;
 import ch.issueman.common.Rolle;
-import ch.issueman.common.User;
 
 import com.github.javafaker.Faker;
 import com.typesafe.config.Config;

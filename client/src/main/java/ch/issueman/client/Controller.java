@@ -8,51 +8,26 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
-import org.jboss.resteasy.client.jaxrs.BasicAuthentication;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-
 import com.typesafe.config.ConfigFactory;
 
 import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
-import ch.issueman.common.User;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
-	private static ResteasyClient client = new ResteasyClientBuilder().build();
+	private static ResteasyClient client = App.getClient();
 	private String url;
 	private ObjectMapper mapper = new ObjectMapper();
 	private final Class<T> clazz;
-	private User user;
 	
-	public Controller(Class<T> clazz, User user) {
+	public Controller(Class<T> clazz) {
 		this.clazz = clazz;
 		url = ConfigFactory.load().getString("webservice.url") + "/" + clazz.getSimpleName().toLowerCase();
-		this.user = user;
 	}
-	
-	public boolean login(){
-		Boolean status = false;
-		try {
-			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/login");
-			Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(user)));
-			if(response.getStatus() == Status.OK.getStatusCode()){
-				user = mapper.readValue(response.readEntity(String.class), User.class);
-				client = new ResteasyClientBuilder().register(new BasicAuthentication(user.getEmail(), user.getPassword())).build();
-				status = true;
-			}			
-			response.close();			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return status;
-	}
-	
+		
 	public T getById(Id id) {
 		WebTarget target = client.target(url + "/" + id);
 		try {			
@@ -113,5 +88,12 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	@Override
 	public void deleteAll() {
+	}
+
+	@Override
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

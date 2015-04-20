@@ -35,11 +35,12 @@ public class Route{
 		
 		Reflections reflections = new Reflections("ch.issueman.common");
 		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Entity.class);
-
+		
+		/*
 		for (Class<?> model : annotated) {
-			
-			//rbm.put(model.getSimpleName(), new ResponseBuilder<, Integer>(model));
+			rbm.put(model.getSimpleName().toLowerCase(), new ResponseBuilder<model, Integer>(model.));
 		}
+		*/
 		
 		rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
 	}
@@ -68,7 +69,10 @@ public class Route{
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(Login login) {
+	public Response login(@Context HttpServletRequest request) {
+		HttpSession session = request.getSession(true);
+		Login login = (Login) session.getAttribute("login");
+		rbm.get("login").setLogin(login);
 		return rbm.get("login").login(login);
 	}
 	
