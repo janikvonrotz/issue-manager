@@ -53,9 +53,10 @@
     	"DELETE": ["Authenticated"]
     },
     "seed": {
-    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"],
-    	"Sachbearbeiter": 20,
-    	"Bauherr": 20
+    	"Arbeitstyp": [],
+    	"Mangelstatus": [],
+    	"Ort": "Ortschaften.csv"
+    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"]   	
     }
   }
 }
