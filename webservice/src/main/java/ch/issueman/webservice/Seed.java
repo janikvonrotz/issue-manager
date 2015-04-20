@@ -20,11 +20,13 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 /**
- * TODO klasse implementieren
+ * class Seed
  * 
- * @author jvr
- *
+ * @author Erwin Willi
+ * @version 1.0.0
+ * @since 1.0.0
  */
+
 public class Seed {
 	
 	private final static Config config = ConfigFactory.load();
@@ -60,9 +62,11 @@ public class Seed {
 		
 		 
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
-		int anzahlSachbearbeiter = getConfig("seed.Sachbearbeiter", 10);
+		List<String> listArbeitstyp = getConfig("seed.Arbeitstyp", new String[]{});
+		List<String> listRolle = getConfig("seed.Rolle", new String[]{});
+		List<String> listMangelstatus = getConfig("seed.Mangelstatus", new String[]{});
+		List<String> listProjekttyp = getConfig("seed.Projekttyp", new String[]{});
 		
-		Faker faker = new Faker();
 
 		// TODO Alle Controller laden
 		

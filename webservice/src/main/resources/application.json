@@ -53,10 +53,11 @@
     	"DELETE": ["Authenticated"]
     },
     "seed": {
-    	"Arbeitstyp": [],
-    	"Mangelstatus": [],
-    	"Ort": "Ortschaften.csv"
-    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"]   	
+    	"Arbeitstyp": ["Neubau", "Umbau", "Renovation", "Teil-Renovation"],
+    	"Mangelstatus": ["offen", "erledigt", "zur Kontrolle"],
+    	"Projekttyp": ["Einfamilienhaus", "Mehrfamilienhaus", "Wohnung", "Garage", "Gartenhaus"],
+    	"Ort": "Ortschaften.csv",
+    	"Rolle": ["Administrator", "Sachbearbeiter", "Bauleiter", "Bauherr", "Kontaktperson", "Kontaktadmin"] 	
     }
   }
 }
