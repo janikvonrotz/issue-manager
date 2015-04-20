@@ -54,4 +54,9 @@ public class Kontakt extends Person {
 		return this.nachname + " " + this.vorname;
 	}
 
+	@Override
+	public int getId() {
+		return this.id;
+	}
+
 }
