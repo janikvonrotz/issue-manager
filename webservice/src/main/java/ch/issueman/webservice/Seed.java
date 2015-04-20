@@ -29,13 +29,13 @@ public class Seed {
 	public static void main(String[] args) {
 		
 		// TODO Array für standardwerte erstellen
-		List<String> defaultrollen = getConfig("seed.Person", null);
+		List<String> defaultrollen = getConfig("seed.Rollen", new String[]{});
 		
 		File csv = new File(getConfig("seed.Ort", "Orschaften.csv"));
-		CSVParser parser = CSVParser.parse(, CSVFormat.EXCEL);
+		CSVParser parser = CSVParser.parse(ghgv, CSVFormat.EXCEL);
 		 for (CSVRecord r : parser) {
-		     r.get("PLZ")
-		     r.get("Ortschaft)
+		     //r.get("PLZ")
+		     //r.get("Ortschaft")
 		 }
 		 
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
