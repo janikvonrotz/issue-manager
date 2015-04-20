@@ -1,12 +1,9 @@
 package ch.issueman.common;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotNull;
-
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * class Bauherr
@@ -18,34 +15,22 @@ import lombok.Data;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Bauherr extends Person {
 	
-	@Id
-	@GeneratedValue
-	private int id;
-	@NotNull
-	private Person nachname;
-	@NotNull
-	private Person vorname;
-	@NotNull
-	private Person email;
 	@OneToOne
 	private Unternehmen unternehmen;
 	
-	
 	public Bauherr(){}
 	
-	public Bauherr(Person nachname, Person vorname, Person email, Unternehmen unternehmen){
-		super();
-		this.nachname = nachname;
-		this.vorname = vorname;
-		this.email = email;
+	public Bauherr(String nachname, String vorname, String email, Unternehmen unternehmen){
+		super(nachname, vorname, email);
 		this.unternehmen = unternehmen;
 	}
 
 	@Override
 	public String getDisplayName() {
-		return this.nachname + " " + this.vorname;
+		return this.getNachname() + " " + this.getVorname();
 	}
 
 }

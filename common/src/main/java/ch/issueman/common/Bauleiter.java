@@ -1,8 +1,8 @@
 package ch.issueman.common;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * class Bauleiter
@@ -14,27 +14,18 @@ import lombok.Data;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class Bauleiter extends Person {
-	
-	@NotNull
-	private Person nachname;
-	@NotNull
-	private Person vorname;
-	@NotNull
-	private Person email;
 	
 	public Bauleiter(){}
 	
-	public Bauleiter(Person nachname, Person vorname, Person email){
-		super();
-		this.nachname = nachname;
-		this.vorname = vorname;
-		this.email = email;
+	public Bauleiter(String nachname, String vorname, String email){
+		super(nachname, vorname, email);
 	}
 
 	@Override
 	public String getDisplayName() {
-		return this.nachname + " " + this.vorname;
+		return this.getNachname() + " " + this.getVorname();
 	}
 	
 }
