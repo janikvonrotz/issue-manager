@@ -40,12 +40,13 @@ public class Kontakt extends Person {
 	
 	public Kontakt(){}
 	
-	public Kontakt(Person nachname, Person vorname, Person email, Subunternehmen subunternehmen, List<Projekt> projeke){
+	public Kontakt(Person nachname, Person vorname, Person email, Subunternehmen subunternehmen, List<Projekt> projekte){
 		super();
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
 		this.subunternehmen = subunternehmen;
+		this.projekte = projekte;
 	}
 
 	@Override
