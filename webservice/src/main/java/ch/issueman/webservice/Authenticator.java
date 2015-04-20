@@ -15,7 +15,7 @@ import javax.ws.rs.ext.Provider;
 
 import org.jboss.resteasy.util.Base64;
 
-import ch.issueman.common.User;
+import ch.issueman.common.Login;
 
 @Provider
 public class Authenticator implements ContainerRequestFilter {
@@ -44,17 +44,15 @@ public class Authenticator implements ContainerRequestFilter {
 			String username = tokenizer.nextToken();
 			String password = tokenizer.nextToken();
 			
-			Controller<User, Integer> usercontroller = new Controller<User, Integer>(User.class);
-			
-			List<User> users = usercontroller.getAll().stream()
-					.filter(p -> p.getEmail().equals(username))
-					.filter(p -> p.getPassword().equals(password))
+			List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
+					.filter(l -> l.getUsername().equals(username))
+					.filter(l -> l.getPasswort().equals(password))
 					.collect(Collectors.toList());
 			
-			if(users.get(0) != null){
+			if(logins.get(0) != null){
 				
-				User user = users.get(0);
-				session.setAttribute("user", user);
+				Login login = logins.get(0);
+				session.setAttribute("login", login);
 			}
 		}
 	}

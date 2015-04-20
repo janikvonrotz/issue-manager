@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
-import ch.issueman.common.User;
+import ch.issueman.common.Login;
 import ch.issueman.webservice.Controller;
 
 @Data
@@ -18,7 +18,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	
 	private TypeFilter<T, Id> filter = null;
 	private Controller<T, Id> controller = null;
-	private User user;
+	private Login login;
 	
 	@SuppressWarnings("unchecked")
 	public ResponseBuilder(Class<T> clazz){
@@ -31,7 +31,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			Constructor<?> constructor = filterclazz.getConstructor();
 			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
 			filter.setController(controller);
-			filter.setUser(user);
+			filter.setLogin(login);
 			
 		} catch (ClassNotFoundException e) {
 			
@@ -57,18 +57,18 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		
 	}
 	
-	public void setUser(User user){
-		this.user = user;
-		this.filter.setUser(user);
+	public void setUser(Login login){
+		this.login = login;
+		this.filter.setLogin(login);
 	}
 	
-	public ResponseBuilder(Class<T> clazz, String httpmethod, User user){
+	public ResponseBuilder(Class<T> clazz, String httpmethod, Login login){
 		this(clazz);
-		this.user = user;
+		this.login = login;
 	}
 	
 	public Response persist(T t) {
-		if(filter.UserHasRoleByMethod(user, "POST") != false){
+		if(filter.UserHasRoleByMethod(login, "POST") != false){
 			try {
 				filter.persist(t);
 			} catch (Exception e) {
@@ -82,7 +82,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response getById(Id id) {
-		if(filter.UserHasRoleByMethod(user, "GET") != false){
+		if(filter.UserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity(filter.getById(id)).build();
 			} catch (Exception e) {
@@ -96,7 +96,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response getAll() {
-		if(filter.UserHasRoleByMethod(user, "GET") != false){
+		if(filter.UserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
 			} catch (Exception e) {
@@ -110,7 +110,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response update(T t) {
-		if(filter.UserHasRoleByMethod(user, "PUT") != false){
+		if(filter.UserHasRoleByMethod(login, "PUT") != false){
 			try {
 				filter.update(t);
 			} catch (Exception e) {
@@ -124,7 +124,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response delete(T t) {
-		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
+		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(t);
 			} catch (Exception e) {
@@ -138,7 +138,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response deleteAll() {
-		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
+		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.deleteAll();
 			} catch (Exception e) {
@@ -152,7 +152,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response deleteById(Id id) {
-		if(filter.UserHasRoleByMethod(user, "DELETE") != false){
+		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(filter.getById(id));
 			} catch (Exception e) {
@@ -165,14 +165,15 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response login(User user) {
-		List<User> users = (new Controller<User, Integer>(User.class)).getAll().stream()
-				.filter(p -> p.getEmail().equals(user.getEmail()))
-				.filter(p -> p.getPassword().equals(user.getPassword()))
+	public Response login(Login login) {
+		
+		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
+				.filter(l -> l.getUsername().equals(login.getUsername()))
+				.filter(l -> l.getPasswort().equals(login.getPasswort()))
 				.collect(Collectors.toList());
 		
-		if(users.size() == 1){
-			return Response.status(Status.OK).entity(users.get(0)).build();
+		if(logins.size() == 1){
+			return Response.status(Status.OK).entity(logins.get(0)).build();
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity("Login failed!").build();
 		}

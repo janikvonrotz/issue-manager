@@ -9,14 +9,14 @@ import com.typesafe.config.ConfigFactory;
 
 import lombok.Data;
 import ch.issueman.common.DAO;
-import ch.issueman.common.User;
+import ch.issueman.common.Login;
 
 @Data
 public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	
 	private final Config config = ConfigFactory.load();
 	private HashMap<String, List<String>> allowedroles = new HashMap<String, List<String>>();
-	private User user;
+	private Login login;
 	private Controller<T, Id> controller;
 		
 	public TypeFilter(Class<T> clazz){
@@ -56,16 +56,23 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		controller.deleteAll();
 	}
 	
-	public boolean UserHasRoleByMethod(User user, String httpmethod){
+	public boolean UserHasRoleByMethod(Login login, String httpmethod){
 		
 		if(allowedroles.get(httpmethod).contains("Anonymous")){
 			return true;
-		}else if(user != null && allowedroles.get(httpmethod).contains("Authenticated")){
+		}else if(login != null && allowedroles.get(httpmethod).contains("Authenticated")){
 			return true;
-		}else if(user != null && allowedroles.get(httpmethod).contains(user.getRole())){
+		}else if(login != null && allowedroles.get(httpmethod).contains(login.getRolle().getBezeichnung())){
 			return true;
 		}		
 		
 		return false;
+	}
+
+	@Override
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
