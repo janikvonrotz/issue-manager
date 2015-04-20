@@ -1,6 +1,9 @@
 package ch.issueman.webservice;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,16 +30,34 @@ public class Seed {
 	private final static Config config = ConfigFactory.load();
 	
 	public static void main(String[] args) {
+		Seed s = new Seed();
+		s.seed();
+	}
+	
+	private void seed(){
 		
 		// TODO Array für standardwerte erstellen
 		List<String> defaultrollen = getConfig("seed.Rollen", new String[]{});
 		
-		File csv = new File(getConfig("seed.Ort", "Orschaften.csv"));
-		CSVParser parser = CSVParser.parse(ghgv, CSVFormat.EXCEL);
-		 for (CSVRecord r : parser) {
-		     //r.get("PLZ")
-		     //r.get("Ortschaft")
-		 }
+		ClassLoader classLoader = getClass().getClassLoader();
+		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
+		
+		try {
+			
+		FileReader fr = new FileReader(csv);
+			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL);
+			 for (CSVRecord csvRecord : parser) {
+				 csvRecord.get("PLZ");
+				 csvRecord.get("Ortsbezeichnung");
+			 }
+			 parser.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		 
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
 		int anzahlSachbearbeiter = getConfig("seed.Sachbearbeiter", 10);
