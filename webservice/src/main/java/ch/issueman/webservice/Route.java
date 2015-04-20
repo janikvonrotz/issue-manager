@@ -21,6 +21,13 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Kommentar;
 
+/**
+ * This class is loaded by the JAX-RS servlet and defines to http service routes and methods.
+ * 
+ * @author Janik von Rotz, ???
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 @Path("/")
 public class Route{
 	
