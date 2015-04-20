@@ -28,7 +28,7 @@ public class Sachbearbeiter extends Person {
 
 	@Override
 	public String getDisplayName() {
-		return Person.class.getName();
+		return this.getNachname() + " " + this.getVorname();
 	}
 
 }
