@@ -2,9 +2,6 @@ package ch.issueman.webservice;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-
-import javax.persistence.Entity;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
@@ -19,8 +16,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.reflections.Reflections;
-
 import ch.issueman.common.Person;
 import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
@@ -33,15 +28,7 @@ public class Route{
 	
 	public Route(){
 		
-		Reflections reflections = new Reflections("ch.issueman.common");
-		Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(Entity.class);
-		
-		/*
-		for (Class<?> model : annotated) {
-			rbm.put(model.getSimpleName().toLowerCase(), new ResponseBuilder<model, Integer>(model.));
-		}
-		*/
-		
+		// TODO alle controller registrieren
 		rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
 	}
 	
