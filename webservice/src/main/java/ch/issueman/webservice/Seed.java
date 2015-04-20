@@ -1,8 +1,13 @@
 package ch.issueman.webservice;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Rolle;
@@ -26,6 +31,13 @@ public class Seed {
 		// TODO Array für standardwerte erstellen
 		List<String> defaultrollen = getConfig("seed.Person", null);
 		
+		File csv = new File(getConfig("seed.Ort", "Orschaften.csv"));
+		CSVParser parser = CSVParser.parse(, CSVFormat.EXCEL);
+		 for (CSVRecord r : parser) {
+		     r.get("PLZ")
+		     r.get("Ortschaft)
+		 }
+		 
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
 		int anzahlSachbearbeiter = getConfig("seed.Sachbearbeiter", 10);
 		
@@ -118,17 +130,33 @@ public class Seed {
 	}
 	
 	/**
+	 * Checks whether the String config entry exists or not and returns the defined value.
+	 * 
+	 * @param path the path in the config file.
+	 * @param defaultcount the default value to return when the entry doesn't exist.
+	 * @return the config value.
+	 */
+	private static String getConfig(String path, String defaultvalue) {
+		if(config.hasPath(path)){
+			return config.getString(path);
+		}else{
+			return defaultvalue;
+		}
+		
+	}
+	
+	/**
 	 * Checks whether the Integer config entry exists or not and returns the defined value.
 	 * 
 	 * @param path the path in the config file.
 	 * @param defaultcount the default value to return when the entry doesn't exist.
 	 * @return the config value.
 	 */
-	private static int getConfig(String path, int defaultcount) {
+	private static int getConfig(String path, int defaultvalue) {
 		if(config.hasPath(path)){
 			return config.getInt(path);
 		}else{
-			return defaultcount;
+			return defaultvalue;
 		}
 		
 	}
@@ -146,6 +174,5 @@ public class Seed {
 		}else{
 			return new ArrayList<String>(Arrays.asList(defaultvalues));
 		}
-		
 	}
 }
