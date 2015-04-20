@@ -12,8 +12,23 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import ch.issueman.common.Adresse;
+import ch.issueman.common.Arbeitstyp;
+import ch.issueman.common.Bauherr;
+import ch.issueman.common.Bauleiter;
+import ch.issueman.common.Kommentar;
+import ch.issueman.common.Kontakt;
+import ch.issueman.common.Login;
+import ch.issueman.common.Mangel;
+import ch.issueman.common.Mangelstatus;
+import ch.issueman.common.Ort;
+import ch.issueman.common.Projekt;
+import ch.issueman.common.Projektleitung;
+import ch.issueman.common.Projekttyp;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Rolle;
+import ch.issueman.common.Subunternehmen;
+import ch.issueman.common.Unternehmen;
 
 import com.github.javafaker.Faker;
 import com.typesafe.config.Config;
@@ -38,19 +53,20 @@ public class Seed {
 	
 	private void seed(){
 		
-		// TODO Array für standardwerte erstellen
-		List<String> defaultrollen = getConfig("seed.Rollen", new String[]{});
-		
+		// TODO für alle entities config laden, bzw. im Config file erstellen.
+		List<String> listArbeitstyp = getConfig("seed.Arbeitstyp", new String[]{});
+		List<String> listRolle = getConfig("seed.Rolle", new String[]{});
+		List<String> listMangelstatus = getConfig("seed.Mangelstatus", new String[]{});
+		List<String> listProjekttyp = getConfig("seed.Projekttyp", new String[]{});
 		ClassLoader classLoader = getClass().getClassLoader();
 		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
-		
+		List<Ort> listOrt = new ArrayList<Ort>();
+		// CSV auslesen und Liste erstellen
 		try {
-			
-		FileReader fr = new FileReader(csv);
+			FileReader fr = new FileReader(csv);
 			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL);
-			 for (CSVRecord csvRecord : parser) {
-				 csvRecord.get("PLZ");
-				 csvRecord.get("Ortsbezeichnung");
+			 for (CSVRecord r : parser) {
+				 listOrt.add(new Ort(Integer.parseInt(r.get("PLZ")), r.get("Ortsbezeichnung")));
 			 }
 			 parser.close();
 		} catch (FileNotFoundException e) {
@@ -59,24 +75,59 @@ public class Seed {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		List<Adresse> listAdresse = new ArrayList<Adresse>();
+		List<Bauherr> listBauherr = new ArrayList<Bauherr>();
+		List<Bauleiter> listBauleiter = new ArrayList<Bauleiter>();
+		List<Kommentar> listKommentar = new ArrayList<Kommentar>();
+		List<Kontakt> listKontakt = new ArrayList<Kontakt>();
+		List<Login> listLogin = new ArrayList<Login>();
+		List<Mangel> listMangel = new ArrayList<Mangel>();
+		List<Projekt> listProjekt = new ArrayList<Projekt>();
+		List<Projektleitung> listProjektleitung = new ArrayList<Projektleitung>();
+		List<Sachbearbeiter> listSachbearbeiter = new ArrayList<Sachbearbeiter>();
+		List<Subunternehmen> listSubunternehmen = new ArrayList<Subunternehmen>();
+		List<Unternehmen> listUnternehmen = new ArrayList<Unternehmen>();
 		
-		 
-		// TODO für alle entities config laden, bzw. im Config file erstellen.
-		List<String> listArbeitstyp = getConfig("seed.Arbeitstyp", new String[]{});
-		List<String> listRolle = getConfig("seed.Rolle", new String[]{});
-		List<String> listMangelstatus = getConfig("seed.Mangelstatus", new String[]{});
-		List<String> listProjekttyp = getConfig("seed.Projekttyp", new String[]{});
 		
-
+		
 		// TODO Alle Controller laden
 		
-		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
+		Controller<Adresse, Integer> adressecontroller = new Controller<Adresse, Integer>(Adresse.class);
+		Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
+		Controller<Bauherr, Integer> bauherrcontroller = new Controller<Bauherr, Integer>(Bauherr.class);
+		Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
+		Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
+		Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
+		Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
+		Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
+		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
+		Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
+		Controller<Projektleitung, Integer> projektleitungcontroller = new Controller<Projektleitung, Integer>(Projektleitung.class);
+		Controller<Projekttyp, Integer> projekttypcontroller = new Controller<Projekttyp, Integer>(Projekttyp.class);
 		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
+		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
+		Controller<Subunternehmen, Integer> subunternehmercontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+		Controller<Unternehmen, Integer> unternehmencontroller = new Controller<Unternehmen, Integer>(Unternehmen.class);
+		
 		
 		// TODO alle daten löschen
-		
-		sachbearbeitercontroller.deleteAll();
+		adressecontroller.deleteAll();
+		arbeitstypcontroller.deleteAll();
+		bauherrcontroller.deleteAll();
+		bauleitercontroller.deleteAll();
+		kommentarcontroller.deleteAll();
+		kontaktcontroller.deleteAll();
+		mangelcontroller.deleteAll();
+		mangelstatuscontroller.deleteAll();
+		ortcontroller.deleteAll();
+		projektcontroller.deleteAll();
+		projektleitungcontroller.deleteAll();
+		projekttypcontroller.deleteAll();
 		rollecontroller.deleteAll();
+		sachbearbeitercontroller.deleteAll();
+		subunternehmercontroller.deleteAll();
+		unternehmencontroller.deleteAll();
+		
 		
 		// TODO standardwerte erstellen
 		
@@ -84,10 +135,15 @@ public class Seed {
 			rollecontroller.persist(new Rolle(rolle));
 		}
 		
+		// TODO Daten in Listen laden
+		
+		listAdresse.add("");
+		listAdresse.get(0);
+		
 		// TODO daten seeden
 		
-		for(int i = 1; i <= anzahlSachbearbeiter; i++){
-			sachbearbeitercontroller.persist(new Sachbearbeiter(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress()));
+		for(Sachbearbeiter t : listSachbearbeiter){
+			sachbearbeitercontroller.persist(t);
 		}		
 		
 		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
