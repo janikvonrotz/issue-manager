@@ -11,5 +11,8 @@ dependencies {
   
   compile 'org.apache.commons:commons-csv:1.+'
   compile 'com.typesafe:config:1.+'
+
   compile 'org.slf4j:slf4j-simple:1.+'
+  compile 'org.tinylog:tinylog:1.+'
+  compile 'org.tinylog:slf4j-binding:1.+'
 }
