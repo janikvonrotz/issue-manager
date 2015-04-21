@@ -138,13 +138,7 @@
       "Garage",
       "Gartenhaus"
     ],
-    "Ort": "Ortschaften.csv",
-    "Rolle": [
-      "Sachbearbeiter",
-      "Bauleiter",
-      "Bauherr",
-      "Kontaktperson",
-      "Kontaktadmin"
+    "Ort": "Ortschaften.csv"
     ]
   }
 }
