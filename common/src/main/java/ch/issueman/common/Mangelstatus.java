@@ -26,13 +26,13 @@ public class Mangelstatus {
 	private String status;
 	@NotNull
 	@ManyToMany
-	private List<Rolle> rolle;
+	private List<Rolle> rollen;
 	
 	public Mangelstatus() {}
 	
-	public Mangelstatus(String status, List<Rolle> rolle) {
+	public Mangelstatus(String status, List<Rolle> rollen) {
 		this.status = status;
-		this.rolle = rolle;
+		this.rollen = rollen;
 	}
 
 }

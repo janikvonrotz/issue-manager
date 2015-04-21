@@ -130,7 +130,7 @@ public class Seed {
 		projekttypcontroller.deleteAll();
 		rollecontroller.deleteAll();
 		sachbearbeitercontroller.deleteAll();
-		subunternehmercontroller.deleteAll();
+		subunternehmencontroller.deleteAll();
 		unternehmencontroller.deleteAll();
 		
 		// TODO Daten in Listen laden
@@ -208,7 +208,12 @@ public class Seed {
 		//Liste Kommentare füllen String, Login
 		
 		//Liste Kontakt
-		
+		listKontakt.add(new Kontakt("Putzi", "Sonja", "sonja.putzi@habau.ch", listSubunternehmen.get(0), listProjekt.get(0)));
+		listKontakt.add(new Kontakt("Henniez", "Rudolf", "rudolf.henniez@gabau".ch, listSubunternehmen.get(1), listProjekt.get(1)));
+		listKontakt.add(new Kontakt("Ludolf", "Manfred", "manfred.ludolf@mbau.ch", listSubunternehmen.get(2), listProjekt.get(2)));
+		listKontakt.add(new Kontakt("Pereira", "Patrik", "patrik.pereira@gebau.ch", listSubunternehmen.get(3), listProjekt.get(3)));
+		listKontakt.add(new Kontakt("Arche", "Noa", "noa.arche@bobau.ch", listSubunternehmen.get(4), listProjekt.get(4)));
+		listKontakt.add(new Kontakt("Beutel", "Kurt", "kurt.beutel@dabau.ch", listSubunternehmen.get(5), listProjekt.get(5)));
 		/*Liste Mangel (int referenz, Person erfasser, List<Kommentar> kommentare,
 		Mangelstatus mangelstatus, Date erledigenbis, Projekt projekt,
 		Date erstelltam)*/
@@ -221,8 +226,9 @@ public class Seed {
 		/*Liste Projekt Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
 				
-		//Liste Prjektleitung Bauleiter bauleiter, Date beginn, Date ende
-				
+		//Liste Projektleitung Bauleiter bauleiter, Date beginn, Date ende
+		//listProjektleitung.add(new Projektleitung(listBauleiter.get(0), new Date(03.02.2015), new Date(03.03.2015)));
+		
 		//Subunternehmen String firmenname, Adresse adresse
 		listSubunternehmen.add(new Subunternehmen("Hausbau AG", listAdresse.get(0)));
 		listSubunternehmen.add(new Subunternehmen("Gartenbau AG", listAdresse.get(1)));
@@ -275,7 +281,17 @@ public class Seed {
 		for(Bauleiter bauleiter : listBauleiter){
 			bauleitercontroller.persist(bauleiter);
 		}
+		for(Kontakt kontakt : listKontakt){
+			kontaktcontroller.persist(kontakt);
+		}
 		
+		for(Mangelstatus mangelstatus : listMangelstatus){
+			mangelstatuscontroller.persist(mangelstatus);
+		}
+		
+		for(Mangel mangel : listMangel){
+			mangelcontroller.persist(mangel);
+		}
 		for(Subunternehmen subunternehmen : listSubunternehmen){
 			subunternehmencontroller.persist(subunternehmen);
 		}
