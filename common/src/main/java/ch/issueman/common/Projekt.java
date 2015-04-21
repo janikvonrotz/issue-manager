@@ -42,7 +42,7 @@ public class Projekt {
 	@ManyToOne
     private Bauherr bauherr;
 	@NotNull
-	@OneToMany
+	@OneToMany (cascade = CascadeType.ALL)
     private List<Projektleitung> projektleitungen;
 	@NotNull
     private Calendar beginn;
