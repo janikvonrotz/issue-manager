@@ -102,6 +102,7 @@ public class Seed {
 		Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
 		Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
 		Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
+		Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 		Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 		Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
 		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
@@ -110,7 +111,7 @@ public class Seed {
 		Controller<Projekttyp, Integer> projekttypcontroller = new Controller<Projekttyp, Integer>(Projekttyp.class);
 		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
-		Controller<Subunternehmen, Integer> subunternehmercontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+		Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 		Controller<Unternehmen, Integer> unternehmencontroller = new Controller<Unternehmen, Integer>(Unternehmen.class);
 		
 		
@@ -240,6 +241,10 @@ public class Seed {
 		
 		// TODO daten seeden
 		
+		for(Adresse adresse : listAdresse){
+			adressecontroller.persist(adresse);
+		}
+		
 		for(Arbeitstyp arbeitstyp : listArbeitstyp){
 			arbeitstypcontroller.persist(arbeitstyp);
 		}
@@ -248,6 +253,9 @@ public class Seed {
 			rollecontroller.persist(rolle);
 		}
 		
+		for(Login login : listLogin){
+			logincontroller.persist(login);
+		}
 		for(Mangelstatus mangelstatus : listMangelstatus){
 			mangelstatuscontroller.persist(mangelstatus);
 		}
@@ -260,6 +268,21 @@ public class Seed {
 			sachbearbeitercontroller.persist(sachbearbeiter);
 		}
 		
+		for(Bauherr bauherr : listBauherr){
+			bauherrcontroller.persist(bauherr);
+		}
+		
+		for(Bauleiter bauleiter : listBauleiter){
+			bauleitercontroller.persist(bauleiter);
+		}
+		
+		for(Subunternehmen subunternehmen : listSubunternehmen){
+			subunternehmencontroller.persist(subunternehmen);
+		}
+		
+		for(Unternehmen unternehmen : listUnternehmen){
+			unternehmencontroller.persist(unternehmen);
+		}
 		
 		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
 		
