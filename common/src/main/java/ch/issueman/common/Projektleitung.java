@@ -3,6 +3,7 @@ package ch.issueman.common;
 //import java.util.Calendar;
 //import java.util.Date;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
@@ -32,12 +33,12 @@ public class Projektleitung {
 	@ManyToOne
 	private Bauleiter bauleiter;
 	@NotNull
-	private GregorianCalendar beginn;
-	private GregorianCalendar ende;
+	private Calendar beginn;
+	private Calendar ende;
 	
 	public Projektleitung(){}
 	
-	public Projektleitung(Bauleiter bauleiter, GregorianCalendar beginn, GregorianCalendar ende){
+	public Projektleitung(Bauleiter bauleiter, Calendar beginn, Calendar ende){
 		super();
 		this.bauleiter = bauleiter;
 		this.beginn = beginn;

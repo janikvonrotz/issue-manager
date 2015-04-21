@@ -227,7 +227,8 @@ public class Seed {
 				
 		/*Liste Projekt Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
-				
+		
+		
 		//Liste Projektleitung Bauleiter bauleiter, Date beginn, Date ende
 		listProjektleitung.add(new Projektleitung(listBauleiter.get(0), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		listProjektleitung.add(new Projektleitung(listBauleiter.get(1), new GregorianCalendar(2,2,2015), new GregorianCalendar(1,3,2015)));
