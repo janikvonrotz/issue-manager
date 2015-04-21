@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -22,6 +23,7 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Ort;
+import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Projektleitung;
 import ch.issueman.common.Projekttyp;
@@ -54,6 +56,7 @@ public class Seed {
 		
 		// TODO für alle entities config laden, bzw. im Config file erstellen.
 		
+		//Liste Ort füllen
 		ClassLoader classLoader = getClass().getClassLoader();
 		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
 		List<Ort> listOrt = new ArrayList<Ort>();
@@ -136,7 +139,7 @@ public class Seed {
 		listArbeitstyp.add(new Arbeitstyp("Renovation"));
 		listArbeitstyp.add(new Arbeitstyp("Teil-Renovation"));
 		
-		//Liste Rollen füllen
+		//Liste Rollen, Sachbearbeiter, Login füllen
 		listRolle.add(new Rolle("Sachbearbeiter"));
 		listSachbearbeiter.add(new Sachbearbeiter("sb","sb","sb@im.ch"));
 		listLogin.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
@@ -169,11 +172,6 @@ public class Seed {
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
 		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));		
 		
-		//Liste Mangelstatus füllen
-		listMangelstatus.add(new Mangelstatus("offen", listRolle));
-		listMangelstatus.add(new Mangelstatus("erledigt", listRolle));
-		listMangelstatus.add(new Mangelstatus("zur Kontrolle", listRolle));
-		
 		//Liste Projekttyp füllen
 	    listProjekttyp.add(new Projekttyp("Einfamilienhaus"));
 		listProjekttyp.add(new Projekttyp("Mehrfamilienhaus"));
@@ -181,8 +179,14 @@ public class Seed {
 		listProjekttyp.add(new Projekttyp("Garage"));
 		listProjekttyp.add(new Projekttyp("Gartenhaus"));
 		
-		//Liste Adresse füllen 
-		listAdresse.add("");
+		//Liste Adresse füllen String strasse, Ort ort
+		listAdresse.add(new Adresse("Zugerstrasse", listOrt.get(0)));
+		listAdresse.add(new Adresse("Luzernerstrasse", listOrt.get(1)));
+		listAdresse.add(new Adresse("Neubühlstrasse", listOrt.get(2)));
+		listAdresse.add(new Adresse("Maurerstrasse", listOrt.get(20)));
+		listAdresse.add(new Adresse("Untergrundstrasse", listOrt.get(35)));
+		listAdresse.add(new Adresse("Baslerstrasse", listOrt.get(50)));
+		
 		listAdresse.get(0);
 		
 		//Liste Bauherr füllen
@@ -191,7 +195,49 @@ public class Seed {
 		listBauherr.add(new Bauherr("Sommer", "Mirco", "mirco.sommer@gmail.ch", listUnternehmen.get(2)));
 		listBauherr.add(new Bauherr("Zwimpfer", "Margrit", "margrit.zwimpfer@hotmail.ch", listUnternehmen.get(3)));
 		listBauherr.add(new Bauherr("Fäh", "Linda", "linda.fäh@miss.ch", listUnternehmen.get(4)));
-	
+		
+		//Liste Bauleiter füllen
+		listBauleiter.add(new Bauleiter("Cisco", "Franz", "franc.cisco@cisco.ch"));
+		listBauleiter.add(new Bauleiter("Capone", "Don", "don.capone@mafia.ch"));
+		listBauleiter.add(new Bauleiter("Wachter", "Hans-Peter", "hp@willibau.ch"));
+		listBauleiter.add(new Bauleiter("Malgin", "Igor", "igor.malgin@power.ch"));
+		listBauleiter.add(new Bauleiter("Loser", "Bruno", "bruno.loser@grebo.ch"));
+		listBauleiter.add(new Bauleiter("Dell", "Walter", "walter.dell@doit.ch"));
+		
+		//Liste Kommentare füllen String, Login
+		
+		//Liste Kontakt
+		
+		/*Liste Mangel (int referenz, Person erfasser, List<Kommentar> kommentare,
+		Mangelstatus mangelstatus, Date erledigenbis, Projekt projekt,
+		Date erstelltam)*/
+		
+		//Liste Mangelstatus füllen
+		listMangelstatus.add(new Mangelstatus("offen", listRolle));
+		listMangelstatus.add(new Mangelstatus("erledigt", listRolle));
+		listMangelstatus.add(new Mangelstatus("zur Kontrolle", listRolle));		
+				
+		/*Liste Projekt Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
+			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
+				
+		//Liste Prjektleitung Bauleiter bauleiter, Date beginn, Date ende
+				
+		//Subunternehmen String firmenname, Adresse adresse
+		listSubunternehmen.add(new Subunternehmen("Hausbau AG", listAdresse.get(0)));
+		listSubunternehmen.add(new Subunternehmen("Gartenbau AG", listAdresse.get(1)));
+		listSubunternehmen.add(new Subunternehmen("Mauerbau AG", listAdresse.get(2)));
+		listSubunternehmen.add(new Subunternehmen("Gerüstbau AG", listAdresse.get(3)));
+		listSubunternehmen.add(new Subunternehmen("Bodenbeläge GMBH", listAdresse.get(4)));
+		listSubunternehmen.add(new Subunternehmen("Dachdecker GMBH", listAdresse.get(5)));
+		
+		//Liste Unternehmen String firmenname, Adresse adresse
+		listUnternehmen.add(new Unternehmen("Sanitär Trösch", listAdresse.get(0)));
+		listUnternehmen.add(new Unternehmen("Tiefenbohrungen Meier", listAdresse.get(1)));	
+		listUnternehmen.add(new Unternehmen("Kaminbau Sutter", listAdresse.get(2)));	
+		listUnternehmen.add(new Unternehmen("Türenfabrik AG", listAdresse.get(3)));	
+		listUnternehmen.add(new Unternehmen("Keller's Keller", listAdresse.get(4)));	
+		listUnternehmen.add(new Unternehmen("Garagenbau GMBH", listAdresse.get(5)));	
+		
 		// TODO daten seeden
 		
 		for(Arbeitstyp arbeitstyp : listArbeitstyp){
