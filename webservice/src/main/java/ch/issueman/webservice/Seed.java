@@ -6,7 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -227,8 +229,13 @@ public class Seed {
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
 				
 		//Liste Projektleitung Bauleiter bauleiter, Date beginn, Date ende
-		//listProjektleitung.add(new Projektleitung(listBauleiter.get(0), new Date(03.02.2015), new Date(03.03.2015)));
-		
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(0), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(1), new GregorianCalendar(2,2,2015), new GregorianCalendar(1,3,2015)));
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(2), new GregorianCalendar(5,3,2015), new GregorianCalendar(1,4,2015)));
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(3), new GregorianCalendar(7,4,2015), new GregorianCalendar(10,5,2015)));
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(4), new GregorianCalendar(8,2,2015), new GregorianCalendar(7,6,2015)));
+		listProjektleitung.add(new Projektleitung(listBauleiter.get(5), new GregorianCalendar(12,3,2015), new GregorianCalendar(1,7,2015)));
+	
 		//Subunternehmen String firmenname, Adresse adresse
 		listSubunternehmen.add(new Subunternehmen("Hausbau AG", listAdresse.get(0)));
 		listSubunternehmen.add(new Subunternehmen("Gartenbau AG", listAdresse.get(1)));

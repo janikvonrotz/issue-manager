@@ -1,11 +1,16 @@
 package ch.issueman.common;
 
-import java.util.Date;
+//import java.util.Calendar;
+//import java.util.Date;
+
+import java.util.GregorianCalendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 
 /**
@@ -27,12 +32,12 @@ public class Projektleitung {
 	@ManyToOne
 	private Bauleiter bauleiter;
 	@NotNull
-	private Date beginn;
-	private Date ende;
+	private GregorianCalendar beginn;
+	private GregorianCalendar ende;
 	
 	public Projektleitung(){}
 	
-	public Projektleitung(Bauleiter bauleiter, Date beginn, Date ende){
+	public Projektleitung(Bauleiter bauleiter, GregorianCalendar beginn, GregorianCalendar ende){
 		super();
 		this.bauleiter = bauleiter;
 		this.beginn = beginn;
