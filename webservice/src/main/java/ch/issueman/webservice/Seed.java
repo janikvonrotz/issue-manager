@@ -130,11 +130,13 @@ public class Seed {
 		unternehmencontroller.deleteAll();
 		
 		// TODO Daten in Listen laden
-		
+		// Liste Arbeitstyp füllen
 		listArbeitstyp.add(new Arbeitstyp("Neubau"));
-		listAdresse.add("");
-		listAdresse.get(0);
+		listArbeitstyp.add(new Arbeitstyp("Umbau"));
+		listArbeitstyp.add(new Arbeitstyp("Renovation"));
+		listArbeitstyp.add(new Arbeitstyp("Teil-Renovation"));
 		
+		//Liste Rollen füllen
 		listRolle.add(new Rolle("Sachbearbeiter"));
 		listSachbearbeiter.add(new Sachbearbeiter("sb","sb","sb@im.ch"));
 		listLogin.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
@@ -165,8 +167,31 @@ public class Seed {
 		
 		listRolle.add(new Rolle("Kontaktadmin"));
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
-		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));
-
+		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));		
+		
+		//Liste Mangelstatus füllen
+		listMangelstatus.add(new Mangelstatus("offen", listRolle));
+		listMangelstatus.add(new Mangelstatus("erledigt", listRolle));
+		listMangelstatus.add(new Mangelstatus("zur Kontrolle", listRolle));
+		
+		//Liste Projekttyp füllen
+	    listProjekttyp.add(new Projekttyp("Einfamilienhaus"));
+		listProjekttyp.add(new Projekttyp("Mehrfamilienhaus"));
+		listProjekttyp.add(new Projekttyp("Wohnung"));
+		listProjekttyp.add(new Projekttyp("Garage"));
+		listProjekttyp.add(new Projekttyp("Gartenhaus"));
+		
+		//Liste Adresse füllen 
+		listAdresse.add("");
+		listAdresse.get(0);
+		
+		//Liste Bauherr füllen
+		listBauherr.add(new Bauherr("Müller", "Hans", "hans.müller@bh.ch", listUnternehmen.get(0)));
+		listBauherr.add(new Bauherr("Migros", "Alu", "alu.migros@windowslive.ch", listUnternehmen.get(1)));
+		listBauherr.add(new Bauherr("Sommer", "Mirco", "mirco.sommer@gmail.ch", listUnternehmen.get(2)));
+		listBauherr.add(new Bauherr("Zwimpfer", "Margrit", "margrit.zwimpfer@hotmail.ch", listUnternehmen.get(3)));
+		listBauherr.add(new Bauherr("Fäh", "Linda", "linda.fäh@miss.ch", listUnternehmen.get(4)));
+	
 		// TODO daten seeden
 		
 		for(Arbeitstyp arbeitstyp : listArbeitstyp){
@@ -187,7 +212,8 @@ public class Seed {
 		
 		for(Sachbearbeiter sachbearbeiter : listSachbearbeiter){
 			sachbearbeitercontroller.persist(sachbearbeiter);
-		}		
+		}
+		
 		
 		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
 		
