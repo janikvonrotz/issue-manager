@@ -1,7 +1,6 @@
 package ch.issueman.common;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -49,8 +48,7 @@ public class Mangel implements Model {
 	public Mangel(){}
 
 	public Mangel(int referenz, Person erfasser, List<Kommentar> kommentare,
-			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt,
-			Calendar erstelltam) {
+			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt) {
 		super();
 		this.referenz = referenz;
 		this.erfasser = erfasser;
@@ -58,7 +56,6 @@ public class Mangel implements Model {
 		this.mangelstatus = mangelstatus;
 		this.erledigenbis = erledigenbis;
 		this.projekt = projekt;
-		this.erstelltam = erstelltam;
 	}
 	
 	/**

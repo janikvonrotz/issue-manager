@@ -32,7 +32,7 @@ public class Projekt {
     private String title;
 	@NotNull
 	@ManyToOne (cascade = CascadeType.ALL)
-    private String adresse;
+    private Adresse adresse;
 	@NotNull
 	@ManyToOne
     private Arbeitstyp arbeitstyp;
@@ -54,7 +54,7 @@ public class Projekt {
 	
 	public Projekt(){}
 	
-	public Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
+	public Projekt(String title, Adresse adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Calendar beginn, Calendar ende){
 		this.title = title;
 		this.adresse = adresse;

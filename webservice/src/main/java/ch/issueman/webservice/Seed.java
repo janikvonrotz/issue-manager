@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -24,6 +25,7 @@ import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
+import ch.issueman.common.Model;
 import ch.issueman.common.Ort;
 import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
@@ -159,21 +161,26 @@ public class Seed {
 		listBauleiter.add(new Bauleiter("Hans","Bruder","hans.bruder@im.ch"));
 		listLogin.add(new Login(listBauleiter.get(1), "asdf", listRolle.get(1)));
 		
+		List<Projekt> listTemp = listProjekt.stream().filter(p -> p.getId() == 0 || p.getId() == 3).collect(Collectors.toList());
 		listRolle.add(new Rolle("Kontaktperson"));
-		listKontakt.add(new Kontakt("kt","kt","kt@im.ch"));
+		listKontakt.add(new Kontakt("kt","kt","kt@im.ch", listSubunternehmen.get(0), listTemp));
 		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
 		
+		listTemp = listProjekt.stream().filter(p -> p.getId() == 1 || p.getId() == 3).collect(Collectors.toList());
 		listRolle.add(new Rolle("Kontaktperson"));
-		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), listTemp));
 		listLogin.add(new Login(listKontakt.get(1), "asdf", listRolle.get(2)));
 		
+		listTemp = listProjekt.stream().filter(p -> p.getId() == 2 || p.getId() == 4).collect(Collectors.toList());
 		listRolle.add(new Rolle("Kontaktadmin"));
-		listKontakt.add(new Kontakt("ka","ka","ka@im.ch"));
+		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), listTemp));
 		listLogin.add(new Login(listKontakt.get(2), "asdf", listRolle.get(3)));
 		
+		listTemp = listProjekt.stream().filter(p -> p.getId() == 1 || p.getId() == 2).collect(Collectors.toList());
 		listRolle.add(new Rolle("Kontaktadmin"));
-		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch"));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(4), listTemp));
 		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));		
+		
 		
 		//Liste Projekttyp füllen
 	    listProjekttyp.add(new Projekttyp("Einfamilienhaus"));
@@ -208,26 +215,68 @@ public class Seed {
 		listBauleiter.add(new Bauleiter("Dell", "Walter", "walter.dell@doit.ch"));
 		
 		//Liste Kommentare füllen String, Login
+		String kommentar = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(0)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(1)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(2)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(1)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(3)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(2)));
+		listKommentar.add(new Kommentar(kommentar, listLogin.get(0)));
 		
-		//Liste Kontakt
-		listKontakt.add(new Kontakt("Putzi", "Sonja", "sonja.putzi@habau.ch", listSubunternehmen.get(0), listProjekt.get(0)));
-		listKontakt.add(new Kontakt("Henniez", "Rudolf", "rudolf.henniez@gabau".ch, listSubunternehmen.get(1), listProjekt.get(1)));
-		listKontakt.add(new Kontakt("Ludolf", "Manfred", "manfred.ludolf@mbau.ch", listSubunternehmen.get(2), listProjekt.get(2)));
-		listKontakt.add(new Kontakt("Pereira", "Patrik", "patrik.pereira@gebau.ch", listSubunternehmen.get(3), listProjekt.get(3)));
-		listKontakt.add(new Kontakt("Arche", "Noa", "noa.arche@bobau.ch", listSubunternehmen.get(4), listProjekt.get(4)));
-		listKontakt.add(new Kontakt("Beutel", "Kurt", "kurt.beutel@dabau.ch", listSubunternehmen.get(5), listProjekt.get(5)));
 		/*Liste Mangel (int referenz, Person erfasser, List<Kommentar> kommentare,
 		Mangelstatus mangelstatus, Date erledigenbis, Projekt projekt,
 		Date erstelltam)*/
+		String mangel = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+		List<Kommentar> listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(1, listBauleiter.get(0), listTemp4, listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(2, listBauleiter.get(0), listTemp4, listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(1, listBauleiter.get(1), listTemp4, listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(2, listBauleiter.get(1), listTemp4, listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(1, listBauleiter.get(2), listTemp4, listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(2, listBauleiter.get(2), listTemp4, listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(1, listBauleiter.get(3), listTemp4, listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(2, listBauleiter.get(3), listTemp4, listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(1, listBauleiter.get(4), listTemp4, listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(2, listBauleiter.get(4), listTemp4, listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(3, listBauleiter.get(2), listTemp4, listMangelstatus.get(5), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listMangel.add(new Mangel(4, listBauleiter.get(2), listTemp4, listMangelstatus.get(5), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
 		
 		//Liste Mangelstatus füllen
-		listMangelstatus.add(new Mangelstatus("offen", listRolle));
-		listMangelstatus.add(new Mangelstatus("erledigt", listRolle));
-		listMangelstatus.add(new Mangelstatus("zur Kontrolle", listRolle));		
+		List<Rolle> listTemp2 = filterList(listRolle, new int[]{0,3});
+		listMangelstatus.add(new Mangelstatus("beauftragt", listTemp2));
+		listTemp2 = filterList(listRolle, new int[]{0,2});
+		listMangelstatus.add(new Mangelstatus("abzuklären", listTemp2));
+		listTemp2 = filterList(listRolle, new int[]{2,3});
+		listMangelstatus.add(new Mangelstatus("behoben", listTemp2));
+		listTemp2 = filterList(listRolle, new int[]{0,1});
+		listMangelstatus.add(new Mangelstatus("abgeschlossen", listTemp2));
+		listTemp2 = filterList(listRolle, new int[]{1,3});
+		listMangelstatus.add(new Mangelstatus("angenommen", listTemp2));
 				
 		/*Liste Projekt Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
-		
+		List<Projektleitung> listTemp3 = filterList(listRolle, new int[]{0,3});
+		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(0), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listTemp3 = filterList(listRolle, new int[]{1,2});
+		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(1), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listTemp3 = filterList(listRolle, new int[]{2,3});
+		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(0), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listTemp3 = filterList(listRolle, new int[]{3,4});
+		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(2), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listTemp3 = filterList(listRolle, new int[]{0,2});
+		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(3), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		
 		//Liste Projektleitung Bauleiter bauleiter, Date beginn, Date ende
 		listProjektleitung.add(new Projektleitung(listBauleiter.get(0), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
@@ -297,8 +346,8 @@ public class Seed {
 			mangelstatuscontroller.persist(mangelstatus);
 		}
 		
-		for(Mangel mangel : listMangel){
-			mangelcontroller.persist(mangel);
+		for(Mangel mangel2 : listMangel){
+			mangelcontroller.persist(mangel2);
 		}
 		for(Subunternehmen subunternehmen : listSubunternehmen){
 			subunternehmencontroller.persist(subunternehmen);
@@ -417,5 +466,15 @@ public class Seed {
 		}else{
 			return new ArrayList<String>(Arrays.asList(defaultvalues));
 		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private ArrayList filterList(List list, int[] ids){
+		switch(ids.length){
+		case 1: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0]).collect(Collectors.toList());
+		case 2: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0] || t.getId() == ids[1]).collect(Collectors.toList());
+		case 3: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0] || t.getId() == ids[1] || t.getId() == ids[2]).collect(Collectors.toList());
+		}
+		return (ArrayList) list;		
 	}
 }
