@@ -1,5 +1,6 @@
 package ch.issueman.common;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,16 +48,16 @@ public class Projekt {
 	@OneToMany
     private List<Projektleitung> projektleitungen;
 	@NotNull
-    private Date beginn;
+    private Calendar beginn;
 	@NotNull
-    private Date ende;
+    private Calendar ende;
 	
     private boolean archiviert;
 	
 	public Projekt(){}
 	
 	public Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
-			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende){
+			Bauherr bauherr, List<Projektleitung> projektleitungen, Calendar beginn, Calendar ende){
 		this.title = title;
 		this.adresse = adresse;
 		this.arbeitstyp = arbeitstyp;
