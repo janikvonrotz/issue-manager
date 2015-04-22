@@ -34,7 +34,6 @@ public class Unternehmen {
 	public Unternehmen(String firmenname, Adresse adresse) {
 		this.firmenname = firmenname;
 		this.adresse = adresse;
-
 	}
 
 }

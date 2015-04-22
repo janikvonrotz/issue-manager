@@ -20,7 +20,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public abstract class Kontakt extends Person {
+public class Kontakt extends Person {
 
 	@Id
 	@GeneratedValue
@@ -33,9 +33,9 @@ public abstract class Kontakt extends Person {
 	public Kontakt() {
 	}
 
-	public Kontakt(Person nachname, Person vorname, Person email,
+	public Kontakt(String nachname, String vorname, String email,
 			Subunternehmen subunternehmen, List<Projekt> projekte) {
-		super();
+		super(nachname, vorname, email);
 		this.subunternehmen = subunternehmen;
 		this.projekte = projekte;
 	}
@@ -43,6 +43,11 @@ public abstract class Kontakt extends Person {
 	@Override
 	public int getId() {
 		return this.id;
+	}
+
+	@Override
+	public String getDisplayName() {
+		return null;
 	}
 
 }
