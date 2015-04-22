@@ -1,6 +1,8 @@
 package ch.issueman.common;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +34,7 @@ public class Kommentar implements Model {
 	private String kommentar;
 	@NotNull
 	private Login login;
-	private Date erstelltam;
+	private Calendar erstelltam;
 
 	public Kommentar() {
 	}
@@ -48,6 +50,6 @@ public class Kommentar implements Model {
 	 */
 	@PrePersist
 	void erstelltam() {
-		this.erstelltam = new Date();
+		this.erstelltam = new GregorianCalendar();
 	}
 }

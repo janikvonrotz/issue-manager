@@ -1,6 +1,8 @@
 package ch.issueman.common;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -38,17 +40,17 @@ public class Mangel implements Model {
 	@ManyToOne
 	private Mangelstatus mangelstatus;
 	@NotNull
-	private Date erledigenbis;
+	private Calendar erledigenbis;
 	@NotNull
 	@ManyToOne
 	private Projekt projekt;
-	private Date erstelltam;
+	private Calendar erstelltam;
 	
 	public Mangel(){}
 
 	public Mangel(int referenz, Person erfasser, List<Kommentar> kommentare,
-			Mangelstatus mangelstatus, Date erledigenbis, Projekt projekt,
-			Date erstelltam) {
+			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt,
+			Calendar erstelltam) {
 		super();
 		this.referenz = referenz;
 		this.erfasser = erfasser;
@@ -64,6 +66,6 @@ public class Mangel implements Model {
 	 */
 	@PrePersist
 	void erstelltam() {
-		this.erstelltam = new Date();
+		this.erstelltam = new GregorianCalendar();
 	}
 }
