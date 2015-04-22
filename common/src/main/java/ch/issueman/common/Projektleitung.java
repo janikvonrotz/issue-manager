@@ -1,11 +1,6 @@
 package ch.issueman.common;
 
-//import java.util.Calendar;
-//import java.util.Date;
-
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +20,7 @@ import lombok.Data;
 @Entity
 @Data
 public class Projektleitung {
-	
+
 	@Id
 	@GeneratedValue
 	private int id;
@@ -35,10 +30,11 @@ public class Projektleitung {
 	@NotNull
 	private Calendar beginn;
 	private Calendar ende;
-	
-	public Projektleitung(){}
-	
-	public Projektleitung(Bauleiter bauleiter, Calendar beginn, Calendar ende){
+
+	public Projektleitung() {
+	}
+
+	public Projektleitung(Bauleiter bauleiter, Calendar beginn, Calendar ende) {
 		super();
 		this.bauleiter = bauleiter;
 		this.beginn = beginn;

@@ -3,12 +3,11 @@ package ch.issueman.common;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * class Kontakt
@@ -20,11 +19,9 @@ import lombok.Data;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Kontakt extends Person {
 
-	@Id
-	@GeneratedValue
-	private int id;
 	@OneToOne
 	private List<Projekt> projekte;
 	@ManyToOne
@@ -41,13 +38,8 @@ public class Kontakt extends Person {
 	}
 
 	@Override
-	public int getId() {
-		return this.id;
-	}
-
-	@Override
 	public String getDisplayName() {
-		return null;
+		return this.getVorname() + " " + this.getNachname();
 	}
 
 }
