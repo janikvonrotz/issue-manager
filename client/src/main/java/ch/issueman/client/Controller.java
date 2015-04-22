@@ -18,7 +18,7 @@ import ch.issueman.common.Model;
 
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
-	private static ResteasyClient client = App.getClient();
+	private static ResteasyClient client = Context.getClient();
 	private String url;
 	private ObjectMapper mapper = new ObjectMapper();
 	private final Class<T> clazz;
