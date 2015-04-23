@@ -107,8 +107,8 @@ public class HomeView implements Initializable {
 	@FXML
 	public void clickLogin(){
 		Login login = new Login(new Sachbearbeiter("", "", txUsername.getText()), pfPassword.getText(), null);
-		App.setLogin(login);
-		if(App.login()){
+		Context.setLogin(login);
+		if(Context.login()){
 			pnData.setVisible(true);
 			pnLogin.setVisible(false);
 		}else{

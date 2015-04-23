@@ -68,7 +68,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 	
 	public Response persist(T t) {
-		if(filter.UserHasRoleByMethod(login, "POST") != false){
+		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
 			try {
 				filter.persist(t);
 			} catch (Exception e) {
@@ -82,7 +82,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response getById(Id id) {
-		if(filter.UserHasRoleByMethod(login, "GET") != false){
+		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity(filter.getById(id)).build();
 			} catch (Exception e) {
@@ -96,7 +96,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response getAll() {
-		if(filter.UserHasRoleByMethod(login, "GET") != false){
+		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
 			} catch (Exception e) {
@@ -110,7 +110,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response update(T t) {
-		if(filter.UserHasRoleByMethod(login, "PUT") != false){
+		if(filter.ifUserHasRoleByMethod(login, "PUT") != false){
 			try {
 				filter.update(t);
 			} catch (Exception e) {
@@ -124,7 +124,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response delete(T t) {
-		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
+		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(t);
 			} catch (Exception e) {
@@ -138,7 +138,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response deleteAll() {
-		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
+		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.deleteAll();
 			} catch (Exception e) {
@@ -152,7 +152,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	}
 
 	public Response deleteById(Id id) {
-		if(filter.UserHasRoleByMethod(login, "DELETE") != false){
+		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(filter.getById(id));
 			} catch (Exception e) {

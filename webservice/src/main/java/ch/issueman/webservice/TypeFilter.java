@@ -56,7 +56,7 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		controller.deleteAll();
 	}
 	
-	public boolean UserHasRoleByMethod(Login login, String httpmethod){
+	public boolean ifUserHasRoleByMethod(Login login, String httpmethod){
 		
 		if(allowedroles.get(httpmethod).contains("Anonymous")){
 			return true;
