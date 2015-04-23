@@ -22,82 +22,142 @@
     }
   },
   "permissions": {
-    "Person": {
+    "Bauherr": {
       "GET": [
-        "Administrator",
+        "Bauleiter",
         "Sachbearbeiter",
-        "Anonymous"
+        "Kontaktperson",
+        "Kontaktadmin"
       ],
       "POST": [
-        "Anonymous"
+        "Sachbearbeiter"
       ],
       "PUT": [
         "Sachbearbeiter"
-      ],
-      "DELETE": [
-        "Authenticated"
       ]
     },
-    "User": {
+    "Bauleiter": {
       "GET": [
-        "Administrator",
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson",
+        "Sachbearbeiter"
+      ],
+      "POST": [
+        "Sachbearbeiter"
+      ],
+      "PUT": [
+        "Sachbearbeiter"
+      ]
+    },
+    "Kommentar": {
+      "POST": [
+        "Bauleiter",
+        "Kontaktperson",
         "Sachbearbeiter",
-        "Anonymous"
+        "Kontaktadmin"
+      ],
+      "GET": [
+        "Bauleiter",
+        "Kontaktperson",
+        "Sachbearbeiter",
+        "Kontaktadmin"
+      ]
+    },
+    "Kontakt": {
+      "GET": [
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson",
+        "Sachbearbeiter"
       ],
       "POST": [
-        "Anonymous"
+        "Sachbearbeiter",
+        "Bauleiter",
+        "Kontaktadmin"
       ],
       "PUT": [
         "Sachbearbeiter",
-        "Administrator"
-      ],
-      "DELETE": [
-        "Authenticated"
+        "Kontaktadmin",
+        "Bauleiter"
       ]
     },
-    "Employer": {
+    "Login": {
+      "PUT": [
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson",
+        "Sachbearbeiter"
+      ],
       "GET": [
-        "Administrator",
+        "Sachbearbeiter",
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson"
+      ],
+      "POST": [
+        "Sachbearbeiter"
+      ]
+    },
+    "Mangel": {
+      "POST": [
+        "Bauleiter",
+        "Sachbearbeiter",
+        "Kontaktperson",
+        "Kontaktadmin"
+      ],
+      "GET": [
+        "Bauleiter",
+        "Kontaktperson",
+        "Sachbearbeiter",
+        "Kontaktadmin"
+      ],
+      "PUT": [
+        "Bauleiter",
+        "Sachbearbeiter",
+        "Kontaktperson",
+        "Kontaktadmin"
+      ]
+    },
+    "Projekt": {
+      "GET": [
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson",
+        "Sachbearbeiter"
+      ],
+      "PUT": [
+        "Bauleiter",
         "Sachbearbeiter"
       ],
       "POST": [
-        "Anonymous"
+        "Sachbearbeiter"
+      ]
+    },
+    "Sachbearbeiter": {
+      "POST": [
+        "Sachbearbeiter"
+      ],
+      "GET": [
+        "Sachbearbeiter"
       ],
       "PUT": [
         "Sachbearbeiter"
-      ],
-      "DELETE": [
-        "Authenticated"
       ]
     },
-    "Project": {
+    "Subunternehmen": {
       "GET": [
-        "Administrator",
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson",
+        "Sachbearbeiter"
+      ],
+      "PUT": [
+        "Kontaktadmin",
         "Sachbearbeiter"
       ],
       "POST": [
-        "Anonymous"
-      ],
-      "PUT": [
         "Sachbearbeiter"
-      ],
-      "DELETE": [
-        "Authenticated"
-      ]
-    },
-    "Comment": {
-      "GET": [
-        "Administrator",
-        "Sachbearbeiter"
-      ],
-      "POST": [
-        "Anonymous"
-      ],
-      "PUT": [
-        "Sachbearbeiter"
-      ],
-      "DELETE": [
-        "Authenticated"
       ]
     }
   },
