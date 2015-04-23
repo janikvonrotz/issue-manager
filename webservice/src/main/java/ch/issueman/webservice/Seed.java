@@ -42,7 +42,7 @@ import com.typesafe.config.ConfigFactory;
 /**
  * class Seed
  * 
- * @author Erwin Willi
+ * @author Erwin Willi, Janik von Rotz
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -228,54 +228,42 @@ public class Seed {
 		Mangelstatus mangelstatus, Date erledigenbis, Projekt projekt,
 		Date erstelltam)*/
 		String mangel = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
-		List<Kommentar> listTemp4 = filterList(listKommentar, new int[]{0,3});
+		List<Kommentar> listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(1, listBauleiter.get(0), listTemp4, listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(2, listBauleiter.get(0), listTemp4, listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(1, listBauleiter.get(1), listTemp4, listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(2, listBauleiter.get(1), listTemp4, listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(1, listBauleiter.get(2), listTemp4, listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(2, listBauleiter.get(2), listTemp4, listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(1, listBauleiter.get(3), listTemp4, listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(2, listBauleiter.get(3), listTemp4, listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(1, listBauleiter.get(4), listTemp4, listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(2, listBauleiter.get(4), listTemp4, listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(3, listBauleiter.get(2), listTemp4, listMangelstatus.get(5), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listTemp4 = filterList(listKommentar, new int[]{0,3});
+		listTemp4 = filterListIds(listKommentar, new int[]{0,3});
 		listMangel.add(new Mangel(4, listBauleiter.get(2), listTemp4, listMangelstatus.get(5), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		
-		//Liste Mangelstatus füllen
-		List<Rolle> listTemp2 = filterList(listRolle, new int[]{0,3});
-		listMangelstatus.add(new Mangelstatus("beauftragt", listTemp2));
-		listTemp2 = filterList(listRolle, new int[]{0,2});
-		listMangelstatus.add(new Mangelstatus("abzuklären", listTemp2));
-		listTemp2 = filterList(listRolle, new int[]{2,3});
-		listMangelstatus.add(new Mangelstatus("behoben", listTemp2));
-		listTemp2 = filterList(listRolle, new int[]{0,1});
-		listMangelstatus.add(new Mangelstatus("abgeschlossen", listTemp2));
-		listTemp2 = filterList(listRolle, new int[]{1,3});
-		listMangelstatus.add(new Mangelstatus("angenommen", listTemp2));
-				
+						
 		/*Liste Projekt Projekt(String title, String adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
 			Bauherr bauherr, List<Projektleitung> projektleitungen, Date beginn, Date ende)*/
-		List<Projektleitung> listTemp3 = filterList(listRolle, new int[]{0,3});
+		List<Projektleitung> listTemp3 = filterListIds(listRolle, new int[]{0,3});
 		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(0), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listTemp3 = filterList(listRolle, new int[]{1,2});
+		listTemp3 = filterListIds(listRolle, new int[]{1,2});
 		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(1), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listTemp3 = filterList(listRolle, new int[]{2,3});
+		listTemp3 = filterListIds(listRolle, new int[]{2,3});
 		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(0), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listTemp3 = filterList(listRolle, new int[]{3,4});
+		listTemp3 = filterListIds(listRolle, new int[]{3,4});
 		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(2), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listTemp3 = filterList(listRolle, new int[]{0,2});
+		listTemp3 = filterListIds(listRolle, new int[]{0,2});
 		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(3), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), listTemp3, new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		
 		//Liste Projektleitung Bauleiter bauleiter, Date beginn, Date ende
@@ -363,62 +351,32 @@ public class Seed {
 		
 		System.out.println("Seeded: " + anzahlSachbearbeiter + " Sachbearbeiter");
 		
-		// Beispiele - Dynmaisch Datenabrufen
-		
-		List<Sachbearbeiter> sachbearbeiter = sachbearbeitercontroller.getAllByProperty("vorname", new String[]{"peter"});
-		sachbearbeiter.stream().filter(p -> p.getVorname().equals("peter"));
-		List<Rolle> rollen = rollecontroller.getAll();
-		Rolle RolleSachbearbeiter = rollen.stream().filter(r -> r.getBezeichnung().equals("Sachbearbeiter")).findFirst().get();		
-		
-		/* alter code
-
-		Controller<Person, Integer> personcontroller = new Controller<Person, Integer>(Person.class);
-		Controller<User, Integer> usercontroller = new Controller<User, Integer>(User.class);
-		Controller<Employer, Integer> employercontroller = new Controller<Employer, Integer>(Employer.class);
-		Controller<Project, Integer> projectcontroller = new Controller<Project, Integer>(Project.class);
-		Controller<Comment, Integer> commentcontroller = new Controller<Comment, Integer>(Comment.class);
-
-		projectcontroller.deleteAll();
-		commentcontroller.deleteAll();
-		usercontroller.deleteAll();
-		employercontroller.deleteAll();
-		personcontroller.deleteAll();
-				
-		int i = 0;
-		int j = 0;
-		
-		for (i = 0; i <= 20; i++) {
-
-			Person person = new Person(faker.name().firstName());
-			User user = new User(faker.name().firstName(), faker.internet().emailAddress(), faker.letterify("??????"), "Administrator");
-			Employer employer = new Employer(faker.name().firstName(), faker.name().lastName());
-
-			personcontroller.persist(person);
-			usercontroller.persist(user);
-			employercontroller.persist(employer);
-
-			if (i % 4 == 0) {
-				
-				Project project = new Project("Project: " + faker.name().lastName(), employer);
-				
-				List<Comment> comments = new ArrayList<Comment>();
-				
-				for (j = 0; j <= 10; j++) {
-					
-					Comment comment = new Comment(faker.lorem().paragraph(),user);
-					comments.add(comment);
-					project.setComments(comments);
-				}
-
-				projectcontroller.persist(project);
-			}
+		//Liste Mangelstatus füllen
+		List<Rolle> listTemp2 = filterListIds(listRolle, new int[]{0,3});
+		listMangelstatus.add(new Mangelstatus("beauftragt", listTemp2));
+		listTemp2 = filterListIds(listRolle, new int[]{0,2});
+		listMangelstatus.add(new Mangelstatus("abzuklären", listTemp2));
+		listTemp2 = filterListIds(listRolle, new int[]{2,3});
+		listMangelstatus.add(new Mangelstatus("behoben", listTemp2));
+		listTemp2 = filterListIds(listRolle, new int[]{0,1});
+		listMangelstatus.add(new Mangelstatus("abgeschlossen", listTemp2));
+		listTemp2 = filterListIds(listRolle, new int[]{1,3});
+		listMangelstatus.add(new Mangelstatus("angenommen", listTemp2));
+	}
+	
+	/**
+	 * Filter a list by an array of index identifiers.
+	 * 
+	 * @param list the list to filter.
+	 * @param ids the collection of index identifiers.
+	 * @return the filtered list.
+	 */
+	private <T> List<T> filterListIds(List<T> list, int[] ids){
+		List<T> listtmp = new ArrayList<T>();
+		for(int i : ids){
+			listtmp.add((T) list.get(i));
 		}
-		
-		System.out.println("Seeded: " + i*3 + " people");
-		System.out.println("Seeded: " + (i/4+1) + " projects");
-		System.out.println("Seeded: " + j*(i/4+1) + " comments");
-		
-		*/
+		return listtmp;		
 	}
 	
 	/**
@@ -466,15 +424,5 @@ public class Seed {
 		}else{
 			return new ArrayList<String>(Arrays.asList(defaultvalues));
 		}
-	}
-	
-	@SuppressWarnings("rawtypes")
-	private ArrayList filterList(List list, int[] ids){
-		switch(ids.length){
-		case 1: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0]).collect(Collectors.toList());
-		case 2: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0] || t.getId() == ids[1]).collect(Collectors.toList());
-		case 3: return (ArrayList<Model>) list.stream().filter(t -> t.getId() == ids[0] || t.getId() == ids[1] || t.getId() == ids[2]).collect(Collectors.toList());
-		}
-		return (ArrayList) list;		
 	}
 }
