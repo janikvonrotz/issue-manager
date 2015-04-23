@@ -146,6 +146,10 @@ public class Seed {
 		listProjekttyp.add(new Projekttyp("Wohnung"));
 		listProjekttyp.add(new Projekttyp("Garage"));
 		listProjekttyp.add(new Projekttyp("Gartenhaus"));
+		for(Projekttyp projekttyp : listProjekttyp){
+			projekttypcontroller.persist(projekttyp);
+		}
+		logSeed(listProjekttyp);
 		
 		/*
 		List<Mangelstatus> listMangelstatus = new ArrayList<Mangelstatus>();
