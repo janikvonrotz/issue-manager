@@ -97,7 +97,7 @@ public class Seed {
 		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
 		try {
 			FileReader fr = new FileReader(csv);
-			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL);
+			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL.withDelimiter(';').withHeader());
 			 for (CSVRecord r : parser) {
 				 listOrt.add(new Ort(Integer.parseInt(r.get("PLZ")), r.get("Ortsbezeichnung")));
 			 }
@@ -391,7 +391,7 @@ public class Seed {
 	 */
 	private <T> void logSeed(List<T> list) {
 		if(list.size() > 0){
-			log.info("Seeded: " + list.size() + list.get(0).getClass().getSimpleName());
+			log.info("Seeded: " + list.size() + " " + list.get(0).getClass().getSimpleName());
 		}else{
 			log.error("Nothing seeded for list: " + list.toString());
 		}		
