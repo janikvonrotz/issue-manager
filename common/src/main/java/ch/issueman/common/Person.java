@@ -1,5 +1,6 @@
 package ch.issueman.common;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -33,8 +34,8 @@ public abstract class Person implements Model{
     private String vorname;
 	@NotNull
     private String email;
-	
-	private boolean archiviert;
+	@Basic
+	private Character archiviert;
 	
 	public Person(){}
 		
@@ -43,7 +44,21 @@ public abstract class Person implements Model{
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.email = email;
-		this.archiviert = false;
+		this.setArchiviert(false);
+	}
+
+	public Boolean getArchiviertd() {
+		if (archiviert == null)
+			return null;
+		return archiviert == 'Y' ? Boolean.TRUE : Boolean.FALSE;
+	}
+
+	public void setArchiviert(Boolean archiviert) {
+		if (archiviert == null) {
+			this.archiviert = null;
+		} else {
+			this.archiviert = archiviert == true ? 'Y' : 'N';
+		}
 	}
 	
 	/**
