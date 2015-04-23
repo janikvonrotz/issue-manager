@@ -17,7 +17,7 @@
       "level": "off"
     },
     "ddl-generation": {
-      "value": "create-tables",
+      "value": "drop-and-create-tables",
       "output-mode": "database"
     }
   },
@@ -102,37 +102,6 @@
     }
   },
   "seed": {
-    "Mangelstatus": [
-      {
-        "status": "offen",
-        "rollen": [
-          "Administrator",
-          "Sachbearbeiter"
-        ]
-      },
-      {
-        "status": "erledigt",
-        "rollen": [
-          "Administrator",
-          "Sachbearbeiter"
-        ]
-      },
-      {
-        "status": "zur Kontrolle",
-        "rollen": [
-          "Administrator",
-          "Sachbearbeiter"
-        ]
-      }
-    ],
-    "Projekttyp": [
-      "Einfamilienhaus",
-      "Mehrfamilienhaus",
-      "Wohnung",
-      "Garage",
-      "Gartenhaus"
-    ],
     "Ort": "Ortschaften.csv"
-    ]
   }
 }
