@@ -12,6 +12,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -47,6 +49,7 @@ import com.typesafe.config.ConfigFactory;
  * @since 1.0.0
  */
 
+@Slf4j
 public class Seed {
 	
 	private final static Config config = ConfigFactory.load();
@@ -56,15 +59,37 @@ public class Seed {
 		s.seed();
 	}
 	
+	/**
+	 * Runs the seed task
+	 */
 	private void seed(){
 		
-		// TODO für alle entities config laden, bzw. im Config file erstellen.
+		/* Sort for persist:
+		 * 
+		 * Arbeitstyp
+		 * Ort
+		 * Rolle
+		 * 
+		 * Sort for delete all: Opposite direction
+		 */
 		
-		//Liste Ort füllen
+		List<Arbeitstyp> listArbeitstyp = new ArrayList<Arbeitstyp>();
+		List<Ort> listOrt = new ArrayList<Ort>();
+		List<Rolle> listRolle = new ArrayList<Rolle>();
+		
+		Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
+		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
+		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
+		
+		rollecontroller.deleteAll();
+		arbeitstypcontroller.deleteAll();
+		ortcontroller.deleteAll();
+		
+		/**
+		 * seed Ort from csv
+		 */
 		ClassLoader classLoader = getClass().getClassLoader();
 		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
-		List<Ort> listOrt = new ArrayList<Ort>();
-		// CSV auslesen und Liste erstellen
 		try {
 			FileReader fr = new FileReader(csv);
 			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL);
@@ -78,9 +103,32 @@ public class Seed {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		for(Ort ort : listOrt){
+			ortcontroller.persist(ort);
+		}
+		logSeed(listOrt);
 		
-		List<Arbeitstyp> listArbeitstyp = new ArrayList<Arbeitstyp>();
-		List<Rolle> listRolle = new ArrayList<Rolle>();
+		
+		/**
+		 * seed Arbeitstyp
+		 */
+		listArbeitstyp.add(new Arbeitstyp("Neubau"));
+		listArbeitstyp.add(new Arbeitstyp("Umbau"));
+		listArbeitstyp.add(new Arbeitstyp("Renovation"));
+		listArbeitstyp.add(new Arbeitstyp("Teil-Renovation"));
+		for(Arbeitstyp arbeitstyp : listArbeitstyp){
+			arbeitstypcontroller.persist(arbeitstyp);
+		}
+		logSeed(listArbeitstyp);
+		
+		/**
+		 * seed Rolle
+		 */
+		
+		/**
+		 * seed XY
+		 */
+		
 		List<Mangelstatus> listMangelstatus = new ArrayList<Mangelstatus>();
 		List<Projekttyp> listProjekttyp = new ArrayList<Projekttyp>();
 		List<Adresse> listAdresse = new ArrayList<Adresse>();
@@ -96,12 +144,9 @@ public class Seed {
 		List<Subunternehmen> listSubunternehmen = new ArrayList<Subunternehmen>();
 		List<Unternehmen> listUnternehmen = new ArrayList<Unternehmen>();
 		
-		
-		
 		// TODO Alle Controller laden
 		
 		Controller<Adresse, Integer> adressecontroller = new Controller<Adresse, Integer>(Adresse.class);
-		Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 		Controller<Bauherr, Integer> bauherrcontroller = new Controller<Bauherr, Integer>(Bauherr.class);
 		Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
 		Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
@@ -109,40 +154,31 @@ public class Seed {
 		Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 		Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 		Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
-		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 		Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 		Controller<Projektleitung, Integer> projektleitungcontroller = new Controller<Projektleitung, Integer>(Projektleitung.class);
 		Controller<Projekttyp, Integer> projekttypcontroller = new Controller<Projekttyp, Integer>(Projekttyp.class);
-		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
 		Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 		Controller<Unternehmen, Integer> unternehmencontroller = new Controller<Unternehmen, Integer>(Unternehmen.class);
 		
-		
 		// TODO alle daten löschen
 		adressecontroller.deleteAll();
-		arbeitstypcontroller.deleteAll();
 		bauherrcontroller.deleteAll();
 		bauleitercontroller.deleteAll();
 		kommentarcontroller.deleteAll();
 		kontaktcontroller.deleteAll();
 		mangelcontroller.deleteAll();
 		mangelstatuscontroller.deleteAll();
-		ortcontroller.deleteAll();
 		projektcontroller.deleteAll();
 		projektleitungcontroller.deleteAll();
 		projekttypcontroller.deleteAll();
-		rollecontroller.deleteAll();
 		sachbearbeitercontroller.deleteAll();
 		subunternehmencontroller.deleteAll();
 		unternehmencontroller.deleteAll();
 		
 		// TODO Daten in Listen laden
 		// Liste Arbeitstyp füllen
-		listArbeitstyp.add(new Arbeitstyp("Neubau"));
-		listArbeitstyp.add(new Arbeitstyp("Umbau"));
-		listArbeitstyp.add(new Arbeitstyp("Renovation"));
-		listArbeitstyp.add(new Arbeitstyp("Teil-Renovation"));
+
 		
 		//Liste Rollen, Sachbearbeiter, Login füllen
 		listRolle.add(new Rolle("Sachbearbeiter"));
@@ -290,67 +326,6 @@ public class Seed {
 		listUnternehmen.add(new Unternehmen("Keller's Keller", listAdresse.get(4)));	
 		listUnternehmen.add(new Unternehmen("Garagenbau GMBH", listAdresse.get(5)));	
 		
-		// TODO daten seeden
-		
-		for(Adresse adresse : listAdresse){
-			adressecontroller.persist(adresse);
-		}
-		
-		for(Arbeitstyp arbeitstyp : listArbeitstyp){
-			arbeitstypcontroller.persist(arbeitstyp);
-		}
-		
-		for(Rolle rolle : listRolle){
-			rollecontroller.persist(rolle);
-		}
-		
-		for(Login login : listLogin){
-			logincontroller.persist(login);
-		}
-		for(Mangelstatus mangelstatus : listMangelstatus){
-			mangelstatuscontroller.persist(mangelstatus);
-		}
-		
-		for(Projekttyp projekttyp : listProjekttyp){
-			projekttypcontroller.persist(projekttyp);
-		}
-		
-		for(Sachbearbeiter sachbearbeiter : listSachbearbeiter){
-			sachbearbeitercontroller.persist(sachbearbeiter);
-		}
-		
-		for(Bauherr bauherr : listBauherr){
-			bauherrcontroller.persist(bauherr);
-		}
-		
-		for(Bauleiter bauleiter : listBauleiter){
-			bauleitercontroller.persist(bauleiter);
-		}
-		for(Kontakt kontakt : listKontakt){
-			kontaktcontroller.persist(kontakt);
-		}
-		
-		for(Mangelstatus mangelstatus : listMangelstatus){
-			mangelstatuscontroller.persist(mangelstatus);
-		}
-		
-		for(Mangel mangel2 : listMangel){
-			mangelcontroller.persist(mangel2);
-		}
-		for(Subunternehmen subunternehmen : listSubunternehmen){
-			subunternehmencontroller.persist(subunternehmen);
-		}
-		
-		for(Unternehmen unternehmen : listUnternehmen){
-			unternehmencontroller.persist(unternehmen);
-		}
-		
-		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
-		
-		// TODO geseedete Daten summary
-		
-		System.out.println("Seeded: " + anzahlSachbearbeiter + " Sachbearbeiter");
-		
 		//Liste Mangelstatus füllen
 		List<Rolle> listTemp2 = filterListIds(listRolle, new int[]{0,3});
 		listMangelstatus.add(new Mangelstatus("beauftragt", listTemp2));
@@ -362,8 +337,92 @@ public class Seed {
 		listMangelstatus.add(new Mangelstatus("abgeschlossen", listTemp2));
 		listTemp2 = filterListIds(listRolle, new int[]{1,3});
 		listMangelstatus.add(new Mangelstatus("angenommen", listTemp2));
+		
+		// TODO daten seeden
+		
+		for(Adresse adresse : listAdresse){
+			adressecontroller.persist(adresse);
+		}
+		logSeed(listAdresse);
+				
+		for(Rolle rolle : listRolle){
+			rollecontroller.persist(rolle);
+		}
+		logSeed(listRolle);
+		
+		for(Login login : listLogin){
+			logincontroller.persist(login);
+		}
+		logSeed(listLogin);
+		
+		for(Mangelstatus mangelstatus : listMangelstatus){
+			mangelstatuscontroller.persist(mangelstatus);
+		}
+		logSeed(listMangelstatus);
+		
+		for(Projekttyp projekttyp : listProjekttyp){
+			projekttypcontroller.persist(projekttyp);
+		}
+		logSeed(listProjekttyp);
+		
+		for(Sachbearbeiter sachbearbeiter : listSachbearbeiter){
+			sachbearbeitercontroller.persist(sachbearbeiter);
+		}
+		logSeed(listSachbearbeiter);
+		
+		for(Bauherr bauherr : listBauherr){
+			bauherrcontroller.persist(bauherr);
+		}
+		logSeed(listBauherr);
+		
+		for(Bauleiter bauleiter : listBauleiter){
+			bauleitercontroller.persist(bauleiter);
+		}
+		logSeed(listBauleiter);
+		
+		for(Kontakt kontakt : listKontakt){
+			kontaktcontroller.persist(kontakt);
+		}
+		logSeed(listKontakt);
+		
+		for(Mangelstatus mangelstatus : listMangelstatus){
+			mangelstatuscontroller.persist(mangelstatus);
+		}
+		logSeed(listMangelstatus);
+		
+		for(Mangel mangel : listMangel){
+			mangelcontroller.persist(mangel);
+		}
+		logSeed(listMangel);
+		
+		for(Subunternehmen subunternehmen : listSubunternehmen){
+			subunternehmencontroller.persist(subunternehmen);
+		}
+		logSeed(listSubunternehmen);
+		
+		for(Unternehmen unternehmen : listUnternehmen){
+			unternehmencontroller.persist(unternehmen);
+		}
+		logSeed(listUnternehmen);
+		
+		// TODO Einheitliche daten seeden: Für alle Logins, Beispiel Sachbearbeiter: login{person{sb, sb, sb@im.ch}, "sb", id->Rolle->"Sachbearbeiter"}
 	}
 	
+	
+	
+	/**
+	 * Log the seed task.
+	 * 
+	 * @param list the list to be logged.
+	 */
+	private <T> void logSeed(List<T> list) {
+		if(list.size() > 0){
+			log.info("Seeded: " + list.size() + list.get(0).getClass().getSimpleName());
+		}else{
+			log.error("Nothing seeded for list: " + list.toString());
+		}		
+	}
+
 	/**
 	 * Filter a list by an array of index identifiers.
 	 * 
