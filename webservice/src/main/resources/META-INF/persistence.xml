@@ -4,12 +4,25 @@
 
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-        <class>ch.issueman.common.Person</class>
-        <class>ch.issueman.common.User</class>
-        <class>ch.issueman.common.Employer</class>
-        <class>ch.issueman.common.Project</class>
-        <class>ch.issueman.common.Comment</class>
+        <class>ch.issueman.common.Adresse</class>
+        <class>ch.issueman.common.Arbeitstyp</class>
+        <class>ch.issueman.common.Bauherr</class>
+        <class>ch.issueman.common.Bauleiter</class>
+        <class>ch.issueman.common.Kommentar</class>
+        <class>ch.issueman.common.Kontakt</class>
+        <class>ch.issueman.common.Login</class>
+        <class>ch.issueman.common.Mangel</class>
+        <class>ch.issueman.common.Mangelstatus</class>
+        <class>ch.issueman.common.Model</class>
         <class>ch.issueman.common.Ort</class>
+        <class>ch.issueman.common.Person</class>
+        <class>ch.issueman.common.Projekt</class>
+        <class>ch.issueman.common.Projektleitung</class>
+        <class>ch.issueman.common.Projekttyp</class>
+        <class>ch.issueman.common.Rolle</class>
+        <class>ch.issueman.common.Sachbearbeiter</class>
+        <class>ch.issueman.common.Subunternehmen</class>
+        <class>ch.issueman.common.Unternehmen</class>
         
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 				
