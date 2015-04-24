@@ -26,6 +26,7 @@ public class Unternehmen {
 	private int id;
 	@NotNull
 	private String firmenname;
+	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	private Adresse adresse;
 
