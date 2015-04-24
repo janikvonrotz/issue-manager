@@ -47,7 +47,7 @@ public abstract class Person implements Model{
 		this.setArchiviert(false);
 	}
 
-	public Boolean getArchiviertd() {
+	public Boolean getArchiviert() {
 		if (archiviert == null)
 			return null;
 		return archiviert == 'Y' ? Boolean.TRUE : Boolean.FALSE;

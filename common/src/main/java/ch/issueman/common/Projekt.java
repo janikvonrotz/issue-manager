@@ -3,6 +3,7 @@ package ch.issueman.common;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,8 +49,8 @@ public class Projekt {
     private Calendar beginn;
 	@NotNull
     private Calendar ende;
-	
-    private boolean archiviert;
+	@Basic
+	private Character archiviert;
 	
 	public Projekt(){}
 	
@@ -63,7 +64,21 @@ public class Projekt {
 		this.projektleitungen = projektleitungen;
 		this.beginn = beginn;
 		this.ende = ende;
-		this.archiviert = false;
+		this.setArchiviert(false);
+	}
+	
+	public Boolean getArchiviert() {
+		if (archiviert == null)
+			return null;
+		return archiviert == 'Y' ? Boolean.TRUE : Boolean.FALSE;
+	}
+
+	public void setArchiviert(Boolean archiviert) {
+		if (archiviert == null) {
+			this.archiviert = null;
+		} else {
+			this.archiviert = archiviert == true ? 'Y' : 'N';
+		}
 	}
 	
 	/**
