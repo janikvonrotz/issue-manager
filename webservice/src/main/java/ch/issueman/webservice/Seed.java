@@ -6,12 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.csv.CSVFormat;
@@ -27,9 +23,7 @@ import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
-import ch.issueman.common.Model;
 import ch.issueman.common.Ort;
-import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Projektleitung;
 import ch.issueman.common.Projekttyp;

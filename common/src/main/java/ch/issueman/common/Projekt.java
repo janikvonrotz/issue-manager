@@ -54,8 +54,11 @@ public class Projekt {
 	
 	public Projekt(){}
 	
-	public Projekt(String title, Adresse adresse, Arbeitstyp arbeitstyp, Projekttyp projekttyp,
-			Bauherr bauherr, List<Projektleitung> projektleitungen, Calendar beginn, Calendar ende){
+	public Projekt(String title, Adresse adresse, Arbeitstyp arbeitstyp,
+			Projekttyp projekttyp, Bauherr bauherr,
+			List<Projektleitung> projektleitungen, Calendar beginn,
+			Calendar ende) {
+		super();
 		this.title = title;
 		this.adresse = adresse;
 		this.arbeitstyp = arbeitstyp;
@@ -93,5 +96,4 @@ public class Projekt {
 			return "P" + ("" + id).substring(("" + id).length()-3);
 		}
 	}
-
 }
