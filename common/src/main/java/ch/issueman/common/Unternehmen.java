@@ -1,5 +1,6 @@
 package ch.issueman.common;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,7 +26,7 @@ public class Unternehmen {
 	private int id;
 	@NotNull
 	private String firmenname;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Adresse adresse;
 
 	public Unternehmen() {
