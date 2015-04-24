@@ -70,14 +70,14 @@ public class Seed {
 		 * Ort
 		 * Rolle
 		 * Projekttyp 
-		 * Adresse (no persist)
+		 * Adresse (no persist, no delete)
 		 * Mangelstatus
 		 * Sachbearbeiter
 		 * Bauleiter
 		 * Subunternehmen
-		 * Unternehmen (no persist)
+		 * Unternehmen (no persist, no delete)
 		 * Bauherr
-		 * Projektleitung (no persist)
+		 * Projektleitung (no persist, no delete)
 		 * Projekt
 		 * Kontakt
 		 * Login
@@ -85,7 +85,8 @@ public class Seed {
 		 * Mangel 
 		 * 
 		 * Sort for delete all: Opposite direction
-		 */
+		 */	
+		
 		
 		List<Arbeitstyp> listArbeitstyp = new ArrayList<Arbeitstyp>();
 		List<Ort> listOrt = new ArrayList<Ort>();
@@ -109,7 +110,7 @@ public class Seed {
 		Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 		Controller<Projekttyp, Integer> projekttypcontroller = new Controller<Projekttyp, Integer>(Projekttyp.class);
-		//Controller<Adresse, Integer> adressecontroller = new Controller<Adresse, Integer>(Adresse.class);
+		Controller<Adresse, Integer> adressecontroller = new Controller<Adresse, Integer>(Adresse.class);
 		Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
 		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
 		Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
@@ -123,22 +124,20 @@ public class Seed {
 		Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 		Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
 		
-		arbeitstypcontroller.deleteAll();
+		mangelcontroller.deleteAll();
+		kommentarcontroller.deleteAll();
+		logincontroller.deleteAll();
+		kontaktcontroller.deleteAll();
+		projektcontroller.deleteAll();
+		bauherrcontroller.deleteAll();
+		subunternehmencontroller.deleteAll();
+		bauleitercontroller.deleteAll();
+		sachbearbeitercontroller.deleteAll();
+		mangelstatuscontroller.deleteAll();
 		projekttypcontroller.deleteAll();
 		rollecontroller.deleteAll();
-		arbeitstypcontroller.deleteAll();
 		ortcontroller.deleteAll();
-		mangelstatuscontroller.deleteAll();
-		sachbearbeitercontroller.deleteAll();
-		bauleitercontroller.deleteAll();
-		subunternehmencontroller.deleteAll();
-		//unternehmencontroller.deleteAll();
-		bauherrcontroller.deleteAll();
-		projektcontroller.deleteAll();
-		kontaktcontroller.deleteAll();
-		mangelcontroller.deleteAll();
-		logincontroller.deleteAll();
-		kommentarcontroller.deleteAll();
+		arbeitstypcontroller.deleteAll();
 		
 		/**
 		 * seed Ort from csv
@@ -266,12 +265,12 @@ public class Seed {
 		/**
 		 * seed Unternehmen (no persist)
 		 */
-		listUnternehmen.add(new Unternehmen("Sanitär Trösch", listAdresse.get(0)));
-		listUnternehmen.add(new Unternehmen("Tiefenbohrungen Meier", listAdresse.get(1)));	
-		listUnternehmen.add(new Unternehmen("Kaminbau Sutter", listAdresse.get(2)));	
-		listUnternehmen.add(new Unternehmen("Türenfabrik AG", listAdresse.get(3)));	
-		listUnternehmen.add(new Unternehmen("Keller's Keller", listAdresse.get(4)));	
-		listUnternehmen.add(new Unternehmen("Garagenbau GMBH", listAdresse.get(5)));
+		listUnternehmen.add(new Unternehmen("Sanitär Trösch", adressecontroller.getById(0)));
+		listUnternehmen.add(new Unternehmen("Tiefenbohrungen Meier", adressecontroller.getById(1)));	
+		listUnternehmen.add(new Unternehmen("Kaminbau Sutter", adressecontroller.getById(2)));	
+		listUnternehmen.add(new Unternehmen("Türenfabrik AG", adressecontroller.getById(3)));	
+		listUnternehmen.add(new Unternehmen("Keller's Keller", adressecontroller.getById(4)));	
+		listUnternehmen.add(new Unternehmen("Garagenbau GMBH", adressecontroller.getById(5)));
 		
 		/**
 		 * seed Bauherr
@@ -299,11 +298,11 @@ public class Seed {
 		/**
 		 * seed Projekt
 		 */
-		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(0), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), filterListIds(listProjektleitung, new int[]{0,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(1), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), filterListIds(listProjektleitung, new int[]{1,2}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(0), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(2), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), filterListIds(listProjektleitung, new int[]{3,4}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(3), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), filterListIds(listProjektleitung, new int[]{0,2}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Renovation Turm", adressecontroller.getById(0), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), filterListIds(listProjektleitung, new int[]{0,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Teil-Renovation Haus", adressecontroller.getById(1), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), filterListIds(listProjektleitung, new int[]{1,2}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", adressecontroller.getById(0), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Neubau Garage", adressecontroller.getById(2), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), filterListIds(listProjektleitung, new int[]{3,4}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Renovation Gartenhaus", adressecontroller.getById(3), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), filterListIds(listProjektleitung, new int[]{0,2}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		for(Projekt projekt : listProjekt){
 			projektcontroller.persist(projekt);
 		}
