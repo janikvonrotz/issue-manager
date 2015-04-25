@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.csv.CSVFormat;
@@ -81,7 +82,6 @@ public class Seed {
 		 * Sort for delete all: Opposite direction
 		 */	
 		
-		
 		List<Arbeitstyp> listArbeitstyp = new ArrayList<Arbeitstyp>();
 		List<Ort> listOrt = new ArrayList<Ort>();
 		List<Rolle> listRolle = new ArrayList<Rolle>();
@@ -142,16 +142,12 @@ public class Seed {
 				 listOrt.add(new Ort(Integer.parseInt(r.get("PLZ")), r.get("Ortsbezeichnung")));
 			 }
 			 parser.close();
+			 persistList(listOrt, ortcontroller);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(Ort ort : listOrt){
-			ortcontroller.persist(ort);
-		}
-		logSeed(listOrt);
 		
 		/**
 		 * seed Arbeitstyp
@@ -160,10 +156,7 @@ public class Seed {
 		listArbeitstyp.add(new Arbeitstyp("Umbau"));
 		listArbeitstyp.add(new Arbeitstyp("Renovation"));
 		listArbeitstyp.add(new Arbeitstyp("Teil-Renovation"));
-		for(Arbeitstyp arbeitstyp : listArbeitstyp){
-			arbeitstypcontroller.persist(arbeitstyp);
-		}
-		logSeed(listArbeitstyp);
+		persistList(listArbeitstyp, arbeitstypcontroller);
 		
 		/**
 		 * seed Rolle
@@ -172,10 +165,7 @@ public class Seed {
 		listRolle.add(new Rolle("Bauleiter"));
 		listRolle.add(new Rolle("Kontaktperson"));
 		listRolle.add(new Rolle("Kontaktadmin"));
-		for(Rolle rolle : listRolle){
-			rollecontroller.persist(rolle);
-		}
-		logSeed(listRolle);
+		persistList(listRolle, rollecontroller);
 		
 		/**
 		 * seed Projekttyp
@@ -185,10 +175,7 @@ public class Seed {
 		listProjekttyp.add(new Projekttyp("Wohnung"));
 		listProjekttyp.add(new Projekttyp("Garage"));
 		listProjekttyp.add(new Projekttyp("Gartenhaus"));
-		for(Projekttyp projekttyp : listProjekttyp){
-			projekttypcontroller.persist(projekttyp);
-		}
-		logSeed(listProjekttyp);
+		persistList(listProjekttyp, projekttypcontroller);
 		
 		/**
 		 * seed Adresse (no persist)
@@ -221,20 +208,14 @@ public class Seed {
 		listMangelstatus.add(new Mangelstatus("behoben", filterListIds(listRolle, new int[]{2,3})));
 		listMangelstatus.add(new Mangelstatus("abgeschlossen", filterListIds(listRolle, new int[]{0,1})));
 		listMangelstatus.add(new Mangelstatus("angenommen", filterListIds(listRolle, new int[]{1,3})));
-		for(Mangelstatus mangelstatus : listMangelstatus){
-			mangelstatuscontroller.persist(mangelstatus);
-		}
-		logSeed(listMangelstatus);
+		persistList(listMangelstatus, mangelstatuscontroller);
 		
 		/**
 		 *  seed Sachbearbeiter
 		*/ 
 		listSachbearbeiter.add(new Sachbearbeiter("sb","sb","sb@im.ch"));
 		listSachbearbeiter.add(new Sachbearbeiter("Peter","Lustig","peter.lustig@im.ch"));
-		for(Sachbearbeiter sachbearbeiter : listSachbearbeiter){
-			sachbearbeitercontroller.persist(sachbearbeiter);
-		}
-		logSeed(listSachbearbeiter);
+		persistList(listSachbearbeiter, sachbearbeitercontroller);
 		
 		/**
 		 *  seed Bauleiter
@@ -247,10 +228,7 @@ public class Seed {
 		listBauleiter.add(new Bauleiter("Malgin", "Igor", "igor.malgin@power.ch"));
 		listBauleiter.add(new Bauleiter("Loser", "Bruno", "bruno.loser@grebo.ch"));
 		listBauleiter.add(new Bauleiter("Dell", "Walter", "walter.dell@doit.ch"));
-		for(Bauleiter bauleiter : listBauleiter){
-			bauleitercontroller.persist(bauleiter);
-		}
-		logSeed(listBauleiter);
+		persistList(listBauleiter, bauleitercontroller);
 		
 		/**
 		 * seed Subunternehmen
@@ -261,10 +239,7 @@ public class Seed {
 		listSubunternehmen.add(new Subunternehmen("Gerüstbau AG", listAdresse.get(3)));
 		listSubunternehmen.add(new Subunternehmen("Bodenbeläge GMBH", listAdresse.get(4)));
 		listSubunternehmen.add(new Subunternehmen("Dachdecker GMBH", listAdresse.get(5)));
-		for(Subunternehmen subunternehmen : listSubunternehmen){
-			subunternehmencontroller.persist(subunternehmen);
-		}
-		logSeed(listSubunternehmen);
+		persistList(listSubunternehmen, subunternehmencontroller);
 		
 		/**
 		 * seed Unternehmen (no persist)
@@ -284,10 +259,7 @@ public class Seed {
 		listBauherr.add(new Bauherr("Sommer", "Mirco", "mirco.sommer@gmail.ch", listUnternehmen.get(2)));
 		listBauherr.add(new Bauherr("Zwimpfer", "Margrit", "margrit.zwimpfer@hotmail.ch", listUnternehmen.get(3)));
 		listBauherr.add(new Bauherr("Fäh", "Linda", "linda.fäh@miss.ch", listUnternehmen.get(4)));
-		for(Bauherr bauherr : listBauherr){
-			bauherrcontroller.persist(bauherr);
-		}
-		logSeed(listBauherr);
+		persistList(listBauherr, bauherrcontroller);
 		
 		/**
 		 * seed Projektleitung (no persist)
@@ -311,10 +283,7 @@ public class Seed {
 		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(14), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), filterListIds(listProjektleitung, new int[]{4,5}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(15), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), filterListIds(listProjektleitung, new int[]{6,7}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(16), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), filterListIds(listProjektleitung, new int[]{8,9}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		for(Projekt projekt : listProjekt){
-			projektcontroller.persist(projekt);
-		}
-		logSeed(listProjekt);
+		persistList(listProjekt, projektcontroller);
 		
 		/**
 		 * seed Kontakt
@@ -323,10 +292,7 @@ public class Seed {
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(4), filterListIds(listProjekt, new int[]{0,3})));
-		for(Kontakt kontakt : listKontakt){
-			kontaktcontroller.persist(kontakt);
-		}
-		logSeed(listKontakt);
+		persistList(listKontakt, kontaktcontroller);
 		
 		/**
 		 * seed Login
@@ -339,11 +305,8 @@ public class Seed {
 		listLogin.add(new Login(listKontakt.get(1), "asdf", listRolle.get(2)));
 		listLogin.add(new Login(listKontakt.get(2), "asdf", listRolle.get(3)));
 		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));
-		for(Login login : listLogin){
-			logincontroller.persist(login);
-		}
-		logSeed(listLogin);
-		
+		persistList(listLogin, logincontroller);
+
 		/**
 		 * seed Kommentar
 		 */
@@ -355,10 +318,7 @@ public class Seed {
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(3)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(2)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(0)));
-		for(Kommentar kommentar : listKommentar){
-			kommentarcontroller.persist(kommentar);
-		}
-		logSeed(listKommentar);
+		persistList(listKommentar, kommentarcontroller);
 		
 		/**
 		 * seed Mangel
@@ -375,15 +335,22 @@ public class Seed {
 		listMangel.add(new Mangel(2, listBauleiter.get(4), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
 		listMangel.add(new Mangel(3, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
 		listMangel.add(new Mangel(4, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		for(Mangel mangel : listMangel){
-			mangelcontroller.persist(mangel);
-		}
-		logSeed(listMangel);
-		
+		persistList(listMangel, mangelcontroller);		
 	}
 	
-	
-	
+	/**
+	 * Persist a list by using a controller.
+	 * 
+	 * @param list the list to persist.
+	 * @param controller the controller to be used to persist the list.
+	 */
+	private <T> void persistList(List<T> list, Controller<T, Integer> controller) {
+		for(T t : list){
+			controller.persist(t);
+		}
+		logSeed(list);		
+	}
+
 	/**
 	 * Log the seed task.
 	 * 
@@ -435,6 +402,7 @@ public class Seed {
 	 * @param defaultcount the default value to return when the entry doesn't exist.
 	 * @return the config value.
 	 */
+	@SuppressWarnings("unused")
 	private static int getConfig(String path, int defaultvalue) {
 		if(config.hasPath(path)){
 			return config.getInt(path);
@@ -451,6 +419,7 @@ public class Seed {
 	 * @param defaultvalues the default values for this config entry.
 	 * @return the config String List.
 	 */
+	@SuppressWarnings("unused")
 	private static List<String> getConfig(String path, String[] defaultvalues) {
 		if(config.hasPath(path)){
 			return config.getStringList(path);
