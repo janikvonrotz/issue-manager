@@ -31,7 +31,7 @@ public class Projekt {
 	@NotNull
     private String title;
 	@NotNull
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL)
     private Adresse adresse;
 	@NotNull
 	@ManyToOne
@@ -43,7 +43,7 @@ public class Projekt {
 	@ManyToOne
     private Bauherr bauherr;
 	@NotNull
-	@OneToMany (cascade = CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)
     private List<Projektleitung> projektleitungen;
 	@NotNull
     private Calendar beginn;

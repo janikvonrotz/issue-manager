@@ -2,7 +2,6 @@ package ch.issueman.client;
 
 import java.io.IOException;
 
-import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -33,14 +32,15 @@ public class Context {
 		Boolean status = false;
 		try {
 			
-			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/login");
-			Response response = target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(login)));
+			ResteasyClient authclient = new ResteasyClientBuilder().register(new BasicAuthentication(login.getUsername(), login.getPasswort())).build();
+			WebTarget target = authclient.target(ConfigFactory.load().getString("webservice.url") + "/signin");
+			Response response = target.request(MediaType.APPLICATION_JSON).get();
 			
 			if(response.getStatus() == Status.OK.getStatusCode()){
 				login = mapper.readValue(response.readEntity(String.class), Login.class);
-				client = new ResteasyClientBuilder().register(new BasicAuthentication(login.getUsername(), login.getPasswort())).build();
+				client = authclient;
 				status = true;
-			}			
+			}
 			response.close();	
 			
 		} catch (IOException e) {

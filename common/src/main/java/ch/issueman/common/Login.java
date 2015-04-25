@@ -6,13 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import lombok.Data;
 
 /**
  * class Login
  * 
  * @author Sandro Klarer
- * @version 1.0.0
+ * @version 1.0.1
  * @since 1.0.0
  */
 @Entity
@@ -40,10 +42,11 @@ public class Login implements Model {
 	}
 	
 	/**
-	 * Get username for the login
+	 * Get username for the login.
 	 * 
 	 * @return E-Mail adress of the associated person
 	 */
+	@JsonIgnore
 	public String getUsername(){
 		return person.getEmail();
 	}

@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
  * Abstract class Person
@@ -23,6 +24,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Data
 @Inheritance(strategy=InheritanceType.JOINED)
 @JsonIgnoreProperties(ignoreUnknown = true)
+///@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class Person implements Model{
 	
 	@Id

@@ -13,14 +13,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import ch.issueman.common.Employer;
-import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.User;
+import ch.issueman.common.Login;
 
 public class HomeView implements Initializable {
 
-	private static Controller<Employer, Integer> controller = new Controller<Employer, Integer>(Employer.class, null);
+	private static Controller<Sachbearbeiter, Integer> controller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
 
 	@FXML
 	private Button btAdd;
@@ -53,21 +51,21 @@ public class HomeView implements Initializable {
 	private PasswordField pfPassword;
 	
 	@FXML
-	private TableView<Employer> tvEmployer;
+	private TableView<Sachbearbeiter> tvEmployer;
 
 	@FXML
-	private TableColumn<Employer, Integer> tcId;
+	private TableColumn<Sachbearbeiter, Integer> tcId;
 
 	@FXML
-	private TableColumn<Employer, String> tcName;
+	private TableColumn<Sachbearbeiter, String> tcName;
 	
 	@FXML
-	private TableColumn<Employer, String> tcCompany;
+	private TableColumn<Sachbearbeiter, String> tcCompany;
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		tcId.setCellValueFactory(new PropertyValueFactory<Employer, Integer>("id"));
-		tcName.setCellValueFactory(new PropertyValueFactory<Employer, String>("name"));
-		tcCompany.setCellValueFactory(new PropertyValueFactory<Employer, String>("company"));
+		tcId.setCellValueFactory(new PropertyValueFactory<Sachbearbeiter, Integer>("id"));
+		tcName.setCellValueFactory(new PropertyValueFactory<Sachbearbeiter, String>("name"));
+		tcCompany.setCellValueFactory(new PropertyValueFactory<Sachbearbeiter, String>("company"));
 		refreshPersonTable();
 	}
 
@@ -77,29 +75,29 @@ public class HomeView implements Initializable {
 
 	@FXML
 	public void clickTableView() {
-		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
-		txName.textProperty().set(e.getName());
-		txCompany.textProperty().set(e.getCompany());
+		Sachbearbeiter e = tvEmployer.getSelectionModel().getSelectedItem();
+		txName.textProperty().set(e.getNachname());
+		txCompany.textProperty().set(e.getVorname());
 	}
 
 	@FXML
 	public void clickAdd() {
-		controller.persist(new Employer(txName.getText(), txCompany.getText()));
+		controller.persist(new Sachbearbeiter(txName.getText(), txCompany.getText(), ""));
 		refreshPersonTable();
 	}
 
 	@FXML
 	public void clickUpdate() {
-		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
-		e.setName(txName.getText());
-		e.setCompany(txCompany.getText());
+		Sachbearbeiter e = tvEmployer.getSelectionModel().getSelectedItem();
+		e.setNachname(txName.getText());
+		e.setVorname(txCompany.getText());
 		controller.update(e);
 		refreshPersonTable();
 	}
 
 	@FXML
 	public void clickDelete() {
-		Employer e = tvEmployer.getSelectionModel().getSelectedItem();
+		Sachbearbeiter e = tvEmployer.getSelectionModel().getSelectedItem();
 		controller.delete(e);
 		refreshPersonTable();
 	}

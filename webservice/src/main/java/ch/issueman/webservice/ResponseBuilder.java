@@ -13,6 +13,16 @@ import lombok.Data;
 import ch.issueman.common.Login;
 import ch.issueman.webservice.Controller;
 
+/**
+ * Build http compatible response for the route requests.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ *
+ * @param <T> the type of entity.
+ * @param <Id> the type of the identifier of the entity.
+ */
 @Data
 public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseBuilder<T, Id>{
 	
@@ -77,7 +87,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			}
 			return Response.status(Status.OK).entity("Enity added.").build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for POST don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for POST don't match")).build();
 		}
 	}
 
@@ -91,7 +101,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 				return null;
 			}
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for GET don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for GET don't match")).build();
 		}
 	}
 
@@ -105,7 +115,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 				return null;
 			}
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for GET don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for GET don't match")).build();
 		}
 	}
 
@@ -119,7 +129,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			}
 			return Response.status(Status.OK).entity("Enity updated.").build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for PUT don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for PUT don't match")).build();
 		}
 	}
 
@@ -133,7 +143,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			}
 			return Response.status(Status.OK).entity("Enity deleted.").build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
 		}
 	}
 
@@ -147,7 +157,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			}
 			return Response.status(Status.OK).entity("Enities deleted.").build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
 		}
 	}
 
@@ -161,11 +171,11 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			}
 			return Response.status(Status.OK).entity("Enities deleted.").build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Required Roles for DELETE don't match").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
 		}
 	}
 
-	public Response login(Login login) {
+	public Response signin(Login login) {
 		
 		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
 				.filter(l -> l.getUsername().equals(login.getUsername()))
@@ -175,7 +185,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		if(logins.size() == 1){
 			return Response.status(Status.OK).entity(logins.get(0)).build();
 		}else{
-			return Response.status(Status.UNAUTHORIZED).entity("Login failed!").build();
+			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Login failed!")).build();
 		}
 	}
 }

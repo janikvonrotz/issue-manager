@@ -37,7 +37,7 @@ import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
 /**
- * This class is loaded by the JAX-RS servlet and defines to http service routes and methods.
+ * This class is loaded by the JAX-RS servlet and defines the restful http routes and methods.
  * 
  * @author Janik von Rotz, Sandro Klarer
  * @version 1.0.0
@@ -49,7 +49,6 @@ public class Route{
 	private Map <String, ResponseBuilder<?, Integer>> rbm = new HashMap<String, ResponseBuilder<?, Integer>>();
 	
 	public Route(){
-		
 		rbm.put("adresse", new ResponseBuilder<Adresse, Integer>(Adresse.class));
 		rbm.put("arbeitstyp", new ResponseBuilder<Arbeitstyp, Integer>(Arbeitstyp.class));
 		rbm.put("bauherr", new ResponseBuilder<Bauherr, Integer>(Bauherr.class));
@@ -70,6 +69,14 @@ public class Route{
 		rbm.put("unternehmen", new ResponseBuilder<Unternehmen, Integer>(Unternehmen.class));
 	}
 	
+	/**
+	 * Get by id route for all entities.
+	 * 
+	 * @param entity the path parameter as name of the entity.
+	 * @param id the id of the entry to receive.
+	 * @param request the request header (passed by the servlet).
+	 * @return response containing the entity entry.
+	 */
 	@GET
 	@Path("{entity}/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -90,15 +97,14 @@ public class Route{
 		return rbm.get(entity).getAll();
 	}	
 	
-	@POST
-	@Path("login")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("signin")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@Context HttpServletRequest request) {
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		rbm.get("login").setLogin(login);
-		return rbm.get("login").login(login);
+		return rbm.get("login").signin(login);
 	}
 	
 	/**

@@ -159,6 +159,20 @@
       "POST": [
         "Sachbearbeiter"
       ]
+    },
+    "Default": {
+      "GET": [
+        "Authenticated"
+      ],
+      "PUT": [
+        "Authenticated"
+      ],
+      "POST": [
+        "Authenticated"
+      ],
+      "DELETE": [
+        "Authenticated"
+      ]
     }
   },
   "seed": {

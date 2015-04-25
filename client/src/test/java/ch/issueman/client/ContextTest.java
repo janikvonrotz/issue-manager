@@ -13,7 +13,7 @@ public class ContextTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "<username>"), "<password>", null));
+		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 	}
 
 	@After

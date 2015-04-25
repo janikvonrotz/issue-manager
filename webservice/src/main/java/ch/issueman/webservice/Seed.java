@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -33,9 +32,6 @@ import ch.issueman.common.Rolle;
 import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
-import com.typesafe.config.Config;
-import com.typesafe.config.ConfigFactory;
-
 /**
  * class Seed
  * 
@@ -46,8 +42,6 @@ import com.typesafe.config.ConfigFactory;
 
 @Slf4j
 public class Seed {
-	
-	private final static Config config = ConfigFactory.load();
 	
 	public static void main(String[] args) {
 		Seed s = new Seed();
@@ -134,7 +128,7 @@ public class Seed {
 		 * seed Ort from csv
 		 */
 		ClassLoader classLoader = getClass().getClassLoader();
-		File csv = new File(classLoader.getResource(getConfig("seed.Ort", "Orschaften.csv")).getFile());
+		File csv = new File(classLoader.getResource(ConfigHelper.getConfig("seed.Ort", "Orschaften.csv")).getFile());
 		try {
 			FileReader fr = new FileReader(csv);
 			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL.withDelimiter(';').withHeader());
@@ -288,7 +282,7 @@ public class Seed {
 		/**
 		 * seed Kontakt
 		 */
-		listKontakt.add(new Kontakt("kt","kt","kt@im.ch", listSubunternehmen.get(0), filterListIds(listProjekt, new int[]{0,3})));
+		listKontakt.add(new Kontakt("kp","kp","kp@im.ch", listSubunternehmen.get(0), filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(4), filterListIds(listProjekt, new int[]{0,3})));
@@ -377,54 +371,5 @@ public class Seed {
 			listtmp.add((T) list.get(i));
 		}
 		return listtmp;		
-	}
-	
-	/**
-	 * Checks whether the String config entry exists or not and returns the defined value.
-	 * 
-	 * @param path the path in the config file.
-	 * @param defaultcount the default value to return when the entry doesn't exist.
-	 * @return the config value.
-	 */
-	private static String getConfig(String path, String defaultvalue) {
-		if(config.hasPath(path)){
-			return config.getString(path);
-		}else{
-			return defaultvalue;
-		}
-		
-	}
-	
-	/**
-	 * Checks whether the Integer config entry exists or not and returns the defined value.
-	 * 
-	 * @param path the path in the config file.
-	 * @param defaultcount the default value to return when the entry doesn't exist.
-	 * @return the config value.
-	 */
-	@SuppressWarnings("unused")
-	private static int getConfig(String path, int defaultvalue) {
-		if(config.hasPath(path)){
-			return config.getInt(path);
-		}else{
-			return defaultvalue;
-		}
-		
-	}
-
-	/**
-	 * Checks whether the String List config entry exists or not and returns the defined values.
-	 * 
-	 * @param path the path in the config file.
-	 * @param defaultvalues the default values for this config entry.
-	 * @return the config String List.
-	 */
-	@SuppressWarnings("unused")
-	private static List<String> getConfig(String path, String[] defaultvalues) {
-		if(config.hasPath(path)){
-			return config.getStringList(path);
-		}else{
-			return new ArrayList<String>(Arrays.asList(defaultvalues));
-		}
 	}
 }

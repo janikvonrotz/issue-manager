@@ -27,7 +27,7 @@ public class Unternehmen {
 	@NotNull
 	private String firmenname;
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL)
 	private Adresse adresse;
 
 	public Unternehmen() {

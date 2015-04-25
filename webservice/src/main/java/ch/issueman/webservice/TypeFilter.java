@@ -11,6 +11,16 @@ import lombok.Data;
 import ch.issueman.common.DAO;
 import ch.issueman.common.Login;
 
+/**
+ * Filter entities and check access rights by roles and http methods.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ *
+ * @param <T> the type of entity.
+ * @param <Id> the type of the identifier of the entity.
+ */
 @Data
 public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	
@@ -21,10 +31,17 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		
 	public TypeFilter(Class<T> clazz){
 		this.controller = new Controller<T, Id>(clazz);
-		allowedroles.put("GET", config.getStringList("permissions." + clazz.getSimpleName() + ".GET"));
-		allowedroles.put("POST", config.getStringList("permissions." + clazz.getSimpleName() + ".POST"));
-		allowedroles.put("PUT", config.getStringList("permissions." + clazz.getSimpleName() + ".PUT"));
-		allowedroles.put("DELETE", config.getStringList("permissions." + clazz.getSimpleName() + ".DELETE"));
+		if(config.hasPath("permissions." + clazz.getSimpleName())){
+			allowedroles.put("GET", ConfigHelper.getConfig("permissions." + clazz.getSimpleName() + ".GET", new String[]{}));
+			allowedroles.put("POST", ConfigHelper.getConfig("permissions." + clazz.getSimpleName() + ".POST", new String[]{}));
+			allowedroles.put("PUT", ConfigHelper.getConfig("permissions." + clazz.getSimpleName() + ".PUT", new String[]{}));
+			allowedroles.put("DELETE", ConfigHelper.getConfig("permissions." + clazz.getSimpleName() + ".DELETE", new String[]{}));
+		}else{
+			allowedroles.put("GET", config.getStringList("permissions.Default.GET"));
+			allowedroles.put("POST", config.getStringList("permissions.Default.POST"));
+			allowedroles.put("PUT", config.getStringList("permissions.Default.PUT"));
+			allowedroles.put("DELETE", config.getStringList("permissions.Default.DELETE"));
+		}
 	}
 	
 	@Override
@@ -56,6 +73,20 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		controller.deleteAll();
 	}
 	
+	@Override
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/**
+	 * Checks whether a login has the roles to access a certain http method for this filter. 
+	 * 
+	 * @param login the login having the roles.
+	 * @param httpmethod the http method to be executed.
+	 * @return boolean true if the user has the right to execute the method.
+	 */
 	public boolean ifUserHasRoleByMethod(Login login, String httpmethod){
 		
 		if(allowedroles.get(httpmethod).contains("Anonymous")){
@@ -65,14 +96,6 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		}else if(login != null && allowedroles.get(httpmethod).contains(login.getRolle().getBezeichnung())){
 			return true;
 		}		
-		
 		return false;
-	}
-
-	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
-			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

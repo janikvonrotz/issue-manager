@@ -49,10 +49,10 @@ public class Authenticator implements ContainerRequestFilter {
 					.filter(l -> l.getPasswort().equals(password))
 					.collect(Collectors.toList());
 			
-			if(logins.get(0) != null){
-				
-				Login login = logins.get(0);
-				session.setAttribute("login", login);
+			if(logins.size() > 0 && logins.get(0) != null){
+				session.setAttribute("login", logins.get(0));
+			}else{
+				session.setAttribute("login", null);
 			}
 		}
 	}
