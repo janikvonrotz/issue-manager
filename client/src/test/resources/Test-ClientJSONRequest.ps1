@@ -9,16 +9,16 @@ $Headers = @{
 
 # Get
 
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/sachbearbeiter' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -Headers $Headers
 $r.RawContent
 
 # Delete
 
-Invoke-WebRequest -Uri 'http://localhost:8080/webservice/employer/3' -ContentType application/json -Method DELETE -Headers $Headers
+Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp/3251' -ContentType application/json -Method DELETE -Headers $Headers
 
 # Get by Id
 
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp/3103' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp/3251' -Headers $Headers
 $r.RawContent
 
 # Login
@@ -28,7 +28,11 @@ $r.RawContent
 
 # Update
 
-$json = '{"id":272,"name":"Obie","email":"georgianna.jaskolski@hotmail.com","password":"ycggqp","role":"Administratorrrr"}'
-Invoke-WebRequest -Uri 'http://localhost:8080/webservice/user' -ContentType application/json -Method PUT -Body $json  -Headers $Headers
+$json = '{"id":3251,"arbeitstyp":"testArbeitstypUpdated"}'
+Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -ContentType application/json -Method PUT -Body $json  -Headers $Headers
 
+# Persist
+
+$json = '{"id":0,"arbeitstyp":"testArbeitstyp"}'
+Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -ContentType application/json -Method POST -Body $json  -Headers $Headers
 

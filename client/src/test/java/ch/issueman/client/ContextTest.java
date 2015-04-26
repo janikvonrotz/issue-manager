@@ -23,13 +23,12 @@ public class ContextTest {
 
 	@Test
 	public void testLogin() {
-		assertTrue(Context.login());
-		fail("Not yet implemented");
+		assertTrue("Default user Sachbearbeiter must be able to log in", Context.login());
 	}
 	
 	@Test
 	public void testUserHasRole() {
-		assertTrue(Context.ifUserHasRole("Sachbearbeiter"));
-		fail("Not yet implemented");
+		Context.login();
+		assertTrue("User Sachbearbeiter must have role Sachbearbeiter", Context.ifUserHasRole("Sachbearbeiter"));
 	}
 }

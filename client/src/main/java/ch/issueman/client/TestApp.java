@@ -11,7 +11,7 @@ public class TestApp {
 		Context.login();
 		Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 		try {
-			Arbeitstyp arbeitstyp = arbeitstypcontroller.getById(3103);
+			Arbeitstyp arbeitstyp = arbeitstypcontroller.getById(31603);
 			System.out.println(arbeitstyp.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
