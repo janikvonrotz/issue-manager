@@ -160,6 +160,22 @@
         "Sachbearbeiter"
       ]
     },
+    "Projektleitung": {
+      "GET": [
+        "Sachbearbeiter",
+        "Bauleiter",
+        "Kontaktadmin",
+        "Kontaktperson"
+      ],
+      "PUT": [
+        "Sachbearbeiter",
+        "Bauleiter"
+      ],
+      "POST": [
+        "Sachbearbeiter",
+        "Bauleiter"
+      ]
+    },
     "Default": {
       "GET": [
         "Authenticated"

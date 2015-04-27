@@ -1,4 +1,4 @@
-$Data = Import-Csv .\permissions.csv -Delimiter ";"
+$Data = Import-Csv .\Permissions.csv -Delimiter ";"
 $Data = $Data | Group-Object -property Objekt | foreach-Object{ 
    
    ('"' + $_.Name + '":{')

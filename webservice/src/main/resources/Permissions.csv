@@ -219,3 +219,11 @@ Mangel;mangelstatus;own;PUT;Kontaktadmin
 Mangel;kommentare;own;GET;Kontaktadmin
 Mangel;kommentare;own;PUT;Kontaktadmin
 Mangel;kommentare;own;POST;Kontaktadmin
+Projektleitung;bauleiter;all;GET;Sachbearbeiter
+Projektleitung;bauleiter;all;PUT;Sachbearbeiter
+Projektleitung;bauleiter;all;POST;Sachbearbeiter
+Projektleitung;bauleiter;own;GET;Bauleiter
+Projektleitung;bauleiter;own;PUT;Bauleiter
+Projektleitung;bauleiter;own;POST;Bauleiter
+Projektleitung;bauleiter;own;GET;Kontaktadmin
+Projektleitung;bauleiter;own;GET;Kontaktperson
