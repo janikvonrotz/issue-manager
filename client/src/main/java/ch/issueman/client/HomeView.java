@@ -70,7 +70,12 @@ public class HomeView implements Initializable {
 	}
 
 	public void refreshPersonTable() {
-		tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
+		try {
+			tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -82,7 +87,12 @@ public class HomeView implements Initializable {
 
 	@FXML
 	public void clickAdd() {
-		controller.persist(new Sachbearbeiter(txName.getText(), txCompany.getText(), ""));
+		try {
+			controller.persist(new Sachbearbeiter(txName.getText(), txCompany.getText(), ""));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 
@@ -91,14 +101,24 @@ public class HomeView implements Initializable {
 		Sachbearbeiter e = tvEmployer.getSelectionModel().getSelectedItem();
 		e.setNachname(txName.getText());
 		e.setVorname(txCompany.getText());
-		controller.update(e);
+		try {
+			controller.update(e);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 
 	@FXML
 	public void clickDelete() {
 		Sachbearbeiter e = tvEmployer.getSelectionModel().getSelectedItem();
-		controller.delete(e);
+		try {
+			controller.delete(e);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		refreshPersonTable();
 	}
 	

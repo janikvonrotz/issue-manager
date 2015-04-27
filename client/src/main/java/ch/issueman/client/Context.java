@@ -32,13 +32,12 @@ public class Context {
 		Boolean status = false;
 		try {
 			
-			ResteasyClient authclient = new ResteasyClientBuilder().register(new BasicAuthentication(login.getUsername(), login.getPasswort())).build();
-			WebTarget target = authclient.target(ConfigFactory.load().getString("webservice.url") + "/signin");
+			client.register(new BasicAuthentication(login.getUsername(), login.getPasswort()));
+			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/signin");
 			Response response = target.request(MediaType.APPLICATION_JSON).get();
 			
 			if(response.getStatus() == Status.OK.getStatusCode()){
 				login = mapper.readValue(response.readEntity(String.class), Login.class);
-				client = authclient;
 				status = true;
 			}
 			response.close();	

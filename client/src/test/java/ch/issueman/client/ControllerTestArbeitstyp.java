@@ -12,12 +12,12 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Arbeitstyp;
 
-public class ControllerTest {
+public class ControllerTestArbeitstyp {
 
-	private Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 	private Arbeitstyp arbeitstyp = new Arbeitstyp("testArbeitstyp");
+	private Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 	private List<Arbeitstyp> listArbeitstyp;
-
+	
 	@Before
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
@@ -34,8 +34,9 @@ public class ControllerTest {
 		try {
 			arbeitstypcontroller.persist(arbeitstyp);
 		} catch (Exception e) {
-			fail("Persist of new Arbeitstyp failed");
+			fail("Persist for Arbeitstyp failed");
 		}
+		Context.logout();
 	}
 	
 	@Test
@@ -43,16 +44,18 @@ public class ControllerTest {
 		try {
 			listArbeitstyp = arbeitstypcontroller.getAll();
 		} catch (Exception e) {
-			fail("Get list of type Arbeitstyp failed");
+			fail("Get list of Arbeitstyp failed");
 		}	
 	}
 	
 	@Test
 	public void testGetById() {
 		try {
+			listArbeitstyp = arbeitstypcontroller.getAll();
 			arbeitstyp = arbeitstypcontroller.getById(listArbeitstyp.get(listArbeitstyp.size()-1).getId());
 		} catch (Exception e) {
-			fail("Get by id for type Arbeitstyp failed");
+			e.printStackTrace();
+			fail("Get by id for Arbeitstyp failed");
 		}
 	}
 
