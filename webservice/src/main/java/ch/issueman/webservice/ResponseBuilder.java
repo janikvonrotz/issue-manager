@@ -3,6 +3,8 @@ package ch.issueman.webservice;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import ch.issueman.common.Login;
 import ch.issueman.webservice.Controller;
 
@@ -23,15 +26,17 @@ import ch.issueman.webservice.Controller;
  * @param <T> the type of entity.
  * @param <Id> the type of the identifier of the entity.
  */
+@SuppressWarnings("serial")
 @Data
-public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseBuilder<T, Id>{
+@EqualsAndHashCode(callSuper=false)
+public class ResponseBuilder<T, Id extends Serializable> extends UnicastRemoteObject implements DAOResponseBuilder<T, Id>{
 	
 	private TypeFilter<T, Id> filter = null;
 	private Controller<T, Id> controller = null;
 	private Login login;
 	
 	@SuppressWarnings("unchecked")
-	public ResponseBuilder(Class<T> clazz){
+	public ResponseBuilder(Class<T> clazz) throws RemoteException{
 		controller = new Controller<T, Id>(clazz);
 		filter = new TypeFilter<T, Id>(clazz);
 		
@@ -67,17 +72,17 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		
 	}
 	
-	public void setUser(Login login){
+	public void setUser(Login login) throws RemoteException{
 		this.login = login;
 		this.filter.setLogin(login);
 	}
 	
-	public ResponseBuilder(Class<T> clazz, String httpmethod, Login login){
+	public ResponseBuilder(Class<T> clazz, String httpmethod, Login login) throws RemoteException{
 		this(clazz);
 		this.login = login;
 	}
 	
-	public Response persist(T t) {
+	public Response persist(T t) throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
 			try {
 				filter.persist(t);
@@ -91,7 +96,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response getById(Id id) {
+	public Response getById(Id id) throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity(filter.getById(id)).build();
@@ -105,7 +110,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response getAll() {
+	public Response getAll() throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			try {
 				return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
@@ -119,7 +124,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response update(T t) {
+	public Response update(T t) throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "PUT") != false){
 			try {
 				filter.update(t);
@@ -133,7 +138,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response delete(T t) {
+	public Response delete(T t) throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(t);
@@ -147,7 +152,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response deleteAll() {
+	public Response deleteAll() throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.deleteAll();
@@ -161,7 +166,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response deleteById(Id id) {
+	public Response deleteById(Id id) throws RemoteException{
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			try {
 				filter.delete(filter.getById(id));
@@ -175,7 +180,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
-	public Response signin(Login login) {
+	public Response signin(Login login) throws RemoteException{
 		
 		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
 				.filter(l -> l.getUsername().equals(login.getUsername()))

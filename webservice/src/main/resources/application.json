@@ -21,6 +21,11 @@
       "output-mode": "database"
     }
   },
+  "rmi": {
+  	"port": 1090,
+  	"host": "localhost"
+  	
+  },
   "permissions": {
     "Bauherr": {
       "GET": [
