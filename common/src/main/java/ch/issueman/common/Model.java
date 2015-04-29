@@ -1,5 +1,7 @@
 package ch.issueman.common;
 
+import java.io.Serializable;
+
 /**
  * interface Model
  * 
@@ -7,7 +9,7 @@ package ch.issueman.common;
  * @version 1.0.0
  * @since 1.0.0
  */
-public interface Model {
+public interface Model extends Serializable {
 
 	public int getId();
 }

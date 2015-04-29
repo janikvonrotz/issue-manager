@@ -24,7 +24,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Projekt {
+public class Projekt implements Model{
 	
 	@Id
 	@GeneratedValue

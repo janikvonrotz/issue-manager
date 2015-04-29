@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Projektleitung {
+public class Projektleitung implements Model{
 
 	@Id
 	@GeneratedValue

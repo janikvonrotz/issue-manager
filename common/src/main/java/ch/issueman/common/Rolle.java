@@ -17,7 +17,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Rolle {
+public class Rolle implements Model {
 
 	@Id
 	@GeneratedValue

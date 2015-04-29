@@ -22,7 +22,7 @@
     }
   },
   "rmi": {
-  	"port": 1090,
+  	"port": 1099,
   	"host": "localhost"
   	
   },

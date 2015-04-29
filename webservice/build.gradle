@@ -16,3 +16,10 @@ task seed(type:JavaExec) {
    main = 'ch.issueman.webservice.Seed'
    classpath = sourceSets.main.runtimeClasspath
 }
+
+task rmiRun(type:JavaExec) {
+   main = 'ch.issueman.webservice.RmiService'
+   classpath = sourceSets.main.runtimeClasspath
+}
+
+task run(dependsOn: ['rmiRun', 'jettyRun']){}

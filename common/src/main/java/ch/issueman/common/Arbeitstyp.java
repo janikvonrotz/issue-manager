@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Arbeitstyp {
+public class Arbeitstyp implements Model {
 	
 	@Id
 	@GeneratedValue

@@ -44,8 +44,7 @@ import ch.issueman.common.Unternehmen;
 public class Seed {
 	
 	public static void main(String[] args) {
-		Seed s = new Seed();
-		s.seed();
+		(new Seed()).seed();
 	}
 	
 	/**

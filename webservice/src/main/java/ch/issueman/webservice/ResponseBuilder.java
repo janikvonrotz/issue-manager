@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import ch.issueman.common.Login;
 import ch.issueman.webservice.Controller;
 
@@ -26,17 +24,17 @@ import ch.issueman.webservice.Controller;
  * @param <T> the type of entity.
  * @param <Id> the type of the identifier of the entity.
  */
-@SuppressWarnings("serial")
+
 @Data
-@EqualsAndHashCode(callSuper=false)
-public class ResponseBuilder<T, Id extends Serializable> extends UnicastRemoteObject implements DAOResponseBuilder<T, Id>{
+public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseBuilder<T, Id>{
 	
 	private TypeFilter<T, Id> filter = null;
 	private Controller<T, Id> controller = null;
 	private Login login;
+	private String url = "rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/";
 	
 	@SuppressWarnings("unchecked")
-	public ResponseBuilder(Class<T> clazz) throws RemoteException{
+	public ResponseBuilder(Class<T> clazz){
 		controller = new Controller<T, Id>(clazz);
 		filter = new TypeFilter<T, Id>(clazz);
 		
@@ -192,5 +190,12 @@ public class ResponseBuilder<T, Id extends Serializable> extends UnicastRemoteOb
 		}else{
 			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Login failed!")).build();
 		}
+	}
+
+	@Override
+	public Response getAllByProperty(String propertyname,
+			Object[] propertyvalues) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

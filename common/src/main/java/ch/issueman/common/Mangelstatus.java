@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Mangelstatus {
+public class Mangelstatus implements Model {
 	@Id
 	@GeneratedValue
 	private int id;

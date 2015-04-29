@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Unternehmen {
+public class Unternehmen implements Model{
 
 	@Id
 	@GeneratedValue

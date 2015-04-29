@@ -3,8 +3,7 @@ package ch.issueman.webservice;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.RMISecurityManager;
-import java.rmi.RemoteException;
+import java.rmi.Exception;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +47,7 @@ import ch.issueman.common.Unternehmen;
  * @version 1.0.0
  * @since 1.0.0
  */
-@SuppressWarnings("deprecation")
+
 @Path("/")
 public class Route{
 	
@@ -57,32 +56,26 @@ public class Route{
 	@SuppressWarnings({ "unchecked" })
 	public Route(){
 		
-		System.setProperty("java.security.policy", "rmi.policy");
-		System.setSecurityManager(new RMISecurityManager());
 		String url = "rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/";
 		
-		try {
-			rbm.put("adresse", (DAOResponseBuilder<Adresse, Integer>) Naming.lookup(url + "adresse"));
-			rbm.put("arbeitstyp",  (DAOResponseBuilder<Adresse, Integer>) Naming.lookup(url + "arbeitstyp"));
-			rbm.put("bauherr", new ResponseBuilder<Bauherr, Integer>(Bauherr.class));
-			rbm.put("bauleiter", new ResponseBuilder<Bauleiter, Integer>(Bauleiter.class));
-			rbm.put("kommentar", new ResponseBuilder<Kommentar, Integer>(Kommentar.class));
-			rbm.put("kontakt", new ResponseBuilder<Kontakt, Integer>(Kontakt.class));
-			rbm.put("login", new ResponseBuilder<Login, Integer>(Login.class));
-			rbm.put("mangel", new ResponseBuilder<Mangel, Integer>(Mangel.class));
-			rbm.put("mangelstatus", new ResponseBuilder<Mangelstatus, Integer>(Mangelstatus.class));
-			rbm.put("ort", new ResponseBuilder<Ort, Integer>(Ort.class));
-			rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
-			rbm.put("projekt", new ResponseBuilder<Projekt, Integer>(Projekt.class));
-			rbm.put("projektleitung", new ResponseBuilder<Projektleitung, Integer>(Projektleitung.class));
-			rbm.put("projekttyp", new ResponseBuilder<Projekttyp, Integer>(Projekttyp.class));
-			rbm.put("rolle", new ResponseBuilder<Rolle, Integer>(Rolle.class));
-			rbm.put("sachbearbeiter", new ResponseBuilder<Sachbearbeiter, Integer>(Sachbearbeiter.class));
-			rbm.put("subunternehmen", new ResponseBuilder<Subunternehmen, Integer>(Subunternehmen.class));
-			rbm.put("unternehmen", new ResponseBuilder<Unternehmen, Integer>(Unternehmen.class));
-		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-			e.printStackTrace();
-		}
+		rbm.put("adresse", (DAOResponseBuilder<Adresse, Integer>) Naming.lookup(url + "adresse"));
+		rbm.put("arbeitstyp",  (DAOResponseBuilder<Adresse, Integer>) Naming.lookup(url + "arbeitstyp"));
+		rbm.put("bauherr", new ResponseBuilder<Bauherr, Integer>(Bauherr.class));
+		rbm.put("bauleiter", new ResponseBuilder<Bauleiter, Integer>(Bauleiter.class));
+		rbm.put("kommentar", new ResponseBuilder<Kommentar, Integer>(Kommentar.class));
+		rbm.put("kontakt", new ResponseBuilder<Kontakt, Integer>(Kontakt.class));
+		rbm.put("login", new ResponseBuilder<Login, Integer>(Login.class));
+		rbm.put("mangel", new ResponseBuilder<Mangel, Integer>(Mangel.class));
+		rbm.put("mangelstatus", new ResponseBuilder<Mangelstatus, Integer>(Mangelstatus.class));
+		rbm.put("ort", new ResponseBuilder<Ort, Integer>(Ort.class));
+		rbm.put("person", new ResponseBuilder<Person, Integer>(Person.class));
+		rbm.put("projekt", new ResponseBuilder<Projekt, Integer>(Projekt.class));
+		rbm.put("projektleitung", new ResponseBuilder<Projektleitung, Integer>(Projektleitung.class));
+		rbm.put("projekttyp", new ResponseBuilder<Projekttyp, Integer>(Projekttyp.class));
+		rbm.put("rolle", new ResponseBuilder<Rolle, Integer>(Rolle.class));
+		rbm.put("sachbearbeiter", new ResponseBuilder<Sachbearbeiter, Integer>(Sachbearbeiter.class));
+		rbm.put("subunternehmen", new ResponseBuilder<Subunternehmen, Integer>(Subunternehmen.class));
+		rbm.put("unternehmen", new ResponseBuilder<Unternehmen, Integer>(Unternehmen.class));
 	}
 	
 	/**
@@ -102,7 +95,7 @@ public class Route{
 		try {
 			rbm.get(entity).setLogin(login);
 			return rbm.get(entity).getById(id);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -115,9 +108,10 @@ public class Route{
 		HttpSession session = request.getSession(true);
 		Login login = (Login) session.getAttribute("login");
 		try {
+			System.out.println(login.toString());
 			rbm.get(entity).setLogin(login);
 			return rbm.get(entity).getAll();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -132,7 +126,7 @@ public class Route{
 		try {
 			rbm.get("login").setLogin(login);
 			return rbm.get("login").signin(login);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -151,7 +145,7 @@ public class Route{
 		try {
 			rbm.get("adresse").setLogin(login);
 			return ((DAOResponseBuilder) rbm.get("adresse")).update(t);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -166,7 +160,7 @@ public class Route{
 		try {
 			rbm.get("adresse").setLogin(login);
 			return ((DAOResponseBuilder) rbm.get("adresse")).persist(t);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -180,7 +174,7 @@ public class Route{
 		try {
 			rbm.get("adresse").setLogin(login);
 			return rbm.get("adresse").deleteById(id);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -199,7 +193,7 @@ public class Route{
 		try {
 			rbm.get("arbeitstyp").setLogin(login);
 			return ((DAOResponseBuilder) rbm.get("arbeitstyp")).update(t);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -215,7 +209,7 @@ public class Route{
 		try {
 			rbm.get("arbeitstyp").setLogin(login);
 			return ((DAOResponseBuilder) rbm.get("arbeitstyp")).persist(t);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -229,7 +223,7 @@ public class Route{
 		try {
 			rbm.get("arbeitstyp").setLogin(login);
 			return rbm.get("arbeitstyp").deleteById(id);
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
