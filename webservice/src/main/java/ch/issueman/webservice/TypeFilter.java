@@ -74,8 +74,7 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	}
 	
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
-			throws Exception {
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -3,6 +3,9 @@ package ch.issueman.webservice;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +14,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import ch.issueman.common.Adresse;
 import ch.issueman.common.Login;
 import ch.issueman.webservice.Controller;
 
@@ -28,174 +33,113 @@ import ch.issueman.webservice.Controller;
 @Data
 public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseBuilder<T, Id>{
 	
-	private TypeFilter<T, Id> filter = null;
-	private Controller<T, Id> controller = null;
-	private Login login;
-	private String url = "rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/";
-	
+	private DAORmi<T, Id> controller;
+	private Class<T> clazz;
+
 	@SuppressWarnings("unchecked")
 	public ResponseBuilder(Class<T> clazz){
-		controller = new Controller<T, Id>(clazz);
-		filter = new TypeFilter<T, Id>(clazz);
-		
+		this.clazz = clazz;
 		try {
-			Class<?> filterclazz = Class.forName("ch.issueman.webservice." + clazz.getSimpleName() + "Filter");
-			
-			Constructor<?> constructor = filterclazz.getConstructor();
-			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
-			filter.setController(controller);
-			filter.setLogin(login);
-			
-		} catch (ClassNotFoundException e) {
-			
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			controller = (DAORmi<T, Id>) Naming.lookup("rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/" + clazz.getSimpleName().toLowerCase());
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
-	public void setUser(Login login) throws RemoteException{
-		this.login = login;
-		this.filter.setLogin(login);
-	}
-	
-	public ResponseBuilder(Class<T> clazz, String httpmethod, Login login) throws RemoteException{
-		this(clazz);
-		this.login = login;
-	}
-	
-	public Response persist(T t) throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
-			try {
-				filter.persist(t);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return Response.status(Status.OK).entity("Enity added.").build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for POST don't match")).build();
-		}
-	}
-
-	public Response getById(Id id) throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
-			try {
-				return Response.status(Status.OK).entity(filter.getById(id)).build();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for GET don't match")).build();
-		}
-	}
-
-	public Response getAll() throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
-			try {
-				return Response.status(Status.OK).entity((List<T>) filter.getAll()).build();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for GET don't match")).build();
-		}
-	}
-
-	public Response update(T t) throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "PUT") != false){
-			try {
-				filter.update(t);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return Response.status(Status.OK).entity("Enity updated.").build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for PUT don't match")).build();
-		}
-	}
-
-	public Response delete(T t) throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
-			try {
-				filter.delete(t);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return Response.status(Status.OK).entity("Enity deleted.").build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
-		}
-	}
-
-	public Response deleteAll() throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
-			try {
-				filter.deleteAll();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return Response.status(Status.OK).entity("Enities deleted.").build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
-		}
-	}
-
-	public Response deleteById(Id id) throws RemoteException{
-		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
-			try {
-				filter.delete(filter.getById(id));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return Response.status(Status.OK).entity("Enities deleted.").build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Required Roles for DELETE don't match")).build();
-		}
-	}
-
-	public Response signin(Login login) throws RemoteException{
-		
-		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
-				.filter(l -> l.getUsername().equals(login.getUsername()))
-				.filter(l -> l.getPasswort().equals(login.getPasswort()))
-				.collect(Collectors.toList());
-		
-		if(logins.size() == 1){
-			return Response.status(Status.OK).entity(logins.get(0)).build();
-		}else{
-			return Response.status(Status.UNAUTHORIZED).entity(new Exception("Login failed!")).build();
+	@Override
+	public Response persist(T t){
+		try {
+			controller.persist(t);
+			return Response.status(Status.OK).entity(clazz.getSimpleName() + " added.").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
 		}
 	}
 
 	@Override
-	public Response getAllByProperty(String propertyname,
-			Object[] propertyvalues) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Response getById(Id id) {
+		try {
+			return Response.status(Status.OK).entity(controller.getById(id)).build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response getAll() {
+		try {
+			return Response.status(Status.OK).entity(controller.getAll()).build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response getAllByProperty(String propertyname, Object[] propertyvalues) {
+		try {
+			return Response.status(Status.OK).entity(controller.getAllByProperty(propertyname, propertyvalues)).build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response update(T t) {
+		try {
+			controller.update(t);
+			return Response.status(Status.OK).entity(clazz.getSimpleName() + " updated.").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response delete(T t) {
+		try {
+			controller.delete(t);
+			return Response.status(Status.OK).entity(clazz.getSimpleName() + " deleted.").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response deleteAll() {
+		try {
+			controller.deleteAll();;
+			return Response.status(Status.OK).entity("All " + clazz.getSimpleName() + " deleted.").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public void setLogin(Login login) {
+		try {
+			controller.setLogin(login);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public Response signin() {
+		try{
+			return Response.status(Status.OK).entity(controller.signin()).build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+
+	@Override
+	public Response deleteById(Id id) {
+		try {
+			Response response = getById(id);
+			controller.delete(response.readEntity(clazz));
+			return Response.status(Status.OK).entity(clazz.getSimpleName() + " deleted.").build();
+		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
 	}
 }
