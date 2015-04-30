@@ -29,6 +29,6 @@ public class ContextTest {
 	@Test
 	public void testUserHasRole() {
 		Context.login();
-		assertTrue("User Sachbearbeiter must have role Sachbearbeiter", Context.ifUserHasRole("Sachbearbeiter"));
+		assertTrue("User Sachbearbeiter must have role Sachbearbeiter", Context.ifUserHasRole(new String[]{"Sachbearbeiter"}));
 	}
 }

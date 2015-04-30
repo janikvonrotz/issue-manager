@@ -11,7 +11,7 @@ $Headers = @{
 
 $r = $null
 $r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/login' -Headers $Headers
-$r.RawContent | Out-File test.txt
+$r.RawContent
 
 # Delete
 
