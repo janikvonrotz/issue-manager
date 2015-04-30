@@ -18,6 +18,16 @@ import com.typesafe.config.ConfigFactory;
 import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
 
+/**
+ * Basic server controller class.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ *
+ * @param <T> the type of entity.
+ * @param <Id> the type of the identifier of the entity.
+ */
 public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 
 	private static ResteasyClient client = Context.getClient();
@@ -30,6 +40,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		url = ConfigFactory.load().getString("webservice.url") + "/" + clazz.getSimpleName().toLowerCase();
 	}
 		
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getById(java.io.Serializable)
+	 */
 	public T getById(Id id) throws Exception {
 		WebTarget target = client.target(url + "/" + id);
 		T t = null;			
@@ -43,6 +56,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		return t;
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getAll()
+	 */
 	public List<T> getAll() throws Exception {
 		
 		WebTarget target = client.target(url);
@@ -58,6 +74,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		return l;
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#persist(java.lang.Object)
+	 */
 	@Override
 	public void persist(T t) throws Exception {
 		WebTarget target = client.target(url);		
@@ -69,6 +88,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		response.close();	
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#update(java.lang.Object)
+	 */
 	@Override
 	public void update(T t) throws Exception {
 		WebTarget target = client.target(url);
@@ -80,6 +102,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		response.close();
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#delete(java.lang.Object)
+	 */
 	@Override
 	public void delete(T t) throws Exception {
 		WebTarget target = client.target(url + "/" + ((Model)t).getId());
@@ -91,10 +116,16 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		response.close();
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#deleteAll()
+	 */
 	@Override
 	public void deleteAll() {
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
+	 */
 	@Override
 	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception {
 		return null;

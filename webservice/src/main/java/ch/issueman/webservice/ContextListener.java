@@ -46,6 +46,9 @@ public class ContextListener implements ServletContextListener {
 
 	private Registry registry;
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		
@@ -54,7 +57,6 @@ public class ContextListener implements ServletContextListener {
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();
 		
 		try{
-		
 			rbm.put("adresse", new BusinessController<Adresse, Integer>(Adresse.class));
 			rbm.put("arbeitstyp", new BusinessController<Arbeitstyp, Integer>(Arbeitstyp.class));
 			rbm.put("bauherr", new BusinessController<Bauherr, Integer>(Bauherr.class));
@@ -88,6 +90,9 @@ public class ContextListener implements ServletContextListener {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		try {

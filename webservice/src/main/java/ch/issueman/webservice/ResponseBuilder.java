@@ -39,6 +39,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#persist(java.lang.Object)
+	 */
 	@Override
 	public Response persist(T t){
 		try {
@@ -49,6 +52,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getById(java.lang.Object)
+	 */
 	@Override
 	public Response getById(Id id) {
 		try {
@@ -58,6 +64,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAll()
+	 */
 	@Override
 	public Response getAll() {
 		try {
@@ -67,6 +76,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllByProperty(java.lang.String, java.lang.Object[])
+	 */
 	@Override
 	public Response getAllByProperty(String propertyname, Object[] propertyvalues) {
 		try {
@@ -76,6 +88,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#update(java.lang.Object)
+	 */
 	@Override
 	public Response update(T t) {
 		try {
@@ -86,6 +101,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#delete(java.lang.Object)
+	 */
 	@Override
 	public Response delete(T t) {
 		try {
@@ -96,6 +114,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#deleteAll()
+	 */
 	@Override
 	public Response deleteAll() {
 		try {
@@ -106,6 +127,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#setLogin(ch.issueman.common.Login)
+	 */
 	@Override
 	public void setLogin(Login login) {
 		try {
@@ -116,6 +140,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#signin()
+	 */
 	@Override
 	public Response signin() {
 		try{
@@ -125,6 +152,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#deleteById(java.lang.Object)
+	 */
 	@Override
 	public Response deleteById(Id id) {
 		try {

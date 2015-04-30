@@ -10,6 +10,16 @@ import java.util.stream.Collectors;
 
 import ch.issueman.common.Login;
 
+/**
+ * Applies logic and rules to the basic controller.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ *
+ * @param <T> the type of entity.
+ * @param <Id> the type of the identifier of the entity.
+ */
 @SuppressWarnings("serial")
 public class BusinessController<T, Id extends Serializable> extends UnicastRemoteObject implements DAORmi<T, Id> {
 	
@@ -54,6 +64,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}		
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#persist(java.lang.Object)
+	 */
 	@Override
 	public void persist(T t) throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
@@ -63,6 +76,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}		
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#getById(java.lang.Object)
+	 */
 	@Override
 	public T getById(Id id) throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
@@ -72,6 +88,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#getAll()
+	 */
 	@Override
 	public List<T> getAll() throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
@@ -81,12 +100,18 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#getAllByProperty(java.lang.String, java.lang.Object[])
+	 */
 	@Override
 	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws RemoteException, Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#update(java.lang.Object)
+	 */
 	@Override
 	public void update(T t) throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
@@ -96,6 +121,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#delete(java.lang.Object)
+	 */
 	@Override
 	public void delete(T t) throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
@@ -105,6 +133,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#deleteAll()
+	 */
 	@Override
 	public void deleteAll() throws RemoteException, Exception {
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
@@ -114,6 +145,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#signin()
+	 */
 	@Override
 	public Login signin() throws RemoteException, Exception {
 		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
@@ -128,6 +162,9 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#setLogin(ch.issueman.common.Login)
+	 */
 	@Override
 	public void setLogin(Login login) throws RemoteException, Exception {
 		this.login = login;
