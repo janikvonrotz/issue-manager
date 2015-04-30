@@ -15,6 +15,7 @@ import lombok.Data;
  * @since 1.0.0
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 public class Rolle implements Model {

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import ch.issueman.common.Login;
 
+@SuppressWarnings("serial")
 public class BusinessController<T, Id extends Serializable> extends UnicastRemoteObject implements DAORmi<T, Id> {
 	
 	private TypeFilter<T, Id> filter = null;

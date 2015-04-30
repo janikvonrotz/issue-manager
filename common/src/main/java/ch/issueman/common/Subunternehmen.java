@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
  * @since 1.0.0
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)

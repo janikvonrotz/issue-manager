@@ -17,6 +17,7 @@ import lombok.Data;
  *
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 public class Adresse implements Model {

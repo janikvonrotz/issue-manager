@@ -20,11 +20,11 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
  * @version 1.0.0
  * @since 1.0.0
  */
+@SuppressWarnings("serial")
 @Entity
 @Data
 @Inheritance(strategy=InheritanceType.JOINED)
 @JsonIgnoreProperties(ignoreUnknown = true)
-///@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class Person implements Model{
 	

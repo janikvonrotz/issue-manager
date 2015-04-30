@@ -17,6 +17,7 @@ import lombok.Data;
  * @version 1.0.1
  * @since 1.0.0
  */
+@SuppressWarnings("serial")
 @Entity
 @Data
 public class Login implements Model {

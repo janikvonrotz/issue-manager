@@ -1,23 +1,15 @@
 package ch.issueman.webservice;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-import ch.issueman.common.Adresse;
 import ch.issueman.common.Login;
-import ch.issueman.webservice.Controller;
 
 /**
  * Build http compatible response for the route requests.

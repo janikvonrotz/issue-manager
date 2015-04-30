@@ -22,6 +22,7 @@ import lombok.Data;
  * @version 1.0.0
  * @since 1.0.0
  */
+@SuppressWarnings("serial")
 @Entity
 @Data
 public class Projekt implements Model{

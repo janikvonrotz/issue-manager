@@ -21,6 +21,7 @@ import lombok.Data;
  *
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 public class Kommentar implements Model {

@@ -1,6 +1,7 @@
 package ch.issueman.common;
 
 import javax.persistence.Entity;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,6 +13,7 @@ import lombok.EqualsAndHashCode;
  * @since 1.0.0
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
