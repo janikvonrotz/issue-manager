@@ -60,7 +60,7 @@ public class ContextListener implements ServletContextListener {
 		Configurator.defaultConfig()
 		   .writer(new FileWriter("log.txt"))
 		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"))
-		   .level(Level.INFO)
+		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
 		   .activate();
 		
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();

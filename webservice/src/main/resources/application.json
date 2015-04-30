@@ -22,7 +22,8 @@
     }
   },
   "tinylog": {
-  	"format": "{level}: {class}.{method}()\t{message}"
+  	"format": "{level}: {class}.{method}()\t{message}",
+  	"level": "INFO"
   },
   "rmi": {
   	"port": 1099,
