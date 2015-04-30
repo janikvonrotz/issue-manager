@@ -23,7 +23,10 @@
   },
   "tinylog": {
   	"format": "{level}: {class}.{method}()\t{message}",
-  	"level": "INFO"
+  	"level": "INFO",
+  	"files": 10,
+  	"size": 10240,
+  	"logtoconsole": "Yes"
   },
   "rmi": {
   	"port": 1099,
