@@ -13,9 +13,9 @@ import ch.issueman.common.Login;
 @SuppressWarnings("serial")
 public class BusinessController<T, Id extends Serializable> extends UnicastRemoteObject implements DAORmi<T, Id> {
 	
-	private TypeFilter<T, Id> filter = null;
-	private Controller<T, Id> controller = null;
-	private Class<T> clazz = null;
+	private TypeFilter<T, Id> filter;
+	private Controller<T, Id> controller;
+	private Class<T> clazz;
 	private Login login;
 	
 	@SuppressWarnings("unchecked")
@@ -26,14 +26,13 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		
 		try {
 			Class<?> filterclazz = Class.forName("ch.issueman.webservice." + clazz.getSimpleName() + "Filter");
-			
 			Constructor<?> constructor = filterclazz.getConstructor();
 			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
 			filter.setController(controller);
 			filter.setLogin(login);
 			
 		} catch (ClassNotFoundException e) {
-			
+			// TODO Auto-generated method stub
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,8 +82,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	}
 
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues)
-			throws RemoteException, Exception {
+	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws RemoteException, Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

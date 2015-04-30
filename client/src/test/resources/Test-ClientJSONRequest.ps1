@@ -9,6 +9,7 @@ $Headers = @{
 
 # Get
 
+$r = $null
 $r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -Headers $Headers
 $r.RawContent
 

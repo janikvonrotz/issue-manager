@@ -34,6 +34,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		try {
 			controller = (DAORmi<T, Id>) Naming.lookup("rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/" + clazz.getSimpleName().toLowerCase());
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated method stub
 			e.printStackTrace();
 		}
 	}

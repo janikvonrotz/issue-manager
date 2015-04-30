@@ -86,7 +86,6 @@ public class Route{
 		Login login = (Login) session.getAttribute("login");
 		rbm.get(entity).setLogin(login);
 		return rbm.get(entity).getById(id);
-		
 	} 	
 
 	@GET
