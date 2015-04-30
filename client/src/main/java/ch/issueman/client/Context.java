@@ -1,6 +1,8 @@
 package ch.issueman.client;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
@@ -31,7 +33,6 @@ public class Context {
 	public static boolean login(){
 		Boolean status = false;
 		try {
-			
 			client.register(new BasicAuthentication(login.getUsername(), login.getPasswort()));
 			WebTarget target = client.target(ConfigFactory.load().getString("webservice.url") + "/signin");
 			Response response = target.request(MediaType.APPLICATION_JSON).get();
@@ -48,9 +49,9 @@ public class Context {
 		return status;
 	}
 
-	public static boolean ifUserHasRole(String rolle) {
-		
-		if(login.getRolle().getBezeichnung().equals(rolle)){
+	public static boolean ifUserHasRole(String[] rollen) {
+		List<String> listrollen = Arrays.asList(rollen);
+		if(listrollen.contains(login.getRolle().getBezeichnung())){
 			return true;
 		}
 		return false;
