@@ -18,6 +18,7 @@ import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
+import ch.issueman.common.FilterHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
@@ -196,11 +197,11 @@ public class Seed {
 		/**
 		 *  seed Mangelstatus
 		 */
-		listMangelstatus.add(new Mangelstatus("beauftragt", filterListIds(listRolle, new int[]{0,3})));
-		listMangelstatus.add(new Mangelstatus("abzuklären", filterListIds(listRolle, new int[]{0,2})));
-		listMangelstatus.add(new Mangelstatus("behoben", filterListIds(listRolle, new int[]{2,3})));
-		listMangelstatus.add(new Mangelstatus("abgeschlossen", filterListIds(listRolle, new int[]{0,1})));
-		listMangelstatus.add(new Mangelstatus("angenommen", filterListIds(listRolle, new int[]{1,3})));
+		listMangelstatus.add(new Mangelstatus("beauftragt", FilterHelper.filterListIds(listRolle, new int[]{0,3})));
+		listMangelstatus.add(new Mangelstatus("abzuklären", FilterHelper.filterListIds(listRolle, new int[]{0,2})));
+		listMangelstatus.add(new Mangelstatus("behoben", FilterHelper.filterListIds(listRolle, new int[]{2,3})));
+		listMangelstatus.add(new Mangelstatus("abgeschlossen", FilterHelper.filterListIds(listRolle, new int[]{0,1})));
+		listMangelstatus.add(new Mangelstatus("angenommen", FilterHelper.filterListIds(listRolle, new int[]{1,3})));
 		persistList(listMangelstatus, mangelstatuscontroller);
 		
 		/**
@@ -271,20 +272,20 @@ public class Seed {
 		/**
 		 * seed Projekt
 		 */
-		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(12), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), filterListIds(listProjektleitung, new int[]{0,1}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(13), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(14), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), filterListIds(listProjektleitung, new int[]{4,5}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(15), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), filterListIds(listProjektleitung, new int[]{6,7}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(16), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), filterListIds(listProjektleitung, new int[]{8,9}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(12), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), FilterHelper.filterListIds(listProjektleitung, new int[]{0,1}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(13), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), FilterHelper.filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(14), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), FilterHelper.filterListIds(listProjektleitung, new int[]{4,5}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(15), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), FilterHelper.filterListIds(listProjektleitung, new int[]{6,7}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(16), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), FilterHelper.filterListIds(listProjektleitung, new int[]{8,9}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
 		persistList(listProjekt, projektcontroller);
 		
 		/**
 		 * seed Kontakt
 		 */
-		listKontakt.add(new Kontakt("kp","kp","kp@im.ch", listSubunternehmen.get(0), filterListIds(listProjekt, new int[]{0,3})));
-		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), filterListIds(listProjekt, new int[]{0,3})));
-		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), filterListIds(listProjekt, new int[]{0,3})));
-		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(4), filterListIds(listProjekt, new int[]{0,3})));
+		listKontakt.add(new Kontakt("kp","kp","kp@im.ch", listSubunternehmen.get(0), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
+		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
+		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(4), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
 		persistList(listKontakt, kontaktcontroller);
 		
 		/**
@@ -316,18 +317,18 @@ public class Seed {
 		/**
 		 * seed Mangel
 		 */
-		listMangel.add(new Mangel(1, listBauleiter.get(0), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
-		listMangel.add(new Mangel(2, listBauleiter.get(0), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
-		listMangel.add(new Mangel(1, listBauleiter.get(1), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
-		listMangel.add(new Mangel(2, listBauleiter.get(1), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
-		listMangel.add(new Mangel(1, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listMangel.add(new Mangel(2, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listMangel.add(new Mangel(1, listBauleiter.get(3), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
-		listMangel.add(new Mangel(2, listBauleiter.get(3), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
-		listMangel.add(new Mangel(1, listBauleiter.get(4), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
-		listMangel.add(new Mangel(2, listBauleiter.get(4), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
-		listMangel.add(new Mangel(3, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
-		listMangel.add(new Mangel(4, listBauleiter.get(2), filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listMangel.add(new Mangel(1, listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), new GregorianCalendar(1,7,2015), listProjekt.get(0)));
+		listMangel.add(new Mangel(1, listBauleiter.get(1), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
+		listMangel.add(new Mangel(2, listBauleiter.get(1), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), new GregorianCalendar(1,7,2015), listProjekt.get(1)));
+		listMangel.add(new Mangel(1, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listMangel.add(new Mangel(2, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listMangel.add(new Mangel(1, listBauleiter.get(3), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
+		listMangel.add(new Mangel(2, listBauleiter.get(3), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(3)));
+		listMangel.add(new Mangel(1, listBauleiter.get(4), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
+		listMangel.add(new Mangel(2, listBauleiter.get(4), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), new GregorianCalendar(1,7,2015), listProjekt.get(4)));
+		listMangel.add(new Mangel(3, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
+		listMangel.add(new Mangel(4, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), new GregorianCalendar(1,7,2015), listProjekt.get(2)));
 		persistList(listMangel, mangelcontroller);		
 	}
 	
@@ -355,20 +356,5 @@ public class Seed {
 		}else{
 			log.error("Nothing seeded for list: " + list.toString());
 		}		
-	}
-
-	/**
-	 * Filter a list by an array of index identifiers.
-	 * 
-	 * @param list the list to filter.
-	 * @param ids the collection of index identifiers.
-	 * @return the filtered list.
-	 */
-	private <T> List<T> filterListIds(List<T> list, int[] ids){
-		List<T> listtmp = new ArrayList<T>();
-		for(int i : ids){
-			listtmp.add((T) list.get(i));
-		}
-		return listtmp;		
 	}
 }
