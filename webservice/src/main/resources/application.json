@@ -21,10 +21,12 @@
       "output-mode": "database"
     }
   },
+  "tinylog": {
+  	"format": "{level}: {class}.{method}()\t{message}"
+  },
   "rmi": {
   	"port": 1099,
   	"host": "localhost"
-  	
   },
   "permissions": {
     "Bauherr": {

@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Login;
 
 /**
@@ -21,6 +22,7 @@ import ch.issueman.common.Login;
  * @param <Id> the type of the identifier of the entity.
  */
 @SuppressWarnings("serial")
+@Slf4j
 public class BusinessController<T, Id extends Serializable> extends UnicastRemoteObject implements DAORmi<T, Id> {
 	
 	private TypeFilter<T, Id> filter;
@@ -42,26 +44,10 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 			filter.setLogin(login);
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated method stub
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+			log.info("No custom filter for " + clazz.getSimpleName() + " found.");
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+		}	
 	}
 
 	/* (non-Javadoc)
