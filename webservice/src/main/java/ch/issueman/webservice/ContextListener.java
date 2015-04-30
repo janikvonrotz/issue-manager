@@ -1,11 +1,17 @@
 package ch.issueman.webservice;
 
 import java.rmi.Naming;
+import java.rmi.NoSuchObjectException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Adresse;
@@ -28,15 +34,22 @@ import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
 /**
- * Runs the rmi endpoints.
+ * Runs the rmi endpoints and tinylog configurator.
  * 
  * @author Janik von Rotz
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
 @Slf4j
-public class RmiService{
-	public static void main(String[] args) {
+@WebListener
+public class ContextListener implements ServletContextListener {
+
+	private Registry registry;
+	
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		
+		// Add tinylog configurator here		
 		
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();
 		
@@ -61,20 +74,27 @@ public class RmiService{
 			rbm.put("subunternehmen", new BusinessController<Subunternehmen, Integer>(Subunternehmen.class));
 			rbm.put("unternehmen", new BusinessController<Unternehmen, Integer>(Unternehmen.class));
 			
-			Registry reg = LocateRegistry.createRegistry(ConfigHelper.getConfig("rmi.port", 1099));
+			registry = LocateRegistry.createRegistry(ConfigHelper.getConfig("rmi.port", 1099));
 			
-			if (reg!= null){
+			if (registry!= null){
 				for(Entry<String, BusinessController<?, Integer>> me : rbm.entrySet()){
 					Naming.rebind(me.getKey(), me.getValue());
 					log.info(me.getKey() + " bound.");
 				}
 			}
-		
-		}catch (Exception e){
-			// TODO Auto-generated method stub
-			e.printStackTrace();
+		} catch (Exception e){
+			log.error("RMI initialize failed.", e);
 		}
 		
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		try {
+			UnicastRemoteObject.unexportObject(registry, true);
+		} catch (NoSuchObjectException e) {
+			log.error("RMI destroy failed.", e);
+		}
 	}
 }
 

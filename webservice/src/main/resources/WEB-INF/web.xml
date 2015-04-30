@@ -13,7 +13,11 @@
 		<param-name>resteasy.providers</param-name>
 		<param-value>ch.issueman.webservice.Authenticator</param-value>
 	</context-param>
-
+	
+	<listener>
+    	<listener-class>ch.issueman.webservice.ContextListener</listener-class>
+	</listener>
+	
 	<servlet>
 		<servlet-name>resteasy-servlet</servlet-name>
 		<servlet-class>
