@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -36,16 +37,16 @@ public class Projekt implements Model{
 	@OneToOne(cascade=CascadeType.ALL)
     private Adresse adresse;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
     private Arbeitstyp arbeitstyp;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
     private Projekttyp projekttyp;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
     private Bauherr bauherr;
 	@NotNull
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Projektleitung> projektleitungen;
 	@NotNull
     private Calendar beginn;

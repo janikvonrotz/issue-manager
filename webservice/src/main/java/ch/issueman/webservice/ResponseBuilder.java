@@ -32,10 +32,10 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	public ResponseBuilder(Class<T> clazz){
 		this.clazz = clazz;
 		try {
+			//controller = new BusinessController<T, Id>(clazz);
 			controller = (DAORmi<T, Id>) Naming.lookup("rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/" + clazz.getSimpleName().toLowerCase());
-		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-			// TODO Auto-generated method stub
-			e.printStackTrace();
+		} catch (Exception e) {
+			
 		}
 	}
 	

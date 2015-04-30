@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
@@ -69,5 +70,6 @@ public abstract class Person implements Model{
 	 * 
 	 * @return display name
 	 */
+	@JsonIgnore
 	public abstract String getDisplayName();
 } 

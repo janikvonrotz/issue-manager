@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -32,17 +33,17 @@ public class Mangel implements Model {
 	@NotNull
 	private int referenz;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Person erfasser;
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Kommentar> kommentare;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Mangelstatus mangelstatus;
 	@NotNull
 	private Calendar erledigenbis;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Projekt projekt;
 	private Calendar erstelltam;
 	

@@ -3,6 +3,7 @@ package ch.issueman.common;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -26,7 +27,7 @@ public class Mangelstatus implements Model {
 	@NotNull
 	private String status;
 	@NotNull
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Rolle> rollen;
 	
 	public Mangelstatus() {}

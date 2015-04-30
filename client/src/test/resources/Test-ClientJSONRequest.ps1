@@ -10,16 +10,17 @@ $Headers = @{
 # Get
 
 $r = $null
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -Headers $Headers
-$r.RawContent
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/login' -Headers $Headers
+$r.RawContent | Out-File test.txt
 
 # Delete
 
-Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp/3251' -ContentType application/json -Method DELETE -Headers $Headers
+Invoke-WebRequest -Uri 'http://localhost:8080/webservice/bauleiter/9673' -ContentType application/json -Method DELETE -Headers $Headers
 
 # Get by Id
 
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp/3251' -Headers $Headers
+$r = $null
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/mangel/9747' -Headers $Headers
 $r.RawContent
 
 # Login

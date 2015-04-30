@@ -3,7 +3,8 @@ package ch.issueman.common;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -23,9 +24,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class Kontakt extends Person {
 
-	@OneToOne
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Projekt> projekte;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Subunternehmen subunternehmen;
 
 	public Kontakt() {
