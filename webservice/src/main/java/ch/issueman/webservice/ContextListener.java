@@ -15,10 +15,10 @@ import javax.servlet.annotation.WebListener;
 
 import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.Level;
+import org.pmw.tinylog.writers.ConsoleWriter;
 import org.pmw.tinylog.writers.FileWriter;
-import org.pmw.tinylog.writers.SharedFileWriter;
-
 import lombok.extern.slf4j.Slf4j;
+
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
@@ -60,8 +60,13 @@ public class ContextListener implements ServletContextListener {
 		Configurator.defaultConfig()
 		   .writer(new FileWriter("log.txt"))
 		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"))
-		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
-		   .activate();
+		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")));
+		   
+		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No") == "Yes"){
+			Configurator.defaultConfig().addWriter(new ConsoleWriter());
+		}
+		   
+		Configurator.defaultConfig().activate();
 		
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();
 		
