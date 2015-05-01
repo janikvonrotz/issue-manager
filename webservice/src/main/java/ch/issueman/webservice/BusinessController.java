@@ -2,12 +2,9 @@ package ch.issueman.webservice;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Login;
 
@@ -128,23 +125,6 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 			filter.deleteAll();
 		}else{
 			throw new Exception("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
-		}
-	}
-
-	/* (non-Javadoc)
-	 * @see ch.issueman.webservice.DAORmi#signin()
-	 */
-	@Override
-	public Login signin() throws RemoteException, Exception {
-		List<Login> logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
-				.filter(l -> l.getUsername().equals(login.getUsername()))
-				.filter(l -> l.getPasswort().equals(login.getPasswort()))
-				.collect(Collectors.toList());
-		
-		if(logins.size() == 1){
-			return logins.get(0);
-		}else{
-			throw new Exception("Signin failed");
 		}
 	}
 

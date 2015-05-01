@@ -53,15 +53,14 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	public Response deleteAll();
 	
 	/* (non-Javadoc)
-	 * @see ch.issueman.webservice.DAORmi#signin()
+	 * @see ch.issueman.webservice.DAORmi#setLogin(ch.issueman.common.Login)
 	 */
 	public void setLogin(Login login);
 	
-	/* (non-Javadoc)
-	 * @see ch.issueman.webservice.DAORmi#setLogin(ch.issueman.common.Login)
+	/**
+	 * @return
 	 */
-	public Response signin();
-	
+	public Response signin(Login login);
 	
 	/**
 	 * @param id

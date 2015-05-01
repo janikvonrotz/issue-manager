@@ -1,10 +1,7 @@
 package ch.issueman.webservice;
 
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -144,11 +141,11 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	 * @see ch.issueman.webservice.DAOResponseBuilder#signin()
 	 */
 	@Override
-	public Response signin() {
-		try{
-			return Response.status(Status.OK).entity(controller.signin()).build();
-		} catch (Exception e) {
-			return Response.status(Status.BAD_REQUEST).entity(e).build();
+	public Response signin(Login login) {
+		if(login != null){
+			return Response.status(Status.OK).entity(login).build();
+		}else{
+			return Response.status(Status.BAD_REQUEST).entity(new Exception("Signin failed")).build();
 		}
 	}
 

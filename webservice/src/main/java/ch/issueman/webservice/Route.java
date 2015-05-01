@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -82,9 +81,7 @@ public class Route{
 	@Path("{entity}/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") int id, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get(entity).setLogin(login);
+		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getById(id);
 	} 	
 
@@ -92,9 +89,7 @@ public class Route{
 	@Path("{entity}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAll(@PathParam("entity") String entity, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get(entity).setLogin(login);
+		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getAll();
 	}
 	
@@ -102,10 +97,7 @@ public class Route{
 	@Path("signin")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
-		return rbm.get("login").signin();
+		return rbm.get("login").signin((Login) request.getSession(true).getAttribute("login"));
 	}
 	
 	/**
@@ -116,9 +108,9 @@ public class Route{
 	@Path("adresse")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateAdresse(Adresse t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("adresse").setLogin(login);
+
+
+		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("adresse")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -126,18 +118,18 @@ public class Route{
 	@Path("adresse")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistAdresse(Adresse t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("adresse").setLogin(login);
+
+
+		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("adresse")).persist(t);
 	}
 	@DELETE
 	@Path("adresse/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteAdresse(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("adresse").setLogin(login);
+
+
+		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("adresse").deleteById(id);
 	}	
 	
@@ -149,9 +141,9 @@ public class Route{
 	@Path("arbeitstyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateArbeitstyp(Arbeitstyp t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("arbeitstyp").setLogin(login);
+
+
+		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("arbeitstyp")).update(t);
 	}
 
@@ -160,18 +152,18 @@ public class Route{
 	@Path("arbeitstyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistArbeitstyp(Arbeitstyp t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("arbeitstyp").setLogin(login);
+
+
+		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("arbeitstyp")).persist(t);
 	}
 	@DELETE
 	@Path("arbeitstyp/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteArbeitstyp(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("arbeitstyp").setLogin(login);
+
+
+		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("arbeitstyp").deleteById(id);
 	}	
 	
@@ -183,9 +175,9 @@ public class Route{
 	@Path("bauherr")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateBauherr(Bauherr t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauherr").setLogin(login);
+
+
+		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauherr")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -193,18 +185,18 @@ public class Route{
 	@Path("bauherr")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistBauherr(Bauherr t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauherr").setLogin(login);
+
+
+		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauherr")).persist(t);
 	}
 	@DELETE
 	@Path("bauherr/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteBauherr(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauherr").setLogin(login);
+
+
+		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauherr").deleteById(id);
 	}	
 	
@@ -216,9 +208,9 @@ public class Route{
 	@Path("bauleiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateBauleiter(Bauleiter t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauleiter").setLogin(login);
+
+
+		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauleiter")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -226,18 +218,18 @@ public class Route{
 	@Path("bauleiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistBauleiter(Bauleiter t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauleiter").setLogin(login);
+
+
+		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauleiter")).persist(t);
 	}
 	@DELETE
 	@Path("bauleiter/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteBauleiter(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("bauleiter").setLogin(login);
+
+
+		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauleiter").deleteById(id);
 	}	
 	
@@ -249,9 +241,7 @@ public class Route{
 	@Path("kommentar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateKommentar(Kommentar t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kommentar")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -259,18 +249,14 @@ public class Route{
 	@Path("kommentar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistKommentar(Kommentar t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kommentar")).persist(t);
 	}
 	@DELETE
 	@Path("kommentar/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteKommentar(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("kommentar").deleteById(id);
 	}
 	
@@ -282,9 +268,7 @@ public class Route{
 	@Path("kontakt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateKontakt(Kontakt t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kontakt")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -292,18 +276,14 @@ public class Route{
 	@Path("kontakt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistKontakt(Kontakt t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kontakt")).persist(t);
 	}
 	@DELETE
 	@Path("kontakt/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteKontakt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("kontakt").deleteById(id);
 	}
 	
@@ -315,9 +295,7 @@ public class Route{
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateLogin(Login t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("login")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -325,18 +303,14 @@ public class Route{
 	@Path("login")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistLogin(Login t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("login")).persist(t);
 	}
 	@DELETE
 	@Path("login/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteLogin(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("login").deleteById(id);
 	}
 	
@@ -348,9 +322,7 @@ public class Route{
 	@Path("mangel")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMangel(Mangel t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangel").setLogin(login);
+		rbm.get("mangel").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangel")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -358,18 +330,14 @@ public class Route{
 	@Path("mangel")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistMangel(Mangel t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangel").setLogin(login);
+		rbm.get("mangel").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangel")).persist(t);
 	}
 	@DELETE
 	@Path("mangel/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteMangel(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangel").setLogin(login);
+		rbm.get("mangel").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("mangel").deleteById(id);
 	}
 	
@@ -381,9 +349,7 @@ public class Route{
 	@Path("mangelstatus")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMangelstatus(Mangelstatus t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangelstatus").setLogin(login);
+		rbm.get("mangelstatus").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangelstatus")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -391,18 +357,14 @@ public class Route{
 	@Path("mangelstatus")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistMangelstatus(Mangelstatus t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangelstatus").setLogin(login);
+		rbm.get("mangelstatus").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangelstatus")).persist(t);
 	}
 	@DELETE
 	@Path("mangelstatus/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteMangelstatus(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("mangelstatus").setLogin(login);
+		rbm.get("mangelstatus").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("mangelstatus").deleteById(id);
 	}	
 	
@@ -414,9 +376,7 @@ public class Route{
 	@Path("ort")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateOrt(Ort t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("ort").setLogin(login);
+		rbm.get("ort").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("ort")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -424,18 +384,14 @@ public class Route{
 	@Path("ort")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistOrt(Ort t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("ort").setLogin(login);
+		rbm.get("ort").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("ort")).persist(t);
 	}
 	@DELETE
 	@Path("ort/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteOrt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("ort").setLogin(login);
+		rbm.get("ort").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("ort").deleteById(id);
 	}	
 	
@@ -447,9 +403,7 @@ public class Route{
 	@Path("person")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updatePerson(Person t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("person").setLogin(login);
+		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("person")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -457,18 +411,14 @@ public class Route{
 	@Path("person")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistPerson(Person t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("person").setLogin(login);
+		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("person")).persist(t);
 	}
 	@DELETE
 	@Path("person/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deletePerson(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("person").setLogin(login);
+		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("person").deleteById(id);
 	}	
 
@@ -480,9 +430,7 @@ public class Route{
 	@Path("projekt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProjekt(Projekt t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekt")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -490,18 +438,14 @@ public class Route{
 	@Path("projekt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistProjekt(Projekt t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekt")).persist(t);
 	}
 	@DELETE
 	@Path("projekt/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteProjekt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("login").setLogin(login);
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("projekt").deleteById(id);
 	}
 	
@@ -513,9 +457,7 @@ public class Route{
 	@Path("projektleitung")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProjektleitung(Projektleitung t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projektleitung").setLogin(login);
+		rbm.get("projektleitung").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projektleitung")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -523,18 +465,14 @@ public class Route{
 	@Path("projektleitung")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistProjektleitung(Projektleitung t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projektleitung").setLogin(login);
+		rbm.get("projektleitung").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projektleitung")).persist(t);
 	}
 	@DELETE
 	@Path("projektleitung/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteProjektleitung(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projektleitung").setLogin(login);
+		rbm.get("projektleitung").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("projektleitung").deleteById(id);
 	}	
 	
@@ -546,9 +484,7 @@ public class Route{
 	@Path("projekttyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProjekttyp(Projekttyp t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projekttyp").setLogin(login);
+		rbm.get("projekttyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekttyp")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -556,18 +492,14 @@ public class Route{
 	@Path("projekttyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistProjekttyp(Projekttyp t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projekttyp").setLogin(login);
+		rbm.get("projekttyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekttyp")).persist(t);
 	}
 	@DELETE
 	@Path("projekttyp/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteProjekttyp(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("projekttyp").setLogin(login);
+		rbm.get("projekttyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("projekttyp").deleteById(id);
 	}
 	
@@ -579,9 +511,7 @@ public class Route{
 	@Path("rolle")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateRolle(Rolle t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("rolle").setLogin(login);
+		rbm.get("rolle").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("rolle")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -589,18 +519,14 @@ public class Route{
 	@Path("rolle")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistRolle(Rolle t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("rolle").setLogin(login);
+		rbm.get("rolle").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("rolle")).persist(t);
 	}
 	@DELETE
 	@Path("rolle/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteRolle(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("rolle").setLogin(login);
+		rbm.get("rolle").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("rolle").deleteById(id);
 	}	
 	
@@ -612,9 +538,7 @@ public class Route{
 	@Path("sachbearbeiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateSachbearbeiter(Sachbearbeiter t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("sachbearbeiter").setLogin(login);
+		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("sachbearbeiter")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -622,18 +546,14 @@ public class Route{
 	@Path("sachbearbeiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistSachbearbeiter(Sachbearbeiter t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("sachbearbeiter").setLogin(login);
+		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("sachbearbeiter")).persist(t);
 	}
 	@DELETE
 	@Path("sachbearbeiter/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteSachbearbeiter(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("sachbearbeiter").setLogin(login);
+		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("sachbearbeiter").deleteById(id);
 	}	
 	
@@ -645,9 +565,7 @@ public class Route{
 	@Path("subunternehmen")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateSubunternehmen(Subunternehmen t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("subunternehmen").setLogin(login);
+		rbm.get("subunternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("subunternehmen")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -655,18 +573,14 @@ public class Route{
 	@Path("subunternehmen")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistSubunternehmen(Subunternehmen t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("subunternehmen").setLogin(login);
+		rbm.get("subunternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("subunternehmen")).persist(t);
 	}
 	@DELETE
 	@Path("subunternehmen/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteSubunternehmen(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("subunternehmen").setLogin(login);
+		rbm.get("subunternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("subunternehmen").deleteById(id);
 	}
 	
@@ -678,9 +592,7 @@ public class Route{
 	@Path("unternehmen")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateUnternehmen(Unternehmen t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("unternehmen").setLogin(login);
+		rbm.get("unternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("unternehmen")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -688,18 +600,14 @@ public class Route{
 	@Path("unternehmen")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistUnternehmen(Unternehmen t, @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("unternehmen").setLogin(login);
+		rbm.get("unternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("unternehmen")).persist(t);
 	}
 	@DELETE
 	@Path("unternehmen/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteUnternehmen(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
-		Login login = (Login) session.getAttribute("login");
-		rbm.get("unternehmen").setLogin(login);
+		rbm.get("unternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("unternehmen").deleteById(id);
 	}
 }

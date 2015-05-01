@@ -59,11 +59,4 @@ public interface DAORmi <T, Id> extends Remote{
 	 * @throws Exception
 	 */
 	public void setLogin(Login login) throws RemoteException, Exception;
-	
-	/**
-	 * @return
-	 * @throws RemoteException
-	 * @throws Exception
-	 */
-	public Login signin() throws RemoteException, Exception;
 }
