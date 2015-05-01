@@ -13,11 +13,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.jboss.resteasy.util.Base64;
 
 import ch.issueman.common.Login;
 
 @Provider
+@Slf4j
 public class Authenticator implements ContainerRequestFilter {
 
 	@Context
@@ -37,7 +40,7 @@ public class Authenticator implements ContainerRequestFilter {
 			try {
 				usernameAndPassword = new String(Base64.decode(encodedUserPassword));
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error(e.getMessage(), e);
 			}
 	
 			StringTokenizer tokenizer = new StringTokenizer(usernameAndPassword, ":");

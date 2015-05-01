@@ -7,9 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import lombok.extern.slf4j.Slf4j;
+
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
+@Slf4j
 public class EclipseLink {
 
 	private static EntityManagerFactory emf = null;
@@ -28,6 +31,7 @@ public class EclipseLink {
 						
 			emf = Persistence.createEntityManagerFactory("issue-manager", properties);
 		} catch (Throwable e) {
+			log.error(e.getMessage(), e);
 		}
 	}
 

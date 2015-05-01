@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Login;
 
 /**
@@ -21,6 +22,7 @@ import ch.issueman.common.Login;
  */
 
 @Data
+@Slf4j
 public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseBuilder<T, Id>{
 	
 	private DAORmi<T, Id> controller;
@@ -33,7 +35,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			//controller = new BusinessController<T, Id>(clazz);
 			controller = (DAORmi<T, Id>) Naming.lookup("rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/" + clazz.getSimpleName().toLowerCase());
 		} catch (Exception e) {
-			
+			log.error(e.getMessage(), e);
 		}
 	}
 	
@@ -133,8 +135,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		try {
 			controller.setLogin(login);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 
