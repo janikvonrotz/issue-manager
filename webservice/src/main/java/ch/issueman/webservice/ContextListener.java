@@ -57,15 +57,15 @@ public class ContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		
-		Configurator.currentConfig()
-		   .writer(new FileWriter("log.txt"), Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
-		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"));
+		Configurator.defaultConfig()
+		   .writer(new FileWriter("log.txt"))
+		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
+		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"))
+		   .activate();
 		
-		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No") == "Yes"){
-			Configurator.currentConfig().addWriter(new ConsoleWriter(), Level.valueOf(ConfigHelper.getConfig("tinylog.consoleloglevel", "OFF")));
+		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No").equals("Yes")){
+			Configurator.currentConfig().addWriter(new ConsoleWriter()).activate();
 		}
-
-		Configurator.defaultConfig().activate();
 		
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();
 		
@@ -97,6 +97,9 @@ public class ContextListener implements ServletContextListener {
 					log.info(me.getKey() + " bound.");
 				}
 			}
+			
+			log.error("test");
+			
 		} catch (Exception e){
 			log.error("RMI initialize failed.", e);
 		}

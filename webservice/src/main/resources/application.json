@@ -23,8 +23,7 @@
   },
   "tinylog": {
   	"format": "{level}: {class}.{method}()\t{message}",
-  	"level": "INFO",
-  	"consoleloglevel": "ERROR",
+  	"level": "ERROR",
   	"files": 10,
   	"size": 10240,
   	"logtoconsole": "Yes"
