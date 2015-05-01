@@ -1,6 +1,6 @@
 ﻿
 $user = "sb@im.ch"
-$pass = "1" 
+$pass = "2" 
 $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("$($user):$($pass)"))
 $basicAuthValue = "Basic $encodedCreds"
 $Headers = @{
@@ -25,6 +25,7 @@ $r.RawContent
 
 # Login
 
+$r = $null
 $r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/signin' -Headers $Headers
 $r.RawContent
 

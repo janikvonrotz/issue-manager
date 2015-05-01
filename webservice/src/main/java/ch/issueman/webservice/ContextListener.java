@@ -58,14 +58,13 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		
 		Configurator.defaultConfig()
-		   .writer(new FileWriter("log.txt"))
-		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"))
-		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")));
-		   
+		   .writer(new FileWriter("log.txt"), Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
+		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"));
+		
 		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No") == "Yes"){
-			Configurator.defaultConfig().addWriter(new ConsoleWriter());
+			Configurator.defaultConfig().addWriter(new ConsoleWriter(), Level.valueOf(ConfigHelper.getConfig("tinylog.consoleloglevel", "OFF")));
 		}
-		   
+
 		Configurator.defaultConfig().activate();
 		
 		Map <String, BusinessController<?, Integer>> rbm = new HashMap<String, BusinessController<?, Integer>>();
