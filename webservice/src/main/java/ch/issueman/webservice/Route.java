@@ -108,8 +108,6 @@ public class Route{
 	@Path("adresse")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateAdresse(Adresse t, @Context HttpServletRequest request) {
-
-
 		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("adresse")).update(t);
 	}		
@@ -118,8 +116,6 @@ public class Route{
 	@Path("adresse")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistAdresse(Adresse t, @Context HttpServletRequest request) {
-
-
 		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("adresse")).persist(t);
 	}
@@ -127,8 +123,6 @@ public class Route{
 	@Path("adresse/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteAdresse(@PathParam("id") int id,  @Context HttpServletRequest request) {
-
-
 		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("adresse").deleteById(id);
 	}	
@@ -175,8 +169,6 @@ public class Route{
 	@Path("bauherr")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateBauherr(Bauherr t, @Context HttpServletRequest request) {
-
-
 		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauherr")).update(t);
 	}		
@@ -185,8 +177,6 @@ public class Route{
 	@Path("bauherr")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistBauherr(Bauherr t, @Context HttpServletRequest request) {
-
-
 		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauherr")).persist(t);
 	}
@@ -194,8 +184,6 @@ public class Route{
 	@Path("bauherr/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteBauherr(@PathParam("id") int id,  @Context HttpServletRequest request) {
-
-
 		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauherr").deleteById(id);
 	}	
@@ -208,8 +196,6 @@ public class Route{
 	@Path("bauleiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateBauleiter(Bauleiter t, @Context HttpServletRequest request) {
-
-
 		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauleiter")).update(t);
 	}		
@@ -218,8 +204,6 @@ public class Route{
 	@Path("bauleiter")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistBauleiter(Bauleiter t, @Context HttpServletRequest request) {
-
-
 		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauleiter")).persist(t);
 	}
@@ -227,8 +211,6 @@ public class Route{
 	@Path("bauleiter/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteBauleiter(@PathParam("id") int id,  @Context HttpServletRequest request) {
-
-
 		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauleiter").deleteById(id);
 	}	
