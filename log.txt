@@ -1,1 +1,0 @@
-ERROR: ch.issueman.webservice.ContextListener.contextInitialized()	test

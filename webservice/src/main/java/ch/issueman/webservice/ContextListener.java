@@ -98,8 +98,6 @@ public class ContextListener implements ServletContextListener {
 				}
 			}
 			
-			log.error("test");
-			
 		} catch (Exception e){
 			log.error("RMI initialize failed.", e);
 		}
