@@ -19,7 +19,7 @@ import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
 
 /**
- * Basic server controller class.
+ * Basic client controller class.
  * 
  * @author Janik von Rotz
  * @version 1.0.0

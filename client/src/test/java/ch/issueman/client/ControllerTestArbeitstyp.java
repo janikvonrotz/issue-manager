@@ -54,7 +54,6 @@ public class ControllerTestArbeitstyp {
 			listArbeitstyp = arbeitstypcontroller.getAll();
 			arbeitstyp = arbeitstypcontroller.getById(listArbeitstyp.get(listArbeitstyp.size()-1).getId());
 		} catch (Exception e) {
-			e.printStackTrace();
 			fail("Get by id for Arbeitstyp failed");
 		}
 	}
@@ -72,8 +71,12 @@ public class ControllerTestArbeitstyp {
 	@Test
 	public void testDelete() {
 		try {
-			arbeitstypcontroller.persist(arbeitstyp);
+			listArbeitstyp = arbeitstypcontroller.getAll();
+			arbeitstyp = listArbeitstyp.get(listArbeitstyp.size()-1);
+			System.out.println(arbeitstyp.toString());
+			arbeitstypcontroller.delete(arbeitstyp);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Deletion of Arbeitstyp failed");
 		}
 	}

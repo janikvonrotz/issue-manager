@@ -57,12 +57,12 @@ public class ContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		
-		Configurator.defaultConfig()
+		Configurator.currentConfig()
 		   .writer(new FileWriter("log.txt"), Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
 		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"));
 		
 		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No") == "Yes"){
-			Configurator.defaultConfig().addWriter(new ConsoleWriter(), Level.valueOf(ConfigHelper.getConfig("tinylog.consoleloglevel", "OFF")));
+			Configurator.currentConfig().addWriter(new ConsoleWriter(), Level.valueOf(ConfigHelper.getConfig("tinylog.consoleloglevel", "OFF")));
 		}
 
 		Configurator.defaultConfig().activate();

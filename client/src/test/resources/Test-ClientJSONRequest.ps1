@@ -1,6 +1,6 @@
 ﻿
 $user = "sb@im.ch"
-$pass = "2" 
+$pass = "1" 
 $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("$($user):$($pass)"))
 $basicAuthValue = "Basic $encodedCreds"
 $Headers = @{
@@ -10,7 +10,7 @@ $Headers = @{
 # Get
 
 $r = $null
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/login' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/mangel' -Headers $Headers
 $r.RawContent
 
 # Delete

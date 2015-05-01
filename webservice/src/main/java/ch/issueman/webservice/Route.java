@@ -135,19 +135,14 @@ public class Route{
 	@Path("arbeitstyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateArbeitstyp(Arbeitstyp t, @Context HttpServletRequest request) {
-
-
 		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("arbeitstyp")).update(t);
 	}
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@POST
 	@Path("arbeitstyp")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistArbeitstyp(Arbeitstyp t, @Context HttpServletRequest request) {
-
-
 		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("arbeitstyp")).persist(t);
 	}
@@ -155,13 +150,11 @@ public class Route{
 	@Path("arbeitstyp/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response deleteArbeitstyp(@PathParam("id") int id,  @Context HttpServletRequest request) {
-
-
 		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("arbeitstyp").deleteById(id);
 	}	
 	
-	/**
+	/**deleteById
 	 * Bauherr
 	 */	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
