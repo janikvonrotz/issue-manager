@@ -9,42 +9,32 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ch.issueman.common.Adresse;
-import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
-import ch.issueman.common.Kommentar;
+import ch.issueman.common.FilterHelper;
 import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
-import ch.issueman.common.Ort;
 import ch.issueman.common.Projekt;
-import ch.issueman.common.Projekttyp;
-import ch.issueman.common.Rolle;
 import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.Arbeitstyp;
-import ch.issueman.common.Unternehmen;
 
 
 public class ControllerTestMangel {
 	
-	private String kommentartext = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed t acc";
-	
-//	private Mangel mangel = new Mangel(1, new Bauleiter("TestNachname", "TestVorname","test.test@test.ch"), 
-//			new Kommentar(kommentartext, new Login(new Sachbearbeiter("", "", "test@test.ch"), "1", null)), 
-//			new Mangelstatus("test", filterListIds(listRolle, new int[]{0,3})), new GregorianCalendar(1,1,2015), 
-//			new Projekt("Test Rennovation", new Adresse("Testhausen", new Ort(7000, "Chur")), new Arbeitstyp("Test"), 
-//					new Projekttyp("Testbau"), new Bauherr("Test", "Bauherr", "test.bauherr@bauherrtest.ch", 
-//					new Unternehmen("Testfirma", new Adresse("Scheiss", new Ort(6666, "Hölle")))), filterListIds(listProjektleitung, new int[]{0,1}), 
-//					new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));  
-	
+	private Mangel mangel;
 	private Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 	private List<Mangel> listMangel;
-	
-	
+		
 	@Before
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
+		mangel = new Mangel(1, 
+			FilterHelper.filterListIds(new Controller<Bauleiter, Integer>(Bauleiter.class).getAll(), new int[]{2}).get(0),
+			null,
+			FilterHelper.filterListIds(new Controller<Mangelstatus, Integer>(Mangelstatus.class).getAll(), new int[]{2}).get(0),
+			new GregorianCalendar(1,1,2015), 
+			FilterHelper.filterListIds(new Controller <Projekt, Integer>(Projekt.class).getAll(), new int[]{2}).get(0)
+		);
 	}
 
 	@After
@@ -57,7 +47,7 @@ public class ControllerTestMangel {
 		try {
 			mangelcontroller.persist(mangel);
 		} catch (Exception e) {
-			fail("Persist for Arbeitstyp failed");
+			fail("Persist for Mangel failed");
 		}
 		Context.logout();
 	}
@@ -67,7 +57,7 @@ public class ControllerTestMangel {
 		try {
 			listMangel = mangelcontroller.getAll();
 		} catch (Exception e) {
-			fail("Get list of Arbeitstyp failed");
+			fail("Get list of Mangel failed");
 		}	
 	}
 	
