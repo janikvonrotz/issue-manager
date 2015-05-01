@@ -2,6 +2,7 @@ package ch.issueman.webservice;
 
 import java.io.Serializable;
 import java.rmi.Naming;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -152,11 +153,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	/* (non-Javadoc)
 	 * @see ch.issueman.webservice.DAOResponseBuilder#deleteById(java.lang.Object)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Response deleteById(Id id) {
 		try {
 			Response response = getById(id);
-			controller.delete(response.readEntity(clazz));
+			controller.delete((T) response.getEntity());
 			return Response.status(Status.OK).entity(clazz.getSimpleName() + " deleted.").build();
 		} catch (Exception e) {
 			return Response.status(Status.BAD_REQUEST).entity(e).build();
