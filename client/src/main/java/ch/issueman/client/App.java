@@ -1,18 +1,21 @@
 package ch.issueman.client;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			primaryStage.setResizable(false);
 			primaryStage.setTitle("Issue Manager");
-			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Home.fxml"))));
+			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Main.fxml"))));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

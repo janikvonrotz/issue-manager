@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="bpMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane fx:id="pnTop" prefHeight="93.0" prefWidth="600.0" style="-fx-background-color: steelblue;" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <Pane fx:id="pnLeft" prefHeight="307.0" prefWidth="107.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <Pane fx:id="pnCenter" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
