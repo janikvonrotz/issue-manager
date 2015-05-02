@@ -68,7 +68,7 @@ public class ControllerTestBauleiter {
 		try {
 			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
 			bauleiter = listBauleiter.get(listBauleiter.size()-1);
-			bauleiter.setNachname("testBauleiterUpdated");
+			bauleiter.setNachname("testBauleiterUpdated2");
 			bauleitercontroller.update(bauleiter);
 		} catch (Exception e) {
 			fail("Update for Bauleiter failed");

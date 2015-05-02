@@ -57,6 +57,7 @@ public class Mangel implements Model {
 			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt) {
 		super();
 		this.referenz = referenz;
+		this.mangel = mangel;
 		this.erfasser = erfasser;
 		this.kommentare = kommentare;
 		this.mangelstatus = mangelstatus;

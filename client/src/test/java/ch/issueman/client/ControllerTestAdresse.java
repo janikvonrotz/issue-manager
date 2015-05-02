@@ -69,9 +69,9 @@ public class ControllerTestAdresse {
 	public void testUpdate() {
 		try {
 			List<Adresse> listAdresse = adresseController.getAll();
-			Adresse Adresse = listAdresse.get(listAdresse.size()-1);
-			Adresse.setStrasse("Updatedstrasse 1");
-			adresseController.update(Adresse);
+			Adresse adresse = listAdresse.get(listAdresse.size()-1);
+			adresse.setStrasse("Updatedstrasse 19889askjgd7");
+			adresseController.update(adresse);
 		} catch (Exception e) {
 			fail("Update for Adresse failed");
 			e.printStackTrace();
