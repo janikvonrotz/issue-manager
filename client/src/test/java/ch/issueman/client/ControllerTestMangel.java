@@ -30,7 +30,8 @@ public class ControllerTestMangel {
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-		mangel = new Mangel(1, 
+
+		mangel = new Mangel(1,  "vorUpdate",
 			FilterHelper.filterListIds(new Controller<Bauleiter, Integer>(Bauleiter.class).getAll(), new int[]{2}).get(0),
 			null,
 			FilterHelper.filterListIds(new Controller<Mangelstatus, Integer>(Mangelstatus.class).getAll(), new int[]{2}).get(0),
@@ -48,6 +49,7 @@ public class ControllerTestMangel {
 	public void testPersist() {
 		try {
 			mangelcontroller.persist(mangel);
+			
 		} catch (Exception e) {
 			fail("Persist for Mangel failed");
 			e.printStackTrace();
@@ -82,9 +84,10 @@ public class ControllerTestMangel {
 		try {
 			List<Mangel> listMangel = mangelcontroller.getAll();
 			Mangel mangel = listMangel.get(listMangel.size()-1);
-			mangel.setMangelstatus(mangelstatuscontroller.getById(2));
+			mangel.setMangel("NachUpdate");
 			mangelcontroller.update(mangel);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Update for Mangel failed");
 		}
 	}
@@ -95,6 +98,7 @@ public class ControllerTestMangel {
 			List<Mangel> listMangel = mangelcontroller.getAll();
 			mangelcontroller.delete(listMangel.get(listMangel.size()-1));
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Deletion of Mangel failed");
 		}
 	}

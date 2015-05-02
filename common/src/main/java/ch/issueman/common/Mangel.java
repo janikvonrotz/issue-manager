@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -33,6 +34,9 @@ public class Mangel implements Model {
 	@NotNull
 	private int referenz;
 	@NotNull
+	@Lob
+	private String mangel;
+	@NotNull
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Person erfasser;
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -49,7 +53,7 @@ public class Mangel implements Model {
 	
 	public Mangel(){}
 
-	public Mangel(int referenz, Person erfasser, List<Kommentar> kommentare,
+	public Mangel(int referenz, String mangel, Person erfasser, List<Kommentar> kommentare,
 			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt) {
 		super();
 		this.referenz = referenz;

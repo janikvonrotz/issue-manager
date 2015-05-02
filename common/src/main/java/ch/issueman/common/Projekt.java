@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import lombok.Data;
 
 /**
@@ -92,6 +94,7 @@ public class Projekt implements Model{
 	 * 
 	 * @return display name
 	 */
+	@JsonIgnore
 	public String getDisplayName(){
 		if(("" + id).length() < 4) {
 			return "P" + ("000" + id).substring(("" + id).length());
