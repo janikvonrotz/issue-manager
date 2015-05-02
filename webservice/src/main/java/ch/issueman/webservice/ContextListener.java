@@ -17,12 +17,13 @@ import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.Level;
 import org.pmw.tinylog.writers.ConsoleWriter;
 import org.pmw.tinylog.writers.FileWriter;
-import lombok.extern.slf4j.Slf4j;
 
+import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;

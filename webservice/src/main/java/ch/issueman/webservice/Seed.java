@@ -18,6 +18,7 @@ import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.FilterHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;

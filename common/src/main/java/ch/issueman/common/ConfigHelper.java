@@ -1,4 +1,4 @@
-package ch.issueman.webservice;
+package ch.issueman.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;

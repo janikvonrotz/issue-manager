@@ -8,6 +8,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 import lombok.Data;
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.DAO;
 import ch.issueman.common.Login;
 
