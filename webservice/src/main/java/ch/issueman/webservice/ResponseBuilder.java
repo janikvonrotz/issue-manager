@@ -2,6 +2,8 @@ package ch.issueman.webservice;
 
 import java.io.Serializable;
 import java.rmi.Naming;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -10,6 +12,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Login;
+import ch.issueman.common.Model;
 
 /**
  * Build http compatible response for the route requests.
@@ -71,7 +74,11 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	@Override
 	public Response getAll() {
 		try {
-			return Response.status(Status.OK).entity(controller.getAll()).build();
+			List<Integer> list = new ArrayList<Integer>();
+			for(T t : controller.getAll()){
+				list.add(((Model)t).getId());
+			}
+			return Response.status(Status.OK).entity(list).build();
 		} catch (Exception e) {
 			return Response.status(Status.BAD_REQUEST).entity(e).build();
 		}

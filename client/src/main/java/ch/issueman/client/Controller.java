@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.client.Entity;
@@ -64,15 +65,21 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		
 		WebTarget target = client.target(url);
 		TypeFactory t = TypeFactory.defaultInstance();
-		List<T> l = null;
+		List<T> list = new ArrayList<T>();
+		List<Id> listint = new ArrayList<Id>();
 		Response response = target.request(MediaType.APPLICATION_JSON).get();
 		if(response.getStatus() == Status.OK.getStatusCode()){
-			l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class, clazz));
+			listint = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class, Integer.class));
 		}else{
 			throw mapper.readValue(response.readEntity(String.class), Exception.class);
 		}
 		response.close();
-		return l;
+		if(listint != null){
+			for(Id i : listint){
+			list.add(getById(i));
+			}
+		}
+		return list;
 	}
 
 	/* (non-Javadoc)
