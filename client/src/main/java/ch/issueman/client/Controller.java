@@ -6,16 +6,19 @@ import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
+import org.codehaus.jackson.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 
 import com.typesafe.config.ConfigFactory;
 
+import ch.issueman.common.Bauleiter;
 import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
 import ch.issueman.common.Person;
@@ -69,7 +72,8 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		List<Id> listint = new ArrayList<Id>();
 		Response response = target.request(MediaType.APPLICATION_JSON).get();
 		if(response.getStatus() == Status.OK.getStatusCode()){
-			listint = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class, Integer.class));
+			list = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class, clazz));
+			//list = mapper.readValue(response.readEntity(String.class), new TypeReference<GenericEntity<ArrayList<Bauleiter>>>(){});
 		}else{
 			throw mapper.readValue(response.readEntity(String.class), Exception.class);
 		}

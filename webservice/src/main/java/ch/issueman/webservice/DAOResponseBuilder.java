@@ -67,4 +67,12 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	 * @return
 	 */
 	public Response deleteById(Id id);
+
+	public Response getAllBauleiter();
+
+	public Response getAllSachbearbeiter();
+
+	public Response getAllKontakt();
+
+	public Response getAllBauherr();
 }
