@@ -21,12 +21,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
+                  <Label fx:id="lbMaengel" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
+                  <Label fx:id="lbAdmin" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -71,17 +71,17 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <TitledPane animated="false" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0" text="project" GridPane.rowIndex="3">
+                  <TitledPane fx:id="tpProjekt" animated="false" maxHeight="50.0" maxWidth="200.0" minHeight="50.0" minWidth="200.0" prefHeight="50.0" prefWidth="200.0" text="projekt" GridPane.rowIndex="3">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </TitledPane>
-                  <TitledPane animated="false" text="subunternehmen" GridPane.rowIndex="6">
+                  <TitledPane fx:id="tpSubunternehmen" animated="false" text="subunternehmen" GridPane.rowIndex="6">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </TitledPane>
-                  <TitledPane animated="false" text="bauherr" GridPane.rowIndex="9">
+                  <TitledPane fx:id="tpBauherr" animated="false" text="bauherr" GridPane.rowIndex="9">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
@@ -114,14 +114,14 @@
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="300.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="lbPerson" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="300.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button layoutX="77.0" layoutY="59.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="335.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="33.0" maxWidth="150.0" minHeight="33.0" minWidth="150.0" prefHeight="33.0" prefWidth="150.0" style="-fx-border-color: #AAAAAA;" translateX="550.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button layoutX="77.0" layoutY="58.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" textFill="#486285" translateX="667.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="clickAddPerson" layoutX="77.0" layoutY="59.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="335.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txSuche" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="33.0" maxWidth="150.0" minHeight="33.0" minWidth="150.0" prefHeight="33.0" prefWidth="150.0" style="-fx-border-color: #AAAAAA;" translateX="550.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="clickSuche" layoutX="77.0" layoutY="58.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" textFill="#486285" translateX="667.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <GridPane maxHeight="600.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="600.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
@@ -225,27 +225,27 @@
                         <Label layoutX="410.0" layoutY="280.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #486285; -fx-border-color: #ffffff;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="12" />
                         <Label layoutX="410.0" layoutY="280.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #486285; -fx-border-color: #ffffff;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="11" />
                         <Label layoutX="410.0" layoutY="280.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #486285; -fx-border-color: #ffffff;" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-                        <TitledPane animated="false" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="nachname" textFill="WHITE" GridPane.rowIndex="1">
+                        <TitledPane fx:id="tpNachname" animated="false" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="nachname" textFill="WHITE" GridPane.rowIndex="1">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                           </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="vorname" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TitledPane fx:id="tpVorname" animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="vorname" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="100.0" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="e-mail" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <TitledPane fx:id="tpEmail" animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="e-mail" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="110.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="rolle" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <TitledPane fx:id="tpRolle" animated="false" layoutX="110.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="rolle" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="firma" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <TitledPane fx:id="tpFirma" animated="false" layoutX="10.0" layoutY="10.0" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #aaaaaa;" text="firma" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
