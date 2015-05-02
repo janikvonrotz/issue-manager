@@ -11,14 +11,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
-<<<<<<< HEAD
-=======
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonSubTypes;
-import org.codehaus.jackson.annotate.JsonSubTypes.Type;
->>>>>>> a6f777d906c2375f20d4a45cd3e2f5ae39a75d3e
 import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.map.annotate.JsonTypeResolver;
 
 /**
  * Abstract class Person
@@ -31,17 +24,7 @@ import org.codehaus.jackson.map.annotate.JsonTypeResolver;
 @Entity
 @Data
 @Inheritance(strategy=InheritanceType.JOINED)
-<<<<<<< HEAD
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
-=======
-@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
-//@JsonSubTypes({  
-//    @Type(value = Bauleiter.class, name = "Bauleiter"),  
-//    @Type(value = Sachbearbeiter.class, name= "Sachbearbeiter"),
-//    @Type(value = Kontakt.class, name= "Kontakt"),
-//    @Type(value = Bauherr.class, name= "Bauherr")
-//}) 
->>>>>>> a6f777d906c2375f20d4a45cd3e2f5ae39a75d3e
 public abstract class Person implements Model{
 	
 	@Id
