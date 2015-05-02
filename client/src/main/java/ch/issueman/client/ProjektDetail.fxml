@@ -20,12 +20,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
+                  <Label fx:id="lbMaengel" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
+                  <Label fx:id="lbAdmin" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -86,7 +86,7 @@
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lbProjektname" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="lbProjekt" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -139,23 +139,28 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="kontaktperson" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="subunternehmen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11">
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button fx:id="clickAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Button fx:id="clickAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="246.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Button fx:id="clickArchivieren" alignment="CENTER" layoutX="77.0" layoutY="704.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="archivieren" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <Button fx:id="clickSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <TextField fx:id="txTitel" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #AAAAAA;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txOrt" layoutX="77.0" layoutY="173.0" maxHeight="40.0" maxWidth="296.0" minHeight="40.0" minWidth="296.0" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #AAAAAA;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txBeginn" layoutX="77.0" layoutY="223.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="txEnde" layoutX="77.0" layoutY="373.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <TextField fx:id="txProjektleiter" layoutX="77.0" layoutY="423.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <ComboBox fx:id="txProjekttyp" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="txKontaktperson" layoutX="77.0" layoutY="499.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <ComboBox fx:id="txArbeitstyp" layoutX="77.0" layoutY="349.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="txBauherr" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #AAAAAA;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="txtitel" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="lbProjektleiter" layoutX="77.0" layoutY="423.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <DatePicker fx:id="dpEnde" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <DatePicker fx:id="dpBeginn" layoutX="77.0" layoutY="349.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ComboBox fx:id="cbArbeitstyp" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="cbProjekttyp" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="cbBauherr" layoutX="77.0" layoutY="349.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Button fx:id="clickAddBauleiter" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Label fx:id="txOrt" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #aaaaaa; -fx-background-color: #ffffff;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextArea fx:id="taSubunternehmen" maxHeight="80.0" maxWidth="398.0" minHeight="80.0" minWidth="398.0" prefHeight="80.0" prefWidth="398.0" style="-fx-background-color: #486285; -fx-border-color: #486285;" translateX="302.0" translateY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                </children>
             </GridPane>
          </center>

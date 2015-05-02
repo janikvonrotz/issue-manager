@@ -81,7 +81,7 @@
                   <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <ImageView fitHeight="148.0" fitWidth="188.0" translateX="81.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <image>
-                        <Image url="@../../../../../resources/images/IM_Logo4.png" />
+                        <Image url="@client/src/main/resources/images/IM_Logo4.png" />
                      </image>
                   </ImageView>
                   <Label maxHeight="58.0" maxWidth="250.0" minHeight="58.0" minWidth="250.0" prefHeight="58.0" prefWidth="250.0" text="issue manager" textFill="#939382" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4">

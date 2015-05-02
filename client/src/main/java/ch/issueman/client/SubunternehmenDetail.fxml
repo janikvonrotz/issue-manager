@@ -20,12 +20,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
+                  <Label fx:id="lbMaengel" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
+                  <Label fx:id="lbAdmin" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -81,7 +81,7 @@
                   <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="lbSubunternehmen" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -114,19 +114,19 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Button alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField layoutX="77.0" layoutY="173.0" maxHeight="40.0" maxWidth="296.0" minHeight="40.0" minWidth="296.0" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #AAAAAA;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField layoutX="77.0" layoutY="223.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label layoutX="77.0" layoutY="64.0" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <Button fx:id="btAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="txFirma" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txOrt" layoutX="77.0" layoutY="173.0" maxHeight="40.0" maxWidth="296.0" minHeight="40.0" minWidth="296.0" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #AAAAAA;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="txTelefon" layoutX="77.0" layoutY="223.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="lbKontakt" layoutX="77.0" layoutY="64.0" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <font>
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="350.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Button fx:id="btAddKontakt" mnemonicParsing="false" onAction="#clickAddKontakt" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="350.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" />
@@ -145,22 +145,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TitledPane animated="false" prefHeight="30.0" prefWidth="175.0" text="nachname" textFill="WHITE">
+                        <TitledPane fx:id="tpNachname" animated="false" prefHeight="30.0" prefWidth="175.0" text="nachname" textFill="WHITE">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                           </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="10.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="vorname" textFill="WHITE" GridPane.columnIndex="1">
+                        <TitledPane fx:id="tpVorname" animated="false" layoutX="10.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="vorname" textFill="WHITE" GridPane.columnIndex="1">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="185.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="e-mail" textFill="WHITE" GridPane.columnIndex="2">
+                        <TitledPane fx:id="tpEmail" animated="false" layoutX="185.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="e-mail" textFill="WHITE" GridPane.columnIndex="2">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
                         </TitledPane>
-                        <TitledPane animated="false" layoutX="360.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="telefon" textFill="WHITE" GridPane.columnIndex="3">
+                        <TitledPane fx:id="tpTelefon" animated="false" layoutX="360.0" layoutY="12.0" prefHeight="30.0" prefWidth="175.0" text="telefon" textFill="WHITE" GridPane.columnIndex="3">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                            </content>
