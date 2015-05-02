@@ -15,7 +15,7 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			primaryStage.setTitle("Issue Manager");
-			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Main.fxml"))));
+			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Subunternehmen.fxml"))));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
