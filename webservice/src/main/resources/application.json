@@ -27,7 +27,7 @@
   	"level": "INFO",
   	"files": 10,
   	"size": 10240,
-  	"timestamp": yyyy-MM-dd_HH-mm-ss,
+  	"timestamp": "yyyy-MM-dd_HH-mm-ss",
   	"logtoconsole": "Yes"
   },
   "rmi": {
