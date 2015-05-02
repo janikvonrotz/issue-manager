@@ -61,7 +61,7 @@
                      <children>
                         <ImageView fitHeight="90.0" fitWidth="105.0" layoutX="15.0" layoutY="18.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                            <image>
-                              <Image url="@../../../../../resources/images/IM_Logo4.png" />
+                              <Image url="@../../../../resources/IM_Logo4.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="55.0" layoutY="38.0" text="issue manager" textFill="#939382" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="85.0">

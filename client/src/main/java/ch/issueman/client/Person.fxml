@@ -61,7 +61,7 @@
                      <children>
                         <ImageView fitHeight="90.0" fitWidth="105.0" layoutX="15.0" layoutY="18.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                            <image>
-                              <Image url="@../../../../../resources/images/IM_Logo4.png" />
+                              <Image url="@../../../../resources/IM_Logo4.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="55.0" layoutY="38.0" text="issue manager" textFill="#939382" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="85.0">
@@ -119,9 +119,9 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <Button fx:id="clickAddPerson" layoutX="77.0" layoutY="59.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="335.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btAddPerson" layoutX="77.0" layoutY="59.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" onAction="#clickAddPerson" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="335.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="txSuche" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="33.0" maxWidth="150.0" minHeight="33.0" minWidth="150.0" prefHeight="33.0" prefWidth="150.0" style="-fx-border-color: #AAAAAA;" translateX="550.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button fx:id="clickSuche" layoutX="77.0" layoutY="58.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" textFill="#486285" translateX="667.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btSuche" layoutX="77.0" layoutY="58.0" maxHeight="33.0" maxWidth="33.0" minHeight="33.0" minWidth="33.0" mnemonicParsing="false" onAction="#clickSuche" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #486285;" textFill="#486285" translateX="667.0" translateY="13.16666412" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <GridPane maxHeight="600.0" maxWidth="700.0" minHeight="600.0" minWidth="700.0" prefHeight="600.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />

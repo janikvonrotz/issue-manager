@@ -50,7 +50,7 @@
                      <children>
                         <ImageView fitHeight="90.0" fitWidth="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
                            <image>
-                              <Image url="@../../../../../resources/images/IM_Logo4.png" />
+                              <Image url="@../../../../resources/IM_Logo4.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="55.0" layoutY="38.0" text="issue manager" textFill="#939382" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="85.0">
@@ -143,9 +143,9 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <Button fx:id="clickAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="246.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <Button fx:id="clickArchivieren" alignment="CENTER" layoutX="77.0" layoutY="704.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="archivieren" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                  <Button fx:id="clickSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Button fx:id="btAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="246.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Button fx:id="btArchivieren" alignment="CENTER" layoutX="77.0" layoutY="704.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickArchivieren" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="archivieren" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                   <TextField fx:id="txtitel" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -155,7 +155,7 @@
                   <ComboBox fx:id="cbArbeitstyp" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <ComboBox fx:id="cbProjekttyp" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="cbBauherr" layoutX="77.0" layoutY="349.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <Button fx:id="clickAddBauleiter" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                  <Button fx:id="btAddBauleiter" mnemonicParsing="false" onAction="#clickAddBauleiter" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font></Button>
