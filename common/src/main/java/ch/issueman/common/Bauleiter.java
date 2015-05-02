@@ -2,6 +2,8 @@ package ch.issueman.common;
 
 import javax.persistence.Entity;
 
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,6 +19,7 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper=false)
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public class Bauleiter extends Person {
 	
 	public Bauleiter(){}

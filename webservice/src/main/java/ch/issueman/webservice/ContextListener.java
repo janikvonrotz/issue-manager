@@ -15,8 +15,14 @@ import javax.servlet.annotation.WebListener;
 
 import org.pmw.tinylog.Configurator;
 import org.pmw.tinylog.Level;
+import org.pmw.tinylog.labelers.TimestampLabeler;
+import org.pmw.tinylog.policies.SizePolicy;
 import org.pmw.tinylog.writers.ConsoleWriter;
+<<<<<<< HEAD
 import org.pmw.tinylog.writers.FileWriter;
+=======
+import org.pmw.tinylog.writers.RollingFileWriter;
+>>>>>>> a6f777d906c2375f20d4a45cd3e2f5ae39a75d3e
 
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Adresse;
@@ -59,9 +65,12 @@ public class ContextListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		
 		Configurator.defaultConfig()
-		   .writer(new FileWriter("log.txt"))
-		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "ERROR")))
-		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}: {class}.{method}()\t{message}"))
+		   .writer(new RollingFileWriter(ConfigHelper.getConfig("tinylog.location", "log.txt"), 
+				   ConfigHelper.getConfig("tinylog.files", 10), 
+				   new TimestampLabeler(ConfigHelper.getConfig("tinylog.timestamp", "yyyy-MM-dd_HH-mm-ss")), 
+				   new SizePolicy(ConfigHelper.getConfig("tinylog.size", 10240))))
+		   .level(Level.valueOf(ConfigHelper.getConfig("tinylog.level", "INFO")))
+		   .formatPattern(ConfigHelper.getConfig("tinylog.format", "{level}:\t{date}\t{class}.{method}()\t{message}"))
 		   .activate();
 		
 		if(ConfigHelper.getConfig("tinylog.logtoconsole", "No").equals("Yes")){

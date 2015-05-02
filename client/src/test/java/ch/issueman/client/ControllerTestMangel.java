@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
+
 import ch.issueman.common.Bauleiter;
 import ch.issueman.common.FilterHelper;
 import ch.issueman.common.Login;
@@ -22,7 +24,7 @@ public class ControllerTestMangel {
 	
 	private Mangel mangel;
 	private Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
-	private List<Mangel> listMangel;
+	private Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
 		
 	@Before
 	public void setUp() throws Exception {
@@ -48,6 +50,7 @@ public class ControllerTestMangel {
 			mangelcontroller.persist(mangel);
 		} catch (Exception e) {
 			fail("Persist for Mangel failed");
+			e.printStackTrace();
 		}
 		Context.logout();
 	}
@@ -55,39 +58,44 @@ public class ControllerTestMangel {
 	@Test
 	public void testGetAll() {
 		try {
-			listMangel = mangelcontroller.getAll();
+			@SuppressWarnings("unused")
+			List<Mangel> listMangel = mangelcontroller.getAll();
 		} catch (Exception e) {
 			fail("Get list of Mangel failed");
 		}	
 	}
 	
-//	@Test
-//	public void testGetById() {
-//		try {
-//			listMangel = mangelcontroller.getAll();
-//			arbeitstyp = arbeitstypcontroller.getById(listArbeitstyp.get(listArbeitstyp.size()-1).getId());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail("Get by id for Arbeitstyp failed");
-//		}
-//	}
+	@Test
+	public void testGetById() {
+		try {
+			List<Mangel> listMangel = mangelcontroller.getAll();
+			@SuppressWarnings("unused")
+			Mangel mangel = mangelcontroller.getById(listMangel.get(listMangel.size()-1).getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Get by id for Mangel failed");
+		}
+	}
 
-//	@Test
-//	public void testUpdate() {
-//		try {
-//			arbeitstyp.setArbeitstyp("testArbeitstypUpdated");
-//			arbeitstypcontroller.update(arbeitstyp);
-//		} catch (Exception e) {
-//			fail("Update for Arbeitstyp failed");
-//		}
-//	}
-//
-//	@Test
-//	public void testDelete() {
-//		try {
-//			arbeitstypcontroller.persist(arbeitstyp);
-//		} catch (Exception e) {
-//			fail("Deletion of Arbeitstyp failed");
-//		}
-//	}
+	@Test
+	public void testUpdate() {
+		try {
+			List<Mangel> listMangel = mangelcontroller.getAll();
+			Mangel mangel = listMangel.get(listMangel.size()-1);
+			mangel.setMangelstatus(mangelstatuscontroller.getById(2));
+			mangelcontroller.update(mangel);
+		} catch (Exception e) {
+			fail("Update for Mangel failed");
+		}
+	}
+
+	@Test
+	public void testDelete() {
+		try {
+			List<Mangel> listMangel = mangelcontroller.getAll();
+			mangelcontroller.delete(listMangel.get(listMangel.size()-1));
+		} catch (Exception e) {
+			fail("Deletion of Mangel failed");
+		}
+	}
 }

@@ -14,7 +14,7 @@ import ch.issueman.common.Bauleiter;
 
 public class ControllerTestBauleiter {
 
-	private Bauleiter bauleiter = new Bauleiter("John", "Test", "test@john.ch");
+	private Bauleiter bauleiter;
 	private Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
 	private List<Bauleiter> listBauleiter;
 	
@@ -22,6 +22,7 @@ public class ControllerTestBauleiter {
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
+		bauleiter = new Bauleiter("John", "Test", "test@john.ch");
 	}
 
 	@After
@@ -42,8 +43,10 @@ public class ControllerTestBauleiter {
 	@Test
 	public void testGetAll() {
 		try {
-			listBauleiter = bauleitercontroller.getAll();
+			@SuppressWarnings("unused")
+			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Get list of Bauleiter failed");
 		}	
 	}
@@ -52,7 +55,8 @@ public class ControllerTestBauleiter {
 	public void testGetById() {
 		try {
 			listBauleiter = bauleitercontroller.getAll();
-			bauleiter = bauleitercontroller.getById(listBauleiter.get(listBauleiter.size()-1).getId());
+			@SuppressWarnings("unused")
+			Bauleiter bauleiter = bauleitercontroller.getById(listBauleiter.get(listBauleiter.size()-1).getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Get by id for Bauleiter failed");
@@ -62,6 +66,8 @@ public class ControllerTestBauleiter {
 	@Test
 	public void testUpdate() {
 		try {
+			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
+			bauleiter = listBauleiter.get(listBauleiter.size()-1);
 			bauleiter.setNachname("testBauleiterUpdated");
 			bauleitercontroller.update(bauleiter);
 		} catch (Exception e) {
@@ -72,7 +78,8 @@ public class ControllerTestBauleiter {
 	@Test
 	public void testDelete() {
 		try {
-			bauleitercontroller.persist(bauleiter);
+			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
+			bauleitercontroller.delete(listBauleiter.get(listBauleiter.size()-1));
 		} catch (Exception e) {
 			fail("Deletion of Bauleiter failed");
 		}

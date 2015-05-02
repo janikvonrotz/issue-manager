@@ -22,10 +22,12 @@
     }
   },
   "tinylog": {
-  	"format": "{level}: {class}.{method}()\t{message}",
-  	"level": "ERROR",
+  	"location": "log.txt",
+  	"format": "{level}:\t{date}\t{class}.{method}()\t{message}",
+  	"level": "INFO",
   	"files": 10,
   	"size": 10240,
+  	"timestamp": "yyyy-MM-dd_HH-mm-ss",
   	"logtoconsole": "Yes"
   },
   "rmi": {
