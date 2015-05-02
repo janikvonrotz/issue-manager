@@ -17,6 +17,7 @@ import com.typesafe.config.ConfigFactory;
 
 import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
+import ch.issueman.common.Person;
 
 /**
  * Basic client controller class.
@@ -66,7 +67,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		List<T> l = null;
 		Response response = target.request(MediaType.APPLICATION_JSON).get();
 		if(response.getStatus() == Status.OK.getStatusCode()){
-			l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class,clazz));
+			l = mapper.readValue(response.readEntity(String.class), t.constructCollectionType(List.class, clazz));
 		}else{
 			throw mapper.readValue(response.readEntity(String.class), Exception.class);
 		}

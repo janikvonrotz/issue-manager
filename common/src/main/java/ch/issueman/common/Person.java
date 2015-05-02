@@ -12,7 +12,10 @@ import lombok.Data;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonSubTypes.Type;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.map.annotate.JsonTypeResolver;
 
 /**
  * Abstract class Person
@@ -25,8 +28,13 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 @Entity
 @Data
 @Inheritance(strategy=InheritanceType.JOINED)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+//@JsonSubTypes({  
+//    @Type(value = Bauleiter.class, name = "Bauleiter"),  
+//    @Type(value = Sachbearbeiter.class, name= "Sachbearbeiter"),
+//    @Type(value = Kontakt.class, name= "Kontakt"),
+//    @Type(value = Bauherr.class, name= "Bauherr")
+//}) 
 public abstract class Person implements Model{
 	
 	@Id
