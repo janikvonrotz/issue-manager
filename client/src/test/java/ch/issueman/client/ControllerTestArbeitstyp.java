@@ -32,8 +32,8 @@ public class ControllerTestArbeitstyp {
 		try {
 			arbeitstypcontroller.persist(new Arbeitstyp("testArbeitstyp"));
 		} catch (Exception e) {
-			fail("Persist for Arbeitstyp failed");
 			e.printStackTrace();
+			fail("Persist for Arbeitstyp failed");
 		}
 	}
 	
@@ -43,8 +43,8 @@ public class ControllerTestArbeitstyp {
 			@SuppressWarnings("unused")
 			List<Arbeitstyp> listArbeitstyp = arbeitstypcontroller.getAll();
 		} catch (Exception e) {
-			fail("Get list of Arbeitstyp failed");
 			e.printStackTrace();
+			fail("Get list of Arbeitstyp failed");
 		}	
 	}
 	
@@ -55,8 +55,8 @@ public class ControllerTestArbeitstyp {
 			@SuppressWarnings("unused")
 			Arbeitstyp arbeitstyp = arbeitstypcontroller.getById(listArbeitstyp.get(listArbeitstyp.size()-1).getId());
 		} catch (Exception e) {
-			fail("Get by id for Arbeitstyp failed");
 			e.printStackTrace();
+			fail("Get by id for Arbeitstyp failed");
 		}
 	}
 
@@ -68,8 +68,8 @@ public class ControllerTestArbeitstyp {
 			arbeitstyp.setArbeitstyp("testArbeitstypUpdated");
 			arbeitstypcontroller.update(arbeitstyp);
 		} catch (Exception e) {
-			fail("Update for Arbeitstyp failed");
 			e.printStackTrace();
+			fail("Update for Arbeitstyp failed");
 		}
 	}
 
@@ -79,8 +79,8 @@ public class ControllerTestArbeitstyp {
 			List<Arbeitstyp> listArbeitstyp = arbeitstypcontroller.getAll();
 			arbeitstypcontroller.delete(listArbeitstyp.get(listArbeitstyp.size()-1));
 		} catch (Exception e) {
-			fail("Deletion of Arbeitstyp failed");
 			e.printStackTrace();
+			fail("Deletion of Arbeitstyp failed");
 		}
 	}
 }

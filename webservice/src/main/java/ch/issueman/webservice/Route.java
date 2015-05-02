@@ -101,6 +101,39 @@ public class Route{
 	}
 	
 	/**
+	 * Get for abstract implementations
+	 */
+	
+	@GET
+	@Path("bauleiter")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllBauleiter(@Context HttpServletRequest request) {
+		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("bauleiter").getAllBauleiter();
+	}
+	@GET
+	@Path("sachbearbeiter")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllSachbearbeiter(@Context HttpServletRequest request) {
+		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("sachbearbeiter").getAllSachbearbeiter();
+	}
+	@GET
+	@Path("bauherr")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllBauherr(@Context HttpServletRequest request) {
+		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("bauherr").getAllBauherr();
+	}
+	@GET
+	@Path("kontakt")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllKontakt(@Context HttpServletRequest request) {
+		rbm.get("kontakt").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("kontakt").getAllKontakt();
+	}
+	
+	/**
 	 * Adresse
 	 */	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

@@ -5,14 +5,19 @@ import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import ch.issueman.common.Bauherr;
+import ch.issueman.common.Bauleiter;
 import ch.issueman.common.ConfigHelper;
+import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Model;
+import ch.issueman.common.Sachbearbeiter;
 
 /**
  * Build http compatible response for the route requests.
@@ -74,12 +79,11 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	@Override
 	public Response getAll() {
 		try {
-			List<Integer> list = new ArrayList<Integer>();
-			for(T t : controller.getAll()){
-				list.add(((Model)t).getId());
-			}
-			return Response.status(Status.OK).entity(list).build();
+			List<T> list = (List<T>) controller.getAll();
+			GenericEntity<List<T>> genericEntity = new GenericEntity<List<T>>(list){};
+			return Response.ok().entity(genericEntity).build();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(Status.BAD_REQUEST).entity(e).build();
 		}
 	}
@@ -170,6 +174,50 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			controller.delete((T) response.getEntity());
 			return Response.status(Status.OK).entity(clazz.getSimpleName() + " deleted.").build();
 		} catch (Exception e) {
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+	
+	public Response getAllBauleiter() {
+		try {
+			List<Bauleiter> list = (List<Bauleiter>) controller.getAll();
+			GenericEntity<List<Bauleiter>> genericEntity = new GenericEntity<List<Bauleiter>>(list){};
+			return Response.ok().entity(genericEntity).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+	
+	public Response getAllSachbearbeiter() {
+		try {
+			List<Sachbearbeiter> list = (List<Sachbearbeiter>) controller.getAll();
+			GenericEntity<List<Sachbearbeiter>> genericEntity = new GenericEntity<List<Sachbearbeiter>>(list){};
+			return Response.ok().entity(genericEntity).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+	
+	public Response getAllBauherr() {
+		try {
+			List<Bauherr> list = (List<Bauherr>) controller.getAll();
+			GenericEntity<List<Bauherr>> genericEntity = new GenericEntity<List<Bauherr>>(list){};
+			return Response.ok().entity(genericEntity).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+	
+	public Response getAllKontakt() {
+		try {
+			List<Kontakt> list = (List<Kontakt>) controller.getAll();
+			GenericEntity<List<Kontakt>> genericEntity = new GenericEntity<List<Kontakt>>(list){};
+			return Response.ok().entity(genericEntity).build();
+		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(Status.BAD_REQUEST).entity(e).build();
 		}
 	}
