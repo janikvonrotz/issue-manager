@@ -12,6 +12,7 @@
 bin/
 gen/
 log.txt
+log.*.txt
 
 # Local configuration file (sdk path, etc)
 local.properties
