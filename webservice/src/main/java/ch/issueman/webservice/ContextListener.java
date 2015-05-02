@@ -18,12 +18,7 @@ import org.pmw.tinylog.Level;
 import org.pmw.tinylog.labelers.TimestampLabeler;
 import org.pmw.tinylog.policies.SizePolicy;
 import org.pmw.tinylog.writers.ConsoleWriter;
-<<<<<<< HEAD
-import org.pmw.tinylog.writers.FileWriter;
-=======
 import org.pmw.tinylog.writers.RollingFileWriter;
->>>>>>> a6f777d906c2375f20d4a45cd3e2f5ae39a75d3e
-
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;

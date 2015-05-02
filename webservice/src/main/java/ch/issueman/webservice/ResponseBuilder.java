@@ -8,6 +8,7 @@ import javax.ws.rs.core.Response.Status;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Login;
 
 /**
