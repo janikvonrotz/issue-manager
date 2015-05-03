@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.issueman.common.AccessDeniedException;
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Bauleiter;
@@ -75,15 +76,15 @@ public class ControllerTestBauleiter {
 		}
 	}
 
-//	@Test
-//	funktioniert nicht, da keine Berechtigung --> ist OK so
-//	public void testDelete() {
-//		try {
-//			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
-//			bauleitercontroller.delete(listBauleiter.get(listBauleiter.size()-1));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail("Deletion of Bauleiter failed");
-//		}
-//	}
+	@Test
+	public void testDelete() {
+		try {
+			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
+			bauleitercontroller.delete(listBauleiter.get(listBauleiter.size()-1));
+		} catch (AccessDeniedException e) {
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Deletion of Bauleiter failed");
+		}
+	}
 }

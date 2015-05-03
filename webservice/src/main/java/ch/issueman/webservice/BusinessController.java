@@ -5,7 +5,9 @@ import java.lang.reflect.Constructor;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
+import ch.issueman.common.AccessDeniedException;
 import ch.issueman.common.Login;
 
 /**
@@ -55,7 +57,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
 			filter.persist(t);
 		}else{
-			throw new Exception("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
 		}		
 	}
 
@@ -67,7 +69,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			return filter.getById(id);
 		}else{
-			throw new Exception("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 
@@ -79,7 +81,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
 			return filter.getAll();
 		}else{
-			throw new Exception("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 
@@ -100,7 +102,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
 			filter.update(t);
 		}else{
-			throw new Exception("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 
@@ -112,7 +114,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			filter.delete(t);
 		}else{
-			throw new Exception("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 
@@ -124,7 +126,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
 			filter.deleteAll();
 		}else{
-			throw new Exception("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
+			throw new AccessDeniedException("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 
