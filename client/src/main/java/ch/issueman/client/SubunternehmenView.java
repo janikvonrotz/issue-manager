@@ -1,8 +1,6 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -11,7 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ch.issueman.common.Adresse;
 import ch.issueman.common.Login;
+import ch.issueman.common.Ort;
+import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
@@ -26,7 +27,16 @@ public class SubunternehmenView implements Initializable {
 	private TableColumn<Subunternehmen, Integer> tcId;
 	
 	@FXML
-	private TableColumn<Subunternehmen, String> tcName;
+	private TableColumn<Subunternehmen, String> tcFirmenname;
+	
+	@FXML
+	private TableColumn<Subunternehmen, Integer> tcStrasse;
+	
+	@FXML
+	private TableColumn<Ort, Integer> tcPlz;
+	
+	@FXML
+	private TableColumn<Ort, String> tcOrt;
 	
 	
 	@Override
@@ -34,8 +44,14 @@ public class SubunternehmenView implements Initializable {
 		// TODO entfernen
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
+		
 		tcId.setCellValueFactory(new PropertyValueFactory<Subunternehmen, Integer>("id"));
-		tcName.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("firmenname"));
+		tcFirmenname.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("firmenname"));
+		tcStrasse.setCellValueFactory(new PropertyValueFactory<Subunternehmen, Integer>("adresse_id"));
+		
+//		tcStrasse.setCellValueFactory(adresseController.getById(tcId.getCellData());
+//		tcPlz.setCellValueFactory(new PropertyValueFactory<Ort, Integer>("plz"));
+//		tcOrt.setCellValueFactory(new PropertyValueFactory<Ort, String>("ort"));
 		
 		Refresh();	
 	}

@@ -12,11 +12,11 @@
    <children>
       <TableView fx:id="tvData" onMouseClicked="#clickData" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="tcId" prefWidth="75.0" text="ID">
-               <graphic>
-                  <Label text="Label" />
-               </graphic></TableColumn>
-          <TableColumn fx:id="tcName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="tcId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tcFirmenname" prefWidth="134.0" text="Firma" />
+            <TableColumn fx:id="tcStrasse" prefWidth="143.0" text="Strasse" />
+            <TableColumn fx:id="tcPlz" prefWidth="62.0" text="PLZ" />
+            <TableColumn fx:id="tcOrt" prefWidth="81.0" text="Ort" />
         </columns>
       </TableView>
    </children>
