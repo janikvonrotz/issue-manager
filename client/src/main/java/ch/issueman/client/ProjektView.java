@@ -3,6 +3,7 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import sun.util.calendar.Gregorian;
 import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
@@ -22,8 +23,6 @@ public class ProjektView implements Initializable {
 
 	private FilteredList<Projekt> filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(),	p -> true);
 
-	private Projekt projekt;
-
 	@FXML
 	private TableView<Projekt> tvData;
 
@@ -37,19 +36,19 @@ public class ProjektView implements Initializable {
 	private TableColumn<Projekt, String> tcTitel;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcProjekttyp;
+	private TableColumn<Projekt, String> tcProjekttyp;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcArbeitstyp;
+	private TableColumn<Projekt, String> tcArbeitstyp;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcBauleiter;
+	private TableColumn<Projekt, String> tcBauleiter;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcBauherr;
+	private TableColumn<Projekt, String> tcBauherr;
 
 	@FXML
-	private TableColumn<Projekt, String> tcEnddatum;
+	private TableColumn<Projekt, Gregorian> tcEnddatum;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,11 +58,11 @@ public class ProjektView implements Initializable {
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
-		tcProjekttyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("projekttyp"));
-		tcArbeitstyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("arbeitstyp"));
-		tcBauleiter.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauleiter"));
-		tcBauherr.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauherr"));
-		tcEnddatum.setCellValueFactory(new PropertyValueFactory<Projekt, String>("ende"));	
+		tcProjekttyp.setCellValueFactory(new PropertyValueFactory<Projekt, String>("projekttyp"));
+		tcArbeitstyp.setCellValueFactory(new PropertyValueFactory<Projekt, String>("arbeitstyp"));
+		tcBauleiter.setCellValueFactory(new PropertyValueFactory<Projekt, String>("bauleiter"));
+		tcBauherr.setCellValueFactory(new PropertyValueFactory<Projekt, String>("bauherr"));
+		tcEnddatum.setCellValueFactory(new PropertyValueFactory<Projekt, Gregorian>("ende"));	
 
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {

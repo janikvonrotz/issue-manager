@@ -8,7 +8,6 @@ import ch.issueman.common.Person;
 import ch.issueman.common.Sachbearbeiter;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -22,7 +21,7 @@ public class PersonView implements Initializable {
 
 	private static Controller<Person, Integer> controller = new Controller<Person, Integer>(Person.class);
 
-	private ObservableList<Person> masterData = FXCollections.observableArrayList();
+	private FilteredList<Person> filteredData = new FilteredList<Person>(FXCollections.observableArrayList(),	p -> true);
 
 	@FXML
 	private TableView<Person> tvData;
@@ -61,46 +60,34 @@ public class PersonView implements Initializable {
 		tcRolle.setCellValueFactory(new PropertyValueFactory<Person, String>("dtype"));
 		tcFirma.setCellValueFactory(new PropertyValueFactory<Person, Integer>("firma"));
 
-		// 1. Wrap the ObservableList in a FilteredList (initially display all
-		// data).
-		FilteredList<Person> filteredData = new FilteredList<>(masterData, p -> true);
+		txFilter.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					filteredData.setPredicate(t -> {
 
-		// 2. Set the filter Predicate whenever the filter changes.
-		txFilter.textProperty().addListener((observable, oldValue, newValue) -> {
-					filteredData.setPredicate(person -> {
-						// If filter text is empty, display all persons.
-							if (newValue == null || newValue.isEmpty()) {
-								return true;
-							}
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
 
-							// Compare name with filter text.
-							String lowerCaseFilter = newValue.toLowerCase();
+						String lowerCaseFilter = newValue.toLowerCase();
 
-							if (person.getNachname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-								return true; // Filter matches first name.
-							} else if (person.getVorname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-								return true; // Filter matches last name.
-							}
-							return false; // Does not match.
-						});
+						if (t.getNachname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true;
+						} else if (t.getVorname().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true;
+						}
+						return false;
+					});
 				});
-
-		// 3. Wrap the FilteredList in a SortedList.
-		SortedList<Person> sortedData = new SortedList<>(filteredData);
-
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// Otherwise, sorting the TableView would have no effect.
-		sortedData.comparatorProperty().bind(tvData.comparatorProperty());
-
-		// 5. Add sorted (and filtered) data to the table.
-		tvData.setItems(sortedData);
 
 		Refresh();
 	}
 
 	public void Refresh() {
 		try {
-			tvData.setItems(FXCollections.observableArrayList(controller.getAll()));
+			filteredData = new FilteredList<Person>(FXCollections.observableArrayList(controller.getAll()),	p -> true);
+			SortedList<Person> sortedData = new SortedList<Person>(filteredData);
+			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
+			tvData.setItems(sortedData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
