@@ -82,10 +82,12 @@ public class ProjektView implements Initializable {
 							}
 
 							String lowerCaseFilter = newValue.toLowerCase();
-
-							if (t.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							String objectvalues = t.getTitle() + t.getArbeitstyp().getArbeitstyp() + t.getId();
+							
+							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
 							}
+
 							return false;
 						});
 				});		
