@@ -6,23 +6,25 @@ import java.util.ResourceBundle;
 import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 public class ProjektView implements Initializable {
 
 	private static Controller<Projekt, Integer> controller = new Controller<Projekt, Integer>(Projekt.class);
 
 	private FilteredList<Projekt> filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(),	p -> true);
-
-	private Projekt projekt;
 
 	@FXML
 	private TableView<Projekt> tvData;
@@ -37,16 +39,16 @@ public class ProjektView implements Initializable {
 	private TableColumn<Projekt, String> tcTitel;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcProjekttyp;
+	private TableColumn<Projekt, String> tcProjekttyp;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcArbeitstyp;
+	private TableColumn<Projekt, String> tcArbeitstyp;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcBauleiter;
+	private TableColumn<Projekt, String> tcBauleiter;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcBauherr;
+	private TableColumn<Projekt, String> tcBauherr;
 
 	@FXML
 	private TableColumn<Projekt, String> tcEnddatum;
@@ -59,11 +61,31 @@ public class ProjektView implements Initializable {
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
-		tcProjekttyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("projekttyp"));
-		tcArbeitstyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("arbeitstyp"));
-		tcBauleiter.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauleiter"));
-		tcBauherr.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauherr"));
-		tcEnddatum.setCellValueFactory(new PropertyValueFactory<Projekt, String>("ende"));	
+		tcProjekttyp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getProjekttyp().getProjekttyp());
+			}  
+		});
+		tcArbeitstyp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getArbeitstyp().getArbeitstyp());
+			}  
+		});
+//		tcBauleiter.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+//			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+//				return new SimpleStringProperty(param.getValue().getProjektleitungen());
+//			}  
+//		});
+		tcBauherr.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getBauherr().getUnternehmen().getFirmenname());
+			}  
+		});	
+		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getEnde().toString());
+			}  
+		});
 
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {
