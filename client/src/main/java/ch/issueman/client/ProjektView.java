@@ -6,15 +6,19 @@ import java.util.ResourceBundle;
 import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 public class ProjektView implements Initializable {
 
@@ -40,7 +44,7 @@ public class ProjektView implements Initializable {
 	private TableColumn<Projekt, Integer> tcProjekttyp;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcArbeitstyp;
+	private TableColumn<Projekt, String> tcArbeitstyp;
 
 	@FXML
 	private TableColumn<Projekt, Integer> tcBauleiter;
@@ -60,7 +64,11 @@ public class ProjektView implements Initializable {
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
 		tcProjekttyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("projekttyp"));
-		tcArbeitstyp.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("arbeitstyp"));
+		tcArbeitstyp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getArbeitstyp().getArbeitstyp());
+			}  
+		}); 
 		tcBauleiter.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauleiter"));
 		tcBauherr.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("bauherr"));
 		tcEnddatum.setCellValueFactory(new PropertyValueFactory<Projekt, String>("ende"));	
