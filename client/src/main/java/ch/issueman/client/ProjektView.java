@@ -96,7 +96,11 @@ public class ProjektView implements Initializable {
 							}
 
 							String lowerCaseFilter = newValue.toLowerCase();
-							String objectvalues = t.getTitle() + t.getArbeitstyp().getArbeitstyp() + t.getId();
+							String objectvalues = t.getTitle() 
+									+ t.getArbeitstyp().getArbeitstyp() 
+									+ t.getProjekttyp().getProjekttyp()
+									+ t.getBauherr().getUnternehmen().getFirmenname()
+									+ t.getId();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
