@@ -10,7 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenView">
    <children>
-      <TableView fx:id="tvData" onMouseClicked="#clickData" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label layoutX="14.0" layoutY="18.0" text="Subunternehmen" />
+      <TableView fx:id="tvData" layoutY="52.0" onMouseClicked="#clickData" prefHeight="350.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
         <columns>
           <TableColumn fx:id="tcId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="tcFirmenname" prefWidth="134.0" text="Firma" />
@@ -19,5 +20,6 @@
             <TableColumn fx:id="tcOrt" prefWidth="81.0" text="Ort" />
         </columns>
       </TableView>
+      <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" />
    </children>
 </AnchorPane>
