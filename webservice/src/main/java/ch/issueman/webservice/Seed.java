@@ -35,13 +35,12 @@ import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
 /**
- * class Seed
+ * Seeds the database with data.
  * 
  * @author Erwin Willi, Janik von Rotz
  * @version 1.0.0
  * @since 1.0.0
  */
-
 @Slf4j
 public class Seed {
 	

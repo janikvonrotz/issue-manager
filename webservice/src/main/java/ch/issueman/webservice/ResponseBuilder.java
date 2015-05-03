@@ -2,7 +2,6 @@ package ch.issueman.webservice;
 
 import java.io.Serializable;
 import java.rmi.Naming;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.GenericEntity;
@@ -16,7 +15,6 @@ import ch.issueman.common.Bauleiter;
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
-import ch.issueman.common.Model;
 import ch.issueman.common.Sachbearbeiter;
 
 /**
@@ -180,6 +178,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	
 	public Response getAllBauleiter() {
 		try {
+			@SuppressWarnings("unchecked")
 			List<Bauleiter> list = (List<Bauleiter>) controller.getAll();
 			GenericEntity<List<Bauleiter>> genericEntity = new GenericEntity<List<Bauleiter>>(list){};
 			return Response.ok().entity(genericEntity).build();
@@ -189,8 +188,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllSachbearbeiter()
+	 */
 	public Response getAllSachbearbeiter() {
 		try {
+			@SuppressWarnings("unchecked")
 			List<Sachbearbeiter> list = (List<Sachbearbeiter>) controller.getAll();
 			GenericEntity<List<Sachbearbeiter>> genericEntity = new GenericEntity<List<Sachbearbeiter>>(list){};
 			return Response.ok().entity(genericEntity).build();
@@ -200,8 +203,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllBauherr()
+	 */
 	public Response getAllBauherr() {
 		try {
+			@SuppressWarnings("unchecked")
 			List<Bauherr> list = (List<Bauherr>) controller.getAll();
 			GenericEntity<List<Bauherr>> genericEntity = new GenericEntity<List<Bauherr>>(list){};
 			return Response.ok().entity(genericEntity).build();
@@ -211,8 +218,12 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllKontakt()
+	 */
 	public Response getAllKontakt() {
 		try {
+			@SuppressWarnings("unchecked")
 			List<Kontakt> list = (List<Kontakt>) controller.getAll();
 			GenericEntity<List<Kontakt>> genericEntity = new GenericEntity<List<Kontakt>>(list){};
 			return Response.ok().entity(genericEntity).build();

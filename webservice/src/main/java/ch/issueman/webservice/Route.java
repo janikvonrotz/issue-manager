@@ -42,7 +42,6 @@ import ch.issueman.common.Unternehmen;
  * @version 1.0.0
  * @since 1.0.0
  */
-
 @Path("/")
 public class Route{
 	
@@ -103,7 +102,6 @@ public class Route{
 	/**
 	 * Get for abstract implementations
 	 */
-	
 	@GET
 	@Path("bauleiter")
 	@Produces(MediaType.APPLICATION_JSON)

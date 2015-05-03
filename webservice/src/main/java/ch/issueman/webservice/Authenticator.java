@@ -19,6 +19,13 @@ import org.jboss.resteasy.util.Base64;
 
 import ch.issueman.common.Login;
 
+/**
+ * For every incoming requrest this class checks the header for authentication information.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 @Provider
 @Slf4j
 public class Authenticator implements ContainerRequestFilter {

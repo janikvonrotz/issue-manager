@@ -17,62 +17,112 @@ import ch.issueman.common.Login;
  */
 public interface DAOResponseBuilder<T, Id> extends Remote{
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#persist(java.lang.Object)
+	 * 
+	 * @param t the entity to persist.
+	 * @return http response.
 	 */
 	public Response persist(T t);
 	
 	/* (non-Javadoc)
+	 * 
+	 */
+	/**
 	 * @see ch.issueman.common.DAO#getById(java.io.Serializable)
+	 * 
+	 * @param id the of the entity to get.
+	 * @return http response containing the entity.
 	 */
 	public Response getById(Id id);
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
+	 * 
+	 * @param propertyname the name of the entity property.
+	 * @param propertyvalues the value of the entity property.
+	 * @return http response containing entites that matched the property definition.
 	 */
 	public Response getAllByProperty(String propertyname, Object[] propertyvalues);
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#getAll()
+	 * 
+	 * @return http response containing all entites.
 	 */
 	public Response getAll();
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#update(java.lang.Object)
+	 * 
+	 * @param t the entity to update.
+	 * @return http response.
 	 */
 	public Response update(T t);
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#delete(java.lang.Object)
+	 * 
+	 * @param t the entity to delete.
+	 * @return http response.
 	 */
 	public Response delete(T t);
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.common.DAO#deleteAll()
+	 * 
+	 * @return http response.
 	 */
 	public Response deleteAll();
 	
-	/* (non-Javadoc)
+	/**
 	 * @see ch.issueman.webservice.DAORmi#setLogin(ch.issueman.common.Login)
+	 * 
+	 * @param login the login to store in the server user context.
 	 */
 	public void setLogin(Login login);
 	
 	/**
-	 * @return
+	 * Returns a http response containing the login with all attributes.
+	 * 
+	 * @param login the login to encapsulate in a http response.
+	 * @return http response containing the login object.
 	 */
 	public Response signin(Login login);
 	
 	/**
-	 * @param id
-	 * @return
+	 * Delete an entity by it's id.
+	 * 
+	 * @param id the id of the entity to delete.
+	 * @return http response.
 	 */
 	public Response deleteById(Id id);
 
+	/**
+	 * Return all Bauleiter objects as generic entity in order to perceive the type info.
+	 * 
+	 * @return http response.
+	 */
 	public Response getAllBauleiter();
 
+	/**
+	 * Return all Sachbearbeiter objects as generic entity in order to perceive the type info.
+	 * 
+	 * @return http response.
+	 */
 	public Response getAllSachbearbeiter();
 
+	/**
+	 * Return all Kontakt objects as generic entity in order to perceive the type info.
+	 * 
+	 * @return http response.
+	 */
 	public Response getAllKontakt();
 
+	/**
+	 * Return all Bauherr objects as generic entity in order to perceive the type info.
+	 * 
+	 * @return http response.
+	 */
 	public Response getAllBauherr();
 }

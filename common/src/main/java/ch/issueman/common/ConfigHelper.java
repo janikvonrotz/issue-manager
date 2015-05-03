@@ -22,7 +22,7 @@ public class ConfigHelper {
 	 * Checks whether the String config entry exists or not and returns the defined value.
 	 * 
 	 * @param path the path in the config file.
-	 * @param defaultcount the default value to return when the entry doesn't exist.
+	 * @param defaultvalue the default value to return when the entry doesn't exist.
 	 * @return the config value.
 	 */
 	public static String getConfig(String path, String defaultvalue) {
@@ -38,7 +38,7 @@ public class ConfigHelper {
 	 * Checks whether the Integer config entry exists or not and returns the defined value.
 	 * 
 	 * @param path the path in the config file.
-	 * @param defaultcount the default value to return when the entry doesn't exist.
+	 * @param defaultvalue the default value to return when the entry doesn't exist.
 	 * @return the config value.
 	 */
 	public static int getConfig(String path, int defaultvalue) {

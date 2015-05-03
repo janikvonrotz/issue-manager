@@ -16,46 +16,60 @@ import java.util.List;
 public interface DAO<T, Id extends Serializable> {
 	
 	/**
-	 * @param t
-	 * @throws Exception
+	 * Persist an entity
+	 * 
+	 * @param t the entity to persist.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public void persist(T t) throws Exception;
 	
 	/**
-	 * @param id
-	 * @return
-	 * @throws Exception
+	 * Get entity by it's id.
+	 * 
+	 * @param id the id of the entity.
+	 * @return return entiy by id.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public T getById(Id id) throws Exception;
 	
 	/**
-	 * @return
-	 * @throws Exception
+	 * Get all entities.
+	 * 
+	 * @return list of all entities.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public List<T> getAll() throws Exception;
 	
 	/**
-	 * @param propertyname
-	 * @param propertyvalues
-	 * @return
-	 * @throws Exception
+	 * Get entities by property name and values.
+	 * 
+	 * @param propertyname the name of the entity property.
+	 * @param propertyvalues the value of the entity property.
+	 * @return list of all matched entities.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception;
 	
 	/**
-	 * @param t
-	 * @throws Exception
+	 * Update an entity.
+	 * 
+	 * @param t the entity to update.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public void update(T t) throws Exception;
 	
 	/**
-	 * @param t
-	 * @throws Exception
+	 * Delete an entity.
+	 * 
+	 * @param t the entity to delete.
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public void delete(T t) throws Exception;
 	
 	/**
-	 * @throws Exception
+	 * Delete all entites.
+	 * 
+	 * @throws Exception if ORM fails to execute.
 	 */
 	public void deleteAll() throws Exception;
 }

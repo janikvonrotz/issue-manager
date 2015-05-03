@@ -12,6 +12,13 @@ import lombok.extern.slf4j.Slf4j;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
+/**
+ * Configure eclipse link with properties from the config file.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 @Slf4j
 public class EclipseLink {
 

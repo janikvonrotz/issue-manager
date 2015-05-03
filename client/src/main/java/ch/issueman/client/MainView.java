@@ -32,6 +32,7 @@ public class MainView implements Initializable {
 	}
 
 	public Stage showLogin() {
+		return null;
 		
 	}
 }

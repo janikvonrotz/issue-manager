@@ -45,38 +45,59 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#persist(java.lang.Object)
+	 */
 	@Override
 	public void persist(T t) throws Exception {
 		controller.persist(t);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getById(java.io.Serializable)
+	 */
 	@Override
 	public T getById(Id id) throws Exception {
 		return controller.getById(id);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getAll()
+	 */
 	public List<T> getAll() throws Exception {
 		return controller.getAll();
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#update(java.lang.Object)
+	 */
 	@Override
 	public void update(T t) throws Exception {
 		controller.update(t);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#delete(java.lang.Object)
+	 */
 	@Override
 	public void delete(T t) throws Exception {
 		controller.delete(t);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#deleteAll()
+	 */
 	@Override
 	public void deleteAll() throws Exception {
 		controller.deleteAll();
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
+	 */
 	@Override
 	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO implement
 		return null;
 	}
 	
