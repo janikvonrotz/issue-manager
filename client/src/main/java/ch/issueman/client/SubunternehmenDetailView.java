@@ -21,7 +21,7 @@ import ch.issueman.common.Person;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
-public class SubunternehmenView implements Initializable {
+public class SubunternehmenDetailView implements Initializable {
 	
 	private static Controller<Person, Integer> personController = new Controller<Person, Integer>(Person.class);
 	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
