@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import sun.applet.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
+/**
+ * Main view controller that holds the border pane and handles the view navigation.
+ * 
+ * @author Patrick ?, Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class MainView implements Initializable {
 
 	@FXML
@@ -33,6 +38,12 @@ public class MainView implements Initializable {
 		showCenterView("Subunternehmen");
 	}
 
+	/**
+	 * Display a detail view in the center section.
+	 * 
+	 * @param viewname the name of the detail view to display.
+	 * @return view controller of this view.
+	 */
 	public static <T> ViewableDetail<T> showCenterDetailView(String viewname) {
 		FXMLLoader loader =  new FXMLLoader();
 		try {
@@ -45,6 +56,12 @@ public class MainView implements Initializable {
 		return loader.getController();
 	}
 
+	/**
+	 * Display a view in the center section.
+	 * 
+	 * @param viewname the name of the view to display.
+	 * @return view controller of this view.
+	 */
 	public static <T, Filter> Viewable<T, Filter> showCenterView(String viewname) {
 		FXMLLoader loader =  new FXMLLoader();
 		try {

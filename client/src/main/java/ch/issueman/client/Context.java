@@ -21,6 +21,13 @@ import ch.issueman.common.Login;
 
 import com.typesafe.config.ConfigFactory;
 
+/**
+ * Client user context.
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class Context {
 
 	@Getter

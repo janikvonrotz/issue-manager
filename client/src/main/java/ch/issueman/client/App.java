@@ -14,6 +14,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Main class of the client application.
+ * 
+ * @author Janik von Rotz, Patrick ?
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class App extends Application {
 
 	@FXML
