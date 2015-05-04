@@ -49,7 +49,7 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	private TableColumn<Subunternehmen, String> tcStrasse;
 
 	@FXML
-	private TableColumn<Subunternehmen, Integer> tcPlz;
+	private TableColumn<Subunternehmen, String> tcPlz;
 
 	@FXML
 	private TableColumn<Subunternehmen, String> tcOrt;
@@ -69,11 +69,11 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 			}  
 		});
 
-//		tcPlz.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Subunternehmen,Integer>,ObservableValue<Integer>>() {  
-//			public SimpleIntegerProperty call(CellDataFeatures<Subunternehmen, Integer> param) {
-//				return new SimpleIntegerProperty(param.getValue().getAdresse().getOrt().getPlz());
-//			}  
-//		});
+		tcPlz.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Subunternehmen,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Subunternehmen, String> param) {
+				return new SimpleStringProperty(Integer.toString(param.getValue().getAdresse().getOrt().getPlz()));
+			}  
+		});
 
 		tcOrt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Subunternehmen,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Subunternehmen, String> param) {
