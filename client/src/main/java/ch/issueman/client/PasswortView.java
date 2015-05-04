@@ -1,46 +1,48 @@
 package ch.issueman.client;
 
-import java.awt.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.Subunternehmen;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 
 /**
- * List view for Login
+ * List view Passwort
  * 
  * @author Sandro Klarer
  * @version 1.0.0
  * @since 1.0.0
  */
-public class LoginView implements Initializable {
-
+public class PasswortView implements Initializable {
+	
 	private static Controller<Login, Integer> controller = new Controller<Login, Integer>(Login.class);
+
+	@FXML
+	private Label lbPerson;
 	
 	@FXML
-	private TextField txBenutzername;
+	private PasswordField pfNeuesPasswort;	
 	
 	@FXML
-	private PasswordField pfPasswort;
+	private PasswordField pfPasswortWiederholen;
+	
+	@FXML 
+	private Button btSpeichern; 
 	
 	@FXML
-	private Button btLogin;
+	private Button btAbbrechen;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-		
-		txBenutzername.getText();
-		pfPasswort.ge
 	}
 	
 	public void refreshPersonTable() {
@@ -50,21 +52,14 @@ public class LoginView implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	public void clickSpeichern(){
+		
+	}
 	
-	@FXML
-	public void clickLogin(){
-		App.showMain();
-		Login login = new Login(new Sachbearbeiter("", "", txBenutzername.getText()), pfPasswort.getText(), null);
-		Context.setLogin(login);
-			if(Context.login()){
-				pnData.setVisible(true);
-				pnLogin.setVisible(false);
-			}else{
-				txBenutzername.setText("");
-				pfPasswort.setText("");
-			}
+	public void clickAbbrechen(){
+		
 	}
 	
 	
-
 }
