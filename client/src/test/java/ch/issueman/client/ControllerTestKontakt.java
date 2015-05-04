@@ -15,6 +15,13 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
+/**
+ * Testclass ControllerTestKontakt
+ *
+ * @author Erwin Willi
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 
 public class ControllerTestKontakt {
 	

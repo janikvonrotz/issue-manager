@@ -12,6 +12,14 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Bauleiter;
 
+/**
+ * Testclass ControllerTestBauleiter
+ *
+ * @author Erwin Willi
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 public class ControllerTestBauleiter {
 
 	private Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);

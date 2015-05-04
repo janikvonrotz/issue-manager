@@ -11,6 +11,14 @@ import org.junit.Test;
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 
+/**
+ * Testclass ControllerTestSachbearbeiter
+ *
+ * @author Erwin Willi
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+
 public class ControllerTestSachbearbeiter {
 
 	private Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);

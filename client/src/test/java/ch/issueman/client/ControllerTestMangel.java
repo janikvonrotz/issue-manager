@@ -18,6 +18,13 @@ import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
 
+/**
+ * Testclass ControllerTestMangel
+ *
+ * @author Erwin Willi
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 
 public class ControllerTestMangel {
 	
