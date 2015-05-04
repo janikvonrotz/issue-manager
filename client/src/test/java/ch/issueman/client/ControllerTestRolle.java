@@ -32,8 +32,8 @@ public class ControllerTestRolle {
 		try {
 			rollecontroller.persist(new Rolle("testRolle"));
 		} catch (Exception e) {
-			fail("Persist for Rolle failed");
 			e.printStackTrace();
+			fail("Persist for Rolle failed");
 		}
 	}
 	
@@ -43,8 +43,8 @@ public class ControllerTestRolle {
 			@SuppressWarnings("unused")
 			List<Rolle> listRolle = rollecontroller.getAll();
 		} catch (Exception e) {
-			fail("Get list of Rolle failed");
 			e.printStackTrace();
+			fail("Get list of Rolle failed");
 		}	
 	}
 	
@@ -55,8 +55,8 @@ public class ControllerTestRolle {
 			@SuppressWarnings("unused")
 			Rolle rolle = rollecontroller.getById(listRolle.get(listRolle.size()-1).getId());
 		} catch (Exception e) {
-			fail("Get by id for Rolle failed");
 			e.printStackTrace();
+			fail("Get by id for Rolle failed");
 		}
 	}
 
@@ -68,8 +68,8 @@ public class ControllerTestRolle {
 			rolle.setBezeichnung("testRolleUpdated");
 			rollecontroller.update(rolle);
 		} catch (Exception e) {
-			fail("Update for Rolle failed");
 			e.printStackTrace();
+			fail("Update for Rolle failed");
 		}
 	}
 
@@ -79,8 +79,8 @@ public class ControllerTestRolle {
 			List<Rolle> listRolle = rollecontroller.getAll();
 			rollecontroller.delete(listRolle.get(listRolle.size()-1));
 		} catch (Exception e) {
-			fail("Deletion of Rolle failed");
 			e.printStackTrace();
+			fail("Deletion of Rolle failed");
 		}
 	}
 }

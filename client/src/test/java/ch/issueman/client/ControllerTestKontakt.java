@@ -18,16 +18,12 @@ import ch.issueman.common.Subunternehmen;
 
 public class ControllerTestKontakt {
 	
-	private Kontakt kontakt;
 	private Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 		
 	@Before
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-
-		kontakt = new Kontakt("Kontakt", "Test", "test@kontakt.ch", 
-				FilterHelper.filterListIds(new Controller<Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(0), null);
 	}
 
 	@After
@@ -38,8 +34,9 @@ public class ControllerTestKontakt {
 	@Test
 	public void testPersist() {
 		try {
+			Kontakt kontakt = new Kontakt("Kontakt", "Test2", "test2@kontakt.ch", 
+					FilterHelper.filterListIds(new Controller<Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(0), null);
 			kontaktcontroller.persist(kontakt);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Persist for Kontakt failed");
@@ -53,6 +50,7 @@ public class ControllerTestKontakt {
 			@SuppressWarnings("unused")
 			List<Kontakt> listKontakt = kontaktcontroller.getAll();
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Get list of Kontakt failed");
 		}	
 	}
@@ -61,9 +59,8 @@ public class ControllerTestKontakt {
 	public void testGetById() {
 		try {
 			List<Kontakt> listKontakt = kontaktcontroller.getAll();
-			//@SuppressWarnings("unused")
-			kontakt = kontaktcontroller.getById(listKontakt.get(listKontakt.size()-1).getId());
-			System.out.println(kontakt);
+			@SuppressWarnings("unused")
+			Kontakt kontakt = kontaktcontroller.getById(listKontakt.get(listKontakt.size()-1).getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Get by id for Kontakt failed");
@@ -74,25 +71,23 @@ public class ControllerTestKontakt {
 	public void testUpdate() {
 		try {
 			List<Kontakt> listKontakt = kontaktcontroller.getAll();
-			kontakt = listKontakt.get(listKontakt.size()-1);
+			Kontakt kontakt = listKontakt.get(listKontakt.size()-1);
 			kontakt.setVorname("NachUpdate");
 			kontaktcontroller.update(kontakt);
-			System.out.println(kontakt);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Update for Kontakt failed");
 		}
 	}
 
-//	@Test
-//	Berechtigungen fehlen um zu löschen
-//	public void testDelete() {
-//		try {
-//			List<Kontakt> listKontakt = kontaktcontroller.getAll();
-//			kontaktcontroller.delete(listKontakt.get(listKontakt.size()-1));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail("Deletion of Kontakt failed");
-//		}
-//	}
+	@Test
+	public void testDelete() {
+		try {
+			List<Kontakt> listKontakt = kontaktcontroller.getAll();
+			kontaktcontroller.delete(listKontakt.get(listKontakt.size()-1));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Deletion of Kontakt failed");
+		}
+	}
 }

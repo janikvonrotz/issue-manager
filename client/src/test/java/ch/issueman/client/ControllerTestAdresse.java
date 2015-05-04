@@ -37,8 +37,8 @@ public class ControllerTestAdresse {
 			listOrt = ortController.getAll();
 			adresseController.persist(new Adresse("Musterstrasse 1", listOrt.get(0)));
 		} catch (Exception e) {
-			fail("Persist for Adresse failed");
 			e.printStackTrace();
+			fail("Persist for Adresse failed");
 		}
 	}
 	
@@ -48,8 +48,8 @@ public class ControllerTestAdresse {
 			@SuppressWarnings("unused")
 			List<Adresse> listAdresse = adresseController.getAll();
 		} catch (Exception e) {
-			fail("Get list of Adresse failed");
 			e.printStackTrace();
+			fail("Get list of Adresse failed");
 		}	
 	}
 	
@@ -60,8 +60,8 @@ public class ControllerTestAdresse {
 			@SuppressWarnings("unused")
 			Adresse Adresse = adresseController.getById(listAdresse.get(listAdresse.size()-1).getId());
 		} catch (Exception e) {
-			fail("Get by id for Adresse failed");
 			e.printStackTrace();
+			fail("Get by id for Adresse failed");
 		}
 	}
 
@@ -70,11 +70,11 @@ public class ControllerTestAdresse {
 		try {
 			List<Adresse> listAdresse = adresseController.getAll();
 			Adresse adresse = listAdresse.get(listAdresse.size()-1);
-			adresse.setStrasse("Updatedstrasse 19889askjgd7");
+			adresse.setStrasse("Updatedstrasse");
 			adresseController.update(adresse);
 		} catch (Exception e) {
-			fail("Update for Adresse failed");
 			e.printStackTrace();
+			fail("Update for Adresse failed");
 		}
 	}
 
@@ -84,8 +84,8 @@ public class ControllerTestAdresse {
 			List<Adresse> listAdresse = adresseController.getAll();
 			adresseController.delete(listAdresse.get(listAdresse.size()-1));
 		} catch (Exception e) {
-			fail("Deletion of Adresse failed");
 			e.printStackTrace();
+			fail("Deletion of Adresse failed");
 		}
 	}
 }

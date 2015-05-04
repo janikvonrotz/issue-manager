@@ -13,15 +13,12 @@ import ch.issueman.common.Sachbearbeiter;
 
 public class ControllerTestSachbearbeiter {
 
-	private Sachbearbeiter sachbearbeiter;
 	private Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
-	private List<Sachbearbeiter> listSachbearbeiter;
 	
 	@Before
 	public void setUp() throws Exception {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-		sachbearbeiter = new Sachbearbeiter("John", "Test", "test@john.ch");
 	}
 
 	@After
@@ -32,8 +29,10 @@ public class ControllerTestSachbearbeiter {
 	@Test
 	public void testPersist() {
 		try {
+			Sachbearbeiter sachbearbeiter = new Sachbearbeiter("John", "Test", "test@john.ch");
 			sachbearbeitercontroller.persist(sachbearbeiter);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Persist for Sachbearbeiter failed");
 		}
 		Context.logout();
@@ -53,7 +52,7 @@ public class ControllerTestSachbearbeiter {
 	@Test
 	public void testGetById() {
 		try {
-			listSachbearbeiter = sachbearbeitercontroller.getAll();
+			List<Sachbearbeiter> listSachbearbeiter = sachbearbeitercontroller.getAll();
 			@SuppressWarnings("unused")
 			Sachbearbeiter sachbearbeiter = sachbearbeitercontroller.getById(listSachbearbeiter.get(listSachbearbeiter.size()-1).getId());
 		} catch (Exception e) {
@@ -66,23 +65,23 @@ public class ControllerTestSachbearbeiter {
 	public void testUpdate() {
 		try {
 			List<Sachbearbeiter> listSachbearbeiter = sachbearbeitercontroller.getAll();
-			sachbearbeiter = listSachbearbeiter.get(listSachbearbeiter.size()-1);
+			Sachbearbeiter sachbearbeiter = listSachbearbeiter.get(listSachbearbeiter.size()-1);
 			sachbearbeiter.setNachname("testSachbearbeiterUpdated");
 			sachbearbeitercontroller.update(sachbearbeiter);
 		} catch (Exception e) {
+			e.printStackTrace();
 			fail("Update for Sachbearbeiter failed");
 		}
 	}
 
-//	@Test
-//	Nicht möglich da berechtigungen fehlen
-//	public void testDelete() {
-//		try {
-//			List<Sachbearbeiter> listSachbearbeiter = sachbearbeitercontroller.getAll();
-//			sachbearbeitercontroller.delete(listSachbearbeiter.get(listSachbearbeiter.size()-1));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail("Deletion of Sachbearbeiter failed");
-//		}
-//	}
+	@Test
+	public void testDelete() {
+		try {
+			List<Sachbearbeiter> listSachbearbeiter = sachbearbeitercontroller.getAll();
+			sachbearbeitercontroller.delete(listSachbearbeiter.get(listSachbearbeiter.size()-1));
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Deletion of Sachbearbeiter failed");
+		}
+	}
 }

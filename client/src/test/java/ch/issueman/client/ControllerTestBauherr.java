@@ -32,8 +32,8 @@ public class ControllerTestBauherr {
 		try {
 			bauherrcontroller.persist(new Bauherr("testName", "testVorname", "test@email.ch", null));
 		} catch (Exception e) {
-			fail("Persist for Bauherr failed");
 			e.printStackTrace();
+			fail("Persist for Bauherr failed");
 		}
 	}
 	
@@ -43,8 +43,8 @@ public class ControllerTestBauherr {
 			@SuppressWarnings("unused")
 			List<Bauherr> listBauherr = bauherrcontroller.getAll();
 		} catch (Exception e) {
-			fail("Get list of Bauherr failed");
 			e.printStackTrace();
+			fail("Get list of Bauherr failed");
 		}	
 	}
 	
@@ -55,8 +55,8 @@ public class ControllerTestBauherr {
 			@SuppressWarnings("unused")
 			Bauherr bauherr = bauherrcontroller.getById(listBauherr.get(listBauherr.size()-1).getId());
 		} catch (Exception e) {
-			fail("Get by id for Bauherr failed");
 			e.printStackTrace();
+			fail("Get by id for Bauherr failed");
 		}
 	}
 
@@ -68,8 +68,8 @@ public class ControllerTestBauherr {
 			bauherr.setNachname("testBauherrUpdated");
 			bauherrcontroller.update(bauherr);
 		} catch (Exception e) {
-			fail("Update for Bauherr failed");
 			e.printStackTrace();
+			fail("Update for Bauherr failed");
 		}
 	}
 
@@ -79,8 +79,8 @@ public class ControllerTestBauherr {
 			List<Bauherr> listBauherr = bauherrcontroller.getAll();
 			bauherrcontroller.delete(listBauherr.get(listBauherr.size()-1));
 		} catch (Exception e) {
-			fail("Deletion of Bauherr failed");
 			e.printStackTrace();
+			fail("Deletion of Bauherr failed");
 		}
 	}
 }

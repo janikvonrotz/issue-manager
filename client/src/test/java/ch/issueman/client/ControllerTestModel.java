@@ -44,8 +44,8 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 		try {
 			controller.persist(model);
 		} catch (Exception e) {
-			fail("Persist for " + clazz.getSimpleName() + " failed");
 			e.printStackTrace();
+			fail("Persist for " + clazz.getSimpleName() + " failed");
 		}
 	}
 	
@@ -55,8 +55,8 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 			@SuppressWarnings("unused")
 			List<T> listModel = controller.getAll();
 		} catch (Exception e) {
-			fail("Get list of " + clazz.getSimpleName() + " failed");
 			e.printStackTrace();
+			fail("Get list of " + clazz.getSimpleName() + " failed");
 		}	
 	}
 	
@@ -67,8 +67,8 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 			@SuppressWarnings("unused")
 			T model = controller.getById(( (Model) listModel.get(listModel.size()-1)).getId());
 		} catch (Exception e) {
-			fail("Get by id for " + clazz.getSimpleName() + " failed");
 			e.printStackTrace();
+			fail("Get by id for " + clazz.getSimpleName() + " failed");
 		}
 	}
 
@@ -79,8 +79,8 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 			T model = listModel.get(listModel.size()-1);
 			controller.update(model);
 		} catch (Exception e) {
-			fail("Update for " + clazz.getSimpleName() + " failed");
 			e.printStackTrace();
+			fail("Update for " + clazz.getSimpleName() + " failed");
 		}
 	}
 
@@ -90,8 +90,8 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 			List<T> listModel = controller.getAll();
 			controller.delete(listModel.get(listModel.size()-1));
 		} catch (Exception e) {
-			fail("Deletion of " + clazz.getSimpleName() + " failed");
 			e.printStackTrace();
+			fail("Deletion of " + clazz.getSimpleName() + " failed");
 		}
 	}
 
@@ -106,5 +106,7 @@ public class ControllerTestModel<T, Id extends Serializable> implements junit.fr
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }
 
