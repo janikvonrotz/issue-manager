@@ -1,7 +1,9 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.time.*;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -12,11 +14,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
@@ -46,6 +51,7 @@ public class ProjektDetailView implements Initializable {
 	private static Controller<Projekt, Integer> projektController = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Arbeitstyp, Integer> arbeitstypController = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
+	private Projekt projekt;
 	
 	@FXML
 	private Label lbProjekt;
@@ -78,7 +84,7 @@ public class ProjektDetailView implements Initializable {
 	private ComboBox<Bauherr> cbBauherr;
 	
 	@FXML
-	private TextField txProjektleiter;
+	private TextField lbProjektleiter;
 	
 	@FXML
 	private TextArea taSubunternehmen;
@@ -99,44 +105,94 @@ public class ProjektDetailView implements Initializable {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
 		
-		cbArbeitstyp.setItems(FXCollections.observableArrayList(arbeitstypController.getAll()));
-		cbProjekttyp.setItems(FXCollections.observableArrayList(projekttypController.getAll()));
-		cbBauherr.setItems(FXCollections.observableArrayList(bauherrController.getAll()));
+		cbArbeitstyp.setCellFactory(new Callback<ListView<Arbeitstyp>,ListCell<Arbeitstyp>>(){
+			@Override
+			public ListCell<Arbeitstyp> call(ListView<Arbeitstyp> arg0) {		 
+				final ListCell<Arbeitstyp> cell = new ListCell<Arbeitstyp>(){				 
+                    @Override
+                    protected void updateItem(Arbeitstyp t, boolean bln) {
+                        super.updateItem(t, bln);
+                         
+                        if(t != null){
+                            setText(t.getArbeitstyp());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
 		
-		Refresh(projekt);	
+		cbProjekttyp.setCellFactory(new Callback<ListView<Projekttyp>,ListCell<Projekttyp>>(){
+			@Override
+			public ListCell<Projekttyp> call(ListView<Projekttyp> arg0) {		 
+				final ListCell<Projekttyp> cell = new ListCell<Projekttyp>(){				 
+                    @Override
+                    protected void updateItem(Projekttyp t, boolean bln) {
+                        super.updateItem(t, bln);
+                         
+                        if(t != null){
+                            setText(t.getProjekttyp());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+
+	
+		cbBauherr.setCellFactory(new Callback<ListView<Bauherr>,ListCell<Bauherr>>(){
+			@Override
+			public ListCell<Bauherr> call(ListView<Bauherr> arg0) {		 
+				final ListCell<Bauherr> cell = new ListCell<Bauherr>(){				 
+                    @Override
+                    protected void updateItem(Bauherr t, boolean bln) {
+                        super.updateItem(t, bln);
+                         
+                        if(t != null){
+                            setText(t.getDisplayName());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+
+		Refresh();	
 
 	}
 	
-	public void Refresh(Projekt projekt){
+	public void Refresh(){
 		
 		if(projekt != null){
 		
+			lbProjekt.setText(projekt.getDisplayName());
+	    	txTitel.setText(projekt.getTitle());
+	    	txStrasse.setText(projekt.getAdresse().getStrasse());
+	    	txPlz.setText("" + (projekt.getAdresse().getOrt().getPlz());
+	    	txOrt.setText(projekt.getAdresse().getOrt().getOrt());
+	    	cbArbeitstyp.setValue(projekt.getArbeitstyp());
+	    	cbProjekttyp.setValue(projekt.getProjekttyp());
+	    	dpBeginn.setValue(((GregorianCalendar) projekt.getBeginn()).toZonedDateTime().toLocalDate());
+	    	dpEnde.setValue(((GregorianCalendar) projekt.getEnde()).toZonedDateTime().toLocalDate());
+	    	cbBauherr.setValue(projekt.getBauherr());
+	    	lbProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
+	    	taSubunternehmen.setText("abcdefgh");
+	    	
 			try {
+				
+				cbArbeitstypItems(FXCollections.observableArrayList(kontaktController.getAll()));
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-	}
-
-	private void showMangelDetails(Mangel mangel) {
-	    if (mangel != null) {
-	        
-	    	lbProjekt.setText(value);
-	    	txTitel.setText(value);
-	    	txStrasse.setText(value);
-	    	txPlz.setText(value);
-	    	txOrt.setText(value);
-	    	cbArbeitstyp.setValue(arg0);
-	    	cbProjekttyp.setValue(arg0);
-	    	dpBeginn.setValue(value);
-	    	dpEnde.setValue(value);
-	    	cbBauherr.setValue(value);
-	    	txProjektleiter.setText(value);
-	    	taSubunternehmen.setText(value);
-	    	
-	    } else {
+		} else {
 
 	    	lbProjekt.setText("");
 	    	txTitel.setText("");
@@ -145,15 +201,16 @@ public class ProjektDetailView implements Initializable {
 	    	txOrt.setText("");
 	    	cbArbeitstyp.setValue(null);
 	    	cbProjekttyp.setValue(null);
-	    	dpBeginn.setValue("");
-	    	dpEnde.setValue("");
-	    	cbBauherr.setValue("");
-	    	txProjektleiter.setText("");
+	    	dpBeginn.setValue(null);
+	    	dpEnde.setValue(null);
+	    	cbBauherr.setValue(null);
+	    	lbProjektleiter.setText("");
 	    	taSubunternehmen.setText("");
 	    }
 		
 	}
 
+	
 	@FXML
 	public void clickAbbrechen(){
 		
@@ -165,7 +222,7 @@ public class ProjektDetailView implements Initializable {
 	}
 	
 	@FXML
-	public void clickSpeichern(Projekt projekt){
+	public void clickSpeichern(){
 		if (projekt != null) {
 	        
 

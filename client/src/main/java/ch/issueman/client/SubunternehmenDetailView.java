@@ -89,6 +89,12 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	public void Refresh(){
 		
 		if(subunternehmen != null){
+			
+			txFirma.setText(subunternehmen.getFirmenname());
+	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
+	    	txPlz.setText("" + subunternehmen.getAdresse().getOrt().getPlz());
+	    	txOrt.setText(subunternehmen.getAdresse().getOrt().getOrt());
+
 		
 			try {
 				tvKontakt.setItems(FXCollections.observableArrayList(kontaktController.getAll()));
@@ -96,25 +102,15 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-	}
-
-	private void showSubunternehmenDetails() {
-		
-	    if (subunternehmen != null) {
-	        
-	    	txFirma.setText(subunternehmen.getFirmenname());
-	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
-	    	txPlz.setText("" + subunternehmen.getAdresse().getOrt().getPlz());
-	    	txOrt.setText(subunternehmen.getAdresse().getOrt().getOrt());
-
-	    } else {
+		} else {
 
 	    	txFirma.setText("");
 	    	txStrasse.setText("");
 	    	txPlz.setText("");
 	    	txOrt.setText("");
 	    }
+	}
+
 
 	@FXML
 	public void clickAbbrechen(){
@@ -159,6 +155,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;
+		
 	}
 
 	@Override

@@ -159,7 +159,7 @@ public class PersonDetailView implements Initializable {
 	}
 	
 	@FXML
-	public void clickArchivieren(){
+	public void clickPasswort(){
 		
 	}
 	

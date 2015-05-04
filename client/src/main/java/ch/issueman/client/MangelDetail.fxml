@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0" prefHeight="723.0" prefWidth="823.0">
+      <GridPane layoutX="65.0" layoutY="19.0" prefHeight="723.0" prefWidth="823.0">
          <children>
             <Label fx:id="lbMangel" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
@@ -66,11 +66,11 @@
             <ComboBox fx:id="cbStatus" layoutX="77.0" layoutY="349.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" onAction="#clickShowSubunternehmen" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #486285; -fx-border-color: #ffffff;" text="i" textFill="WHITE" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Button fx:id="btShowProjekt" layoutX="77.0" layoutY="299.0" mnemonicParsing="false" onAction="#clickShowProjekt" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #486285; -fx-border-color: #ffffff;" text="i" textFill="WHITE" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TableView fx:id="tvKommentar" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TableView fx:id="tvKommentar" maxHeight="200.0" maxWidth="700.0" minHeight="200.0" minWidth="700.0" prefHeight="200.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
               <columns>
                 <TableColumn fx:id="tcKommentar" prefWidth="436.0" text="Kommentar" />
-                <TableColumn fx:id="tcAutor" minWidth="0.0" prefWidth="212.0" text="Autor" />
-                  <TableColumn fx:id="tcZeit" prefWidth="108.0" text="Zeit" />
+                <TableColumn fx:id="tcAutor" minWidth="0.0" prefWidth="135.0" text="Autor" />
+                  <TableColumn fx:id="tcZeit" prefWidth="128.0" text="Zeit" />
               </columns>
             </TableView>
             <TextField fx:id="txKommentar" maxHeight="40.0" maxWidth="700.0" minHeight="40.0" minWidth="700.0" prefHeight="40.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
