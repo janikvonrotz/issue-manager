@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 /**
  * Main view controller that holds the border pane and handles the view navigation.
  * 
- * @author Patrick ?, Janik von Rotz
+ * @author Janik von Rotz, Patrick ?
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -68,6 +68,42 @@ public class MainView implements Initializable {
 			loader.setLocation(MainView.class.getResource(viewname + ".fxml"));
 			Pane pane = (Pane) loader.load();
 			root.setCenter(pane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return loader.getController();
+	}
+	
+	/**
+	 * Display a view in the left section.
+	 * 
+	 * @param viewname the name of the view to display.
+	 * @return view controller of this view.
+	 */
+	public static <T, Filter> Viewable<T, Filter> showLeftView(String viewname) {
+		FXMLLoader loader =  new FXMLLoader();
+		try {
+			loader.setLocation(MainView.class.getResource(viewname + ".fxml"));
+			Pane pane = (Pane) loader.load();
+			root.setLeft(pane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return loader.getController();
+	}
+	
+	/**
+	 * Display a view in the top section.
+	 * 
+	 * @param viewname the name of the view to display.
+	 * @return view controller of this view.
+	 */
+	public static <T, Filter> Viewable<T, Filter> showTopView(String viewname) {
+		FXMLLoader loader =  new FXMLLoader();
+		try {
+			loader.setLocation(MainView.class.getResource(viewname + ".fxml"));
+			Pane pane = (Pane) loader.load();
+			root.setTop(pane);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
