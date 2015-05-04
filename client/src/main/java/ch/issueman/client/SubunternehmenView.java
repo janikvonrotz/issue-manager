@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,7 +20,14 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
-public class SubunternehmenView implements Initializable {
+/**
+ * List view for Subunternehmen
+ * 
+ * @author Janik von Rotz
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehmen> {
 
 	private static Controller<Subunternehmen, Integer> controller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 
@@ -101,6 +107,7 @@ public class SubunternehmenView implements Initializable {
 		Refresh();
 	}
 
+	@Override
 	public void Refresh() {
 		try {
 			filteredData = new FilteredList<Subunternehmen>(FXCollections.observableArrayList(controller.getAll()),	p -> true);
@@ -116,5 +123,17 @@ public class SubunternehmenView implements Initializable {
 	@FXML
 	public void clickData() {
 
+	}
+
+	@Override
+	public void showDetail(Subunternehmen t) {
+		SubunternehmenDetailView view = MainView.showCenterDetailView("SubunternehmenDetailView");
+		view.initData(t);
+	}
+
+	@Override
+	public void initData(Subunternehmen t) {
+		// TODO Auto-generated method stub
+		
 	}
 }

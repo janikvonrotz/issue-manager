@@ -22,18 +22,18 @@ import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
 /**
- * class SubunternehmenDetailView
+ * Detail view for Subunternehmen
  * 
- * @author Reno Meyer
+ * @author Reno Meyer, Janik von Rotz
  * @version 1.0.0
  * @since 1.0.0
  */
-public class SubunternehmenDetailView implements Initializable {
+public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> {
 	
 	private static Controller<Kontakt, Integer> kontaktController = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+	private Subunternehmen subunternehmen;
 	
-
 	@FXML
 	private Label lbSubunternehmen;
 	
@@ -83,11 +83,10 @@ public class SubunternehmenDetailView implements Initializable {
 		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
 		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
 			
-		Refresh(subunternehmen);	
-
+		Refresh();	
 	}
 	
-	public void Refresh(Subunternehmen subunternehmen){
+	public void Refresh(){
 		
 		if(subunternehmen != null){
 		
@@ -100,7 +99,8 @@ public class SubunternehmenDetailView implements Initializable {
 		}
 	}
 
-	private void showSubunternehmenDetails(Subunternehmen subunternehmen) {
+	private void showSubunternehmenDetails() {
+		
 	    if (subunternehmen != null) {
 	        
 	    	txFirma.setText(subunternehmen.getFirmenname());
@@ -122,7 +122,8 @@ public class SubunternehmenDetailView implements Initializable {
 	}
 	
 	@FXML
-	public void clickSpeichern(Subunternehmen subunternehmen){
+	public void clickSpeichern(){
+		
 		if (subunternehmen != null) {
 	        
 			subunternehmen.setFirmenname(txFirma.getText());
@@ -153,5 +154,15 @@ public class SubunternehmenDetailView implements Initializable {
 	@FXML
 	public void clickAddKontakt(){
 		
+	}
+
+	@Override
+	public void initData(Subunternehmen t) {
+		subunternehmen = t;
+	}
+
+	@Override
+	public void showList() {
+		SubunternehmenView view = MainView.showCenterView("Subunternehmen");
 	}
 }

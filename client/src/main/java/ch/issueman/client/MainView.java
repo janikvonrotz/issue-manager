@@ -35,4 +35,15 @@ public class MainView implements Initializable {
 		return null;
 		
 	}
+
+	public static <T> T showCenterDetailView(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static <T> T showCenterView(String string) {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
 }
