@@ -17,13 +17,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Login;
 import ch.issueman.common.Ort;
-import ch.issueman.common.Person;
+import ch.issueman.common.Kontakt;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
+/**
+ * class SubunternehmenDetailView
+ * 
+ * @author Reno Meyer
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class SubunternehmenDetailView implements Initializable {
 	
-	private static Controller<Person, Integer> personController = new Controller<Person, Integer>(Person.class);
+	private static Controller<Kontakt, Integer> kontaktController = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	
 
@@ -49,43 +56,47 @@ public class SubunternehmenDetailView implements Initializable {
 	private Button btSpeichern;
 	
 	@FXML
-	private Label lbPerson;
+	private Label lbKontakt;
 	
 	@FXML
-	private Button btAddPerson;
+	private Button btAddKontakt;
 	
 	@FXML
-	private TableView<Person> tvPerson;
+	private TableView<Kontakt> tvKontakt;
 	
 	@FXML
-	private TableColumn<Person, Integer> tcNachname;
+	private TableColumn<Kontakt, Integer> tcNachname;
 	
 	@FXML
-	private TableColumn<Person, Integer> tcVorname;
+	private TableColumn<Kontakt, Integer> tcVorname;
 	
 	@FXML
-	private TableColumn<Person, Integer> tcEmail;
+	private TableColumn<Kontakt, Integer> tcEmail;
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
+		
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-		tcNachname.setCellValueFactory(new PropertyValueFactory<Person, Integer>("nachname"));
-		tcVorname.setCellValueFactory(new PropertyValueFactory<Person, Integer>("vorname"));
-		tcEmail.setCellValueFactory(new PropertyValueFactory<Person, Integer>("email"));
+		tcNachname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("nachname"));
+		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
+		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
 			
-		Refresh();	
+		Refresh(subunternehmen);	
 
 	}
 	
-	public void Refresh(){
-		try {
-			tvPerson.setItems(FXCollections.observableArrayList(personController.getAll()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void Refresh(Subunternehmen subunternehmen){
+		
+		if(subunternehmen != null){
+		
+			try {
+				tvKontakt.setItems(FXCollections.observableArrayList(kontaktController.getAll()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -140,7 +151,7 @@ public class SubunternehmenDetailView implements Initializable {
 	}
 	
 	@FXML
-	public void clickAddPerson(){
+	public void clickAddKontakt(){
 		
 	}
 }

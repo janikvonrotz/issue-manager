@@ -56,7 +56,7 @@
             <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txOrt" layoutX="77.0" layoutY="173.0" maxHeight="40.0" maxWidth="296.0" minHeight="40.0" minWidth="296.0" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #AAAAAA;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="lbKontakt" layoutX="77.0" layoutY="64.0" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Label fx:id="lbPerson" layoutX="77.0" layoutY="64.0" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="36.0" />
                </font>
