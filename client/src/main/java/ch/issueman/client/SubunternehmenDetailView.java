@@ -163,6 +163,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
 	@Override
 	public void showList() {
-		SubunternehmenView view = MainView.showCenterView("Subunternehmen");
+		Viewable<Subunternehmen, Object> view = MainView.showCenterView("Subunternehmen");
 	}
 }

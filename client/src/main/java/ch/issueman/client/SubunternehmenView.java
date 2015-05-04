@@ -127,7 +127,7 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 
 	@Override
 	public void showDetail(Subunternehmen t) {
-		SubunternehmenDetailView view = MainView.showCenterDetailView("SubunternehmenDetailView");
+		ViewableDetail<Subunternehmen> view = MainView.showCenterDetailView("SubunternehmenDetailView");
 		view.initData(t);
 	}
 

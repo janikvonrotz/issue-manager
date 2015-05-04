@@ -1,16 +1,12 @@
 package ch.issueman.client;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MainView implements Initializable {
 
@@ -36,12 +32,12 @@ public class MainView implements Initializable {
 		
 	}
 
-	public static <T> T showCenterDetailView(String string) {
+	public static <T> ViewableDetail<T> showCenterDetailView(String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public static <T> T showCenterView(String string) {
+	public static <T, Filter> Viewable<T, Filter> showCenterView(String string) {
 		return null;
 		// TODO Auto-generated method stub
 		
