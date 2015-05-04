@@ -1,6 +1,7 @@
 package ch.issueman.webservice;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -118,5 +119,25 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 			return true;
 		}		
 		return false;
+	}
+	
+	/**
+	 * Check if login has role.
+	 * 
+	 * @param rolle to role to check.
+	 * @return true if login has role.
+	 */
+	public boolean ifUserHasRole(String rolle){
+		return this.login.getRolle().equals(rolle);
+	}
+	
+	/**
+	 * Check if login has one of the roles.
+	 * 
+	 * @param rollen the role array to check
+	 * @return true if login has on of the roles.
+	 */
+	public boolean ifUserHasRole(String[] rollen){
+		return Arrays.asList(rollen).contains(this.login.getRolle());
 	}
 }
