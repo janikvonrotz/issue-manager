@@ -1,11 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.Login;
@@ -17,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -92,7 +87,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 				//Convert Calendar to String
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 				String date = sdf.format(param.getValue().getEnde().getTime());
-				
+
 				return new SimpleStringProperty(date);
 			}  
 		});
