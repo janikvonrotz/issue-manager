@@ -39,9 +39,10 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
 			filter.setController(controller);
 			filter.setLogin(login);
+			log.info("Custom type filter for " + clazz.getSimpleName() + " found.");
 			
 		} catch (ClassNotFoundException e) {
-			log.info("No custom filter for " + clazz.getSimpleName() + " found.");
+			// log.info("No custom type filter for " + clazz.getSimpleName() + " found.");
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}	

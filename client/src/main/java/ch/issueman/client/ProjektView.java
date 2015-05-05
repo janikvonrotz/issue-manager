@@ -115,7 +115,7 @@ public class ProjektView implements Initializable {
 
 	public void Refresh() {
 		try {
-			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()),	p -> true);
+			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(),	p -> true);
 			SortedList<Projekt> sortedData = new SortedList<Projekt>(filteredData);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
