@@ -104,21 +104,21 @@ public class Projekt implements Model{
 		}
 	}
 	
-	/**
-	 * Method to get the current Projektleiter
-	 * 
-	 * @return Projektleiter projektleiter
-	 */
-	@JsonIgnore
-	public Bauleiter getCurrentProjektleiter(){
-		Bauleiter projektleiter = null;
-		for(Projektleitung pleiter : projektleitungen){
-			if (((GregorianCalendar) projektleiter.getBeginn()).before(new GregorianCalendar()) &&
-					((GregorianCalendar) projektleiter.getEnde()).after(new GregorianCalendar())){
-				projektleiter = pleiter.getBauleiter();
-			}
-		}
-		
-		return projektleiter;
-	}
+//	/**
+//	 * Method to get the current Projektleiter
+//	 * 
+//	 * @return Projektleiter projektleiter
+//	 */
+//	@JsonIgnore
+//	public Bauleiter getCurrentProjektleiter(){
+//		Bauleiter projektleiter = null;
+//		for(Projektleitung pleiter : projektleitungen){
+//			if (((GregorianCalendar) projektleiter.getBeginn()).before(new GregorianCalendar()) &&
+//					((GregorianCalendar) projektleiter.getEnde()).after(new GregorianCalendar())){
+//				projektleiter = pleiter.getBauleiter();
+//			}
+//		}
+//		
+//		return projektleiter;
+//	}
 }

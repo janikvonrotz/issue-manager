@@ -1,6 +1,11 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.Login;
@@ -83,7 +88,16 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});	
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				return new SimpleStringProperty(param.getValue().getEnde().toString());
+				
+				//Convert Calendar to Date
+				Calendar cal = param.getValue().getEnde();
+				Date date =  cal.getTime();
+				
+				//Convert Date to String
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
+				String date1 = sdf.format(date); 
+				
+				return new SimpleStringProperty(date1);
 			}  
 		});
 
@@ -115,7 +129,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	public void Refresh() {
 		try {
-			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(),	p -> true);
+			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()), p -> true);
 			SortedList<Projekt> sortedData = new SortedList<Projekt>(filteredData);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);

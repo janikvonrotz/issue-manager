@@ -272,11 +272,11 @@ public class Seed {
 		/**
 		 * seed Projekt
 		 */
-		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(12), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), FilterHelper.filterListIds(listProjektleitung, new int[]{0,1}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(13), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), FilterHelper.filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(14), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), FilterHelper.filterListIds(listProjektleitung, new int[]{4,5}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(15), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), FilterHelper.filterListIds(listProjektleitung, new int[]{6,7}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
-		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(16), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), FilterHelper.filterListIds(listProjektleitung, new int[]{8,9}), new GregorianCalendar(1,1,2015), new GregorianCalendar(1,2,2015)));
+		listProjekt.add(new Projekt("Renovation Turm", listAdresse.get(12), listArbeitstyp.get(2), listProjekttyp.get(1), listBauherr.get(0), FilterHelper.filterListIds(listProjektleitung, new int[]{0,1}), new GregorianCalendar(2015,1,1), new GregorianCalendar(2015,1,2)));
+		listProjekt.add(new Projekt("Teil-Renovation Haus", listAdresse.get(13), listArbeitstyp.get(3), listProjekttyp.get(1), listBauherr.get(1), FilterHelper.filterListIds(listProjektleitung, new int[]{2,3}), new GregorianCalendar(2015,1,1), new GregorianCalendar(2015,1,2)));
+		listProjekt.add(new Projekt("Umbau Mehrfamilienhaus", listAdresse.get(14), listArbeitstyp.get(1), listProjekttyp.get(1), listBauherr.get(2), FilterHelper.filterListIds(listProjektleitung, new int[]{4,5}), new GregorianCalendar(2015,1,1), new GregorianCalendar(2015,1,2)));
+		listProjekt.add(new Projekt("Neubau Garage", listAdresse.get(15), listArbeitstyp.get(0), listProjekttyp.get(3), listBauherr.get(3), FilterHelper.filterListIds(listProjektleitung, new int[]{6,7}), new GregorianCalendar(2015,1,1), new GregorianCalendar(2015,1,2)));
+		listProjekt.add(new Projekt("Renovation Gartenhaus", listAdresse.get(16), listArbeitstyp.get(2), listProjekttyp.get(4), listBauherr.get(4), FilterHelper.filterListIds(listProjektleitung, new int[]{8,9}), new GregorianCalendar(2015,1,1), new GregorianCalendar(2015,1,2)));
 		persistList(listProjekt, projektcontroller);
 		
 		/**
