@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 /**
  * Main view controller that holds the border pane and handles the view navigation.
  * 
- * @author Janik von Rotz, Patrick ?
+ * @author Janik von Rotz, Patrick Elsner
  * @version 1.0.0
  * @since 1.0.0
  */

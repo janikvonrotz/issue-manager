@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 /**
  * Main class of the client application.
  * 
- * @author Janik von Rotz, Patrick ?
+ * @author Janik von Rotz, Patrick Elsner
  * @version 1.0.0
  * @since 1.0.0
  */
