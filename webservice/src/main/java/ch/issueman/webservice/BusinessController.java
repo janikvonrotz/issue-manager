@@ -25,7 +25,6 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	private TypeFilter<T, Id> filter;
 	private Controller<T, Id> controller;
 	private Class<T> clazz;
-	private Login login;
 	
 	@SuppressWarnings("unchecked")
 	public BusinessController(Class<T> clazz) throws RemoteException{
@@ -38,7 +37,6 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 			Constructor<?> constructor = filterclazz.getConstructor();
 			filter = (TypeFilter<T, Id>) constructor.newInstance(new Object[] {});
 			filter.setController(controller);
-			filter.setLogin(login);
 			log.info("Custom type filter for " + clazz.getSimpleName() + " found.");
 			
 		} catch (ClassNotFoundException e) {
@@ -53,7 +51,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void persist(T t) throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
+		if(filter.ifUserHasRoleByMethod("POST") != false){
 			filter.persist(t);
 		}else{
 			throw new Exception("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
@@ -65,7 +63,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public T getById(Id id) throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
+		if(filter.ifUserHasRoleByMethod("GET") != false){
 			return filter.getById(id);
 		}else{
 			throw new Exception("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
@@ -77,7 +75,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public List<T> getAll() throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "GET") != false){
+		if(filter.ifUserHasRoleByMethod("GET") != false){
 			return filter.getAll();
 		}else{
 			throw new Exception("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
@@ -98,7 +96,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void update(T t) throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "POST") != false){
+		if(filter.ifUserHasRoleByMethod("POST") != false){
 			filter.update(t);
 		}else{
 			throw new Exception("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
@@ -110,7 +108,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void delete(T t) throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
+		if(filter.ifUserHasRoleByMethod("DELETE") != false){
 			filter.delete(t);
 		}else{
 			throw new Exception("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
@@ -122,7 +120,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void deleteAll() throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod(login, "DELETE") != false){
+		if(filter.ifUserHasRoleByMethod("DELETE") != false){
 			filter.deleteAll();
 		}else{
 			throw new Exception("Required Roles for DELETE on " + clazz.getSimpleName() + " don't match");
@@ -134,6 +132,6 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void setLogin(Login login) throws RemoteException, Exception {
-		this.login = login;
+		filter.setLogin(login);
 	}	
 }

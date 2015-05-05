@@ -109,7 +109,7 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	 * @param httpmethod the http method to be executed.
 	 * @return boolean true if the user has the right to execute the method.
 	 */
-	public boolean ifUserHasRoleByMethod(Login login, String httpmethod){
+	public boolean ifUserHasRoleByMethod(String httpmethod){
 		
 		if(allowedroles.get(httpmethod).contains("Anonymous")){
 			return true;
