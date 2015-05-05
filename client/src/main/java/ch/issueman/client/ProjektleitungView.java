@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
  * @since 1.0.0
  *
  */
-public class ProjektleitungView implements Initializable{
+public class ProjektleitungView implements Viewable<Projektleitung, Projektleitung>{
 
 	@FXML
 	private TableView tvProjektleitung;

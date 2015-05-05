@@ -21,7 +21,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class PersonView implements Initializable {
+public class PersonView implements Viewable<Person, Person> {
 
 	private static Controller<Person, Integer> controller = new Controller<Person, Integer>(Person.class);
 

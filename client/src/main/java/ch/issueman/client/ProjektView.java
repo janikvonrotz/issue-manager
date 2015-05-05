@@ -20,7 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class ProjektView implements Initializable {
+public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	private static Controller<Projekt, Integer> controller = new Controller<Projekt, Integer>(Projekt.class);
 
@@ -128,5 +128,17 @@ public class ProjektView implements Initializable {
 	@FXML
 	public void clickData() {
 
+	}
+
+	@Override
+	public void initData(Projekt t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showDetail(Projekt t) {
+		// TODO Auto-generated method stub
+		
 	}
 }

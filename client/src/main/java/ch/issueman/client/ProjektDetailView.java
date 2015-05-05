@@ -44,7 +44,7 @@ import ch.issueman.common.Unternehmen;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class ProjektDetailView implements Initializable {
+public class ProjektDetailView implements ViewableDetail<Projekt> {
 	
 	private static Controller<Projekttyp, Integer> projekttypController = new Controller<Projekttyp, Integer>(Projekttyp.class);
 	private static Controller<Bauherr, Integer> bauherrController = new Controller<Bauherr, Integer>(Bauherr.class);
@@ -243,6 +243,18 @@ public class ProjektDetailView implements Initializable {
 				e1.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Override
+	public void initData(Projekt t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showList() {
+		// TODO Auto-generated method stub
 		
 	}
 

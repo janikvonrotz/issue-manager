@@ -19,7 +19,7 @@ import javafx.scene.control.PasswordField;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class PasswortView implements Initializable {
+public class PasswortView implements Viewable<Login, Login> {
 	
 	private static Controller<Login, Integer> controller = new Controller<Login, Integer>(Login.class);
 
@@ -58,6 +58,24 @@ public class PasswortView implements Initializable {
 	}
 	
 	public void clickAbbrechen(){
+		
+	}
+
+	@Override
+	public void Refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initData(Login t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showDetail(Login t) {
+		// TODO Auto-generated method stub
 		
 	}
 	

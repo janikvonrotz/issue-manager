@@ -35,7 +35,7 @@ import ch.issueman.common.Unternehmen;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class MangelDetailView implements Initializable {
+public class MangelDetailView implements ViewableDetail<Mangel> {
 	
 	private static Controller<Mangel, Integer> mangelController = new Controller<Mangel, Integer>(Mangel.class);
 	private static Controller<Kommentar, Integer> kommentarController = new Controller<Kommentar, Integer>(Kommentar.class);
@@ -188,6 +188,24 @@ public class MangelDetailView implements Initializable {
 	
 	@FXML
 	public void clickAddKontakt(){
+		
+	}
+
+	@Override
+	public void Refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initData(Mangel t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showList() {
+		// TODO Auto-generated method stub
 		
 	}
 }

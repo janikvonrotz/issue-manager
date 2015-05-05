@@ -43,7 +43,7 @@ import ch.issueman.common.Unternehmen;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class PersonDetailView implements Initializable {
+public class PersonDetailView implements ViewableDetail<Person> {
 	
 	private static Controller<Person, Integer> personController = new Controller<Person, Integer>(Person.class);
 	private static Controller<Sachbearbeiter, Integer> sachbearbeiterController = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
@@ -185,6 +185,24 @@ public class PersonDetailView implements Initializable {
 				e1.printStackTrace();
 			}
 		}
+		
+	}
+
+	@Override
+	public void Refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void initData(Person t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showList() {
+		// TODO Auto-generated method stub
 		
 	}
 
