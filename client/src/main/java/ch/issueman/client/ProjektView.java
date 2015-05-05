@@ -89,15 +89,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
 				
-				//Convert Calendar to Date
-				Calendar cal = param.getValue().getEnde();
-				Date date =  cal.getTime();
-				
-				//Convert Date to String
+				//Convert Calendar to String
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
-				String date1 = sdf.format(date); 
+				String date = sdf.format(param.getValue().getEnde().getTime());
 				
-				return new SimpleStringProperty(date1);
+				return new SimpleStringProperty(date);
 			}  
 		});
 
