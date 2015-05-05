@@ -122,12 +122,13 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 
 	@FXML
 	public void clickData() {
-
+		Subunternehmen t = tvData.getSelectionModel().getSelectedItem();
+		showDetail(t);
 	}
 
 	@Override
 	public void showDetail(Subunternehmen t) {
-		ViewableDetail<Subunternehmen> view = MainView.showCenterDetailView("SubunternehmenDetailView");
+		ViewableDetail<Subunternehmen> view = MainView.showCenterDetailView("SubunternehmenDetail");
 		view.initData(t);
 	}
 
