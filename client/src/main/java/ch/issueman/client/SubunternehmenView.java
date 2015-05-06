@@ -8,14 +8,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
@@ -123,9 +126,25 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	@FXML
 	public void clickData() {
 		Subunternehmen t = tvData.getSelectionModel().getSelectedItem();
-		showDetail(t);
+//		showDetail(t);
+		System.out.println(t.getFirmenname());      
 	}
-
+	
+	@FXML
+	public void doubleClickData() {
+		tvData.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Subunternehmen t = tvData.getSelectionModel().getSelectedItem();
+		        	System.out.println(t.getFirmenname());
+		        	showDetail(t);
+		        	
+		        }
+		    }
+		});
+	}
+	
 	@Override
 	public void showDetail(Subunternehmen t) {
 		ViewableDetail<Subunternehmen> view = MainView.showCenterDetailView("SubunternehmenDetail");

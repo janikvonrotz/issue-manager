@@ -119,35 +119,39 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	}
 	
 	@FXML
-	public void clickSpeichern(){
+	public void clickSpeichern() {
 		
-		if (subunternehmen != null) {
-	        
-			subunternehmen.setFirmenname(txFirma.getText());
-			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText())));
-			
-			try {
-				subunternehmenController.update(subunternehmen);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-		}else{
-			subunternehmen.setFirmenname(txFirma.getText());
-			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText());
-			
-			try {
-				subunternehmenController.persist(subunternehmen);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-		
-	}
-=======
->>>>>>> origin/master
+	
+//	@FXML
+//	public void clickSpeichern(){
+//		
+//		if (subunternehmen != null) {
+//	        
+//			subunternehmen.setFirmenname(txFirma.getText());
+//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText())));
+//			
+//			try {
+//				subunternehmenController.update(subunternehmen);
+//			} catch (Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			
+//		}else{
+//			subunternehmen.setFirmenname(txFirma.getText());
+//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText());
+//			
+//			try {
+//				subunternehmenController.persist(subunternehmen);
+//			} catch (Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//		}
+//		
+//	}
+//=======
+//>>>>>>> origin/master
 	}
 
 //	@FXML
