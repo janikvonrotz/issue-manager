@@ -10,9 +10,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -118,16 +116,8 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@FXML
-	public void clickData() {
-		Subunternehmen t = tvData.getSelectionModel().getSelectedItem();
-//		showDetail(t);
-		System.out.println(t.getFirmenname());      
 	}
 	
 	@FXML
@@ -137,9 +127,7 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 		    public void handle(MouseEvent event) {
 		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 		        	Subunternehmen t = tvData.getSelectionModel().getSelectedItem();
-		        	System.out.println(t.getFirmenname());
 		        	showDetail(t);
-		        	
 		        }
 		    }
 		});
@@ -154,6 +142,5 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	@Override
 	public void initData(Subunternehmen t) {
 		// TODO Auto-generated method stub
-		
 	}
 }

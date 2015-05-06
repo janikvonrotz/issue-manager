@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenDetailView">
    <children>
       <GridPane layoutX="10.0" layoutY="10.0">
          <children>
@@ -41,11 +41,6 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <Button fx:id="btAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
             <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
@@ -60,7 +55,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btAddPerson" mnemonicParsing="false" onAction="#clickAddPerson" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="350.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="btAddPerson" mnemonicParsing="false" onAction="#clickAddKontakt" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="350.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TableView fx:id="tvPerson" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
               <columns>
                 <TableColumn fx:id="tcNachname" prefWidth="158.0" text="nachname" />

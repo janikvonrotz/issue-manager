@@ -1,22 +1,17 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ch.issueman.common.Adresse;
 import ch.issueman.common.Login;
-import ch.issueman.common.Ort;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
@@ -30,8 +25,8 @@ import ch.issueman.common.Subunternehmen;
  */
 public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> {
 	
-	private static Controller<Kontakt, Integer> kontaktController = new Controller<Kontakt, Integer>(Kontakt.class);
-	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
+	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private Subunternehmen subunternehmen;
 	
 	@FXML
@@ -94,12 +89,10 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
 	    	txPlz.setText("" + subunternehmen.getAdresse().getOrt().getPlz());
 	    	txOrt.setText(subunternehmen.getAdresse().getOrt().getOrt());
-
 		
 			try {
-				tvKontakt.setItems(FXCollections.observableArrayList(kontaktController.getAll()));
+				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -109,13 +102,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	    	txPlz.setText("");
 	    	txOrt.setText("");
 	    }
-<<<<<<< HEAD
-	}
-
-
-	@FXML
-	public void clickAbbrechen(){
-		
 	}
 	
 	@FXML
@@ -197,11 +183,11 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;
-		
+		Refresh();
 	}
 
 	@Override
 	public void showList() {
-		Viewable<Subunternehmen, Object> view = MainView.showCenterView("Subunternehmen");
+		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("Subunternehmen");
 	}
 }
