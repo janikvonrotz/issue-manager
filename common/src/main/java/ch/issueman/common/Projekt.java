@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -52,8 +54,10 @@ public class Projekt implements Model{
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Projektleitung> projektleitungen;
 	@NotNull
+	@Temporal(TemporalType.DATE)
     private Calendar beginn;
 	@NotNull
+	@Temporal(TemporalType.DATE)
     private Calendar ende;
 	@Basic
 	private Character archiviert;

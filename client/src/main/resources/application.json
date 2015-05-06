@@ -1,5 +1,8 @@
 {
 	"webservice": {
 		"url": "http://localhost:8080/webservice"
+	},
+	"format": {
+		"time": "dd.MM.yyyy"
 	}
 }

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
@@ -83,12 +84,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});	
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				
-				//Convert Calendar to String
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
-				String date = sdf.format(param.getValue().getEnde().getTime());
-
-				return new SimpleStringProperty(date);
+				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.time", "yyyy MMM dd HH:mm:ss"))).format(param.getValue().getEnde().getTime()));
 			}  
 		});
 

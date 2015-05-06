@@ -36,7 +36,7 @@ public class App extends Application {
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Issue Manager");
 		try {
-			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Login.fxml"))));
+			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Projekt.fxml"))));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

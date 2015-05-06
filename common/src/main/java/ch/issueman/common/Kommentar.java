@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -34,6 +36,7 @@ public class Kommentar implements Model {
 	private String kommentar;
 	@NotNull
 	private Login login;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar erstelltam;
 
 	public Kommentar() {

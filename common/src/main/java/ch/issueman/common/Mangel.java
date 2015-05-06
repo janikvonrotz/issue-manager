@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
@@ -45,10 +47,12 @@ public class Mangel implements Model {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Mangelstatus mangelstatus;
 	@NotNull
+	@Temporal(TemporalType.DATE)
 	private Calendar erledigenbis;
 	@NotNull
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Projekt projekt;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar erstelltam;
 	
 	public Mangel(){}
