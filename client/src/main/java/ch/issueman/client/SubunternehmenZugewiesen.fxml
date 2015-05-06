@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tvSubunternehmenZugewiesen" layoutY="100.0" prefHeight="200.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tvData" layoutY="100.0" prefHeight="200.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="tcSubunternehmen" maxWidth="-1.0" minWidth="650.0" prefWidth="-1.0" text="subunternehmen" />
           <TableColumn fx:id="tcPerson" maxWidth="-1.0" minWidth="350.0" prefWidth="-1.0" text="person" />
@@ -17,5 +17,7 @@
       </TableView>
       <Button fx:id="btAbbrechen" layoutX="789.0" layoutY="363.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="131.0" text="abbrechen" />
       <Button fx:id="btSpeichern" layoutX="652.0" layoutY="363.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" text="speichern" />
+      <TextField fx:id="txFilter" layoutX="761.0" layoutY="36.0" />
+      <Label layoutX="44.0" layoutY="41.0" text="Subunternehmen zugewiesen" />
    </children>
 </AnchorPane>

@@ -22,7 +22,8 @@ import javafx.scene.control.PasswordField;
 public class PasswortView implements Viewable<Login, Login> {
 	
 	private static Controller<Login, Integer> controller = new Controller<Login, Integer>(Login.class);
-
+	private Login login;
+	
 	@FXML
 	private Label lbPerson;
 	
@@ -45,30 +46,34 @@ public class PasswortView implements Viewable<Login, Login> {
 		Context.login();
 	}
 	
-	public void refreshPersonTable() {
-		try {
-			tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	@Override
+	public void Refresh(){} 
 		
+//			pfNeuesPasswort.setText(login.get);
+//			pfPasswortWiederholen.setText();
+//		}
+//		try {
+//			tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	
+	@FXML	
 	public void clickSpeichern(){
 		
 	}
 	
+	@FXML
 	public void clickAbbrechen(){
 		
 	}
 
-	@Override
-	public void Refresh() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public void initData(Login t) {
+		login = t;
+		Refresh();
 		// TODO Auto-generated method stub
 		
 	}
