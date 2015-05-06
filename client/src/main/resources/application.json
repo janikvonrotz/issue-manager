@@ -3,6 +3,7 @@
 		"url": "http://localhost:8080/webservice"
 	},
 	"format": {
-		"time": "dd.MM.yyyy"
+		"date": "dd.MM.yyyy"
+		"datetime": "dd.MM.yyyy hh:ss"
 	}
 }

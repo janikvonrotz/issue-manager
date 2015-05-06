@@ -84,7 +84,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});	
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.time", "yyyy MMM dd HH:mm:ss"))).format(param.getValue().getEnde().getTime()));
+				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getEnde().getTime()));
 			}  
 		});
 
