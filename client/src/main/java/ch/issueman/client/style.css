@@ -13,6 +13,11 @@ Button.save{
 	-fx-text-fill: white;
 }
 
+ComboBox.rolle{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #486285;
+}
+
 TextField.title{
 	-fx-text-color: #939382;
 	-fx-test-size: 36px;
@@ -30,3 +35,9 @@ TableView.table-view {
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
+}
+   
+Label.default{
+	-fx-background-color: #aaaaaa;
+	-fx-test-fill: white;
+}
