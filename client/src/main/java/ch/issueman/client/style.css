@@ -1,0 +1,9 @@
+Button.default{
+	-fx-background-color:  #486285;
+	-fx-text-color: white;
+}
+
+TextField.title{
+	-fx-text-color: #939382;
+	-fx-test-size: 36px;
+}

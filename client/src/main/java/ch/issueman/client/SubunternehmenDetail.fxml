@@ -6,56 +6,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenDetailView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenDetailView">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0">
+      <GridPane layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lbSubunternehmen" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="firma" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="strasse" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <padding>
-                  <Insets right="50.0" />
-               </padding>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #AAAAAA;" text="plz" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #AAAAAA;" text="ort" textFill="WHITE" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </Label>
-            <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <TextField fx:id="txFirma" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="txOrt" layoutX="77.0" layoutY="173.0" maxHeight="40.0" maxWidth="296.0" minHeight="40.0" minWidth="296.0" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #AAAAAA;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="lbPerson" layoutX="77.0" layoutY="64.0" maxHeight="60.0" maxWidth="350.0" minHeight="60.0" minWidth="350.0" prefHeight="60.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Button fx:id="btAddPerson" mnemonicParsing="false" onAction="#clickAddKontakt" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" text="+" textFill="#486285" translateX="350.0" translateY="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TableView fx:id="tvKontakt" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
               <columns>
                 <TableColumn fx:id="tcNachname" prefWidth="158.0" text="nachname" />
@@ -63,13 +17,15 @@
                   <TableColumn fx:id="tcEmail" prefWidth="465.0" text="email" />
               </columns>
             </TableView>
+            <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="Speichern" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="0.0" prefWidth="70.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="824.0" minWidth="10.0" prefWidth="759.6666564941406" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="824.0" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="0.0" minWidth="50.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="33.66667175292969" minHeight="10.0" prefHeight="20.333328247070312" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="0.0" minHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="87.66667175292969" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
@@ -77,6 +33,7 @@
             <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="87.66667175292969" minHeight="10.0" prefHeight="87.66667175292969" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="200.0" minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="50.0" vgrow="SOMETIMES" />
          </rowConstraints>
       </GridPane>
    </children>
