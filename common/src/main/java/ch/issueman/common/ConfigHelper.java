@@ -63,4 +63,14 @@ public class ConfigHelper {
 			return new ArrayList<String>(Arrays.asList(defaultvalues));
 		}
 	}
+
+	/**
+	 * Checks if config path exists.
+	 * 
+	 * @param path the path to check.
+	 * @return true if path exists.
+	 */
+	public static boolean hasPath(String path) {
+		return config.hasPath(path);
+	}
 }

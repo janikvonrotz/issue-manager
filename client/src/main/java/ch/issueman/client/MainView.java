@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 /**
  * Main view controller that holds the border pane and handles the view navigation.
  * 
- * @author Janik von Rotz, Patrick Elsner
+ * @author Janik von Rotz, Patrick Elsener
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -36,6 +36,8 @@ public class MainView implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		root = bpMain;
 		showCenterView("Subunternehmen");
+		showTopView("TopBauleiter");
+		showLeftView("LeftSachbearbeiterStammdaten");
 	}
 
 	/**

@@ -96,7 +96,8 @@ public class Route{
 	@Path("signin")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(@Context HttpServletRequest request) {
-		return rbm.get("login").signin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("login").signin();
 	}
 	
 	/**
