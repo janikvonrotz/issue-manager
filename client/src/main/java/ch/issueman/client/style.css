@@ -1,9 +1,32 @@
 Button.default{
 	-fx-background-color:  #486285;
-	-fx-text-color: white;
+	-fx-text-fill: white;
+}
+
+Button.abort{
+	-fx-background-color:  #FF6B68;
+	-fx-text-fill: white;
+}
+
+Button.save{
+	-fx-background-color:  #486285;
+	-fx-text-fill: white;
 }
 
 TextField.title{
 	-fx-text-color: #939382;
 	-fx-test-size: 36px;
 }
+
+PasswordField.password{
+	-fx-border-color: #486285;
+	-fx-background-color: #ffffff;
+}
+
+TableView.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;

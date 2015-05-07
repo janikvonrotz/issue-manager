@@ -297,7 +297,7 @@ public class Seed {
 		listLogin.add(new Login(listBauleiter.get(1), "asdf", listRolle.get(1)));
 		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
 		listLogin.add(new Login(listKontakt.get(1), "asdf", listRolle.get(2)));
-		listLogin.add(new Login(listKontakt.get(2), "asdf", listRolle.get(3)));
+		listLogin.add(new Login(listKontakt.get(2), "1", listRolle.get(3)));
 		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));
 		persistList(listLogin, logincontroller);
 
