@@ -19,13 +19,7 @@ import javafx.scene.control.PasswordField;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class PasswortView implements Viewable<Login, Login> {
-	
-	private static Controller<Login, Integer> controller = new Controller<Login, Integer>(Login.class);
-	private Login login;
-	
-	@FXML
-	private Label lbPerson;
+public class PasswortView implements ViewableDetail<Login> {
 	
 	@FXML
 	private PasswordField pfNeuesPasswort;	
@@ -41,27 +35,28 @@ public class PasswortView implements Viewable<Login, Login> {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+		Refresh();
 	}
 	
 	@Override
-	public void Refresh(){} 
-		
-//			pfNeuesPasswort.setText(login.get);
-//			pfPasswortWiederholen.setText();
-//		}
-//		try {
-//			tvEmployer.setItems(FXCollections.observableArrayList(controller.getAll()));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	public void Refresh(){
+		pfNeuesPasswort.setText("");
+		pfPasswortWiederholen.setText("");
+	} 
 	
 	@FXML	
 	public void clickSpeichern(){
-		
+		try{
+		// Passwort vergleichen
+			if (pfPasswortWiederholen.getText() != pfNeuesPasswort.getText()){
+				throw new Exception("Passwords do not match.");
+			}
+			Context.setNewPassword(pfPasswortWiederholen.getText());
+		}catch (Exception e){
+			// Fehler ausgeben
+			e.printStackTrace();
+			Refresh();
+		}
 	}
 	
 	@FXML
@@ -69,20 +64,11 @@ public class PasswortView implements Viewable<Login, Login> {
 		
 	}
 
-	
 	@Override
 	public void initData(Login t) {
-		login = t;
-		Refresh();
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void showDetail(Login t) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	public void showList() {
+	}	
 }

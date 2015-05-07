@@ -68,4 +68,15 @@ public class Context {
 		login = null;
 		client = new ResteasyClientBuilder().build();
 	}
+
+	public static void setNewPassword(String newpassword) throws Exception {
+		String oldpassword = login.getPasswort();
+		login.setPasswort(newpassword);
+		try{
+			(new Controller<Login, Integer>(Login.class)).persist(login);
+		} catch (Exception e){
+			login.setPasswort(oldpassword);
+			throw e;
+		}
+	}
 }
