@@ -1,6 +1,8 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -17,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Login;
@@ -97,7 +100,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
                         super.updateItem(t, bln);
                          
                         if(t != null){
-                            setText("" + t.getPlz());
+                            setText(t.getPlz() + " - " + t.getOrt());
                         }else{
                             setText(null);
                         }
@@ -106,7 +109,29 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				return cell;
 			}
         });
+		
+		cbOrt.setConverter(new StringConverter<Ort>() {
+            private Map<String, Object> map = new HashMap<>();
 
+ 			@Override
+			public Ort fromString(String arg0) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+
+			public String toString(Ort o) {
+	               if (o != null) {
+	                    String str = o.getPlz() + " - " + o.getOrt();
+	                    map.put(str, o);
+	                    return str;
+	                } else {
+	                    return "";
+	                }
+	            }
+
+      });
+
+		
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					filteredData.setPredicate(t -> {
@@ -142,6 +167,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		
 			try {
 				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
+				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
