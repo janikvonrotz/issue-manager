@@ -58,6 +58,17 @@
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <children>
+                        <SplitMenuButton layoutX="96.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="223.0" text="Rollen">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#clickSachbearbeiter" text="Sachbearbeiter" />
+                              <MenuItem mnemonicParsing="false" onAction="#clickBauleiter" text="Bauleiter" />
+                              <MenuItem mnemonicParsing="false" onAction="#clickBauherr" text="Bauherr" />
+                          </items>
+                        </SplitMenuButton>
+                     </children>
+                  </Pane>
                </children>
             </GridPane>
          </center>
