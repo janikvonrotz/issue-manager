@@ -122,7 +122,7 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	 * @return true if login has role.
 	 */
 	public boolean ifUserHasRole(String rolle){
-		return this.login.getRolle().equals(rolle);
+		return this.login.getRolle().getBezeichnung().equals(rolle);
 	}
 	
 	/**
@@ -132,6 +132,6 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	 * @return true if login has on of the roles.
 	 */
 	public boolean ifUserHasRole(String[] rollen){
-		return Arrays.asList(rollen).contains(this.login.getRolle());
+		return Arrays.asList(rollen).contains(this.login.getRolle().getBezeichnung());
 	}
 }
