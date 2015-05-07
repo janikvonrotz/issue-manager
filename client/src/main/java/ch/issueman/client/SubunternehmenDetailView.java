@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -36,6 +38,9 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 	private Subunternehmen subunternehmen;
+
+	private FilteredList<Kontakt> filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(),	p -> true);
+
 	
 	@FXML
 	private Label lbSubunternehmen;
@@ -47,19 +52,16 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	private TextField txStrasse;
 	
 	@FXML
-	private ComboBox<Ort> cbPlz;
+	private ComboBox<Ort> cbOrt;
 	
 	@FXML
-	private TextField txOrt;
+	private TextField txFilter;
 		
 	@FXML
 	private Button btAbbrechen;
 	
 	@FXML
 	private Button btSpeichern;
-	
-	@FXML
-	private Label lbKontakt;
 	
 	@FXML
 	private Button btAddKontakt;
@@ -86,7 +88,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
 		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
 		
-		cbPlz.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
+		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
 			public ListCell<Ort> call(ListView<Ort> arg0) {		 
 				final ListCell<Ort> cell = new ListCell<Ort>(){				 
@@ -105,7 +107,28 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			}
         });
 
-			
+		txFilter.textProperty().addListener(
+				(observable, oldValue, newValue) -> {
+					filteredData.setPredicate(t -> {
+						
+							if (newValue == null || newValue.isEmpty()) {
+								return true;
+							}
+
+							String lowerCaseFilter = newValue.toLowerCase();
+							String objectvalues = t.getVorname() 
+									+ t.getNachname()
+									+ t.getEmail();
+							
+							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
+								return true; 
+							}
+
+							return false;
+						});
+				});		
+
+		
 		Refresh();	
 	}
 	
@@ -115,8 +138,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			
 			txFirma.setText(subunternehmen.getFirmenname());
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
-	    	cbPlz.setValue(subunternehmen.getAdresse().getOrt());
-	    	txOrt.setText(cbPlz.getValue().getOrt());
+	    	cbOrt.setValue(subunternehmen.getAdresse().getOrt());
 		
 			try {
 				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
@@ -127,15 +149,20 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
 	    	txFirma.setText("");
 	    	txStrasse.setText("");
-	    	cbPlz.setValue(null);
-	    	txOrt.setText("");
+	    	cbOrt.setValue(null);
+	    	
 	    }
+		
+		try {
+		filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kontaktcontroller.getAll()),	p -> true);
+		SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
+		sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
+		tvKontakt.setItems(sortedData);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	@FXML
-	public void refreshOrt(){
-		txOrt.setText(cbPlz.getValue().getOrt());
-	}
 	
 	@FXML
 	public void clickSpeichern(){
@@ -147,7 +174,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			Adresse a = subunternehmen.getAdresse();
 			Ort o = subunternehmen.getAdresse().getOrt();
 			a.setStrasse(txStrasse.getText());
-			o.setId(cbPlz.getValue().getId());
+			o.setId(cbOrt.getValue().getId());
 			a.setOrt(o);
 			
 			try {
@@ -160,7 +187,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		}else{
 			
 			try {
-				Ort o = ortcontroller.getById(cbPlz.getValue().getId());
+				Ort o = ortcontroller.getById(cbOrt.getValue().getId());
 				subunternehmencontroller.persist(new Subunternehmen(txFirma.getText(),
 						new Adresse(txStrasse.getText(), o)));
 			} catch (Exception e1) {
