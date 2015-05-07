@@ -8,9 +8,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="113.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="243.0" text="Mängel" />
-      <Button layoutX="356.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="243.0" text="Daten" />
+      <Button layoutX="113.0" layoutY="38.0" mnemonicParsing="false" text="Mängel" AnchorPane.leftAnchor="113.0" />
+      <Button layoutX="356.0" layoutY="38.0" mnemonicParsing="false" text="Daten" />
    </children>
 </AnchorPane>
