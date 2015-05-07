@@ -85,7 +85,6 @@ public class Route{
 		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getById(id);
 	} 	
-
 	@GET
 	@Path("{entity}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -93,7 +92,13 @@ public class Route{
 		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getAll();
 	}
-	
+	@DELETE
+	@Path("{entity}/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteAdresse(@PathParam("entity") String entity, @PathParam("id") int id,  @Context HttpServletRequest request) {
+		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get(entity).deleteById(id);
+	}
 	@GET
 	@Path("getbyproperty/{entity}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -104,7 +109,6 @@ public class Route{
 		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getAllByProperty(propertyname, propertyvalues);
 	}
-	
 	@GET
 	@Path("signin")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -163,13 +167,6 @@ public class Route{
 	public Response persistAdresse(Adresse t, @Context HttpServletRequest request) {
 		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("adresse")).persist(t);
-	}
-	@DELETE
-	@Path("adresse/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteAdresse(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("adresse").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("adresse").deleteById(id);
 	}	
 	
 	/**
@@ -190,13 +187,6 @@ public class Route{
 	public Response persistArbeitstyp(Arbeitstyp t, @Context HttpServletRequest request) {
 		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("arbeitstyp")).persist(t);
-	}
-	@DELETE
-	@Path("arbeitstyp/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteArbeitstyp(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("arbeitstyp").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("arbeitstyp").deleteById(id);
 	}	
 	
 	/**deleteById
@@ -218,13 +208,6 @@ public class Route{
 		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauherr")).persist(t);
 	}
-	@DELETE
-	@Path("bauherr/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteBauherr(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("bauherr").deleteById(id);
-	}	
 	
 	/**
 	 * Bauleiter
@@ -245,13 +228,6 @@ public class Route{
 		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("bauleiter")).persist(t);
 	}
-	@DELETE
-	@Path("bauleiter/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteBauleiter(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("bauleiter").deleteById(id);
-	}	
 	
 	/**
 	 * Kommentar
@@ -271,13 +247,6 @@ public class Route{
 	public Response persistKommentar(Kommentar t, @Context HttpServletRequest request) {
 		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kommentar")).persist(t);
-	}
-	@DELETE
-	@Path("kommentar/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteKommentar(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("kommentar").deleteById(id);
 	}
 	
 	/**
@@ -299,13 +268,6 @@ public class Route{
 		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kontakt")).persist(t);
 	}
-	@DELETE
-	@Path("kontakt/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteKontakt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("kontakt").deleteById(id);
-	}
 	
 	/**
 	 * Login
@@ -325,13 +287,6 @@ public class Route{
 	public Response persistLogin(Login t, @Context HttpServletRequest request) {
 		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("login")).persist(t);
-	}
-	@DELETE
-	@Path("login/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteLogin(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("login").deleteById(id);
 	}
 	
 	/**
@@ -353,13 +308,6 @@ public class Route{
 		rbm.get("mangel").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangel")).persist(t);
 	}
-	@DELETE
-	@Path("mangel/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteMangel(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("mangel").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("mangel").deleteById(id);
-	}
 	
 	/**
 	 * Mangelstatus
@@ -380,13 +328,6 @@ public class Route{
 		rbm.get("mangelstatus").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("mangelstatus")).persist(t);
 	}
-	@DELETE
-	@Path("mangelstatus/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteMangelstatus(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("mangelstatus").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("mangelstatus").deleteById(id);
-	}	
 	
 	/**
 	 * Ort
@@ -407,13 +348,6 @@ public class Route{
 		rbm.get("ort").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("ort")).persist(t);
 	}
-	@DELETE
-	@Path("ort/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteOrt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("ort").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("ort").deleteById(id);
-	}	
 	
 	/**
 	 * Person
@@ -434,13 +368,6 @@ public class Route{
 		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("person")).persist(t);
 	}
-	@DELETE
-	@Path("person/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deletePerson(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("person").deleteById(id);
-	}	
 
 	/**
 	 * Projekt
@@ -461,13 +388,6 @@ public class Route{
 		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekt")).persist(t);
 	}
-	@DELETE
-	@Path("projekt/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProjekt(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("projekt").deleteById(id);
-	}
 	
 	/**
 	 * Projektleitung
@@ -487,13 +407,6 @@ public class Route{
 	public Response persistProjektleitung(Projektleitung t, @Context HttpServletRequest request) {
 		rbm.get("projektleitung").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projektleitung")).persist(t);
-	}
-	@DELETE
-	@Path("projektleitung/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProjektleitung(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("projektleitung").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("projektleitung").deleteById(id);
 	}	
 	
 	/**
@@ -515,13 +428,6 @@ public class Route{
 		rbm.get("projekttyp").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekttyp")).persist(t);
 	}
-	@DELETE
-	@Path("projekttyp/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteProjekttyp(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("projekttyp").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("projekttyp").deleteById(id);
-	}
 	
 	/**
 	 * Rolle
@@ -542,13 +448,6 @@ public class Route{
 		rbm.get("rolle").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("rolle")).persist(t);
 	}
-	@DELETE
-	@Path("rolle/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteRolle(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("rolle").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("rolle").deleteById(id);
-	}	
 	
 	/**
 	 * Sachbearbeiter
@@ -569,13 +468,6 @@ public class Route{
 		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("sachbearbeiter")).persist(t);
 	}
-	@DELETE
-	@Path("sachbearbeiter/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteSachbearbeiter(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("sachbearbeiter").deleteById(id);
-	}	
 	
 	/**
 	 * Subunternehmen
@@ -596,13 +488,6 @@ public class Route{
 		rbm.get("subunternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("subunternehmen")).persist(t);
 	}
-	@DELETE
-	@Path("subunternehmen/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteSubunternehmen(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("subunternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("subunternehmen").deleteById(id);
-	}
 	
 	/**
 	 * Unternehmen
@@ -622,12 +507,5 @@ public class Route{
 	public Response persistUnternehmen(Unternehmen t, @Context HttpServletRequest request) {
 		rbm.get("unternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("unternehmen")).persist(t);
-	}
-	@DELETE
-	@Path("unternehmen/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteUnternehmen(@PathParam("id") int id,  @Context HttpServletRequest request) {
-		rbm.get("unternehmen").setLogin((Login) request.getSession(true).getAttribute("login"));
-		return rbm.get("unternehmen").deleteById(id);
 	}
 }

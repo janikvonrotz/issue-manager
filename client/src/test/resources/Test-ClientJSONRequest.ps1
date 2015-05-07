@@ -20,7 +20,7 @@ Invoke-WebRequest -Uri 'http://localhost:8080/webservice/bauleiter/9673' -Conten
 # Get All by Property
 
 $r = $null
-Invoke-WebRequest -Uri 'http://localhost:8080/webservice/getbyproperty/login?propertyname=passwort&propertyvalues=asdf' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/getbyproperty/rolle?propertyname=bezeichnung&propertyvalues=Sachbearbeiter&propertyvalues=Bauleiter' -Headers $Headers
 $r.RawContent
 
 # Get by Id
