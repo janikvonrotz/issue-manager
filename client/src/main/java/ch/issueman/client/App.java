@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 /**
  * Main class of the client application.
  * 
- * @author Janik von Rotz, Patrick Elsner
+ * @author Janik von Rotz, Patrick Elsener
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -42,7 +42,20 @@ public class App extends Application {
 		}
 		primaryStage.show();
 	}
-
+	
+	@FXML
+	public void clickSachbearbeiter() {
+		txBenutzername.setText("sb@im.ch");
+	}
+	
+	public void clickBauleiter() {
+		txBenutzername.setText("bl@im.ch");
+	}
+	
+	public void clickBauherr() {
+		txBenutzername.setText("bh@im.ch");
+	}
+	
 	@FXML
 	public void clickLogin(){
 		Login login = new Login(new Sachbearbeiter("", "", txBenutzername.getText()), pfPasswort.getText(), null);

@@ -54,5 +54,69 @@
             </Label>
          </children>
       </GridPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="414.0" minWidth="0.0" prefWidth="414.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="824.0" minWidth="10.0" prefWidth="687.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="33.66667175292969" minHeight="10.0" prefHeight="20.333328247070312" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="87.66667175292969" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" text="Benutzername" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" text="Passwort" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" style="-fx-background-color: #486285;" text="login" textFill="WHITE" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ImageView fitHeight="148.0" fitWidth="188.0" translateX="81.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../../../../resources/IM_Logo4.png" />
+                     </image>
+                  </ImageView>
+                  <Label maxHeight="58.0" maxWidth="250.0" minHeight="58.0" minWidth="250.0" prefHeight="58.0" prefWidth="250.0" text="issue manager" textFill="#939382" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <children>
+                        <SplitMenuButton layoutX="96.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="223.0" text="Rollen">
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#clickSachbearbeiter" text="Sachbearbeiter" />
+                              <MenuItem mnemonicParsing="false" onAction="#clickBauleiter" text="Bauleiter" />
+                              <MenuItem mnemonicParsing="false" onAction="#clickBauherr" text="Bauherr" />
+                          </items>
+                        </SplitMenuButton>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
    </center>
 </BorderPane>
