@@ -89,7 +89,7 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllByProperty(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public Response getAllByProperty(String propertyname, Object[] propertyvalues) {
+	public Response getAllByProperty(String propertyname, List<String> propertyvalues) {
 		try {
 			return Response.status(Status.OK).entity(controller.getAllByProperty(propertyname, propertyvalues)).build();
 		} catch (Exception e) {

@@ -1,6 +1,8 @@
 package ch.issueman.webservice;
 
 import java.rmi.Remote;
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 
 import ch.issueman.common.Login;
@@ -43,7 +45,7 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	 * @param propertyvalues the value of the entity property.
 	 * @return http response containing entites that matched the property definition.
 	 */
-	public Response getAllByProperty(String propertyname, Object[] propertyvalues);
+	public Response getAllByProperty(String propertyname, List<String> propertyvalues);
 	
 	/**
 	 * @see ch.issueman.common.DAO#getAll()

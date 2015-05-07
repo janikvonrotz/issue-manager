@@ -6,22 +6,18 @@ import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
-import org.codehaus.jackson.type.TypeReference;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 
 import com.typesafe.config.ConfigFactory;
 
-import ch.issueman.common.Bauleiter;
 import ch.issueman.common.DAO;
 import ch.issueman.common.Model;
-import ch.issueman.common.Person;
 
 /**
  * Basic client controller class.
@@ -139,7 +135,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception {
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception {
 		return null;
 	}
 }

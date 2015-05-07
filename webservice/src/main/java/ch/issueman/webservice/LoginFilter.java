@@ -19,6 +19,9 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 		super(Login.class);
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.TypeFilter#getAll()
+	 */
 	@Override
 	public List<Login> getAll() {
 		if(this.ifUserHasRole("Sachbearbeiter")){
@@ -67,5 +70,12 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 		}
 	}
 
+	@Override
+	public void deleteAll() throws Exception {
+	}
 
+	@Override
+	public List<Login> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception {
+		return null;
+	}
 }

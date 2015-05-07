@@ -89,9 +89,12 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 * @see ch.issueman.webservice.DAORmi#getAllByProperty(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws RemoteException, Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws RemoteException, Exception {
+		if(filter.ifUserHasRoleByMethod("GET") != false){
+			return filter.getAllByProperty(propertyname, propertyvalues);
+		}else{
+			throw new Exception("Required Roles for GET on " + clazz.getSimpleName() + " don't match");
+		}
 	}
 
 	/* (non-Javadoc)
