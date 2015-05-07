@@ -39,7 +39,6 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	public ResponseBuilder(Class<T> clazz){
 		this.clazz = clazz;
 		try {
-			//controller = new BusinessController<T, Id>(clazz);
 			controller = (DAORmi<T, Id>) Naming.lookup("rmi://" + ConfigHelper.getConfig("rmi.host", "localhost") + ":" + ConfigHelper.getConfig("rmi.port", 1099) + "/" + clazz.getSimpleName().toLowerCase());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -153,10 +152,10 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 	 * @see ch.issueman.webservice.DAOResponseBuilder#signin()
 	 */
 	@Override
-	public Response signin(Login login) {
-		if(login != null){
-			return Response.status(Status.OK).entity(login).build();
-		}else{
+	public Response signin() {
+		try {
+			return Response.status(Status.OK).entity(controller.signin()).build();
+		} catch (Exception e) {
 			return Response.status(Status.BAD_REQUEST).entity(new Exception("Signin failed")).build();
 		}
 	}
@@ -176,6 +175,9 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllBauleiter()
+	 */
 	public Response getAllBauleiter() {
 		try {
 			@SuppressWarnings("unchecked")

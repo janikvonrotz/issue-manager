@@ -76,19 +76,18 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	public Response deleteAll();
 	
 	/**
-	 * @see ch.issueman.webservice.DAORmi#setLogin(ch.issueman.common.Login)
+	 * @see ch.issueman.webservice.DAORmi#signin()
 	 * 
 	 * @param login the login to store in the server user context.
 	 */
 	public void setLogin(Login login);
 	
 	/**
-	 * Returns a http response containing the login with all attributes.
+	 * Returns a http response containing the validated login with all attributes.
 	 * 
-	 * @param login the login to encapsulate in a http response.
 	 * @return http response containing the login object.
 	 */
-	public Response signin(Login login);
+	public Response signin();
 	
 	/**
 	 * Delete an entity by it's id.

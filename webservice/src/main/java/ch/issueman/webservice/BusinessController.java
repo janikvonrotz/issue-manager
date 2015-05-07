@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.extern.slf4j.Slf4j;
 import ch.issueman.common.Login;
 
@@ -132,6 +135,29 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void setLogin(Login login) throws RemoteException, Exception {
-		filter.setLogin(login);
-	}	
+	
+		List<Login> logins = new ArrayList<Login>();
+		try{
+			logins = (new Controller<Login, Integer>(Login.class)).getAll().stream()
+					.filter(l -> l.getUsername().equals(login.getUsername()))
+					.filter(l -> l.getPasswort().equals(login.getPasswort()))
+					.collect(Collectors.toList());
+		} catch (Exception e) {
+			log.error(e.getMessage(),e);
+		}			
+	
+		if(logins.size() > 0 && logins.get(0) != null){
+			filter.setLogin(logins.get(0));
+		}else{
+			filter.setLogin(null);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAORmi#signin()
+	 */
+	@Override
+	public Login signin() throws RemoteException, Exception{
+		return filter.getLogin();
+	}
 }

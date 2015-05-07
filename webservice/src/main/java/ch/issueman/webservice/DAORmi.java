@@ -84,9 +84,20 @@ public interface DAORmi <T, Id> extends Remote{
 	public void deleteAll() throws RemoteException, Exception;
 	
 	/**
+	 * Stores login in the server user context.
+	 * 
 	 * @param login the login to store in the server user context.
 	 * @throws RemoteException if RMI fails to execute.
 	 * @throws Exception if error occurs in the layers below.
 	 */
 	public void setLogin(Login login) throws RemoteException, Exception;
+
+	/**
+	 * Returns a validated login from the server user context.
+	 * 
+	 * @return valid login or null reference for invalid logins.
+ 	 * @throws RemoteException if RMI fails to execute.
+	 * @throws Exception if error occurs in the layers below.
+	 */
+	public Login signin() throws RemoteException, Exception;
 }
