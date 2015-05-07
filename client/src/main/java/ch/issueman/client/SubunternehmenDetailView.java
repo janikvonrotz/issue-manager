@@ -6,13 +6,20 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+import ch.issueman.common.Adresse;
+import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Login;
 import ch.issueman.common.Kontakt;
+import ch.issueman.common.Ort;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
@@ -27,6 +34,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+	private static Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 	private Subunternehmen subunternehmen;
 	
 	@FXML
@@ -39,7 +47,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	private TextField txStrasse;
 	
 	@FXML
-	private TextField txPlz;
+	private ComboBox<Ort> cbPlz;
 	
 	@FXML
 	private TextField txOrt;
@@ -77,6 +85,26 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		tcNachname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("nachname"));
 		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
 		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
+		
+		cbPlz.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
+			@Override
+			public ListCell<Ort> call(ListView<Ort> arg0) {		 
+				final ListCell<Ort> cell = new ListCell<Ort>(){				 
+                    @Override
+                    protected void updateItem(Ort t, boolean bln) {
+                        super.updateItem(t, bln);
+                         
+                        if(t != null){
+                            setText("" + t.getPlz());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+
 			
 		Refresh();	
 	}
@@ -87,8 +115,8 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			
 			txFirma.setText(subunternehmen.getFirmenname());
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
-	    	txPlz.setText("" + subunternehmen.getAdresse().getOrt().getPlz());
-	    	txOrt.setText(subunternehmen.getAdresse().getOrt().getOrt());
+	    	cbPlz.setValue(subunternehmen.getAdresse().getOrt());
+	    	txOrt.setText(cbPlz.getValue().getOrt());
 		
 			try {
 				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
@@ -99,81 +127,54 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
 	    	txFirma.setText("");
 	    	txStrasse.setText("");
-	    	txPlz.setText("");
+	    	cbPlz.setValue(null);
 	    	txOrt.setText("");
 	    }
 	}
 	
 	@FXML
-	public void clickSpeichern() {
-		
+	public void refreshOrt(){
+		txOrt.setText(cbPlz.getValue().getOrt());
+	}
 	
-//	@FXML
-//	public void clickSpeichern(){
-//		
-//		if (subunternehmen != null) {
-//	        
-//			subunternehmen.setFirmenname(txFirma.getText());
-//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText())));
-//			
-//			try {
-//				subunternehmenController.update(subunternehmen);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//			
-//		}else{
-//			subunternehmen.setFirmenname(txFirma.getText());
-//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText());
-//			
-//			try {
-//				subunternehmenController.persist(subunternehmen);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//		}
-//		
-//	}
-//=======
-//>>>>>>> origin/master
+	@FXML
+	public void clickSpeichern(){
+		
+		if (subunternehmen != null) {
+	        
+			subunternehmen.setFirmenname(txFirma.getText());
+			
+			Adresse a = subunternehmen.getAdresse();
+			Ort o = subunternehmen.getAdresse().getOrt();
+			a.setStrasse(txStrasse.getText());
+			o.setId(cbPlz.getValue().getId());
+			a.setOrt(o);
+			
+			try {
+				subunternehmencontroller.update(subunternehmen);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}else{
+			
+			try {
+				Ort o = ortcontroller.getById(cbPlz.getValue().getId());
+				subunternehmencontroller.persist(new Subunternehmen(txFirma.getText(),
+						new Adresse(txStrasse.getText(), o)));
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
 	}
 
-//	@FXML
-//	public void clickAbbrechen(){
-//		
-//	}
-//	
-//	@FXML
-//	public void clickSpeichern(){
-//		
-//		if (subunternehmen != null) {
-//	        
-//			subunternehmen.setFirmenname(txFirma.getText());
-//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText())));
-//			
-//			try {
-//				subunternehmenController.update(subunternehmen);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//			
-//		}else{
-//			subunternehmen.setFirmenname(txFirma.getText());
-//			subunternehmen.setAdresse(new Adresse(txStrasse.getText(), new Ort(Integer.parseInt(txPlz.getText()), txOrt.getText());
-//			
-//			try {
-//				subunternehmenController.persist(subunternehmen);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//		}
-//		
-//	}
-//	}
+	@FXML
+	public void clickAbbrechen(){
+		
+	}
 	
 	@FXML
 	public void clickAddKontakt(){
