@@ -115,21 +115,19 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
  			@Override
 			public Ort fromString(String arg0) {
-				// TODO Auto-generated method stub
 				return null;
 			}
 
 			public String toString(Ort o) {
-	               if (o != null) {
-	                    String str = o.getPlz() + " - " + o.getOrt();
-	                    map.put(str, o);
-	                    return str;
-	                } else {
-	                    return "";
-	                }
-	            }
-
-      });
+               if (o != null) {
+                    String str = o.getPlz() + " - " + o.getOrt();
+                    map.put(str, o);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
 
 		
 		txFilter.textProperty().addListener(
