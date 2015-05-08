@@ -48,7 +48,7 @@ public interface DAO<T, Id extends Serializable> {
 	 * @return list of all matched entities.
 	 * @throws Exception if ORM fails to execute.
 	 */
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception;
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception;
 	
 	/**
 	 * Update an entity.

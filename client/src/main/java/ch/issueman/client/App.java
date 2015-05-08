@@ -52,9 +52,10 @@ public class App extends Application {
 		txBenutzername.setText("bl@im.ch");
 	}
 	
-	public void clickBauherr() {
-		txBenutzername.setText("bh@im.ch");
-	}
+	Kontaktperson -> kp@im.ch
+	Kontaktadmin -> ka@im.ch
+	
+	
 	
 	@FXML
 	public void clickLogin(){

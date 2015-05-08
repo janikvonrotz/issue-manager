@@ -46,7 +46,7 @@ public interface DAORmi <T, Id> extends Remote{
 	 * @throws RemoteException if RMI fails to execute.
 	 * @throws Exception if error occurs in the layers below.
 	 */
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws RemoteException, Exception;
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws RemoteException, Exception;
 	
 	/**
 	 * @see ch.issueman.common.DAO#getAll()

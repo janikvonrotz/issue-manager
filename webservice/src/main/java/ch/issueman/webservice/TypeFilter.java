@@ -93,9 +93,8 @@ public class TypeFilter<T, Id extends Serializable> implements DAO<T, Id>  {
 	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues) throws Exception {
-		// TODO implement
-		return null;
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception {
+		return controller.getAllByProperty(propertyname, propertyvalues);
 	}
 	
 	/**

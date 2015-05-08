@@ -53,10 +53,10 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
 	 */
 	@Override
-	public List<T> getAllByProperty(String propertyname, Object[] propertyvalues){
+	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues){
 		em = EclipseLink.getEntityManager();
-		return (List<T>) ((TypedQuery<T>) em.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t WHERE " + propertyname + " IN :propertyvalues", clazz))
-				.setParameter("elements", propertyvalues)
+		return (List<T>) ((TypedQuery<T>) em.createQuery("SELECT t FROM " + clazz.getSimpleName() + " t WHERE t." + propertyname + " IN :propertyvalues", clazz))
+				.setParameter("propertyvalues", propertyvalues)
 				.getResultList();
 	}
 	

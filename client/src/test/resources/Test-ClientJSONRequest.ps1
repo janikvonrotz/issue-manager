@@ -10,12 +10,18 @@ $Headers = @{
 # Get
 
 $r = $null
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/arbeitstyp' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/login' -Headers $Headers
 $r.RawContent
 
 # Delete
 
 Invoke-WebRequest -Uri 'http://localhost:8080/webservice/bauleiter/9673' -ContentType application/json -Method DELETE -Headers $Headers
+
+# Get All by Property
+
+$r = $null
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/getbyproperty/rolle?propertyname=bezeichnung&propertyvalues=Sachbearbeiter&propertyvalues=Bauleiter' -Headers $Headers
+$r.RawContent
 
 # Get by Id
 
