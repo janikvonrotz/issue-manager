@@ -86,8 +86,7 @@ public class ControllerTestBauherr {
 			List<Bauherr> listBauherr = bauherrcontroller.getAll();
 			bauherrcontroller.delete(listBauherr.get(listBauherr.size()-1));
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deletion of Bauherr failed");
+			assertEquals("Required Roles for DELETE on Bauherr don't match", e.getMessage());
 		}
 	}
 }
