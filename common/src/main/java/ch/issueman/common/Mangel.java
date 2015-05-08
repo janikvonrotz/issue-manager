@@ -46,6 +46,8 @@ public class Mangel implements Model {
 	@NotNull
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Mangelstatus mangelstatus;
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Subunternehmen subunternehmen;
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Calendar erledigenbis;
@@ -58,13 +60,14 @@ public class Mangel implements Model {
 	public Mangel(){}
 
 	public Mangel(int referenz, String mangel, Person erfasser, List<Kommentar> kommentare,
-			Mangelstatus mangelstatus, Calendar erledigenbis, Projekt projekt) {
+			Mangelstatus mangelstatus, Subunternehmen subunternehmen, Calendar erledigenbis, Projekt projekt) {
 		super();
 		this.referenz = referenz;
 		this.mangel = mangel;
 		this.erfasser = erfasser;
 		this.kommentare = kommentare;
 		this.mangelstatus = mangelstatus;
+		this.subunternehmen = subunternehmen;
 		this.erledigenbis = erledigenbis;
 		this.projekt = projekt;
 	}

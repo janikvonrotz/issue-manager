@@ -17,6 +17,7 @@ import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
+import ch.issueman.common.Subunternehmen;
 
 /**
  * Testclass ControllerTestMangel
@@ -47,7 +48,8 @@ public class ControllerTestMangel {
 			Mangel mangel = new Mangel(1,  "vorUpdate",
 					FilterHelper.filterListIds(new Controller<Bauleiter, Integer>(Bauleiter.class).getAll(), new int[]{2}).get(0),
 					null,
-					FilterHelper.filterListIds(new Controller<Mangelstatus, Integer>(Mangelstatus.class).getAll(), new int[]{2}).get(0),
+					FilterHelper.filterListIds(new Controller <Mangelstatus, Integer>(Mangelstatus.class).getAll(), new int[]{2}).get(0),
+					FilterHelper.filterListIds(new Controller <Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(1),
 					new GregorianCalendar(1,1,2015), 
 					FilterHelper.filterListIds(new Controller <Projekt, Integer>(Projekt.class).getAll(), new int[]{2}).get(0)
 				);
