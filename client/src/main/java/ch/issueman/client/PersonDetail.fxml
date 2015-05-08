@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="890.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonDetailView">
+   <children>
+      <StackPane layoutX="276.0" layoutY="250.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <GridPane prefHeight="730.0" prefWidth="1000.0">
+               <children>
+                  <GridPane prefHeight="750.0" prefWidth="1000.0" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="nachname" />
+                        <Label text="vorname" GridPane.rowIndex="1" />
+                        <Label text="email" GridPane.rowIndex="2" />
+                        <Label text="rolle" GridPane.rowIndex="3" />
+                        <Label text="passwort" GridPane.rowIndex="4" />
+                        <Label text="firma" GridPane.rowIndex="6" />
+                        <Label text="strasse" GridPane.rowIndex="7" />
+                        <Label text="ort" GridPane.rowIndex="8" />
+                        <TextField fx:id="txNachname" prefHeight="65.0" prefWidth="556.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txVorname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cbRolle" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbOrt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="lbProjekt" />
+                        <TextField fx:id="txEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txFirma" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="txStrasse" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <PasswordField fx:id="pfPasswort" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="subunternehmen" GridPane.rowIndex="5" />
+                        <ComboBox fx:id="cbSubunternehmen" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                     </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="262.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="738.0" minWidth="10.0" prefWidth="738.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <HBox prefHeight="51.0" prefWidth="1000.0" GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btPasswort" mnemonicParsing="false" text="passwort ändern" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" text="speichern" GridPane.rowIndex="3" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="lbPerson" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="244.0" minHeight="0.0" prefHeight="73.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="866.0" minHeight="10.0" prefHeight="667.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="142.0" minHeight="0.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="99.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
