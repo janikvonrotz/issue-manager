@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,6 +32,9 @@ public class App extends Application {
 
 	@FXML
 	private Button btLogin;
+	
+	@FXML
+	private ComboBox<String> cbLogins;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -40,22 +44,16 @@ public class App extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// @Patrick ComboBox hier füllen
+		
 		primaryStage.show();
 	}
 	
 	@FXML
-	public void clickSachbearbeiter() {
-		txBenutzername.setText("sb@im.ch");
+	public void clickLoginBox() {
+		txBenutzername.setText(cbLogins.getSelectionModel().getSelectedItem());
 	}
-	
-	public void clickBauleiter() {
-		txBenutzername.setText("bl@im.ch");
-	}
-	
-	Kontaktperson -> kp@im.ch
-	Kontaktadmin -> ka@im.ch
-	
-	
 	
 	@FXML
 	public void clickLogin(){
