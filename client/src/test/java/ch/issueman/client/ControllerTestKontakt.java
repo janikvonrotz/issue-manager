@@ -42,7 +42,8 @@ public class ControllerTestKontakt {
 	public void testPersist() {
 		try {
 			Kontakt kontakt = new Kontakt("Kontakt", "Test2", "test2@kontakt.ch", 
-					FilterHelper.filterListIds(new Controller<Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(0), null);
+					FilterHelper.filterListIds(new Controller<Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(0), 
+					null);
 			kontaktcontroller.persist(kontakt);
 		} catch (Exception e) {
 			e.printStackTrace();

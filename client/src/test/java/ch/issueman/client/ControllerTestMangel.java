@@ -49,14 +49,14 @@ public class ControllerTestMangel {
 					FilterHelper.filterListIds(new Controller<Bauleiter, Integer>(Bauleiter.class).getAll(), new int[]{2}).get(0),
 					null,
 					FilterHelper.filterListIds(new Controller <Mangelstatus, Integer>(Mangelstatus.class).getAll(), new int[]{2}).get(0),
-					FilterHelper.filterListIds(new Controller <Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(1),
+					FilterHelper.filterListIds(new Controller <Subunternehmen, Integer>(Subunternehmen.class).getAll(), new int[]{2}).get(0),
 					new GregorianCalendar(1,1,2015), 
 					FilterHelper.filterListIds(new Controller <Projekt, Integer>(Projekt.class).getAll(), new int[]{2}).get(0)
 				);
 			mangelcontroller.persist(mangel);
 		} catch (Exception e) {
-			fail("Persist for Mangel failed");
 			e.printStackTrace();
+			fail("Persist for Mangel failed");
 		}
 		Context.logout();
 	}

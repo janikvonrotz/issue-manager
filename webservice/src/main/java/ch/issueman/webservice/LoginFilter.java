@@ -9,7 +9,7 @@ import ch.issueman.common.Login;
 /**
  * Filter Projects by properties and login roles.
  * 
- * @author Janik von Rotz
+ * @author Janik von Rotz, Erwin Willi
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -75,6 +75,9 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.TypeFilter#deleteAll()
+	 */
 	@Override
 	public void deleteAll() throws Exception {
 		if(this.ifUserHasRole("Sachbearbeiter")){
@@ -84,6 +87,9 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.TypeFilter#getAllByProperty(java.lang.String, java.util.List)
+	 */
 	@Override
 	public List<Login> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception {
 		if(this.ifUserHasRole("Sachbearbeiter")){
