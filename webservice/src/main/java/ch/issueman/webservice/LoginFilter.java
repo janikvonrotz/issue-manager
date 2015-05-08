@@ -38,8 +38,13 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 	 */
 	@Override
 	public Login getById(Integer id) throws Exception {
-		// TODO Auto-generated method stub
-		return super.getById(id);
+		if(this.ifUserHasRole("Sachbearbeiter")){
+			return this.getController().getById(id);
+		}else if(this.getLogin().getId()== id){
+			return this.getController().getById(id);
+		}else{
+			throw new Exception("Not allowed to show Login.");
+		}
 	}
 
 	/* (non-Javadoc)
@@ -62,7 +67,7 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 	@Override
 	public void delete(Login t) throws Exception {
 		if(this.ifUserHasRole("Sachbearbeiter")){
-			this.getController().persist(t);
+			this.getController().delete(t);
 		}else if(this.getLogin().getId()==t.getId()){
 			this.getController().delete(t);
 		}else{
@@ -72,11 +77,21 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 
 	@Override
 	public void deleteAll() throws Exception {
-		this.getController().deleteAll();
+		if(this.ifUserHasRole("Sachbearbeiter")){
+			this.getController().deleteAll();
+		}else{
+			throw new Exception("Not allowed to delete Login.");
+		}
 	}
 
 	@Override
 	public List<Login> getAllByProperty(String propertyname, List<String> propertyvalues) throws Exception {
-		return this.getController().getAllByProperty(propertyname, propertyvalues);
+		if(this.ifUserHasRole("Sachbearbeiter")){
+			return this.getController().getAllByProperty(propertyname, propertyvalues);
+		}else{
+			return this.getController().getAllByProperty(propertyname, propertyvalues).stream()
+					.filter(l -> l.equals(this.getLogin()))
+					.collect(Collectors.toList());
+		}
 	}
 }

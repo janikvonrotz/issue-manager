@@ -12,6 +12,13 @@ import ch.issueman.common.Rolle;
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 
+/**
+ * Testclass ControllerTestBauherr
+ *
+ * @author Reno Meyer
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class ControllerTestRolle {
 
 	private Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
