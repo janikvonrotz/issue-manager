@@ -39,5 +39,5 @@ TableView.table-view {
    
 Label.default{
 	-fx-background-color: #aaaaaa;
-	-fx-test-fill: white;
+	-fx-text-fill: white;
 }

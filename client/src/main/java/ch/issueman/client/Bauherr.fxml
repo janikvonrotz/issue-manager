@@ -7,7 +7,6 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="lbPerson" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -35,7 +34,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="default" text="name" />
+                  <Label prefWidth="60.0" styleClass="default" text="name" />
                   <TextField fx:id="txName" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <GridPane.margin>
@@ -44,7 +43,7 @@
             </GridPane>
             <GridPane layoutX="10.0" layoutY="40.0" GridPane.rowIndex="2">
                <children>
-                  <Label styleClass="default" text="vorname" />
+                  <Label prefWidth="60.0" styleClass="default" text="vorname" />
                   <TextField fx:id="txVorname" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -57,7 +56,7 @@
             </GridPane>
             <GridPane layoutX="10.0" layoutY="70.0" GridPane.rowIndex="3">
                <children>
-                  <Label styleClass="default" text="e-mail" />
+                  <Label prefWidth="60.0" styleClass="default" text="e-mail" />
                   <TextField fx:id="txEmail" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -70,7 +69,7 @@
             </GridPane>
             <GridPane layoutX="10.0" layoutY="100.0" GridPane.rowIndex="4">
                <children>
-                  <Label styleClass="default" text="rolle" />
+                  <Label prefWidth="60.0" styleClass="default" text="rolle" />
                   <ComboBox fx:id="cbRolle" prefWidth="200.0" styleClass="rolle" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -83,7 +82,7 @@
             </GridPane>
             <GridPane layoutX="10.0" layoutY="130.0" GridPane.rowIndex="5">
                <children>
-                  <Label styleClass="default" text="firma" />
+                  <Label prefWidth="60.0" styleClass="default" text="firma" />
                   <TextField fx:id="txFirma" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -96,7 +95,7 @@
             </GridPane>
             <GridPane layoutX="10.0" layoutY="160.0" GridPane.rowIndex="6">
                <children>
-                  <Label styleClass="default" text="strasse" />
+                  <Label prefWidth="60.0" styleClass="default" text="strasse" />
                   <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
@@ -118,8 +117,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="default" text="plz" />
-                  <Label styleClass="default" text="ort" GridPane.columnIndex="2" />
+                  <Label prefWidth="30.0" styleClass="default" text="plz" />
+                  <Label prefWidth="30.0" styleClass="default" text="ort" GridPane.columnIndex="2" />
                   <TextField fx:id="txPlz" styleClass="default" GridPane.columnIndex="1" />
                   <TextField fx:id="txOrt" styleClass="default" GridPane.columnIndex="3" />
                </children>
