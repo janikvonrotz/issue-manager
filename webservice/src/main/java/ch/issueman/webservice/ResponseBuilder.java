@@ -15,6 +15,7 @@ import ch.issueman.common.Bauleiter;
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
+import ch.issueman.common.Person;
 import ch.issueman.common.Sachbearbeiter;
 
 /**
@@ -228,6 +229,21 @@ public class ResponseBuilder<T, Id extends Serializable> implements DAOResponseB
 			@SuppressWarnings("unchecked")
 			List<Kontakt> list = (List<Kontakt>) controller.getAll();
 			GenericEntity<List<Kontakt>> genericEntity = new GenericEntity<List<Kontakt>>(list){};
+			return Response.ok().entity(genericEntity).build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(Status.BAD_REQUEST).entity(e).build();
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.DAOResponseBuilder#getAllPerson()
+	 */
+	public Response getAllPerson() {
+		try {
+			@SuppressWarnings("unchecked")
+			List<Person> list = (List<Person>) controller.getAll();
+			GenericEntity<List<Person>> genericEntity = new GenericEntity<List<Person>>(list){};
 			return Response.ok().entity(genericEntity).build();
 		} catch (Exception e) {
 			e.printStackTrace();

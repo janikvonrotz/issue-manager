@@ -52,6 +52,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	private static Controller<Bauherr, Integer> bauherrController = new Controller<Bauherr, Integer>(Bauherr.class);
 	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Rolle, Integer> rolleController = new Controller<Rolle, Integer>(Rolle.class);
+	private Person person; 
 	
 	@FXML
 	private Label lbPerson;
