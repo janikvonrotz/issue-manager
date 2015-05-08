@@ -158,7 +158,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	public void Refresh(){
 		
 		if(subunternehmen != null){
-			
+			lbSubunternehmen.setText(subunternehmen.getFirmenname());
 			txFirma.setText(subunternehmen.getFirmenname());
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
 	    	cbOrt.setValue(subunternehmen.getAdresse().getOrt());
@@ -169,12 +169,12 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else {
-
-	    	txFirma.setText("");
+	    	lbSubunternehmen.setText("neues subunternehmen");
+			txFirma.setText("");
 	    	txStrasse.setText("");
-	    	cbOrt.setValue(null);
-	    	
+	    	cbOrt.setValue(null);   	
 	    }
 		
 		try {
@@ -187,7 +187,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		}
 	}
 	
-	
 	@FXML
 	public void clickSpeichern(){
 		
@@ -196,10 +195,8 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			subunternehmen.setFirmenname(txFirma.getText());
 			
 			Adresse a = subunternehmen.getAdresse();
-			Ort o = subunternehmen.getAdresse().getOrt();
 			a.setStrasse(txStrasse.getText());
-			o.setId(cbOrt.getValue().getId());
-			a.setOrt(o);
+			a.setOrt(cbOrt.getValue());
 			
 			try {
 				subunternehmencontroller.update(subunternehmen);
@@ -219,19 +216,18 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				e1.printStackTrace();
 			}
 		}
+		
+		showList();
 
 	}
 
 	@FXML
 	public void clickAbbrechen(){
 		
-	}
-	
-	@FXML
-	public void clickAddKontakt(){
+		showList();
 		
 	}
-
+	
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;
@@ -241,5 +237,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	@Override
 	public void showList() {
 		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("Subunternehmen");
+		view.initData(null);
 	}
 }

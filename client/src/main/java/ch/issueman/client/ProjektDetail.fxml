@@ -6,111 +6,76 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektDetailView">
+<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="1066.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektDetailView">
    <children>
-      <GridPane layoutX="10.0" layoutY="10.0">
+      <StackPane layoutX="276.0" layoutY="250.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <Label fx:id="lbProjekt" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="titel" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="strasse" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <padding>
-                  <Insets right="50.0" />
-               </padding>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="140.0" minHeight="40.0" minWidth="140.0" prefHeight="40.0" prefWidth="140.0" style="-fx-background-color: #AAAAAA;" text="plz" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="100.0" minHeight="40.0" minWidth="100.0" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #AAAAAA;" text="ort" textFill="WHITE" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="arbeitstyp" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="projekttyp" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="beginn" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="ende" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="bauherr" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="projektleiter" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="10">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="subunternehmen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Button fx:id="btAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="246.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <Button fx:id="btArchivieren" alignment="CENTER" layoutX="77.0" layoutY="704.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickArchivieren" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="archivieren" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <TextField fx:id="txtitel" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="txStrasse" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txPlz" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="158.0" minHeight="40.0" minWidth="158.0" prefHeight="40.0" prefWidth="158.0" style="-fx-border-color: #486285;" translateX="142.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="lbProjektleiter" layoutX="77.0" layoutY="423.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <DatePicker fx:id="dpEnde" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <DatePicker fx:id="dpBeginn" layoutX="77.0" layoutY="349.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <ComboBox fx:id="cbArbeitstyp" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="cbProjekttyp" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="cbBauherr" layoutX="77.0" layoutY="349.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label fx:id="txOrt" prefHeight="40.0" prefWidth="296.0" style="-fx-border-color: #aaaaaa; -fx-background-color: #ffffff;" translateX="404.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextArea fx:id="taSubunternehmen" maxHeight="80.0" maxWidth="398.0" minHeight="80.0" minWidth="398.0" prefHeight="80.0" prefWidth="398.0" style="-fx-background-color: #486285; -fx-border-color: #486285;" translateX="302.0" translateY="20.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <GridPane prefHeight="786.0" prefWidth="1000.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="244.0" minHeight="0.0" prefHeight="59.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="866.0" minHeight="10.0" prefHeight="853.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="93.0" minHeight="3.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane prefHeight="829.0" prefWidth="1000.0" GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="262.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="738.0" minWidth="10.0" prefWidth="738.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="81.0" minHeight="70.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="titel" />
+                        <Label text="strasse" GridPane.rowIndex="1" />
+                        <Label text="ort" GridPane.rowIndex="2" />
+                        <Label text="arbeitstyp" GridPane.rowIndex="3" />
+                        <Label text="projekttyp" GridPane.rowIndex="4" />
+                        <Label text="beginn" GridPane.rowIndex="5" />
+                        <Label text="ende" GridPane.rowIndex="6" />
+                        <Label text="bauherr" GridPane.rowIndex="7" />
+                        <Label text="projektleiter" GridPane.rowIndex="8" />
+                        <Label text="subunternehmen" GridPane.rowIndex="9" />
+                        <Label text="kontaktperson" GridPane.rowIndex="10" />
+                        <TextField fx:id="txTitel" prefHeight="65.0" prefWidth="556.0" GridPane.columnIndex="1" />
+                        <TextField fx:id="txStrasse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txProjektleiter" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <ComboBox fx:id="cbOrt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cbArbeitstyp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbProjekttyp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="cbKontakt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="cbBauherr" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <DatePicker fx:id="dpBeginn" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="dpEnde" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbProjekt" />
+                     </children>
+                  </GridPane>
+                  <HBox GridPane.rowIndex="3">
+                     <children>
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btArchivieren" mnemonicParsing="false" text="archivieren" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" text="speichern" GridPane.rowIndex="3" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="lbProjekt" />
+               </children>
+            </GridPane>
          </children>
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="0.0" prefWidth="70.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="824.0" minWidth="10.0" prefWidth="759.6666564941406" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="33.66667175292969" minHeight="10.0" prefHeight="20.333328247070312" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="87.66667175292969" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-      </GridPane>
+      </StackPane>
    </children>
 </AnchorPane>
