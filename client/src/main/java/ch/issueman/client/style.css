@@ -1,16 +1,16 @@
-Button.default{
-	-fx-background-color:  #486285;
-	-fx-text-fill: white;
-}
 
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
+	-fx-border-top-left-radius: 10px; 
+    -fx-border-top-right-radius: 10px;
 }
 
-Button.save{
+Button.default{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
+	-fx-border-top-left-radius: 10px; 
+    -fx-border-top-right-radius: 10px;
 }
 
 ComboBox.rolle{
@@ -28,15 +28,25 @@ TextField.default ,PasswordField.default{
 	-fx-background-color: #ffffff;
 }
 
-TableView.table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
+TableView.settle {
+    -fx-base: #aaaaaa;
+    -fx-control-inner-background: #aaaaaa;
+    -fx-background-color: #aaaaaa;
+    -fx-table-cell-border-color: white;
+    -fx-table-header-border-color: white;
     -fx-padding: 5;
+    -fx-text-fill: white !important;
 }
-   
+  
+TableView.completed {
+    -fx-base: #486285;
+    -fx-control-inner-background: #486285;
+    -fx-background-color: #486285;
+    -fx-table-cell-border-color: white;
+    -fx-table-header-border-color: white;
+    -fx-padding: 5;
+    -fx-text-fill: white;
+}  
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
@@ -45,11 +55,11 @@ Label.default{
 Label.title{
 	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
-	-fx-text-size: 36px;
+	-fx-font-size: 36pt;
 }
 
-Label.login{
+Label.subtitle{
 	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
-	-fx-text-size: 20px;
+	-fx-font-size: 20pt;
 }

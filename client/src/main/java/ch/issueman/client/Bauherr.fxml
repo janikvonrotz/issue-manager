@@ -135,7 +135,7 @@
                </rowConstraints>
                <children>
                   <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.columnIndex="2" />
-                  <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.columnIndex="3" />
+                  <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.columnIndex="3" />
                </children>
             </GridPane>
          </children>
