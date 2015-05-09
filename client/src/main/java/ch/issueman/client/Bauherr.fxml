@@ -70,7 +70,7 @@
             <GridPane layoutX="10.0" layoutY="100.0" GridPane.rowIndex="4">
                <children>
                   <Label prefWidth="60.0" styleClass="default" text="rolle" />
-                  <ComboBox fx:id="cbRolle" prefWidth="200.0" styleClass="rolle" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cbRolle" prefWidth="200.0" styleClass="default" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

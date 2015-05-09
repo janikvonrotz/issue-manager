@@ -14,9 +14,10 @@ Button.default{
 	-fx-background-radius: 10px
 }
 
-ComboBox.rolle{
+ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
+	-fx-text-fill-color: #486285;
 }
 
 TextField.title{
@@ -39,7 +40,6 @@ TableView.settle {
     
 }
 
-  
 TableView.completed {
     -fx-base: #486285;
     -fx-control-inner-background: #486285;
