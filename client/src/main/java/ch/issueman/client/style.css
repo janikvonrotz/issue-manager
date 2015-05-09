@@ -47,3 +47,9 @@ Label.title{
 	-fx-text-fill: #939382;
 	-fx-text-size: 36px;
 }
+
+Label.login{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #939382;
+	-fx-text-size: 20px;
+}
