@@ -5,15 +5,13 @@ AnchorPane.default, BorderPane.default{
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
-	-fx-border-top-left-radius: 10px; 
-    -fx-border-top-right-radius: 10px;
+	-fx-background-radius: 10px
 }
 
 Button.default{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
-	-fx-border-top-left-radius: 10px; 
-    -fx-border-top-right-radius: 10px;
+	-fx-background-radius: 10px
 }
 
 ComboBox.rolle{
@@ -35,20 +33,19 @@ TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
     -fx-background-color: #aaaaaa;
-    -fx-table-cell-border-color: white;
-    -fx-table-header-border-color: white;
-    -fx-padding: 5;
-    -fx-text-fill: white !important;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    
 }
+
   
 TableView.completed {
     -fx-base: #486285;
     -fx-control-inner-background: #486285;
     -fx-background-color: #486285;
-    -fx-table-cell-border-color: white;
-    -fx-table-header-border-color: white;
-    -fx-padding: 5;
     -fx-text-fill: white;
+    -fx-alignment: center-left;
 }  
 Label.default{
 	-fx-background-color: #aaaaaa;
