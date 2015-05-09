@@ -20,7 +20,7 @@ ComboBox.rolle{
 
 TextField.title{
 	-fx-text-color: #939382;
-	-fx-test-size: 36px;
+	-fx-text-size: 36px;
 }
 
 TextField.default ,PasswordField.default{
@@ -40,4 +40,10 @@ TableView.table-view {
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
+}
+
+Label.title{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #939382;
+	-fx-text-size: 36px;
 }
