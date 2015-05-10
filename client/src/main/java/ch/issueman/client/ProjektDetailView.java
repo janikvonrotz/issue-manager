@@ -286,7 +286,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    	dpEnde.setValue(projekt.getEnde().toInstant()
 	    			.atZone(ZoneId.systemDefault()).toLocalDate());
 	    	cbBauherr.setValue(projekt.getBauherr());
-//	    	txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
+	    	txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
 	    	
 			try {
 				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
@@ -312,16 +312,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		} else {
 
 			lbProjekt.setText("neues projekt");
-	    	txTitel.setText("");
-	    	txStrasse.setText("");
-	    	cbOrt.setValue(null);
-	    	cbArbeitstyp.setValue(null);
-	    	cbProjekttyp.setValue(null);
-	    	dpBeginn.setValue(null);
-	    	dpEnde.setValue(null);
-	    	cbBauherr.setValue(null);
-	    	txProjektleiter.setText("");
-	       	taSubunternehmen.setText("");
 	    }
 		
 	}
@@ -397,7 +387,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	@Override
 	public void initData(Projekt p) {
 		projekt = p;
-		Refresh();
 	}
 
 	@Override

@@ -65,7 +65,7 @@
                   </TableView>
                   <HBox GridPane.rowIndex="6">
                      <children>
-                        <TextArea />
+                        <TextArea fx:id="taKommentar" />
                         <Button fx:id="btSend" mnemonicParsing="false" text="senden" GridPane.rowIndex="6" />
                      </children>
                   </HBox>
