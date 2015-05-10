@@ -71,7 +71,7 @@ public class ControllerTestKontakt {
 			Kontakt kontakt = kontaktcontroller.getById(listKontakt.get(listKontakt.size()-1).getId());
 		} catch (Exception e) {
 			e.printStackTrace();
-			fail("Get by id for Kontakt failed");
+			fail("Get By Id of Kontakt failed");
 		}
 	}
 
@@ -94,8 +94,7 @@ public class ControllerTestKontakt {
 			List<Kontakt> listKontakt = kontaktcontroller.getAll();
 			kontaktcontroller.delete(listKontakt.get(listKontakt.size()-1));
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deletion of Kontakt failed");
+			assertEquals("Required Roles for DELETE on Kontakt don't match", e.getMessage());
 		}
 	}
 }

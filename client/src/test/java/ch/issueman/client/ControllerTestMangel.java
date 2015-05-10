@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+
 import ch.issueman.common.Bauleiter;
 import ch.issueman.common.FilterHelper;
 import ch.issueman.common.Login;
@@ -80,7 +81,7 @@ public class ControllerTestMangel {
 			Mangel mangel = mangelcontroller.getById(listMangel.get(listMangel.size()-1).getId());
 		} catch (Exception e) {
 			e.printStackTrace();
-			fail("Get by id for Mangel failed");
+			fail("Get By Id of Mangel failed");
 		}
 	}
 
@@ -103,8 +104,7 @@ public class ControllerTestMangel {
 			List<Mangel> listMangel = mangelcontroller.getAll();
 			mangelcontroller.delete(listMangel.get(listMangel.size()-1));
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deletion of Mangel failed");
+			assertEquals("Required Roles for DELETE on Mangel don't match", e.getMessage());
 		}
 	}
 }

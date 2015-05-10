@@ -88,8 +88,7 @@ public class ControllerTestSachbearbeiter {
 			List<Sachbearbeiter> listSachbearbeiter = sachbearbeitercontroller.getAll();
 			sachbearbeitercontroller.delete(listSachbearbeiter.get(listSachbearbeiter.size()-1));
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deletion of Sachbearbeiter failed");
+			assertEquals("Required Roles for DELETE on Sachbearbeiter don't match", e.getMessage());
 		}
 	}
 }

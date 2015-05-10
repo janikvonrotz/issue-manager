@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.App">
+<BorderPane styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.App">
    <center>
       <AnchorPane>
          <children>
@@ -29,22 +29,15 @@
                   <RowConstraints maxHeight="50.0" minHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" text="Benutzername" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Benutzername" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
-                     <font>
-                        <Font size="20.0" />
-                     </font>
                   </Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" text="Passwort" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" style="-fx-background-color: #486285;" text="login" textFill="WHITE" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" style="-fx-border-color: #AAAAAA;" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" styleClass="default" text="login" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" styleClass="default" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" styleClass="default" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ImageView fitHeight="148.0" fitWidth="188.0" translateX="81.0" GridPane.columnIndex="1">
                      <image>
                         <Image url="@../../../../resources/IM_Logo4.png" />
@@ -55,7 +48,7 @@
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbLogins" onAction="#clickLoginBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="cbLogins" onAction="#clickLoginBox" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

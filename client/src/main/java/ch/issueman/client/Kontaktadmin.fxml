@@ -7,11 +7,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <GridPane BorderPane.alignment="TOP_CENTER">
+<AnchorPane styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane styleClass="title" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,123 +34,114 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="lbMaengel" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #939382;" text="mängel" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lbAdmin" alignment="CENTER" maxHeight="60.0" maxWidth="505.0" minHeight="60.0" minWidth="505.0" prefHeight="60.0" prefWidth="505.0" style="-fx-background-color: #486285;" text="admin" textFill="WHITE" translateX="507.0">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                  </Label>
+                  <Label styleClass="default" text="nachname" />
+                  <TextField fx:id="txNachname" styleClass="default" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-         </top>
-         <left>
-            <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="40.0" prefWidth="199.33333587646484" />
-              </columnConstraints>
+            <Label fx:id="lbKontaktadmin" styleClass="title" />
+            <GridPane layoutX="10.0" layoutY="40.0" GridPane.rowIndex="2">
+               <children>
+                  <Label styleClass="default" text="vorname" />
+                  <TextField fx:id="txVorname" styleClass="default" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="10.0" layoutY="40.0" GridPane.rowIndex="3">
+               <children>
+                  <Label styleClass="default" text="email" />
+                  <TextField fx:id="txEmail" styleClass="default" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="4">
+               <children>
+                  <Label styleClass="default" text="rolle" />
+                  <ComboBox fx:id="cbRolle" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="10.0" layoutY="130.0" GridPane.rowIndex="5">
+               <children>
+                  <Label styleClass="default" text="passwort" />
+                  <PasswordField styleClass="default" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane layoutX="10.0" layoutY="100.0" GridPane.rowIndex="6">
+               <children>
+                  <Label styleClass="default" text="subunternehmen" />
+                  <TextField fx:id="txEmail1" styleClass="default" GridPane.columnIndex="1" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+            <GridPane GridPane.rowIndex="7">
               <rowConstraints>
-                <RowConstraints maxHeight="110.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
                <children>
-                  <AnchorPane maxHeight="110.0" maxWidth="200.0" minHeight="110.0" minWidth="200.0" prefHeight="110.0" prefWidth="200.0">
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <ImageView fitHeight="90.0" fitWidth="105.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
-                           <image>
-                              <Image url="@../../../../resources/IM_Logo4.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="55.0" layoutY="38.0" text="issue manager" textFill="#939382" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="85.0">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
+                        <GridPane GridPane.columnIndex="1">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="btAbberchen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" />
+                              <Button fx:id="btPasswortAendern" mnemonicParsing="false" onAction="#clickPasswortAendern" styleClass="default" text="passwort ändern" GridPane.columnIndex="1" />
+                              <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.columnIndex="2" />
+                           </children>
+                        </GridPane>
                      </children>
-                  </AnchorPane>
+                  </GridPane>
                </children>
             </GridPane>
-         </left>
-         <center>
-            <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="0.0" prefWidth="70.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="824.0" minWidth="10.0" prefWidth="759.6666564941406" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="33.66667175292969" minHeight="10.0" prefHeight="20.333328247070312" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="87.66667175292969" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label fx:id="lbKontaktadmin" maxHeight="60.0" maxWidth="300.0" minHeight="60.0" minWidth="700.0" prefHeight="60.0" prefWidth="300.0" style="-fx-border-color: #AAAAAA;" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="nachname" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="vorname" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <padding>
-                        <Insets right="50.0" />
-                     </padding>
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="e-mail" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="telefon" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="rolle" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="passwort" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #AAAAAA;" text="subunternehmen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Label>
-                  <Button fx:id="btAbbrechen" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #FF6B68;" text="abbrechen" textFill="WHITE" translateX="246.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <Button fx:id="btPasswortAendern" alignment="CENTER" layoutX="77.0" layoutY="554.0" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickPasswortAendern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="passwort ändern" textFill="WHITE" translateX="398.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <Button fx:id="btSpeichern" alignment="CENTER" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #486285;" text="speichern" textFill="WHITE" translateX="550.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <TextField fx:id="txNachname" accessibleRole="COMBO_BOX" layoutX="77.0" layoutY="123.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="txTelefon" layoutX="77.0" layoutY="223.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="txSubunternehmen" layoutX="77.0" layoutY="373.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <ComboBox fx:id="cbRolle" layoutX="77.0" layoutY="299.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <TextField fx:id="txEmail" layoutX="77.0" layoutY="299.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="txVorname" layoutX="77.0" layoutY="249.0" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="398.0" minHeight="40.0" minWidth="398.0" prefHeight="40.0" prefWidth="398.0" style="-fx-background-color: #ffffff; -fx-border-color: #486285;" translateX="302.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Button fx:id="btAddSubunternehmen" mnemonicParsing="false" onAction="#clickAddSubunternehmen" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #486285; -fx-background-color: #ffffff;" text="+" textFill="#486285" translateX="700.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-               </children>
-            </GridPane>
-         </center>
-      </BorderPane>
-   </center>
-</BorderPane>
+            <Button fx:id="btAdd" mnemonicParsing="false" onAction="#clickAdd" styleClass="default" text="+" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

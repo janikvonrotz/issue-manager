@@ -1,43 +1,65 @@
-Button.default{
-	-fx-background-color:  #486285;
-	-fx-text-fill: white;
+AnchorPane.default, BorderPane.default{
+	-fx-background-color: #ffffff;
 }
 
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
+	-fx-background-radius: 10px
 }
 
-Button.save{
+Button.default{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
+	-fx-background-radius: 10px
 }
 
-ComboBox.rolle{
+ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
+	-fx-text-fill-color: #486285;
 }
 
 TextField.title{
 	-fx-text-color: #939382;
-	-fx-test-size: 36px;
+	-fx-text-size: 36px;
 }
 
-TextField.default ,PasswordField.default{
+TextField.default, PasswordField.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
 }
 
-TableView.table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
+TableView.settle {
+    -fx-base: #aaaaaa;
+    -fx-control-inner-background: #aaaaaa;
+    -fx-background-color: #aaaaaa;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    
 }
-   
+
+TableView.completed {
+    -fx-base: #486285;
+    -fx-control-inner-background: #486285;
+    -fx-background-color: #486285;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+}  
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
+}
+
+Label.title{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #939382;
+	-fx-font-size: 36pt;
+}
+
+Label.subtitle{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #939382;
+	-fx-font-size: 20pt;
 }
