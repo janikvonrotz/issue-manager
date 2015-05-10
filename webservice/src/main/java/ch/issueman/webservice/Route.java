@@ -148,6 +148,14 @@ public class Route{
 		rbm.get("kontakt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("kontakt").getAllKontakt();
 	}
+	@GET
+	@Path("person")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllPerson(@Context HttpServletRequest request) {
+		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
+		return rbm.get("person").getAllPerson();
+	}
+	
 	
 	/**
 	 * Adresse

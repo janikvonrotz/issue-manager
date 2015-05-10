@@ -52,6 +52,7 @@ import ch.issueman.common.Unternehmen;
  */
 public class PersonDetailView implements ViewableDetail<Person> {
 	
+<<<<<<< HEAD
 	private static Controller<Person, Integer> personcontroller = new Controller<Person, Integer>(Person.class);
 	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 	private static Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
@@ -68,6 +69,16 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	private Kontakt kontakt;
 	private Bauherr bauherr;
 	private Login login;
+=======
+	private static Controller<Person, Integer> personController = new Controller<Person, Integer>(Person.class);
+	private static Controller<Sachbearbeiter, Integer> sachbearbeiterController = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
+	private static Controller<Bauleiter, Integer> bauleiterController = new Controller<Bauleiter, Integer>(Bauleiter.class);
+	private static Controller<Kontakt, Integer> kontaktController = new Controller<Kontakt, Integer>(Kontakt.class);
+	private static Controller<Bauherr, Integer> bauherrController = new Controller<Bauherr, Integer>(Bauherr.class);
+	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+	private static Controller<Rolle, Integer> rolleController = new Controller<Rolle, Integer>(Rolle.class);
+	private Person person; 
+>>>>>>> origin/master
 	
 	@FXML
 	private Label lbPerson;

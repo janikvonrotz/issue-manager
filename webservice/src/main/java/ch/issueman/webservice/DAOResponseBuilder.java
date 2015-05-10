@@ -126,4 +126,11 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	 * @return http response.
 	 */
 	public Response getAllBauherr();
+
+	/**
+	 * Return all Person objects as generic entity in order to perceive the type info.
+	 * 
+	 * @return http response.
+	 */
+	public Response getAllPerson();
 }

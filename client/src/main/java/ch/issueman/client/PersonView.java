@@ -117,4 +117,16 @@ public class PersonView implements Viewable<Person, Person> {
 	public void clickData() {
 
 	}
+
+	@Override
+	public void initData(Person t) {
+		System.out.println(t.getClass().getSimpleName());
+		
+	}
+
+	@Override
+	public void showDetail(Person t) {
+		// TODO Auto-generated method stub
+		
+	}
 }
