@@ -88,8 +88,7 @@ public class ControllerTestBauleiter {
 			List<Bauleiter> listBauleiter = bauleitercontroller.getAll();
 			bauleitercontroller.delete(listBauleiter.get(listBauleiter.size()-1));
 		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Deletion of Bauleiter failed");
+				assertEquals("Required Roles for DELETE on Bauleiter don't match", e.getMessage());
 		}
 	}
 }
