@@ -1,6 +1,7 @@
 package ch.issueman.common;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -107,21 +108,21 @@ public class Projekt implements Model{
 		}
 	}
 	
-//	/**
-//	 * Method to get the current Projektleiter
-//	 * 
-//	 * @return Projektleiter projektleiter
-//	 */
-//	@JsonIgnore
-//	public Bauleiter getCurrentProjektleiter(){
-//		Bauleiter projektleiter = null;
-//		for(Projektleitung pleiter : projektleitungen){
-//			if (((GregorianCalendar) projektleiter.getBeginn()).before(new GregorianCalendar()) &&
-//					((GregorianCalendar) projektleiter.getEnde()).after(new GregorianCalendar())){
-//				projektleiter = pleiter.getBauleiter();
-//			}
-//		}
-//		
-//		return projektleiter;
-//	}
+	/**
+	 * Method to get the current Projektleiter
+	 * 
+	 * @return Projektleiter projektleiter
+	 */
+	@JsonIgnore
+	public Bauleiter getCurrentProjektleiter(){
+		Bauleiter projektleiter = null;
+		for(Projektleitung pleiter : projektleitungen){
+			if (((GregorianCalendar) pleiter.getBeginn()).before(new GregorianCalendar()) &&
+					((GregorianCalendar) pleiter.getEnde()).after(new GregorianCalendar())){
+				projektleiter = pleiter.getBauleiter();
+			}
+		}
+		
+		return projektleiter;
+	}
 }
