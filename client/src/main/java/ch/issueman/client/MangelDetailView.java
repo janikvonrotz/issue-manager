@@ -2,7 +2,9 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -12,10 +14,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
@@ -23,6 +30,7 @@ import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Ort;
+import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
@@ -37,11 +45,12 @@ import ch.issueman.common.Unternehmen;
  */
 public class MangelDetailView implements ViewableDetail<Mangel> {
 	
-	private static Controller<Mangel, Integer> mangelController = new Controller<Mangel, Integer>(Mangel.class);
-	private static Controller<Kommentar, Integer> kommentarController = new Controller<Kommentar, Integer>(Kommentar.class);
-	private static Controller<Projekt, Integer> projektController = new Controller<Projekt, Integer>(Projekt.class);
-	private static Controller<Subunternehmen, Integer> subunternehmenController = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
-	private static Controller<Mangelstatus, Integer> statusController = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
+	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
+	private static Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
+	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
+	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
+	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
+	private Mangel mangel;
 	
 	@FXML
 	private Label lbMangel;
@@ -83,7 +92,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private Button btSend;
 	
 	@FXML
-	private TextField txKommentar;
+	private TextArea taKommentar;
 	
 	@FXML
 	private Button btAbbrechen;
@@ -96,23 +105,180 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
-		cbProjekt.setItems(FXCollections.observableArrayList(projektController.getAll()));
-		cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmenController.getAll()));
-		cbStatus.setItems(FXCollections.observableArrayList(statusController.getAll()));
+		
+		cbProjekt.setCellFactory(new Callback<ListView<Projekt>,ListCell<Projekt>>(){
+			@Override
+			public ListCell<Projekt> call(ListView<Projekt> arg0) {		 
+				final ListCell<Projekt> cell = new ListCell<Projekt>(){				 
+                    @Override
+                    protected void updateItem(Projekt p, boolean bln) {
+                        super.updateItem(p, bln);
+                         
+                        if(p != null){
+                            setText(p.getDisplayName());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+		
+		cbProjekt.setConverter(new StringConverter<Projekt>() {
+            private Map<String, Object> map = new HashMap<>();
+
+ 			@Override
+			public Projekt fromString(String arg0) {
+				return null;
+			}
+
+			public String toString(Projekt p) {
+               if (p != null) {
+                    String str = p.getDisplayName();
+                    map.put(str, p);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
+
+		cbSubunternehmen.setCellFactory(new Callback<ListView<Subunternehmen>,ListCell<Subunternehmen>>(){
+			@Override
+			public ListCell<Subunternehmen> call(ListView<Subunternehmen> arg0) {		 
+				final ListCell<Subunternehmen> cell = new ListCell<Subunternehmen>(){				 
+                    @Override
+                    protected void updateItem(Subunternehmen s, boolean bln) {
+                        super.updateItem(s, bln);
+                         
+                        if(s != null){
+                            setText(s.getFirmenname());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+		
+		cbSubunternehmen.setConverter(new StringConverter<Subunternehmen>() {
+            private Map<String, Object> map = new HashMap<>();
+
+ 			@Override
+			public Subunternehmen fromString(String arg0) {
+				return null;
+			}
+
+			public String toString(Subunternehmen s) {
+               if (s != null) {
+                    String str = s.getFirmenname();
+                    map.put(str, s);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
+
+		cbStatus.setCellFactory(new Callback<ListView<Mangelstatus>,ListCell<Mangelstatus>>(){
+			@Override
+			public ListCell<Mangelstatus> call(ListView<Mangelstatus> arg0) {		 
+				final ListCell<Mangelstatus> cell = new ListCell<Mangelstatus>(){				 
+                    @Override
+                    protected void updateItem(Mangelstatus m, boolean bln) {
+                        super.updateItem(m, bln);
+                         
+                        if(m != null){
+                            setText(m.getStatus());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+		
+		cbStatus.setConverter(new StringConverter<Mangelstatus>() {
+            private Map<String, Object> map = new HashMap<>();
+
+ 			@Override
+			public Mangelstatus fromString(String arg0) {
+				return null;
+			}
+
+			public String toString(Mangelstatus m) {
+               if (m != null) {
+                    String str = m.getStatus();
+                    map.put(str, m);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
+		
 		tcKommentar.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("kommentar"));
 		tcAutor.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("login_id"));
 		tcZeit.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("erstelltam"));
 			
-		Refresh(mangel);	
+		Refresh();	
 
 	}
 	
-	public void Refresh(Mangel mangel){
+	@Override
+	public void Refresh(){
 		
 		if(mangel != null){
+			
+	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "M" + mangel.getReferenz());
+	    	cbProjekt.setValue(mangel.getProjekt());
+	    	txBeschreibung.setText(mangel.getMangel());
+	    	cbSubunternehmen.setValue(mangel.getSubunternehmen());
+	    	cbStatus.setValue(mangel.getMangelstatus());
+//	    	dpFrist.setValue(mangel.getErledigenbis());
 		
 			try {
-				tvKommentar.setItems(FXCollections.observableArrayList(kommentarController.getAll()));
+				cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
+				cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
+				cbStatus.setItems(FXCollections.observableArrayList(statuscontroller.getAll()));
+
+				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+	    	lbMangel.setText("neuer mangel");
+	    	tvKommentar.setDisable(true);
+	    	taKommentar.setDisable(true);
+	    	btSend.setDisable(true);
+		}
+	}
+	    
+	@FXML
+	public void clickShowProject(){
+		Viewable<Projekt, Projekt> view = MainView.showCenterView("ProjektDetail");
+		view.initData(mangel.getProjekt());
+
+	}
+	
+	@FXML
+	public void clickShowSubunternehmen(){
+		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("SubunternehmenDetail");
+		view.initData(mangel.getSubunternehmen());
+	}
+	
+	@FXML
+	public void clickSend(){
+		if (mangel != null) {
+			mangel.getKommentare().add(new Kommentar(taKommentar.getText(), Context.getLogin()));
+		
+			try {
+				mangelcontroller.update(mangel);
+				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -120,92 +286,68 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		}
 	}
 
-	private void showMangelDetails(Mangel mangel) {
-	    if (mangel != null) {
-	        
-	    	lbMangel.setText(value);
-	    	cbProjekt.setValue(arg0);
-	    	txBeschreibung.setText(value);
-	    	cbSubunternehmen.setValue(value);
-	    	cbStatus.setValue(value);
-	    	dpFrist.setValue(value);
-	    	
-	    } else {
-
-	    	lbMangel.setText("");
-	    	cbProjekt.setValue(null);
-	    	txBeschreibung.setText("");
-	    	cbSubunternehmen.setValue(null);
-	    	cbStatus.setValue(null);
-	    	dpFrist.setValue(null);
-	    }
-	    
-	@FXML
-	public void clickShowProject(){
-		
-	}
-	
-	@FXML
-	public void clickShowSubunternehmen(){
-		
-	}
-	
-	@FXML
-	public void clickSend(){
-		
-	}
-
 	@FXML
 	public void clickAbbrechen(){
-		
+		showList();
 	}
 	
 	@FXML
-	public void clickSpeichern(Mangel mangel){
+	public void clickSpeichern(){
 		if (mangel != null) {
 	        
+			mangel.setProjekt(cbProjekt.getValue());
+			mangel.setMangel(txBeschreibung.getText());
+			mangel.setSubunternehmen(cbSubunternehmen.getValue());
+			mangel.setMangelstatus(cbStatus.getValue());
+//			mangel.setErledigenbis(dpFrist);
 
 			try {
-				mangelController.update(mangel);
+				mangelcontroller.update(mangel);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
 		}else{
-
-
+			
+			// Das Erstellen der Referenz sollte vielleicht in die Mangelklasse unter @PrePersist
+			int ref = 0;
 			try {
-				mangelController.persist(mangel);
+				List<Mangel> mangelList = FXCollections.observableArrayList(mangelcontroller.getAll());
+				for(Mangel m : mangelList){
+					if (m.getProjekt() == cbProjekt.getValue()){
+						if(m.getReferenz() > ref){
+							ref = m.getReferenz();
+						}
+					}
+				}
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-		
-	}
-	}
-	
-	@FXML
-	public void clickAddKontakt(){
-		
-	}
+			ref += 1;
+						
+			mangel = new Mangel(ref, txBeschreibung.getText(), Context.getLogin().getPerson(),
+					null, cbStatus.getValue(), cbSubunternehmen.getValue(), null,
+					cbProjekt.getValue()); //Datum noch lösen (zweites "null")
 
-	@Override
-	public void Refresh() {
-		// TODO Auto-generated method stub
-		
+			try {
+				mangelcontroller.persist(mangel);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}	
 	}
 
 	@Override
 	public void initData(Mangel t) {
-		// TODO Auto-generated method stub
-		
+		mangel = t;
 	}
 
 	@Override
 	public void showList() {
-		// TODO Auto-generated method stub
-		
+		Viewable<Projekt, Projekt> view = MainView.showCenterView("Mangel");
+		view.initData(mangel.getProjekt());
 	}
 }
