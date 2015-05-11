@@ -136,7 +136,8 @@ public class PersonView implements Viewable<Login, Login> {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@FXML
 	public void doubleClickData() {
 		tvData.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
