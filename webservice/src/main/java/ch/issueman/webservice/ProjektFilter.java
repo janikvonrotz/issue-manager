@@ -18,15 +18,9 @@ public class ProjektFilter extends TypeFilter<Projekt, Integer> {
 	public ProjektFilter() {
 		super(Projekt.class);
 	}
-
 	
-	/**
-	 * @return
-	 */
-	/**
-	 * Check if Login has Project
-	 * 
-	 * @return projectlist if Login has access
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.TypeFilter#getAll()
 	 */
 	@Override
 	public List<Projekt> getAll() {
