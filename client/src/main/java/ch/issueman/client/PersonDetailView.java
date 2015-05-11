@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -216,19 +217,14 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				kontakt = (Kontakt) FXCollections.observableArrayList(kontaktcontroller.getById(person.getId()));
 				bauherr = (Bauherr) FXCollections.observableArrayList(bauherrcontroller.getById(person.getId()));
 				
-				ObservableList<Login> logins = FXCollections.observableArrayList(logincontroller.getAll());
-				for(Login l : logins){
-					if(l.getPerson() == person){
-						cbRolle.setValue(l.getRolle());
-						login = l;
-					}
-				}
+				login = logincontroller.getAll().stream().filter(p -> p.getPerson()
+						.equals(person)).collect(Collectors.toList()).get(0));
+						
+				cbRolle.setValue(login.getRolle());
 				
-				if(kontakt != null){
-					cbSubunternehmen.setValue(kontakt.getSubunternehmen());
-				}
-				
-				if(bauherr != null){
+				if(person instanceof Kontakt){
+					cbSubunternehmen.setValue(((Kontakt) person).getSubunternehmen());
+				} else if(bauherr != null){
 					txFirma.setText(bauherr.getUnternehmen().getFirmenname());
 					txStrasse.setText(bauherr.getUnternehmen().getAdresse().getStrasse());
 					cbOrt.setValue(bauherr.getUnternehmen().getAdresse().getOrt());
