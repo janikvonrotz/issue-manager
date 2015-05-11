@@ -37,7 +37,7 @@ TextField.title{
 	-fx-text-size: 36px;
 }
 
-TextField.default, PasswordField.default{
+TextField.default, PasswordField.default, TextArea.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
 	-fx-padding: 2px;
