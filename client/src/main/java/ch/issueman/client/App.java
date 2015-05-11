@@ -1,12 +1,17 @@
 package ch.issueman.client;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import ch.issueman.common.Login;
 import ch.issueman.common.Sachbearbeiter;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,7 +27,7 @@ import javafx.stage.Stage;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class App extends Application {
+public class App extends Application implements Initializable {
 
 	@FXML
 	private TextField txBenutzername;
@@ -43,10 +48,7 @@ public class App extends Application {
 			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Login.fxml"))));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		// @Patrick ComboBox hier füllen
-		
+		}		
 		primaryStage.show();
 	}
 	
@@ -82,6 +84,13 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		ObservableList<String> list = FXCollections.observableArrayList( 
+                "sb@im.ch", "bl@im.ch", "kp@im.ch", "ka@im.ch");
+		cbLogins.setItems(list);
 	}
 
 }
