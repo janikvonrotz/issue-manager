@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -32,6 +33,7 @@ import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Ort;
 import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
+import ch.issueman.common.Rolle;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
@@ -50,7 +52,10 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
+	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 	private Mangel mangel;
+	private ObservableList<Mangelstatus> allStatus;
+	private ObservableList<Mangelstatus> statusList;
 	
 	@FXML
 	private Label lbMangel;
@@ -235,26 +240,56 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			
 	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "M" + mangel.getReferenz());
 	    	cbProjekt.setValue(mangel.getProjekt());
+	    	cbProjekt.setDisable(true);
 	    	txBeschreibung.setText(mangel.getMangel());
 	    	cbSubunternehmen.setValue(mangel.getSubunternehmen());
-	    	cbStatus.setValue(mangel.getMangelstatus());
 //	    	dpFrist.setValue(mangel.getErledigenbis());
 		
 			try {
 				cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
 				cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
-				cbStatus.setItems(FXCollections.observableArrayList(statuscontroller.getAll()));
+				allStatus = FXCollections.observableArrayList(statuscontroller.getAll());
 
 				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			if(Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+				statusList.add(mangel.getMangelstatus());
+				statusList.add(allStatus.get(0));
+				statusList.add(allStatus.get(3));
+				cbStatus.getItems().addAll(statusList);
+		    	cbStatus.setValue(mangel.getMangelstatus());
+			}
+			
+			if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+				statusList.add(mangel.getMangelstatus());
+				statusList.add(allStatus.get(0));
+				statusList.add(allStatus.get(3));
+				cbStatus.getItems().addAll(statusList);
+		    	cbStatus.setValue(mangel.getMangelstatus());
+			}
+
+			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
+				statusList.add(mangel.getMangelstatus());
+				statusList.add(allStatus.get(1));
+				statusList.add(allStatus.get(4));
+				statusList.add(allStatus.get(2));
+				cbStatus.getItems().addAll(statusList);
+		    	cbStatus.setValue(mangel.getMangelstatus());
+		    	
+		    	txBeschreibung.setDisable(true);
+		    	cbSubunternehmen.setDisable(true);
+		    	dpFrist.setDisable(true);
+			}
+
 		} else {
 	    	lbMangel.setText("neuer mangel");
-	    	tvKommentar.setDisable(true);
-	    	taKommentar.setDisable(true);
-	    	btSend.setDisable(true);
+	    	tvKommentar.setVisible(false);
+	    	taKommentar.setVisible(false);
+	    	btSend.setVisible(false);
 		}
 	}
 	    

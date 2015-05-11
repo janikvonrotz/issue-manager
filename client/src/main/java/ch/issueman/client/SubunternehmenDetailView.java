@@ -170,6 +170,13 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				e.printStackTrace();
 			}
 			
+			if (!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+				txFirma.setDisable(true);
+				txStrasse.setDisable(true);
+				cbOrt.setDisable(true);
+				btSpeichern.setVisible(false);
+			}
+			
 		} else {
 	    	lbSubunternehmen.setText("neues subunternehmen");
 			txFirma.setText("");
