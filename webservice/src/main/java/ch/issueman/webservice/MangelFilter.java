@@ -19,6 +19,9 @@ public class MangelFilter extends TypeFilter<Mangel, Integer> {
 		super(Mangel.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see ch.issueman.webservice.TypeFilter#getAll()
+	 */
 	@Override
 	public List<Mangel> getAll() {
 		if(this.getLogin().getPerson() instanceof Kontakt){
