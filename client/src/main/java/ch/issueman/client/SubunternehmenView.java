@@ -116,7 +116,7 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 	

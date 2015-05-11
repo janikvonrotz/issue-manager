@@ -54,7 +54,7 @@ public class PasswortView implements ViewableDetail<Login> {
 			Context.setNewPassword(pfPasswortWiederholen.getText());
 		}catch (Exception e){
 			// Fehler ausgeben
-			e.printStackTrace();
+			MainView.showError(e);
 			Refresh();
 		}
 	}

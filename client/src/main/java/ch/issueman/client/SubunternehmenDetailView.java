@@ -167,7 +167,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
 				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
 			} catch (Exception e) {
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 			
 			if (!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
@@ -190,7 +190,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
 		tvKontakt.setItems(sortedData);
 		} catch (Exception e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 	

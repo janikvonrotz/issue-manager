@@ -122,7 +122,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 

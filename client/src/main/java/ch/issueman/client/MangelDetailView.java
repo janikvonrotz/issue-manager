@@ -253,7 +253,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 			
 			if(Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
@@ -315,7 +315,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 		}
 	}

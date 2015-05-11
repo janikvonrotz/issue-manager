@@ -67,7 +67,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setCenter(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -85,7 +85,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setCenter(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -103,7 +103,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setLeft(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -121,7 +121,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setTop(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}

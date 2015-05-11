@@ -236,7 +236,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 								
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 		} else {
 			lbPerson.setText("neue person");
@@ -388,7 +388,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					o = ortcontroller.getById(cbOrt.getValue().getId());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					MainView.showError(e);
 				}
 				bauherr = new Bauherr(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), new Unternehmen(txFirma.getText(),

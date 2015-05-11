@@ -51,7 +51,7 @@ public class Context {
 			response.close();	
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return status;
 	}
