@@ -19,6 +19,7 @@ import javafx.util.Callback;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
+import ch.issueman.common.Projekt;
 import ch.issueman.common.Sachbearbeiter;
 
 /**
@@ -28,7 +29,7 @@ import ch.issueman.common.Sachbearbeiter;
  * @version 1.0.0
  * @since 1.0.0
  */
-public class MangelView implements Viewable<Mangel, Mangel> {
+public class MangelView implements Viewable<Mangel, Projekt> {
 
 	private static Controller<Mangel, Integer> controller = new Controller<Mangel, Integer>(Mangel.class);
 
@@ -138,7 +139,7 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 	}
 
 	@Override
-	public void initData(Mangel t) {
+	public void initData(Projekt t) {
 		// TODO Auto-generated method stub
 		
 	}
