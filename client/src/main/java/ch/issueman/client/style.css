@@ -51,7 +51,14 @@ TableView.completed {
     -fx-text-fill: white;
     -fx-alignment: center-left;
   
-}  
+}
+
+TableColumn.default {
+	-fx-border-color: white;
+	-fx-padding: 2px;
+	-fx-text-fill: #486285;
+}
+  
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
