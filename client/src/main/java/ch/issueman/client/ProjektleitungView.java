@@ -103,7 +103,7 @@ public class ProjektleitungView implements Viewable<Projektleitung, Projektleitu
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 

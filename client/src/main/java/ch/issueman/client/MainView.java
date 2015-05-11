@@ -44,11 +44,6 @@ public class MainView implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		root = bpMain;
-		try{
-			int i = 1/0;
-		}catch(Exception e){
-			showError(e);
-		}
 		showCenterView("Person");
 		showTopView("TopBauleiter");
 		showLeftView("LeftSachbearbeiterStammdaten");
@@ -67,7 +62,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setCenter(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -85,7 +80,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setCenter(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -103,7 +98,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setLeft(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}
@@ -121,7 +116,7 @@ public class MainView implements Initializable {
 			Pane pane = (Pane) loader.load();
 			root.setTop(pane);
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 		return loader.getController();
 	}

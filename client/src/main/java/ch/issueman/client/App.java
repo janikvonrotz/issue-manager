@@ -47,7 +47,7 @@ public class App extends Application implements Initializable {
 		try {
 			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Login.fxml"))));
 		} catch (IOException e) {
-			e.printStackTrace();
+			MainView.showError(e);
 		}		
 		primaryStage.show();
 	}
@@ -71,7 +71,7 @@ public class App extends Application implements Initializable {
 				stage.setTitle("Issue Manger");
 				stage.show();
 			} catch (IOException e) {
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 			
 			((Stage) txBenutzername.getParent().getScene().getWindow()).close();

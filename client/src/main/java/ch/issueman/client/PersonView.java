@@ -119,7 +119,7 @@ public class PersonView implements Viewable<Person, Person> {
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 

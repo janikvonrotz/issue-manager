@@ -307,7 +307,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				MainView.showError(e);
 			}
 			
 			if (Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
