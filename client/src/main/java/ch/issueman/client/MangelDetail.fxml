@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="890.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.MangelDetailView">
+<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="890.0" prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.MangelDetailView">
    <children>
       <StackPane layoutX="276.0" layoutY="250.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -12,27 +12,27 @@
                <children>
                   <GridPane prefHeight="618.0" prefWidth="1000.0" GridPane.rowIndex="1">
                      <children>
-                        <Label text="projekt" />
-                        <Label text="beschreibung" GridPane.rowIndex="1" />
-                        <Label text="subunternehmen" GridPane.rowIndex="2" />
-                        <Label text="status" GridPane.rowIndex="3" />
-                        <Label text="frist" GridPane.rowIndex="4" />
-                        <TextField fx:id="txBeschreibung" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label styleClass="default" text="projekt" />
+                        <Label styleClass="default" text="beschreibung" GridPane.rowIndex="1" />
+                        <Label styleClass="default" text="subunternehmen" GridPane.rowIndex="2" />
+                        <Label styleClass="default" text="status" GridPane.rowIndex="3" />
+                        <Label styleClass="default" text="frist" GridPane.rowIndex="4" />
+                        <TextField fx:id="txBeschreibung" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <HBox GridPane.columnIndex="1">
                            <children>
-                              <ComboBox fx:id="cbProjekt" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <Button fx:id="btShowProjekt" mnemonicParsing="false" text="i" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="cbProjekt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" />
+                              <Button fx:id="btShowProjekt" mnemonicParsing="false" styleClass="default" text="i" GridPane.columnIndex="1" />
                            </children>
                         </HBox>
-                        <ComboBox fx:id="cbStatus" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbStatus" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="lbProjekt" />
                         <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
-                              <ComboBox fx:id="cbSubunternehmen" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" text="i" />
+                              <ComboBox fx:id="cbSubunternehmen" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" styleClass="default" text="i" />
                            </children>
                         </HBox>
-                        <DatePicker fx:id="dpFrist" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dpFrist" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="262.0" />
@@ -48,8 +48,8 @@
                   </GridPane>
                   <HBox prefHeight="51.0" prefWidth="1000.0" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" text="speichern" GridPane.rowIndex="3" />
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
                      </children>
                   </HBox>
                   <Label fx:id="lbMangel" />
@@ -65,8 +65,8 @@
                   </TableView>
                   <HBox GridPane.rowIndex="6">
                      <children>
-                        <TextArea fx:id="taKommentar" />
-                        <Button fx:id="btSend" mnemonicParsing="false" text="senden" GridPane.rowIndex="6" />
+                        <TextArea fx:id="taKommentar" styleClass="default" />
+                        <Button fx:id="btSend" mnemonicParsing="false" styleClass="default" text="senden" GridPane.rowIndex="6" />
                      </children>
                   </HBox>
                </children>
