@@ -18,6 +18,8 @@ ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
 	-fx-text-fill-color: #486285;
+	-fx-padding: 2px;
+	-fx-pref-widht: 100;
 }
 
 TextField.title{
@@ -28,6 +30,8 @@ TextField.title{
 TextField.default, PasswordField.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
+	-fx-padding: 2px;
+	-fx-pref-width: 100;
 }
 
 TableView.settle {
@@ -46,10 +50,16 @@ TableView.completed {
     -fx-background-color: #486285;
     -fx-text-fill: white;
     -fx-alignment: center-left;
+  
 }  
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
+	-fx-alignment: center-left;
+	-fx-padding: 2px;
+	-fx-pref-width: 100;
+
+	
 }
 
 Label.title{
