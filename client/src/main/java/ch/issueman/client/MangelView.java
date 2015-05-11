@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
+import ch.issueman.common.Kommentar;
 import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Sachbearbeiter;
@@ -80,11 +82,12 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 			}  
 		});
 		
-//		tcKommentarAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
-//			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
-//				return new SimpleStringProperty(param.getValue().getKommentare().lastIndexOf(param));
-//			}
-//		});
+		tcKommentarAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				List<Kommentar> k = param.getValue().getKommentare();
+				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
+			}
+		});
 
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {
