@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.issueman.common.Projekt;
+import ch.issueman.common.Kontakt;
 
 /**
  * Filter Projects by properties and login roles.
  * 
- * @author Janik von Rotz
+ * @author Janik von Rotz, Erwin Willi
  * @version 1.0.0
  * @since 1.0.0
  */
@@ -18,10 +19,23 @@ public class ProjektFilter extends TypeFilter<Projekt, Integer> {
 		super(Projekt.class);
 	}
 
+	
+	/**
+	 * @return
+	 */
+	/**
+	 * Check if Login has Project
+	 * 
+	 * @return projectlist if Login has access
+	 */
 	@Override
 	public List<Projekt> getAll() {
 		if(this.ifUserHasRole("Sachbearbeiter")){
 			return this.getController().getAll();
+		}else if(this.getLogin().getPerson() instanceof Kontakt){
+			return this.getController().getAll().stream()
+					.filter(p -> p.getArchiviert() == false && ((Kontakt) this.getLogin().getPerson()).getProjekte().contains(p))
+					.collect(Collectors.toList());	
 		}else{
 			return this.getController().getAll().stream()
 					.filter(p -> p.getArchiviert() == false)

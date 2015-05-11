@@ -23,7 +23,7 @@ public class MangelFilter extends TypeFilter<Mangel, Integer> {
 	public List<Mangel> getAll() {
 		if(this.getLogin().getPerson() instanceof Kontakt){
 			return this.getController().getAll().stream()
-					.filter(m -> m.getSubunternehmen().equals(((Kontakt) this.getLogin().getPerson()).getSubunternehmen()))
+					.filter(m -> m.getSubunternehmen().getId() == (((Kontakt) this.getLogin().getPerson()).getSubunternehmen().getId()))
 					.collect(Collectors.toList());
 		}else{
 			return this.getController().getAll();
@@ -37,7 +37,7 @@ public class MangelFilter extends TypeFilter<Mangel, Integer> {
 	public List<Mangel> getAllByProperty(String propertyname,List<String> propertyvalues) throws Exception {
 		if(this.getLogin().getPerson() instanceof Kontakt){
 			return this.getController().getAllByProperty(propertyname, propertyvalues).stream()
-					.filter(m -> m.getSubunternehmen().equals(((Kontakt) this.getLogin().getPerson()).getSubunternehmen()))
+					.filter(m -> m.getSubunternehmen().getId() == (((Kontakt) this.getLogin().getPerson()).getSubunternehmen().getId()))
 					.collect(Collectors.toList());
 		}else{
 			return this.getController().getAllByProperty(propertyname, propertyvalues);
