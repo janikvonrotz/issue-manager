@@ -19,7 +19,7 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TableView fx:id="tvData" prefHeight="200.0" prefWidth="1024.0" styleClass="settle" GridPane.rowIndex="1">
+            <TableView fx:id="tvData" styleClass="assigned" GridPane.rowIndex="1">
               <columns>
                 <TableColumn fx:id="tcSubunternehmen" maxWidth="-1.0" minWidth="650.0" prefWidth="-1.0" text="subunternehmen" />
                 <TableColumn fx:id="tcPerson" maxWidth="-1.0" minWidth="350.0" prefWidth="-1.0" text="person" />

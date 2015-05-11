@@ -37,7 +37,7 @@ TextField.default, PasswordField.default{
 TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
-    -fx-background-color: #aaaaaa;
+    -fx-border-width: 1 1 1 1;
     -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
@@ -47,18 +47,23 @@ TableView.settle {
 TableView.completed {
     -fx-base: #486285;
     -fx-control-inner-background: #486285;
-    -fx-background-color: #486285;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
   
 }
 
-TableColumn.default {
+TableView.assigned {
+	-fx-base: #aaaaaa;
+	-fx-control-inner-background: #486285;
+	-fx-border-width: 1 1 1 1;
 	-fx-border-color: white;
-	-fx-padding: 2px;
-	-fx-text-fill: #486285;
+	-fx-text-fill: white;
+	-fx-alignment: center-left;
 }
-  
+
+ 
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
