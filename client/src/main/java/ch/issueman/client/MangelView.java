@@ -74,11 +74,11 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 			}
 		});
 
-//		tcSubunternehmenAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
-//			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
-//				return new SimpleStringProperty(param.getValue());
-//			}  
-//		});
+		tcSubunternehmenAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getSubunternehmen().getFirmenname());
+			}  
+		});
 		
 //		tcKommentarAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 //			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -96,6 +96,7 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 
 							String lowerCaseFilter = newValue.toLowerCase();
 							String objectvalues = t.getMangel() 
+									+ t.getSubunternehmen().getFirmenname()
 									+ t.getId();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
