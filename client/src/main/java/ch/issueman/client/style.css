@@ -2,6 +2,16 @@ AnchorPane.default, BorderPane.default{
 	-fx-background-color: #ffffff;
 }
 
+Button.menue-maengel{
+	-fx-background-color:  #939382;
+	-fx-text-fill: white;
+}
+
+Button.menue-admin{
+	-fx-background-color:  #486285;
+	-fx-text-fill: white;
+}
+
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
