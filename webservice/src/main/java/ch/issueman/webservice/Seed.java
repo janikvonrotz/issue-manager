@@ -292,13 +292,13 @@ public class Seed {
 		 * seed Login
 		 */
 		listLogin.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
-		listLogin.add(new Login(listSachbearbeiter.get(1), "lkjsd", listRolle.get(0)));
+		listLogin.add(new Login(listSachbearbeiter.get(1), "1", listRolle.get(0)));
 		listLogin.add(new Login(listBauleiter.get(0), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(1), "asdf", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(1), "1", listRolle.get(1)));
 		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
-		listLogin.add(new Login(listKontakt.get(1), "asdf", listRolle.get(2)));
+		listLogin.add(new Login(listKontakt.get(1), "1", listRolle.get(2)));
 		listLogin.add(new Login(listKontakt.get(2), "1", listRolle.get(3)));
-		listLogin.add(new Login(listKontakt.get(3), "asdf", listRolle.get(3)));
+		listLogin.add(new Login(listKontakt.get(3), "1", listRolle.get(3)));
 		persistList(listLogin, logincontroller);
 
 		/**
