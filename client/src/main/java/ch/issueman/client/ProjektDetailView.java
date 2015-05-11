@@ -309,6 +309,29 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			if (Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
+				txTitel.setDisable(true);
+				txStrasse.setDisable(true);
+				cbOrt.setDisable(true);
+				cbArbeitstyp.setDisable(true);
+				cbProjekttyp.setDisable(true);
+				dpBeginn.setDisable(true);
+				dpEnde.setDisable(true);
+				cbBauherr.setVisible(false);
+				txProjektleiter.setDisable(true);
+				taSubunternehmen.setVisible(false);
+				btArchivieren.setVisible(false);
+			}
+			
+			if (Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+				btArchivieren.setVisible(false);
+			}
+
+			if (!Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
+				cbKontakt.setVisible(false);
+			}
+
 		} else {
 
 			lbProjekt.setText("neues projekt");

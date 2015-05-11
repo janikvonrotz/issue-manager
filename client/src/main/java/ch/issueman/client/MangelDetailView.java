@@ -297,7 +297,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	public void clickShowProject(){
 		Viewable<Projekt, Projekt> view = MainView.showCenterView("ProjektDetail");
 		view.initData(mangel.getProjekt());
-
 	}
 	
 	@FXML
