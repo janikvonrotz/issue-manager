@@ -44,11 +44,6 @@ public class MainView implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		root = bpMain;
-		try{
-			int i = 1/0;
-		}catch(Exception e){
-			showError(e);
-		}
 		showCenterView("Person");
 		showTopView("TopBauleiter");
 		showLeftView("LeftSachbearbeiterStammdaten");
