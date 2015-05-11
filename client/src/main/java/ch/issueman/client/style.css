@@ -63,6 +63,14 @@ TableView.assigned {
 	-fx-alignment: center-left;
 }
 
+TableView.commit {
+	-fx-base: #aaaaaa;
+	-fx-control-inner-background: white;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-color: #719AD1 ;
+	-fx-text-fill: #719AD1 ;
+	-fx-alignment: center-left;
+}
  
 Label.default{
 	-fx-background-color: #aaaaaa;
