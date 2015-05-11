@@ -2,6 +2,16 @@ AnchorPane.default, BorderPane.default{
 	-fx-background-color: #ffffff;
 }
 
+Button.menue-maengel{
+	-fx-background-color:  #939382;
+	-fx-text-fill: white;
+}
+
+Button.menue-admin{
+	-fx-background-color:  #486285;
+	-fx-text-fill: white;
+}
+
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
@@ -27,17 +37,18 @@ TextField.title{
 	-fx-text-size: 36px;
 }
 
-TextField.default, PasswordField.default{
+TextField.default, PasswordField.default, TextArea.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
 	-fx-padding: 2px;
 	-fx-pref-width: 100;
+	-fx-alignment: center;
 }
 
 TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
-    -fx-background-color: #aaaaaa;
+    -fx-border-width: 1 1 1 1;
     -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
@@ -47,25 +58,38 @@ TableView.settle {
 TableView.completed {
     -fx-base: #486285;
     -fx-control-inner-background: #486285;
-    -fx-background-color: #486285;
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
   
 }
 
-TableColumn.default {
+TableView.default {
+	-fx-base: #aaaaaa;
+	-fx-control-inner-background: #486285;
+	-fx-border-width: 1 1 1 1;
 	-fx-border-color: white;
-	-fx-padding: 2px;
-	-fx-text-fill: #486285;
+	-fx-text-fill: white;
+	-fx-alignment: center-left;
 }
-  
+
+
+TableView.commit {
+	-fx-base: #aaaaaa;
+	-fx-control-inner-background: white;
+	-fx-border-width: 1 1 1 1;
+	-fx-border-color: #719AD1 ;
+	-fx-text-fill: #719AD1 ;
+	-fx-alignment: center-left;
+}
+ 
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
 	-fx-alignment: center-left;
 	-fx-padding: 2px;
 	-fx-pref-width: 100;
-
 	
 }
 

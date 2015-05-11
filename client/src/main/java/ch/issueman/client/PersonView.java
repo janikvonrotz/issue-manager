@@ -1,17 +1,21 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import ch.issueman.common.Bauherr;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Person;
 import ch.issueman.common.Sachbearbeiter;
+import ch.issueman.common.Subunternehmen;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -19,39 +23,39 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
-public class PersonView implements Viewable<Person, Person> {
+public class PersonView implements Viewable<Login, Login> {
 
-	private static Controller<Person, Integer> personController = new Controller<Person, Integer>(Person.class);
 	private static Controller<Login, Integer> loginController = new Controller<Login, Integer>(Login.class);
-	private static Controller<Kontakt, Integer> kontaktController = new Controller<Kontakt, Integer>(Kontakt.class);
+	private static Controller<Bauherr, Integer> bauherrController = new Controller<Bauherr, Integer>(Bauherr.class);
 	
-	private FilteredList<Person> filteredData = new FilteredList<Person>(FXCollections.observableArrayList(),	p -> true);
+	private FilteredList<Login> filteredData = new FilteredList<Login>(FXCollections.observableArrayList(),	p -> true);
 
 	@FXML
-	private TableView<Person> tvData;
+	private TableView<Login> tvData;
 
 	@FXML
 	private TextField txFilter;
 
 	@FXML
-	private TableColumn<Person, Integer> tcId;
+	private TableColumn<Login, Integer> tcId;
 
 	@FXML
-	private TableColumn<Person, String> tcNachname;
+	private TableColumn<Login, String> tcNachname;
 
 	@FXML
-	private TableColumn<Person, String> tcVorname;
+	private TableColumn<Login, String> tcVorname;
 
 	@FXML
-	private TableColumn<Person, String> tcEmail;
+	private TableColumn<Login, String> tcEmail;
 
 	@FXML
 	private TableColumn<Login, String> tcRolle;
 
 	@FXML
-	private TableColumn<Kontakt, String> tcFirma;
+	private TableColumn<Login, String> tcFirma;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -59,20 +63,20 @@ public class PersonView implements Viewable<Person, Person> {
 		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 		Context.login();
 
-		tcId.setCellValueFactory(new PropertyValueFactory<Person, Integer>("id"));
-		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-				return new SimpleStringProperty(param.getValue().getNachname());
+		tcId.setCellValueFactory(new PropertyValueFactory<Login, Integer>("id"));
+		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
+				return new SimpleStringProperty(param.getValue().getPerson().getNachname());
 			}  
 		});
-		tcVorname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-				return new SimpleStringProperty(param.getValue().getVorname());
+		tcVorname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
+				return new SimpleStringProperty(param.getValue().getPerson().getVorname());
 			}  
 		});
-		tcEmail.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-				return new SimpleStringProperty(param.getValue().getEmail());
+		tcEmail.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
+				return new SimpleStringProperty(param.getValue().getPerson().getEmail());
 			}  
 		});
 		tcRolle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
@@ -80,9 +84,15 @@ public class PersonView implements Viewable<Person, Person> {
 				return new SimpleStringProperty(param.getValue().getRolle().getBezeichnung());
 			}  
 		});
-		tcFirma.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kontakt,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Kontakt, String> param) {
-				return new SimpleStringProperty(param.getValue().getSubunternehmen().getFirmenname());
+		tcFirma.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
+				if(param.getValue().getPerson() instanceof Kontakt){
+					return new SimpleStringProperty(((Kontakt)param.getValue().getPerson()).getSubunternehmen().getFirmenname());
+				}else if(param.getValue().getPerson() instanceof Bauherr){
+					return new SimpleStringProperty(((Bauherr)param.getValue().getPerson()).getUnternehmen().getFirmenname());
+				}else{
+					return new SimpleStringProperty("");
+				}
 			}  
 		});
 
@@ -95,10 +105,11 @@ public class PersonView implements Viewable<Person, Person> {
 							}
 
 							String lowerCaseFilter = newValue.toLowerCase();
-							String objectvalues = t.getNachname() 
-									+ t.getVorname()
-									+ t.getEmail()
-									+ t.getId();
+							String objectvalues = t.getPerson().getNachname() 
+									+ t.getPerson().getVorname()
+									+ t.getPerson().getEmail()
+									+ t.getRolle().getBezeichnung()
+									+ t.getPerson().getId();
 		
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
@@ -113,29 +124,42 @@ public class PersonView implements Viewable<Person, Person> {
 
 	public void Refresh() {
 		try {
-			filteredData = new FilteredList<Person>(FXCollections.observableArrayList(personController.getAll()),	p -> true);
-			SortedList<Person> sortedData = new SortedList<Person>(filteredData);
+			List<Login> list = loginController.getAll();
+			bauherrController.getAll().stream().forEach(b -> list.add(new Login(b, "", null)));
+			
+			filteredData = new FilteredList<Login>(FXCollections.observableArrayList(loginController.getAll()),	p -> true);
+			SortedList<Login> sortedData = new SortedList<Login>(filteredData);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			MainView.showError(e);
+			e.printStackTrace();
 		}
 	}
-
+	
 	@FXML
-	public void clickData() {
-
+	public void doubleClickData() {
+		tvData.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Login t = tvData.getSelectionModel().getSelectedItem();
+		        	showDetail(t);
+		        }
+		    }
+		});
 	}
 
 	@Override
-	public void initData(Person t) {
+	public void initData(Login t) {
 		System.out.println(t.getClass().getSimpleName());
 		
 	}
 
 	@Override
-	public void showDetail(Person t) {
+	public void showDetail(Login t) {
+		ViewableDetail<Person> view = MainView.showCenterDetailView("PersonDetail");
+		view.initData(t.getPerson());
 		// TODO Auto-generated method stub
 		
 	}
