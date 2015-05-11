@@ -5,31 +5,34 @@ AnchorPane.default, BorderPane.default{
 Button.menue-maengel{
 	-fx-background-color:  #939382;
 	-fx-text-fill: white;
+	-fx-alignment: center;
 }
 
 Button.menue-admin{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
+	-fx-alignment: center;
 }
 
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
-	-fx-background-radius: 10px
+	-fx-background-radius: 15px
 }
 
 Button.default{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
-	-fx-background-radius: 10px
+	-fx-background-radius: 15px
 }
 
-ComboBox.default, DatePicker.default{
+ComboBox.default, DatePicker.default, HBox.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
 	-fx-text-fill-color: #486285;
 	-fx-padding: 2px;
 	-fx-pref-widht: 100;
+	-fx-text-alignment: center;
 }
 
 TextField.title{
@@ -42,7 +45,7 @@ TextField.default, PasswordField.default, TextArea.default{
 	-fx-background-color: #ffffff;
 	-fx-padding: 2px;
 	-fx-pref-width: 100;
-	-fx-alignment: center;
+	-fx-text-alignment: center;
 }
 
 TableView.settle {
@@ -62,7 +65,6 @@ TableView.completed {
     -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
-  
 }
 
 TableView.default {
@@ -74,7 +76,6 @@ TableView.default {
 	-fx-alignment: center-left;
 }
 
-
 TableView.commit {
 	-fx-base: #aaaaaa;
 	-fx-control-inner-background: white;
@@ -83,6 +84,11 @@ TableView.commit {
 	-fx-text-fill: #719AD1 ;
 	-fx-alignment: center-left;
 }
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+}
  
 Label.default{
 	-fx-background-color: #aaaaaa;
@@ -90,7 +96,16 @@ Label.default{
 	-fx-alignment: center-left;
 	-fx-padding: 2px;
 	-fx-pref-width: 100;
-	
+}
+
+Label.settle{
+	-fx-background-color: #aaaaaa;
+	-fx-text-fill: white;
+}
+
+Label.completed{
+	-fx-background-color: #486285;
+	-fx-text-fill: white;
 }
 
 Label.title{
