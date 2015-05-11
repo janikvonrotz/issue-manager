@@ -211,29 +211,33 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				cbRolle.setItems(FXCollections.observableArrayList(rollecontroller.getAll()));
 				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-				
-				sachbearbeiter = (Sachbearbeiter) FXCollections.observableArrayList(sachbearbeitercontroller.getById(person.getId()));			
-				bauleiter = (Bauleiter) FXCollections.observableArrayList(bauleitercontroller.getById(person.getId()));			
-				kontakt = (Kontakt) FXCollections.observableArrayList(kontaktcontroller.getById(person.getId()));
-				bauherr = (Bauherr) FXCollections.observableArrayList(bauherrcontroller.getById(person.getId()));
-				
+								
 				login = logincontroller.getAll().stream().filter(p -> p.getPerson()
-						.equals(person)).collect(Collectors.toList()).get(0));
+						.equals(person)).collect(Collectors.toList()).get(0);
 						
 				cbRolle.setValue(login.getRolle());
 				
 				if(person instanceof Kontakt){
 					cbSubunternehmen.setValue(((Kontakt) person).getSubunternehmen());
-				} else if(bauherr != null){
-					txFirma.setText(bauherr.getUnternehmen().getFirmenname());
-					txStrasse.setText(bauherr.getUnternehmen().getAdresse().getStrasse());
-					cbOrt.setValue(bauherr.getUnternehmen().getAdresse().getOrt());
+				} else if(person instanceof Bauherr){
+					txFirma.setText(((Bauherr) person).getUnternehmen().getFirmenname());
+					txStrasse.setText(((Bauherr) person).getUnternehmen().getAdresse().getStrasse());
+					cbOrt.setValue(((Bauherr) person).getUnternehmen().getAdresse().getOrt());
 				}
 								
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
+			
+			if(login != Context.getLogin()){
+				btPasswort.setVisible(false);
+			}
+			
+			if(!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+				pfPasswort.setVisible(false);
+			}
+			
 		} else {
 			lbPerson.setText("neue person");
 		}
@@ -248,67 +252,67 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	public void clickPasswort(){
 		clickSpeichern();
 		Viewable<Login, Login> view = MainView.showCenterView("Passwort");
-		view.initData(login);
+		view.initData(Context.getLogin());
 	}
 	
 	@FXML
 	public void clickSpeichern(){
 		if (person != null) {
 	        
-			if (sachbearbeiter != null){
-				sachbearbeiter.setNachname(txNachname.getText());
-				sachbearbeiter.setVorname(txVorname.getText());
-				sachbearbeiter.setEmail(txEmail.getText());
+			if (person instanceof Sachbearbeiter){
+				((Sachbearbeiter) person).setNachname(txNachname.getText());
+				((Sachbearbeiter) person).setVorname(txVorname.getText());
+				((Sachbearbeiter) person).setEmail(txEmail.getText());
 				
 				try {
-					sachbearbeitercontroller.update(sachbearbeiter);
+					sachbearbeitercontroller.update(((Sachbearbeiter) person));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 
-			if (bauleiter != null){
-				bauleiter.setNachname(txNachname.getText());
-				bauleiter.setVorname(txVorname.getText());
-				bauleiter.setEmail(txEmail.getText());
+			if (person instanceof Bauleiter){
+				((Bauleiter) person).setNachname(txNachname.getText());
+				((Bauleiter) person).setVorname(txVorname.getText());
+				((Bauleiter) person).setEmail(txEmail.getText());
 				
 				try {
-					bauleitercontroller.update(bauleiter);
+					bauleitercontroller.update(((Bauleiter) person));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 
-			if (kontakt != null){
-				kontakt.setNachname(txNachname.getText());
-				kontakt.setVorname(txVorname.getText());
-				kontakt.setEmail(txEmail.getText());
-				kontakt.setSubunternehmen(cbSubunternehmen.getValue());				
+			if (person instanceof Kontakt){
+				((Kontakt) person).setNachname(txNachname.getText());
+				((Kontakt) person).setVorname(txVorname.getText());
+				((Kontakt) person).setEmail(txEmail.getText());
+				((Kontakt) person).setSubunternehmen(cbSubunternehmen.getValue());				
 				
 				try {
-					kontaktcontroller.update(kontakt);
+					kontaktcontroller.update(((Kontakt) person));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 
-			if (bauherr != null){
-				bauherr.setNachname(txNachname.getText());
-				bauherr.setVorname(txVorname.getText());
-				bauherr.setEmail(txEmail.getText());
+			if (person instanceof Bauherr){
+				((Bauherr) person).setNachname(txNachname.getText());
+				((Bauherr) person).setVorname(txVorname.getText());
+				((Bauherr) person).setEmail(txEmail.getText());
 				
-				Unternehmen u = bauherr.getUnternehmen();
+				Unternehmen u = ((Bauherr) person).getUnternehmen();
 				Adresse a = u.getAdresse();
 				a.setStrasse(txStrasse.getText());
 				a.setOrt(cbOrt.getValue());
 				u.setAdresse(a);
-				bauherr.setUnternehmen(u);
+				((Bauherr) person).setUnternehmen(u);
 				
 				try {
-					bauherrcontroller.update(bauherr);
+					bauherrcontroller.update(((Bauherr) person));
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -382,9 +386,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				Ort o = null;
 				try {
 					o = ortcontroller.getById(cbOrt.getValue().getId());
-				} catch (Exception e) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					MainView.showError(e);
+					e1.printStackTrace();
 				}
 				bauherr = new Bauherr(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), new Unternehmen(txFirma.getText(),
