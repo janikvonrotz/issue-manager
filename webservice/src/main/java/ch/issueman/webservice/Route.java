@@ -80,14 +80,14 @@ public class Route{
 	 */
 	@GET
 	@Path("{entity}/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") int id, @Context HttpServletRequest request) {
 		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getById(id);
 	} 	
 	@GET
 	@Path("{entity}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAll(@PathParam("entity") String entity, @Context HttpServletRequest request) {
 		rbm.get(entity).setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get(entity).getAll();
@@ -101,7 +101,7 @@ public class Route{
 	}
 	@GET
 	@Path("getbyproperty/{entity}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllByParam(@PathParam("entity") String entity,
 			@Context HttpServletRequest request, 
 			@QueryParam("propertyname") String propertyname,
@@ -111,7 +111,7 @@ public class Route{
 	}
 	@GET
 	@Path("signin")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response login(@Context HttpServletRequest request) {
 		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("login").signin();
@@ -122,35 +122,35 @@ public class Route{
 	 */
 	@GET
 	@Path("bauleiter")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllBauleiter(@Context HttpServletRequest request) {
 		rbm.get("bauleiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauleiter").getAllBauleiter();
 	}
 	@GET
 	@Path("sachbearbeiter")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllSachbearbeiter(@Context HttpServletRequest request) {
 		rbm.get("sachbearbeiter").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("sachbearbeiter").getAllSachbearbeiter();
 	}
 	@GET
 	@Path("bauherr")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllBauherr(@Context HttpServletRequest request) {
 		rbm.get("bauherr").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("bauherr").getAllBauherr();
 	}
 	@GET
 	@Path("kontakt")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllKontakt(@Context HttpServletRequest request) {
 		rbm.get("kontakt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("kontakt").getAllKontakt();
 	}
 	@GET
 	@Path("person")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json; charset=UTF-8")
 	public Response getAllPerson(@Context HttpServletRequest request) {
 		rbm.get("person").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return rbm.get("person").getAllPerson();
