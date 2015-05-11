@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonView">
+<AnchorPane styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonView">
    <children>
       <StackPane layoutY="52.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -36,8 +36,8 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-         	  <Label text="Person" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="25.0" prefWidth="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="1" />
+         	  <Label styleClass="subtitle" text="Person" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="25.0" prefWidth="0.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
