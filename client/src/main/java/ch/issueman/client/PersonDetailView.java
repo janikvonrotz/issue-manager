@@ -1,44 +1,29 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
-import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
-import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
-import ch.issueman.common.Mangel;
-import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Ort;
 import ch.issueman.common.Person;
-import ch.issueman.common.Projekt;
-import ch.issueman.common.Projekttyp;
 import ch.issueman.common.Rolle;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
@@ -53,21 +38,14 @@ import ch.issueman.common.Unternehmen;
  */
 public class PersonDetailView implements ViewableDetail<Person> {
 	
-	private static Controller<Person, Integer> personcontroller = new Controller<Person, Integer>(Person.class);
 	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 	private static Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
 	private static Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Bauherr, Integer> bauherrcontroller = new Controller<Bauherr, Integer>(Bauherr.class);
-	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
-	private static Controller<Unternehmen, Integer> unternehmencontroller = new Controller<Unternehmen, Integer>(Unternehmen.class);
 	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 	private static Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 	private Person person;
-	private Sachbearbeiter sachbearbeiter;
-	private Bauleiter bauleiter;
-	private Kontakt kontakt;
-	private Bauherr bauherr;
 	private Login login;
 	
 	@FXML
@@ -270,9 +248,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
-
-			if (person instanceof Bauleiter){
+			} else if (person instanceof Bauleiter){
 				((Bauleiter) person).setNachname(txNachname.getText());
 				((Bauleiter) person).setVorname(txVorname.getText());
 				((Bauleiter) person).setEmail(txEmail.getText());
@@ -283,9 +259,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
-
-			if (person instanceof Kontakt){
+			} else if (person instanceof Kontakt){
 				((Kontakt) person).setNachname(txNachname.getText());
 				((Kontakt) person).setVorname(txVorname.getText());
 				((Kontakt) person).setEmail(txEmail.getText());
@@ -297,9 +271,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			}
-
-			if (person instanceof Bauherr){
+			} else if (person instanceof Bauherr){
 				((Bauherr) person).setNachname(txNachname.getText());
 				((Bauherr) person).setVorname(txVorname.getText());
 				((Bauherr) person).setEmail(txEmail.getText());
@@ -319,11 +291,11 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				}
 			}
 
-		}else{
+		} else {
 
 			switch (cbRolle.getValue().getBezeichnung()) {
 			case "Sachbearbeiter":
-				sachbearbeiter = new Sachbearbeiter(txNachname.getText(),
+				Sachbearbeiter sachbearbeiter = new Sachbearbeiter(txNachname.getText(),
 						txVorname.getText(), txEmail.getText());
 				login = new Login(sachbearbeiter, pfPasswort.getText(), cbRolle.getValue());
 				
@@ -338,7 +310,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				break;
 
 			case "Bauleiter":
-				bauleiter = new Bauleiter(txNachname.getText(),
+				Bauleiter bauleiter = new Bauleiter(txNachname.getText(),
 						txVorname.getText(), txEmail.getText());
 				login = new Login(bauleiter, pfPasswort.getText(), cbRolle.getValue());
 				
@@ -353,12 +325,12 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				break;
 
 			case "Kontaktperson":
-				kontakt = new Kontakt(txNachname.getText(),
+				Kontakt kontaktperson = new Kontakt(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), cbSubunternehmen.getValue(), null);
-				login = new Login(kontakt, pfPasswort.getText(), cbRolle.getValue());
+				login = new Login(kontaktperson, pfPasswort.getText(), cbRolle.getValue());
 				
 				try {
-					kontaktcontroller.persist(kontakt);
+					kontaktcontroller.persist(kontaktperson);
 					logincontroller.persist(login);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -368,12 +340,12 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				break;
 
 			case "Kontaktadmin":
-				kontakt = new Kontakt(txNachname.getText(),
+				Kontakt kontaktadmin = new Kontakt(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), cbSubunternehmen.getValue(), null);
-				login = new Login(kontakt, pfPasswort.getText(), cbRolle.getValue());
+				login = new Login(kontaktadmin, pfPasswort.getText(), cbRolle.getValue());
 				
 				try {
-					kontaktcontroller.persist(kontakt);
+					kontaktcontroller.persist(kontaktadmin);
 					logincontroller.persist(login);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
@@ -390,7 +362,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				bauherr = new Bauherr(txNachname.getText(),
+				Bauherr bauherr = new Bauherr(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), new Unternehmen(txFirma.getText(),
 								new Adresse(txStrasse.getText(), o)));
 				
@@ -417,5 +389,4 @@ public class PersonDetailView implements ViewableDetail<Person> {
 		Viewable<Person, Person> view = MainView.showCenterView("Person");
 		view.initData(null);
 	}
-
 }
