@@ -149,8 +149,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
 							return false;
 						});
-				});		
-
+				});
 		
 		Refresh();	
 	}
@@ -178,7 +177,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			}
 			
 		} else {
-	    	lbSubunternehmen.setText("neues subunternehmen");
+//	    	lbSubunternehmen.setText("neues subunternehmen");
 			txFirma.setText("");
 	    	txStrasse.setText("");
 	    	cbOrt.setValue(null);   	
@@ -238,12 +237,11 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;
-		Refresh();
 	}
 
 	@Override
 	public void showList() {
 		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("Subunternehmen");
-		view.initData(null);
+		view.initData(subunternehmen);
 	}
 }
