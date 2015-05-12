@@ -44,9 +44,9 @@ public class MainView implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		root = bpMain;
-		showCenterView("Person");
-		showTopView("TopBauleiter");
-		showLeftView("LeftSachbearbeiterStammdaten");
+		showCenterView("Subunternehmen");
+		showTopView("TopDefault");
+		showLeftView("LeftMangel");
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class MainView implements Initializable {
 	 * @param viewname the name of the view to display.
 	 * @return view controller of this view.
 	 */
-	public static <T, Filter> Viewable<T, Filter> showLeftView(String viewname) {
+	public static <T> ViewableDetail<T> showLeftView(String viewname) {
 		FXMLLoader loader =  new FXMLLoader();
 		try {
 			loader.setLocation(MainView.class.getResource(viewname + ".fxml"));
@@ -109,7 +109,7 @@ public class MainView implements Initializable {
 	 * @param viewname the name of the view to display.
 	 * @return view controller of this view.
 	 */
-	public static <T, Filter> Viewable<T, Filter> showTopView(String viewname) {
+	public static <T> ViewableDetail<T> showTopView(String viewname) {
 		FXMLLoader loader =  new FXMLLoader();
 		try {
 			loader.setLocation(MainView.class.getResource(viewname + ".fxml"));
