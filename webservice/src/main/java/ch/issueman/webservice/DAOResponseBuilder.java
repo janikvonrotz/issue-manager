@@ -39,7 +39,7 @@ public interface DAOResponseBuilder<T, Id> extends Remote{
 	public Response getById(Id id);
 	
 	/**
-	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
+	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.util.List)
 	 * 
 	 * @param propertyname the name of the entity property.
 	 * @param propertyvalues the value of the entity property.
