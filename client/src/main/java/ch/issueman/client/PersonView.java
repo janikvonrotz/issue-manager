@@ -59,9 +59,6 @@ public class PersonView implements Viewable<Login, Login> {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Login, Integer>("id"));
 		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  

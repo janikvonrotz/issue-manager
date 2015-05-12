@@ -1,12 +1,15 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -44,8 +47,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Bauherr, Integer> bauherrcontroller = new Controller<Bauherr, Integer>(Bauherr.class);
 	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
+	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
-	private Person person;
+	private Person person = null;
 	private Login login;
 	
 	@FXML
@@ -62,6 +66,21 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	
 	@FXML
 	private ComboBox<Rolle> cbRolle;
+	
+	@FXML
+	private Label lbPasswort;
+	
+	@FXML
+	private Label lbSubunternehmen;
+	
+	@FXML
+	private Label lbFirma;
+	
+	@FXML
+	private Label lbStrasse;
+	
+	@FXML
+	private Label lbOrt;
 	
 	@FXML
 	private PasswordField pfPasswort;
@@ -90,9 +109,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
 		
 		cbRolle.setCellFactory(new Callback<ListView<Rolle>,ListCell<Rolle>>(){
 			@Override
@@ -132,6 +148,56 @@ public class PersonDetailView implements ViewableDetail<Person> {
 			}
 		});
 		
+		cbRolle.setOnAction((event) -> {
+			if(cbRolle.getValue().getBezeichnung().equals("Sachbearbeiter")){
+				sbForm();
+			} else if(cbRolle.getValue().getBezeichnung().equals("Bauleiter")){
+				blForm();
+			} else if(cbRolle.getValue().getBezeichnung().contains("Kontakt")){
+				koForm();
+			} else if(cbRolle.getValue().getBezeichnung().equals("Bauherr")){
+				bhForm();
+			}
+		});
+	
+		cbSubunternehmen.setCellFactory(new Callback<ListView<Subunternehmen>,ListCell<Subunternehmen>>(){
+			@Override
+			public ListCell<Subunternehmen> call(ListView<Subunternehmen> arg0) {		 
+				final ListCell<Subunternehmen> cell = new ListCell<Subunternehmen>(){				 
+                    @Override
+                    protected void updateItem(Subunternehmen s, boolean bln) {
+                        super.updateItem(s, bln);
+                         
+                        if(s != null){
+                            setText(s.getFirmenname());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+		
+		cbSubunternehmen.setConverter(new StringConverter<Subunternehmen>() {
+            private Map<String, Object> map = new HashMap<>();
+
+ 			@Override
+			public Subunternehmen fromString(String arg0) {
+				return null;
+			}
+
+			public String toString(Subunternehmen s) {
+               if (s != null) {
+                    String str = s.getFirmenname();
+                    map.put(str, s);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
+	
 		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
 			public ListCell<Ort> call(ListView<Ort> arg0) {		 
@@ -177,6 +243,19 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	@Override
 	public void Refresh(){
 		
+		try {
+			ObservableList<Rolle> rollenList = FXCollections.observableArrayList(rollecontroller.getAll());
+			rollenList.add(new Rolle("Bauherr"));
+			cbRolle.setItems(rollenList);
+			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
+			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			MainView.showError(e);
+		}
+
+		
 		if(person != null){
 			
 			lbPerson.setText(person.getDisplayName());
@@ -184,43 +263,49 @@ public class PersonDetailView implements ViewableDetail<Person> {
 			txVorname.setText(person.getVorname());
 			txEmail.setText(person.getEmail());
 			cbRolle.setDisable(true);
-
+			
 			try {
-				
-				cbRolle.setItems(FXCollections.observableArrayList(rollecontroller.getAll()));
-				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-								
 				login = logincontroller.getAll().stream().filter(p -> p.getPerson()
-						.equals(person)).collect(Collectors.toList()).get(0);
-						
-				cbRolle.setValue(login.getRolle());
-				
-				if(person instanceof Kontakt){
-					cbSubunternehmen.setValue(((Kontakt) person).getSubunternehmen());
-				} else if(person instanceof Bauherr){
-					txFirma.setText(((Bauherr) person).getUnternehmen().getFirmenname());
-					txStrasse.setText(((Bauherr) person).getUnternehmen().getAdresse().getStrasse());
-					cbOrt.setValue(((Bauherr) person).getUnternehmen().getAdresse().getOrt());
-				}
-								
+						.equals(person)).collect(Collectors.toList()).get(0);												
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 			
-			if(login != Context.getLogin()){
+			cbRolle.setValue(login.getRolle());
+			
+			if(person instanceof Sachbearbeiter){
+				sbForm();
+			} else if(person instanceof Bauleiter){
+				blForm();
+			} else if(person instanceof Kontakt){
+				koForm();
+				cbSubunternehmen.setValue(((Kontakt) person).getSubunternehmen());
+			} else if(person instanceof Bauherr){
+				bhForm();
+				txFirma.setText(((Bauherr) person).getUnternehmen().getFirmenname());
+				txStrasse.setText(((Bauherr) person).getUnternehmen().getAdresse().getStrasse());
+				cbOrt.setValue(((Bauherr) person).getUnternehmen().getAdresse().getOrt());
+			}
+			
+			if(!(Context.getLogin().equals(login))){
 				btPasswort.setVisible(false);
 			}
 			
-			if(!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+			if(!(Context.getLogin().getPerson() instanceof Sachbearbeiter)){
 				pfPasswort.setVisible(false);
 			}
 			
 		} else {
 			lbPerson.setText("neue person");
+			cbSubunternehmen.setVisible(false);
+			txFirma.setVisible(false);
+			txStrasse.setVisible(false);
+			cbOrt.setVisible(false);
+			btPasswort.setVisible(false);
 		}
 	}
-
+	
 	@FXML
 	public void clickAbbrechen(){
 		showList();
@@ -386,7 +471,40 @@ public class PersonDetailView implements ViewableDetail<Person> {
 
 	@Override
 	public void showList() {
-		Viewable<Person, Person> view = MainView.showCenterView("Person");
+		Viewable<Login, Login> view = MainView.showCenterView("Person");
 		view.initData(null);
+	}
+	
+	@FXML
+	public void sbForm(){
+		cbSubunternehmen.setVisible(false);
+//		lbSubunternehmen.setVisible(false);
+		txFirma.setVisible(false);
+		txStrasse.setVisible(false);
+		cbOrt.setVisible(false);
+	}
+	
+	@FXML
+	public void blForm(){
+		cbSubunternehmen.setVisible(false);
+		txFirma.setVisible(false);
+		txStrasse.setVisible(false);
+		cbOrt.setVisible(false);
+	}
+	
+	@FXML
+	public void koForm(){
+		cbSubunternehmen.setVisible(true);
+		txFirma.setVisible(false);
+		txStrasse.setVisible(false);
+		cbOrt.setVisible(false);
+	}
+	
+	@FXML
+	public void bhForm(){
+		cbSubunternehmen.setVisible(false);
+		txFirma.setVisible(true);
+		txStrasse.setVisible(true);
+		cbOrt.setVisible(true);
 	}
 }
