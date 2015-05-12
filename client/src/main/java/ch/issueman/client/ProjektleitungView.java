@@ -32,8 +32,8 @@ import javafx.scene.input.MouseEvent;
 public class ProjektleitungView implements Viewable<Projektleitung, Projektleitung>{
 	
 	private static Controller<Projektleitung, Integer> controller = new Controller<Projektleitung, Integer>(Projektleitung.class);
-	
 	private FilteredList<Projektleitung> filteredData = new FilteredList<Projektleitung>(FXCollections.observableArrayList(),	p -> true);
+	private Projektleitung projektleitung;
 	
 	@FXML
 	private TableView<Projektleitung> tvData;
@@ -61,9 +61,9 @@ public class ProjektleitungView implements Viewable<Projektleitung, Projektleitu
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-//		// TODO Auto-generated method stub
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
+		// TODO Auto-generated method stub
+		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+		Context.login();
 		
 		tcId.setCellValueFactory(new PropertyValueFactory<Projektleitung, Integer>("id"));
 		tcBauleiter.setCellValueFactory(new PropertyValueFactory<Projektleitung, String>("bauleiter"));

@@ -2,37 +2,22 @@ AnchorPane.default, BorderPane.default{
 	-fx-background-color: #ffffff;
 }
 
-Button.menue-maengel{
-	-fx-background-color:  #939382;
-	-fx-text-fill: white;
-	-fx-alignment: center;
-}
-
-Button.menue-admin{
-	-fx-background-color:  #486285;
-	-fx-text-fill: white;
-	-fx-alignment: center;
-}
-
 Button.abort{
 	-fx-background-color:  #FF6B68;
 	-fx-text-fill: white;
-	-fx-background-radius: 15px
+	-fx-background-radius: 10px
 }
 
 Button.default{
 	-fx-background-color:  #486285;
 	-fx-text-fill: white;
-	-fx-background-radius: 15px
+	-fx-background-radius: 10px
 }
 
-ComboBox.default, DatePicker.default, HBox.default{
+ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
 	-fx-text-fill-color: #486285;
-	-fx-padding: 2px;
-	-fx-pref-widht: 100;
-	-fx-text-alignment: center;
 }
 
 TextField.title{
@@ -40,18 +25,15 @@ TextField.title{
 	-fx-text-size: 36px;
 }
 
-TextField.default, PasswordField.default, TextArea.default{
+TextField.default, PasswordField.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
-	-fx-padding: 2px;
-	-fx-pref-width: 100;
-	-fx-text-alignment: center;
 }
 
 TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
-    -fx-border-width: 1 1 1 1;
+    -fx-background-color: #aaaaaa;
     -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
@@ -61,50 +43,12 @@ TableView.settle {
 TableView.completed {
     -fx-base: #486285;
     -fx-control-inner-background: #486285;
-    -fx-border-width: 1 1 1 1;
-    -fx-border-color: white;
+    -fx-background-color: #486285;
     -fx-text-fill: white;
     -fx-alignment: center-left;
-}
-
-TableView.default {
-	-fx-base: #aaaaaa;
-	-fx-control-inner-background: #486285;
-	-fx-border-width: 1 1 1 1;
-	-fx-border-color: white;
-	-fx-text-fill: white;
-	-fx-alignment: center-left;
-}
-
-TableView.commit {
-	-fx-base: #aaaaaa;
-	-fx-control-inner-background: white;
-	-fx-border-width: 1 1 1 1;
-	-fx-border-color: #719AD1 ;
-	-fx-text-fill: #719AD1 ;
-	-fx-alignment: center-left;
-}
-
-.table-view .column-header .label {
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-}
- 
+}  
 Label.default{
 	-fx-background-color: #aaaaaa;
-	-fx-text-fill: white;
-	-fx-alignment: center-left;
-	-fx-padding: 2px;
-	-fx-pref-width: 100;
-}
-
-Label.settle{
-	-fx-background-color: #aaaaaa;
-	-fx-text-fill: white;
-}
-
-Label.completed{
-	-fx-background-color: #486285;
 	-fx-text-fill: white;
 }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.TopDefaultView">
+   <children>
+      <Button fx:id="btMangel" layoutX="30.0" layoutY="19.0" mnemonicParsing="false" text="Mangel" />
+      <Button fx:id="btAdmin" layoutX="193.0" layoutY="19.0" mnemonicParsing="false" styleClass="default" text="Admin" />
+   </children>
+</AnchorPane>

@@ -10,6 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TreeView layoutY="43.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="24.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="projekte" />
+      <Button layoutX="24.0" layoutY="99.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="subunternehmen" />
+      <Button layoutX="24.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="person" />
    </children>
 </AnchorPane>
