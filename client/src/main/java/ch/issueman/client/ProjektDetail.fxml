@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="1066.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektDetailView">
+<AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="1000.0" prefHeight="1066.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektDetailView">
    <children>
       <StackPane layoutX="276.0" layoutY="250.0" prefHeight="800.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
@@ -40,36 +40,36 @@
                         <RowConstraints maxHeight="81.0" minHeight="70.0" prefHeight="80.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="titel" />
-                        <Label text="strasse" GridPane.rowIndex="1" />
-                        <Label text="ort" GridPane.rowIndex="2" />
-                        <Label text="arbeitstyp" GridPane.rowIndex="3" />
-                        <Label text="projekttyp" GridPane.rowIndex="4" />
-                        <Label text="beginn" GridPane.rowIndex="5" />
-                        <Label text="ende" GridPane.rowIndex="6" />
-                        <Label text="bauherr" GridPane.rowIndex="7" />
-                        <Label text="projektleiter" GridPane.rowIndex="8" />
-                        <Label text="subunternehmen" GridPane.rowIndex="9" />
-                        <Label text="kontaktperson" GridPane.rowIndex="10" />
-                        <TextField fx:id="txTitel" prefHeight="65.0" prefWidth="556.0" GridPane.columnIndex="1" />
-                        <TextField fx:id="txStrasse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txProjektleiter" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <ComboBox fx:id="cbOrt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="cbArbeitstyp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ComboBox fx:id="cbProjekttyp" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ComboBox fx:id="cbKontakt" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <ComboBox fx:id="cbBauherr" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <DatePicker fx:id="dpBeginn" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <DatePicker fx:id="dpEnde" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label styleClass="default" text="titel" />
+                        <Label styleClass="default" text="strasse" GridPane.rowIndex="1" />
+                        <Label styleClass="default" text="ort" GridPane.rowIndex="2" />
+                        <Label styleClass="default" text="arbeitstyp" GridPane.rowIndex="3" />
+                        <Label styleClass="default" text="projekttyp" GridPane.rowIndex="4" />
+                        <Label styleClass="default" text="beginn" GridPane.rowIndex="5" />
+                        <Label styleClass="default" text="ende" GridPane.rowIndex="6" />
+                        <Label styleClass="default" text="bauherr" GridPane.rowIndex="7" />
+                        <Label styleClass="default" text="projektleiter" GridPane.rowIndex="8" />
+                        <Label styleClass="default" text="subunternehmen" GridPane.rowIndex="9" />
+                        <Label styleClass="default" text="kontaktperson" GridPane.rowIndex="10" />
+                        <TextField fx:id="txTitel" prefHeight="65.0" prefWidth="556.0" styleClass="default" GridPane.columnIndex="1" />
+                        <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txProjektleiter" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <ComboBox fx:id="cbOrt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cbArbeitstyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbProjekttyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="cbKontakt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="cbBauherr" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <DatePicker fx:id="dpBeginn" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="dpEnde" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="lbProjekt" />
                      </children>
                   </GridPane>
                   <HBox GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btArchivieren" mnemonicParsing="false" text="archivieren" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" text="speichern" GridPane.rowIndex="3" />
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btArchivieren" mnemonicParsing="false" styleClass="default" text="archivieren" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
                      </children>
                   </HBox>
                   <Label fx:id="lbProjekt" />

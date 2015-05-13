@@ -3,15 +3,36 @@ AnchorPane.default, BorderPane.default{
 }
 
 Button.abort{
-	-fx-background-color:  #FF6B68;
+	-fx-background-color: #FF6B68;
 	-fx-text-fill: white;
 	-fx-background-radius: 10px
 }
 
 Button.default{
-	-fx-background-color:  #486285;
+	-fx-background-color: #486285;
 	-fx-text-fill: white;
 	-fx-background-radius: 10px
+}
+
+Button.leftAdmin{
+	-fx-background-color: #486285;
+	-fx-text-fill: white;
+}
+
+Button.topMangel{
+	-fx-background-color: #939382;
+	-fx-text-fill: white;
+}
+
+Button.topAdmin{
+	-fx-background-color: #486285;
+	-fx-text-fill: white;
+}
+
+ListView.default{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #486285;
+	-fx-border-color: #486285;
 }
 
 ComboBox.default, DatePicker.default{
@@ -25,7 +46,7 @@ TextField.title{
 	-fx-text-size: 36px;
 }
 
-TextField.default, PasswordField.default{
+TextField.default, PasswordField.default, TextArea.default{
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
 }
@@ -47,6 +68,29 @@ TableView.completed {
     -fx-text-fill: white;
     -fx-alignment: center-left;
 }  
+
+TableView.comment {
+    -fx-base: #aaaaaa;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #486285;
+    -fx-alignment: center-left;
+}  
+
+TableView.default {
+    -fx-base: #aaaaaa;
+    -fx-control-inner-background: #486285;
+    -fx-background-color: #486285;
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-border-widht: 1 1 1 1;
+}  
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+}
+
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
@@ -62,4 +106,10 @@ Label.subtitle{
 	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
 	-fx-font-size: 20pt;
+}
+
+Label.tableTitle{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #939382;
+	-fx-font-size: 10pt;
 }

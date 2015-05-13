@@ -10,7 +10,7 @@
 
 <AnchorPane stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.TopDefaultView">
    <children>
-      <Button fx:id="btMangel" layoutX="30.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickMangel" text="Mangel" />
-      <Button fx:id="btAdmin" layoutX="193.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickAdmin" styleClass="default" text="Admin" />
+      <Button fx:id="btMangel" layoutX="30.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickMangel" styleClass="topMangel" text="Mangel" />
+      <Button fx:id="btAdmin" layoutX="193.0" layoutY="19.0" mnemonicParsing="false" onAction="#clickAdmin" styleClass="topAdmin" text="Admin" />
    </children>
 </AnchorPane>

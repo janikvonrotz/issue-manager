@@ -53,7 +53,7 @@
                      </children>
                   </HBox>
                   <Label fx:id="lbMangel" />
-                  <TableView fx:id="tvKommentar" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                  <TableView fx:id="tvKommentar" prefHeight="200.0" prefWidth="200.0" styleClass="comment" GridPane.rowIndex="5">
                     <columns>
                       <TableColumn fx:id="tcKommentar" prefWidth="674.0" text="kommentar" />
                       <TableColumn fx:id="tcAutor" prefWidth="159.0" text="autor" />
