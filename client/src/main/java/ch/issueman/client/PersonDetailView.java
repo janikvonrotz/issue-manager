@@ -197,7 +197,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
                 }
 			}
 		});
-	
+		
 		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
 			public ListCell<Ort> call(ListView<Ort> arg0) {		 
@@ -440,16 +440,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				break;
 
 			case "Bauherr":
-				Ort o = null;
-				try {
-					o = ortcontroller.getById(cbOrt.getValue().getId());
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				Bauherr bauherr = new Bauherr(txNachname.getText(),
 						txVorname.getText(), txEmail.getText(), new Unternehmen(txFirma.getText(),
-								new Adresse(txStrasse.getText(), o)));
+								new Adresse(txStrasse.getText(), cbOrt.getValue())));
 				
 				try {
 					bauherrcontroller.persist(bauherr);
@@ -478,7 +471,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	@FXML
 	public void sbForm(){
 		cbSubunternehmen.setVisible(false);
-//		lbSubunternehmen.setVisible(false);
 		txFirma.setVisible(false);
 		txStrasse.setVisible(false);
 		cbOrt.setVisible(false);

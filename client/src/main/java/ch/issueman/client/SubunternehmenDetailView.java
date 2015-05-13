@@ -4,8 +4,10 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -84,9 +86,7 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+
 		tcNachname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("nachname"));
 		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
 		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
@@ -134,27 +134,43 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				(observable, oldValue, newValue) -> {
 					filteredData.setPredicate(t -> {
 						
-							if (newValue == null || newValue.isEmpty()) {
-								return true;
-							}
+						if (newValue == null || newValue.isEmpty()) {
+							return true;
+						}
 
-							String lowerCaseFilter = newValue.toLowerCase();
-							String objectvalues = t.getVorname() 
-									+ t.getNachname()
-									+ t.getEmail();
-							
-							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
-								return true; 
-							}
+						String lowerCaseFilter = newValue.toLowerCase();
+						String objectvalues = t.getVorname() 
+								+ t.getNachname()
+								+ t.getEmail();
+						
+						if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
+							return true; 
+						}
 
-							return false;
-						});
-				});
+						return false;
+					});
+		});
 		
 		Refresh();	
 	}
 	
 	public void Refresh(){
+		
+		ObservableList<Kontakt> kontaktList = null;
+		
+		try {
+			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+			
+			filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kontaktcontroller.
+					getAll().stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).
+					collect(Collectors.toList())),	p -> true);
+			SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
+			sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
+			tvKontakt.setItems(sortedData);
+
+		} catch (Exception e) {
+			MainView.showError(e);
+		}
 		
 		if(subunternehmen != null){
 			lbSubunternehmen.setText(subunternehmen.getFirmenname());
@@ -162,13 +178,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
 	    	cbOrt.setValue(subunternehmen.getAdresse().getOrt());
 		
-			try {
-				tvKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
-				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-			} catch (Exception e) {
-				MainView.showError(e);
-			}
-			
 			if (!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
 				txFirma.setDisable(true);
 				txStrasse.setDisable(true);
@@ -177,20 +186,12 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			}
 			
 		} else {
-//	    	lbSubunternehmen.setText("neues subunternehmen");
+	    	lbSubunternehmen.setText("neues subunternehmen");
 			txFirma.setText("");
 	    	txStrasse.setText("");
 	    	cbOrt.setValue(null);   	
 	    }
 		
-		try {
-		filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kontaktcontroller.getAll()),	p -> true);
-		SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
-		sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
-		tvKontakt.setItems(sortedData);
-		} catch (Exception e) {
-			MainView.showError(e);
-		}
 	}
 	
 	@FXML
@@ -214,9 +215,8 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		}else{
 			
 			try {
-				Ort o = ortcontroller.getById(cbOrt.getValue().getId());
 				subunternehmencontroller.persist(new Subunternehmen(txFirma.getText(),
-						new Adresse(txStrasse.getText(), o)));
+						new Adresse(txStrasse.getText(), cbOrt.getValue())));
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -229,14 +229,13 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 
 	@FXML
 	public void clickAbbrechen(){
-		
 		showList();
-		
 	}
 	
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;
+		Refresh();
 	}
 
 	@Override
