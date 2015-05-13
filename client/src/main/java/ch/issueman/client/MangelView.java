@@ -9,17 +9,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+
 import ch.issueman.common.Kommentar;
-import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
-import ch.issueman.common.Sachbearbeiter;
 
 /**
  * List view for Mangel
@@ -115,10 +115,11 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 							if (newValue == null || newValue.isEmpty()) {
 								return true;
 							}
-
+							List<Kommentar> k = t.getKommentare();
 							String lowerCaseFilter = newValue.toLowerCase();
 							String objectvalues = t.getMangel() 
 									+ t.getSubunternehmen().getFirmenname()
+									+ t.getKommentare().get(k.size() - 1).getKommentar()
 									+ t.getId();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -145,14 +146,21 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 			sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
 			tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
 	}
 
 	@FXML
-	public void clickData() {
-
+	public void doubleClickData() {
+		tvDataAbzuklären.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Mangel t = tvDataAbzuklären.getSelectionModel().getSelectedItem();;
+		        	showDetail(t);
+		        }
+		    }
+		});
 	}
 
 	@Override
