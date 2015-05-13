@@ -17,6 +17,7 @@ public class LeftMangelView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// anzeigen center mangel view.
+		MainView.showCenterView("Mangel");
 		Refresh();
 	}
 
