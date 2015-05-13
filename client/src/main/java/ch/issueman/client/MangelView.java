@@ -116,7 +116,7 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 	@Override
 	public void Refresh() {
 		try {
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> true);
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 			SortedList<Mangel> sortedData = new SortedList<Mangel>(filteredData);
 			sortedData.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
 			tvDataAbzuklären.setItems(sortedData);
