@@ -3,6 +3,8 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ch.issueman.common.Subunternehmen;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,14 +19,11 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import ch.issueman.common.Login;
-import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.Subunternehmen;
 
 /**
  * List view for Subunternehmen
  * 
- * @author Janik von Rotz
+ * @author Janik von Rotz, Aathavan Theivendram
  * @version 1.0.0
  * @since 1.0.0
  */

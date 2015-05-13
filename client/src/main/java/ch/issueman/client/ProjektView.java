@@ -5,22 +5,29 @@ import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.ConfigHelper;
-import ch.issueman.common.Login;
 import ch.issueman.common.Projekt;
-import ch.issueman.common.Sachbearbeiter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
+/**
+ * List view for Projekt
+ * 
+ * @author Aathavan Theivendram
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	private static Controller<Projekt, Integer> controller = new Controller<Projekt, Integer>(Projekt.class);
@@ -57,8 +64,8 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO entfernen
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
@@ -121,14 +128,21 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
 	}
 
 	@FXML
-	public void clickData() {
-
+	public void doubleClickData() {
+		tvData.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Projekt t = tvData.getSelectionModel().getSelectedItem();
+		        	showDetail(t);
+		        }
+		    }
+		});
 	}
 
 	@Override
@@ -139,7 +153,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@Override
 	public void showDetail(Projekt t) {
-		// TODO Auto-generated method stub
-		
+		ViewableDetail<Projekt> view = MainView.showCenterDetailView("ProjektDetail");
+		view.initData(t);
 	}
 }

@@ -8,8 +8,7 @@ import ch.issueman.common.Bauherr;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Person;
-import ch.issueman.common.Sachbearbeiter;
-import ch.issueman.common.Subunternehmen;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,7 +16,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -26,6 +24,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
+/**
+ * List view for Person
+ * 
+ * @author Aathavan Theivendram
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 public class PersonView implements Viewable<Login, Login> {
 
 	private static Controller<Login, Integer> loginController = new Controller<Login, Integer>(Login.class);
@@ -60,8 +65,8 @@ public class PersonView implements Viewable<Login, Login> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO entfernen
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Login, Integer>("id"));
 		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
@@ -91,7 +96,7 @@ public class PersonView implements Viewable<Login, Login> {
 				}else if(param.getValue().getPerson() instanceof Bauherr){
 					return new SimpleStringProperty(((Bauherr)param.getValue().getPerson()).getUnternehmen().getFirmenname());
 				}else{
-					return new SimpleStringProperty("");
+					return new SimpleStringProperty("-");
 				}
 			}  
 		});
@@ -109,6 +114,8 @@ public class PersonView implements Viewable<Login, Login> {
 									+ t.getPerson().getVorname()
 									+ t.getPerson().getEmail()
 									+ t.getRolle().getBezeichnung()
+//									+ (((Kontakt) t.getPerson()).getSubunternehmen().getFirmenname())
+//									+ (((Bauherr) t.getPerson()).getUnternehmen().getFirmenname())
 									+ t.getPerson().getId();
 		
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -132,8 +139,7 @@ public class PersonView implements Viewable<Login, Login> {
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MainView.showError(e);
 		}
 	}
 	
@@ -153,14 +159,11 @@ public class PersonView implements Viewable<Login, Login> {
 	@Override
 	public void initData(Login t) {
 		System.out.println(t.getClass().getSimpleName());
-		
 	}
 
 	@Override
 	public void showDetail(Login t) {
 		ViewableDetail<Person> view = MainView.showCenterDetailView("PersonDetail");
 		view.initData(t.getPerson());
-		// TODO Auto-generated method stub
-		
 	}
 }
