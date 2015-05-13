@@ -12,7 +12,7 @@
    <children>
       <StackPane layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <TableView fx:id="tvData" layoutY="52.0" onMouseClicked="#clickData" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <TableView fx:id="tvData" layoutY="52.0" onMouseClicked="#doubleClickData" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
               <columns>
                 <TableColumn fx:id="tcId" prefWidth="41.0" text="ID" />
                 <TableColumn fx:id="tcTitel" prefWidth="105.0" text="Titel" />
