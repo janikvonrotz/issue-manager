@@ -6,13 +6,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="964.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenDetailView">
+<AnchorPane prefHeight="964.0" prefWidth="761.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.SubunternehmenDetailView">
    <children>
       <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <GridPane prefHeight="914.0" prefWidth="761.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="tvKontakt" GridPane.rowIndex="6">
+                  <TableView fx:id="tvKontakt" styleClass="default" GridPane.rowIndex="6">
                     <columns>
                       <TableColumn fx:id="tcNachname" minWidth="-1.0" prefWidth="158.0" text="nachname" />
                       <TableColumn fx:id="tcVorname" minWidth="-1.0" prefWidth="186.0" text="vorname" />
@@ -33,12 +33,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="firma" />
-                        <Label text="strasse" GridPane.rowIndex="1" />
-                        <Label text="ort" GridPane.rowIndex="2" />
-                        <TextField fx:id="txFirma" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                        <TextField fx:id="txStrasse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="cbOrt" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="2147483647" />
+                        <Label styleClass="default" text="firma" />
+                        <Label styleClass="default" text="strasse" GridPane.rowIndex="1" />
+                        <Label styleClass="default" text="ort" GridPane.rowIndex="2" />
+                        <TextField fx:id="txFirma" styleClass="default" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                        <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="cbOrt" styleClass="default" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" GridPane.rowSpan="2147483647" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="5">
@@ -50,11 +50,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="txFilter" prefHeight="65.0" prefWidth="335.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                        <TextField fx:id="txFilter" prefHeight="65.0" prefWidth="335.0" styleClass="default" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <HBox>
                            <children>
-                              <Label text="kontakte" />
-                              <Button fx:id="btAddKontakt" mnemonicParsing="false" text="+" />
+                              <Label styleClass="subtitle" text="kontakte" />
+                              <Button fx:id="btAddKontakt" mnemonicParsing="false" styleClass="default" text="+" />
                            </children>
                         </HBox>
                      </children>
@@ -62,8 +62,13 @@
                   <Label fx:id="lbSubunternehmen" />
                   <HBox GridPane.rowIndex="3">
                      <children>
+<<<<<<< HEAD
                         <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" text="abbrechen" GridPane.rowIndex="3" />
                         <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" text="speichern" GridPane.rowIndex="3" />
+=======
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
+>>>>>>> 3c09f9f509bcfd25e208fa7fcb79ae5c599393a5
                      </children>
                   </HBox>
                </children>

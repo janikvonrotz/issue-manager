@@ -8,10 +8,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.LeftAdminView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.LeftAdminView">
    <children>
-      <Button layoutX="24.0" layoutY="60.0" mnemonicParsing="false" onAction="#clickProjekte" prefHeight="25.0" prefWidth="148.0" text="projekte" />
-      <Button layoutX="24.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickSubunternehmen" prefHeight="25.0" prefWidth="148.0" text="subunternehmen" />
-      <Button layoutX="24.0" layoutY="141.0" mnemonicParsing="false" onAction="#clickBauherr" prefHeight="25.0" prefWidth="148.0" text="person" />
+      <Button layoutX="24.0" layoutY="60.0" mnemonicParsing="false" onAction="#clickProjekte" prefHeight="25.0" prefWidth="148.0" styleClass="leftAdmin" text="projekte" />
+      <Button layoutX="24.0" layoutY="99.0" mnemonicParsing="false" onAction="#clickSubunternehmen" prefHeight="25.0" prefWidth="148.0" styleClass="leftAdmin" text="subunternehmen" />
+      <Button layoutX="24.0" layoutY="141.0" mnemonicParsing="false" onAction="#clickBauherr" prefHeight="25.0" prefWidth="148.0" styleClass="leftAdmin" text="person" />
    </children>
 </AnchorPane>

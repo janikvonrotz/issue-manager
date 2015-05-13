@@ -8,8 +8,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.LeftMangelView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.LeftMangelView">
    <children>
-      <ListView fx:id="lvProjekt" layoutX="11.0" layoutY="48.0" prefHeight="247.0" prefWidth="178.0" />
+      <ListView fx:id="lvProjekt" layoutX="11.0" layoutY="48.0" prefHeight="247.0" prefWidth="178.0" styleClass="default" />
    </children>
 </AnchorPane>

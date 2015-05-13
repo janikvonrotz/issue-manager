@@ -16,6 +16,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * List view for Subunternehmen Zugewiesen
+ * 
+ * @author Sandro Klarer
+ * @version 1.0.0
+ * @since 1.0.0
+ *
+ */
 public class SubunternehmenZugewiesenView implements Viewable<Subunternehmen, Subunternehmen> {
 
 	private static Controller<Subunternehmen, Integer> controller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
@@ -23,6 +31,9 @@ public class SubunternehmenZugewiesenView implements Viewable<Subunternehmen, Su
 	
 	@FXML
 	private TableView<Subunternehmen> tvData; 
+	
+	@FXML
+	private TextField txFitler;
 	
 	@FXML
 	private TableColumn<Subunternehmen, String> tcSubunternehmen; 
@@ -39,8 +50,8 @@ public class SubunternehmenZugewiesenView implements Viewable<Subunternehmen, Su
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+//		Context.login();
 		
 		tcSubunternehmen.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("Subunternehmen"));
 		tcPerson.setCellValueFactory(new PropertyValueFactory<Person, String>("person"));
