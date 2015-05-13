@@ -58,8 +58,8 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO entfernen
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Subunternehmen, Integer>("id"));
 		tcFirmenname.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("firmenname"));
