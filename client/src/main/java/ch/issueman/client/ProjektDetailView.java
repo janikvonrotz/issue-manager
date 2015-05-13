@@ -10,12 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -31,6 +33,7 @@ import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
+import ch.issueman.common.Bauleiter;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
@@ -61,6 +64,9 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private static Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private Projekt projekt;
+	private Subunternehmen subunternehmen;
+	private Kontakt kOld;
+	private Kontakt kNew;
 	
 	@FXML
 	private Label lbProjekt;
@@ -99,10 +105,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private ComboBox<Kontakt> cbKontakt;
 
 	@FXML
-	private Button btAbbrechen;
+	private CheckBox chArchivieren;
 	
 	@FXML
-	private Button btArchivieren;
+	private Button btAbbrechen;
 	
 	@FXML
 	private Button btSpeichern;
@@ -110,9 +116,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
 		
 		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
@@ -267,11 +270,60 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			}
 		});
 
+		cbKontakt.setCellFactory(new Callback<ListView<Kontakt>,ListCell<Kontakt>>(){
+			@Override
+			public ListCell<Kontakt> call(ListView<Kontakt> arg0) {		 
+				final ListCell<Kontakt> cell = new ListCell<Kontakt>(){				 
+                    @Override
+                    protected void updateItem(Kontakt k, boolean bln) {
+                        super.updateItem(k, bln);
+                         
+                        if(k != null){
+                            setText(k.getDisplayName());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+				return cell;
+			}
+        });
+		
+		cbKontakt.setConverter(new StringConverter<Kontakt>() {
+            private Map<String, Object> map = new HashMap<>();
+
+ 			@Override
+			public Kontakt fromString(String arg0) {
+				return null;
+			}
+
+			public String toString(Kontakt k) {
+               if (k != null) {
+                    String str = k.getDisplayName();
+                    map.put(str, k);
+                    return str;
+                } else {
+                    return "";
+                }
+			}
+		});
+
 		Refresh();	
 
 	}
 	
 	public void Refresh(){
+		
+		try {
+			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+			cbArbeitstyp.setItems(FXCollections.observableArrayList(arbeitstypcontroller.getAll()));
+			cbProjekttyp.setItems(FXCollections.observableArrayList(projekttypcontroller.getAll()));
+			cbBauherr.setItems(FXCollections.observableArrayList(bauherrcontroller.getAll()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			MainView.showError(e);
+		}
+
 		
 		if(projekt != null){
 		
@@ -289,75 +341,59 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    	txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
 	    	
 			try {
-				cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-				cbArbeitstyp.setItems(FXCollections.observableArrayList(arbeitstypcontroller.getAll()));
-				cbProjekttyp.setItems(FXCollections.observableArrayList(projekttypcontroller.getAll()));
-				cbBauherr.setItems(FXCollections.observableArrayList(bauherrcontroller.getAll()));
-				cbKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
-
-				String s = "";
-				ObservableList<Subunternehmen> subunternehmen = FXCollections.observableArrayList(subunternehmencontroller.getAll());
-				if(subunternehmen != null){
-					for(Subunternehmen sub : subunternehmen){
+				String s = null;
+				List<Subunternehmen> subunternehmens = subunternehmencontroller.getAll();
+				if(subunternehmens != null){
+					for(Subunternehmen sub : subunternehmens){
 					s += sub.getFirmenname() + ", ";
 					}
 					s.substring(0, s.length()-2);
 				}
-				taSubunternehmen.setText(s);
-				
+				taSubunternehmen.setText(s);			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
-			
-			if (Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
-				txTitel.setDisable(true);
-				txStrasse.setDisable(true);
-				cbOrt.setDisable(true);
-				cbArbeitstyp.setDisable(true);
-				cbProjekttyp.setDisable(true);
-				dpBeginn.setDisable(true);
-				dpEnde.setDisable(true);
-				cbBauherr.setVisible(false);
-				txProjektleiter.setDisable(true);
-				taSubunternehmen.setVisible(false);
-				btArchivieren.setVisible(false);
-			}
-			
-			if (Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
-				btArchivieren.setVisible(false);
-			}
 
-			if (!Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
+			
+			if (Context.getLogin().getPerson() instanceof Sachbearbeiter){
+				sbForm();
+			} else if (Context.getLogin().getPerson() instanceof Bauleiter){
 				cbKontakt.setVisible(false);
+			} else if (Context.getLogin().getPerson() instanceof Kontakt){
+				
+				try {
+					subunternehmen = ((Kontakt) Context.getLogin().getPerson()).getSubunternehmen();
+					ObservableList<Kontakt> kontakte = FXCollections.observableArrayList(kontaktcontroller.getAll());
+					kontakte.stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).
+							collect(Collectors.toList());
+					cbKontakt.setItems(kontakte);
+					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
+							collect(Collectors.toList()).get(0);
+					cbKontakt.setValue(kOld);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					MainView.showError(e);
+				}
+				
+				if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+					kaForm();
+				} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+					kpForm();
+				}
 			}
 
 		} else {
-
+			sbForm();
 			lbProjekt.setText("neues projekt");
 	    }
-		
 	}
-
 	
 	@FXML
 	public void clickAbbrechen(){
 		showList();
 	}
-	
-	@FXML
-	public void clickArchivieren(){
-		projekt.setArchiviert(true);
 		
-		try {
-			projektcontroller.update(projekt);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-	}
-	
 	@FXML
 	public void clickSpeichern(){
 		
@@ -375,32 +411,32 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 //			projekt.setBeginn();
 //			projekt.setEnde(Date.from(dpEnde.getValue().atStartOfDay()
 //					.atZone(ZoneId.systemDefault()).toInstant()));
-//			
+			
 			projekt.setBauherr(cbBauherr.getValue());
 			
+			kOld.getProjekte().remove(projekt);
+			kNew = cbKontakt.getValue();
+			kNew.getProjekte().add(projekt);
+			
 			try {
-				Kontakt k = kontaktcontroller.getById(cbKontakt.getValue().getId());
-				if(k != null){
-					k.getProjekte().add(projekt);
-				}
-				kontaktcontroller.update(k);
 				projektcontroller.update(projekt);
-			} catch (Exception e1) {
+				kontaktcontroller.update(kOld);
+				kontaktcontroller.update(kNew);
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
-			
-		}else{
+		
+		} else {
 			
 			try {
-				Ort o = ortcontroller.getById(cbOrt.getValue().getId());
 				projektcontroller.persist(new Projekt(txTitel.getText(),
-						new Adresse(txStrasse.getText(), o), cbArbeitstyp.getValue(),
+						new Adresse(txStrasse.getText(), cbOrt.getValue()), cbArbeitstyp.getValue(),
 						cbProjekttyp.getValue(), cbBauherr.getValue(), null, null, null));
 						// add beginn and ende dates (last 2 params)
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
 		}
 		
@@ -410,6 +446,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	@Override
 	public void initData(Projekt p) {
 		projekt = p;
+		Refresh();
 	}
 
 	@Override
@@ -421,5 +458,65 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	public void showZugewiesene(Projekt p) {
 		Viewable<Projekt, Projekt> view = MainView.showCenterView("Projekt");
 		view.initData(p);
+	}
+	
+	public void sbForm(){
+		txTitel.setDisable(false);
+		txStrasse.setDisable(false);
+		cbOrt.setDisable(false);
+		cbArbeitstyp.setDisable(false);
+		cbProjekttyp.setDisable(false);
+		dpBeginn.setDisable(false);
+		dpEnde.setDisable(false);
+		cbBauherr.setVisible(true);
+		txProjektleiter.setDisable(false);
+		taSubunternehmen.setVisible(true);
+		cbKontakt.setVisible(false);
+		chArchivieren.setVisible(true);
+	}
+
+	public void blForm(){
+		txTitel.setDisable(false);
+		txStrasse.setDisable(false);
+		cbOrt.setDisable(false);
+		cbArbeitstyp.setDisable(false);
+		cbProjekttyp.setDisable(false);
+		dpBeginn.setDisable(false);
+		dpEnde.setDisable(false);
+		cbBauherr.setVisible(true);
+		txProjektleiter.setDisable(false);
+		taSubunternehmen.setVisible(true);
+		cbKontakt.setVisible(false);
+		chArchivieren.setVisible(false);
+	}
+
+	public void kpForm(){
+		txTitel.setDisable(true);
+		txStrasse.setDisable(true);
+		cbOrt.setDisable(true);
+		cbArbeitstyp.setDisable(true);
+		cbProjekttyp.setDisable(true);
+		dpBeginn.setDisable(true);
+		dpEnde.setDisable(true);
+		cbBauherr.setVisible(false);
+		txProjektleiter.setDisable(true);
+		taSubunternehmen.setVisible(false);
+		cbKontakt.setVisible(false);
+		chArchivieren.setVisible(false);
+	}
+
+	public void kaForm(){
+		txTitel.setDisable(true);
+		txStrasse.setDisable(true);
+		cbOrt.setDisable(true);
+		cbArbeitstyp.setDisable(true);
+		cbProjekttyp.setDisable(true);
+		dpBeginn.setDisable(true);
+		dpEnde.setDisable(true);
+		cbBauherr.setVisible(false);
+		txProjektleiter.setDisable(true);
+		taSubunternehmen.setVisible(false);
+		cbKontakt.setVisible(true);
+		chArchivieren.setVisible(false);
 	}
 }
