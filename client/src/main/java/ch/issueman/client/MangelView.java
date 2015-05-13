@@ -67,8 +67,8 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO entfernen
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
+//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
+//		Context.login();
 	
 		tcMangelAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -83,6 +83,25 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 		});
 		
 		tcKommentarAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				List<Kommentar> k = param.getValue().getKommentare();
+				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
+			}
+		});
+		
+		tcMangelAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getMangel());
+			}
+		});
+
+		tcSubunternehmenAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getSubunternehmen().getFirmenname());
+			}  
+		});
+		
+		tcKommentarAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
 				List<Kommentar> k = param.getValue().getKommentare();
 				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
@@ -117,9 +136,14 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 	public void Refresh() {
 		try {
 			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abzuklären"));
-			SortedList<Mangel> sortedData = new SortedList<Mangel>(filteredData);
-			sortedData.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
-			tvDataAbzuklären.setItems(sortedData);
+			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
+			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
+			tvDataAbzuklären.setItems(sortedDataAbzuklären);
+			
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
+			SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
+			sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
+			tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			MainView.showError(e);
