@@ -3,6 +3,8 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.fxml.FXML;
+
 /**
  * Admin filter view for left pane.
  * 
@@ -15,6 +17,7 @@ public class LeftAdminView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// anzeigen default center view
+//		MainView.showCenterView("Default");
 		Refresh();
 	}
 
@@ -30,5 +33,19 @@ public class LeftAdminView implements ViewableDetail<Object> {
 	public void showList() {
 	}
 	
-	// ergänzen button methoden zum anzeigen der entsprechenden center stammdaten view
+	@FXML
+	public void clickProjekte() {
+		MainView.showCenterView("Projekt");
+	}
+	
+	@FXML
+	public void clickSubunternehmen() {
+		MainView.showCenterView("Subunternehmen");
+	}
+	
+	@FXML
+	public void clickBauherr() {
+		MainView.showCenterView("Bauherr");
+	}
+	
 }

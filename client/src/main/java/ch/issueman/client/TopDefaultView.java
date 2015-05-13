@@ -3,6 +3,8 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.fxml.FXML;
+
 /**
  * Default view for top pane.
  * 
@@ -16,7 +18,10 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Standardmässig Left Mangel view anzeigen
+		MainView.showLeftView("LeftMangel");
 	}
+	
+
 
 	@Override
 	public void Refresh() {
@@ -31,4 +36,13 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	}
 	
 	// egänzen button click methoden mit aufruf der left views.
+	@FXML
+	public void clickMangel() {
+		MainView.showLeftView("LeftMangel");
+	}
+	
+	@FXML
+	public void clickAdmin() {
+		MainView.showLeftView("LeftAdmin");
+	}
 }
