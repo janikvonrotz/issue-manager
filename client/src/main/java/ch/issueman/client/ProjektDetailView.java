@@ -404,6 +404,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			Adresse a = projekt.getAdresse();
 			a.setStrasse(txStrasse.getText());
 			a.setOrt(cbOrt.getValue());
+			projekt.setAdresse(a);
 			
 			projekt.setArbeitstyp(cbArbeitstyp.getValue());
 			projekt.setProjekttyp(cbProjekttyp.getValue());
@@ -438,11 +439,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
-		}
-		
+		}	
 		showList();
-
 	}
+	
 	@Override
 	public void initData(Projekt p) {
 		projekt = p;

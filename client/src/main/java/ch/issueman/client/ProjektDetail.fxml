@@ -55,7 +55,7 @@
                         <TextField fx:id="txTitel" prefHeight="65.0" prefWidth="556.0" styleClass="default" GridPane.columnIndex="1" />
                         <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="txProjektleiter" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" styleClass="default" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <ComboBox fx:id="cbOrt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ComboBox fx:id="cbArbeitstyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ComboBox fx:id="cbProjekttyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -70,11 +70,11 @@
                   </GridPane>
                   <HBox GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3" />
                      </children>
                   </HBox>
-                  <Label fx:id="lbProjekt" />
+                  <Label fx:id="lbProjekt" styleClass="subtitle" />
                </children>
             </GridPane>
          </children>
