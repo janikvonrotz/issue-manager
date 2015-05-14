@@ -65,9 +65,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private Projekt projekt;
 	private Subunternehmen subunternehmen;
+	private String s = "";
 	private Kontakt kOld;
 	private Kontakt kNew;
-	
+
 	@FXML
 	private Label lbProjekt;
 	
@@ -341,15 +342,13 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    	txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
 	    	
 			try {
-				String s = null;
-				List<Subunternehmen> subunternehmens = subunternehmencontroller.getAll();
-				if(subunternehmens != null){
-					for(Subunternehmen sub : subunternehmens){
-					s += sub.getFirmenname() + ", ";
-					}
-					s.substring(0, s.length()-2);
+				
+				List<Kontakt> kList = kontaktcontroller.getAll().stream().filter(k -> k.getProjekte().contains(projekt)).collect(Collectors.toList());
+				if(kList != null){
+					kList.forEach(k -> s += k.getSubunternehmen().getFirmenname() + ", ");
 				}
-				taSubunternehmen.setText(s);			
+				taSubunternehmen.setText(s.substring(0, s.length()-2));	
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
@@ -364,12 +363,16 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				
 				try {
 					subunternehmen = ((Kontakt) Context.getLogin().getPerson()).getSubunternehmen();
-					ObservableList<Kontakt> kontakte = FXCollections.observableArrayList(kontaktcontroller.getAll());
-					kontakte.stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).
-							collect(Collectors.toList());
-					cbKontakt.setItems(kontakte);
+//					ObservableList<Kontakt> kontakte = FXCollections.observableArrayList(((kontaktcontroller.getAll()).stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).collect(Collectors.toList())));
+//					cbKontakt.setItems(kontakte);
+//					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
+//							collect(Collectors.toList()).get(0);
+					
+					List<Kontakt> kontakte = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().equals(subunternehmen)).collect(Collectors.toList());
+					cbKontakt.setItems(FXCollections.observableArrayList(kontakte));
 					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
 							collect(Collectors.toList()).get(0);
+					
 					cbKontakt.setValue(kOld);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -415,21 +418,20 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			
 			projekt.setBauherr(cbBauherr.getValue());
 			
-			kOld.getProjekte().remove(projekt);
-			kNew = cbKontakt.getValue();
-			kNew.getProjekte().add(projekt);
+//			kOld.getProjekte().remove(projekt);
+//			kNew = cbKontakt.getValue();
+//			kNew.getProjekte().add(projekt);
 			
 			try {
 				projektcontroller.update(projekt);
-				kontaktcontroller.update(kOld);
-				kontaktcontroller.update(kNew);
+//				kontaktcontroller.update(kOld);
+//				kontaktcontroller.update(kNew);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 		
 		} else {
-			
 			try {
 				projektcontroller.persist(new Projekt(txTitel.getText(),
 						new Adresse(txStrasse.getText(), cbOrt.getValue()), cbArbeitstyp.getValue(),
