@@ -84,7 +84,12 @@ TableView.default {
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-border-widht: 1 1 1 1;
-}  
+} 
+
+.table-view:focused .table-row-cell:selected {
+-fx-background-color: #939382 ;
+-fx-table-cell-border-color: #939382 ;
+} 
 
 .table-view .column-header .label {
     -fx-text-fill: white;
