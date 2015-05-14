@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import ch.issueman.common.Kommentar;
@@ -35,25 +36,60 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
 
 	@FXML
+	private TextField txFilter;
+	
+	// Tabelle "abzuklären"
+	@FXML
 	private TableView<Mangel> tvDataAbzuklären;
 	
 	@FXML
-	private TableView<Mangel> tvDataAbgeschlossen;
-
-	@FXML
-	private TextField txFilter;
-
-	@FXML
-	private TableColumn<Mangel, Integer> tcId;
+	private TableColumn<Mangel, Integer> tcReferenzAbzuklären;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelAbzuklären;
-
+	
 	@FXML
 	private TableColumn<Mangel, String> tcSubunternehmenAbzuklären;
-
+	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbzuklären;
+	
+	// Tabelle "beauftragt"
+	@FXML
+	private TableView<Mangel> tvDataBeauftragt;
+	
+	@FXML
+	private TableColumn<Mangel, Integer> tcReferenzBeauftragt;
+
+	@FXML
+	private TableColumn<Mangel, String> tcMangelBeauftragt;
+	
+	// Tabelle "angenommen"
+	@FXML
+	private TableView<Mangel> tvDataAngenommen;
+	
+	@FXML
+	private TableColumn<Mangel, Integer> tcReferenzAngenommen;
+
+	@FXML
+	private TableColumn<Mangel, String> tcMangelAngenommen;
+
+	// Tabelle "behoben"
+	@FXML
+	private TableView<Mangel> tvDataBehoben;
+	
+	@FXML
+	private TableColumn<Mangel, Integer> tcReferenzBehoben;
+
+	@FXML
+	private TableColumn<Mangel, String> tcMangelBehoben;
+	
+	// Tabelle "abgeschlossen"
+	@FXML
+	private TableView<Mangel> tvDataAbgeschlossen;
+	
+	@FXML
+	private TableColumn<Mangel, Integer> tcReferenzAbgeschlossen;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelAbgeschlossen;
@@ -64,12 +100,16 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbgeschlossen;
 
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO entfernen
 //		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
 //		Context.login();
 	
+		// Tabelle "abzuklären"
+		tcReferenzAbzuklären.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		
 		tcMangelAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
 				return new SimpleStringProperty(param.getValue().getMangel());
@@ -88,6 +128,36 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
 			}
 		});
+		
+		// Tabelle "beauftragt"
+		tcReferenzBeauftragt.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		
+		tcMangelBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getMangel());
+			}
+		});
+		
+		// Tabelle "angenommen"
+		tcReferenzAngenommen.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+				
+		tcMangelAngenommen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getMangel());
+			}
+		});
+		
+		// Tabelle "behoben"
+		tcReferenzBehoben.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+				
+		tcMangelBehoben.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(param.getValue().getMangel());
+			}
+		});
+		
+		// Tabelle "abgeschlossen"
+		tcReferenzAbgeschlossen.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
 		
 		tcMangelAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -108,6 +178,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 
+		// Filterung der Tabelle
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					filteredData.setPredicate(t -> {
@@ -117,6 +188,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 							}
 							List<Kommentar> k = t.getKommentare();
 							String lowerCaseFilter = newValue.toLowerCase();
+							// Angabe nach welchen Attributen es gefiltert werden soll
 							String objectvalues = t.getMangel() 
 									+ t.getSubunternehmen().getFirmenname()
 									+ t.getKommentare().get(k.size() - 1).getKommentar()
@@ -125,7 +197,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
 							}
-
 							return false;
 						});
 				});		
@@ -140,6 +211,21 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
 			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
 			tvDataAbzuklären.setItems(sortedDataAbzuklären);
+			
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("beauftragt"));
+			SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
+			sortedDataBeauftragt.comparatorProperty().bind(tvDataBeauftragt.comparatorProperty());
+			tvDataBeauftragt.setItems(sortedDataBeauftragt);
+			
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("angenommen"));
+			SortedList<Mangel> sortedDataAngenommen = new SortedList<Mangel>(filteredData);
+			sortedDataAngenommen.comparatorProperty().bind(tvDataAngenommen.comparatorProperty());
+			tvDataAngenommen.setItems(sortedDataAngenommen);
+			
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("behoben"));
+			SortedList<Mangel> sortedDataBehoben = new SortedList<Mangel>(filteredData);
+			sortedDataBehoben.comparatorProperty().bind(tvDataBehoben.comparatorProperty());
+			tvDataBehoben.setItems(sortedDataBehoben);
 			
 			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
 			SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
