@@ -62,13 +62,8 @@
                   <Label fx:id="lbSubunternehmen" />
                   <HBox GridPane.rowIndex="3">
                      <children>
-<<<<<<< HEAD
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" text="speichern" GridPane.rowIndex="3" />
-=======
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
->>>>>>> 3c09f9f509bcfd25e208fa7fcb79ae5c599393a5
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3" />
                      </children>
                   </HBox>
                </children>

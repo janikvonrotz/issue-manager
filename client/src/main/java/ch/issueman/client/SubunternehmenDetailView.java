@@ -23,11 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
-import ch.issueman.common.Arbeitstyp;
-import ch.issueman.common.Login;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Ort;
-import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 
 /**
