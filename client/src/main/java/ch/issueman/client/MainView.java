@@ -1,17 +1,25 @@
 package ch.issueman.client;
 
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.AbstractList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+//import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
@@ -119,6 +127,38 @@ public class MainView implements Initializable {
 			MainView.showError(e);
 		}
 		return loader.getController();
+	}
+	
+	public static <T> void exportData(FilteredList<T> list){
+		String CSV_SEPARATOR = ",";
+	    try {
+	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+	                new FileOutputStream("results.csv"), "UTF-8"));
+	        for (T l : list ) {
+	        	l.toString();
+	        	Iterator<T> it = list.iterator();
+	            StringBuffer oneLine = new StringBuffer();
+	            
+	            while (it.hasNext()) {
+	                Object value = it.next();
+
+	                if(value !=null){
+	                    oneLine.append(value.toString());
+	                    }
+
+	                if (it.hasNext()) {
+	                    oneLine.append(CSV_SEPARATOR);
+	                }
+	            }
+	            bw.write(oneLine.toString());
+	            bw.newLine();
+	        }
+	        bw.flush();
+	        bw.close();
+	    } catch (UnsupportedEncodingException e) {
+	    } catch (FileNotFoundException e) {
+	    } catch (IOException e) {
+	    }
 	}
 	
 	public static void showError(Exception e) {
