@@ -237,12 +237,64 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	}
 
 	@FXML
-	public void doubleClickData() {
+	public void doubleClickDataAbzuklären() {
 		tvDataAbzuklären.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
 		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 		        	Mangel t = tvDataAbzuklären.getSelectionModel().getSelectedItem();;
+		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void doubleClickDataBeauftragt() {
+		tvDataBeauftragt.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Mangel t = tvDataBeauftragt.getSelectionModel().getSelectedItem();;
+		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void doubleClickDataAngenommen() {
+		tvDataAngenommen.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Mangel t = tvDataAngenommen.getSelectionModel().getSelectedItem();;
+		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void doubleClickDataBehoben() {
+		tvDataBehoben.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Mangel t = tvDataBehoben.getSelectionModel().getSelectedItem();;
+		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void doubleClickDataAbgeschlossen() {
+		tvDataAbgeschlossen.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Mangel t = tvDataAbgeschlossen.getSelectionModel().getSelectedItem();;
 		        	showDetail(t);
 		        }
 		    }
