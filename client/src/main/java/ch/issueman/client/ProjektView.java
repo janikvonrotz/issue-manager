@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
+import ch.issueman.client.MainView;
 /**
  * List view for Projekt
  * 
@@ -39,6 +41,9 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@FXML
 	private TextField txFilter;
+	
+	@FXML
+	private Button btExport;
 
 	@FXML
 	private TableColumn<Projekt, Integer> tcId;
@@ -144,7 +149,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		    }
 		});
 	}
-
+	
+	@FXML
+	public void export(){
+		MainView.exportData(filteredData);
+	}
 	@Override
 	public void initData(Projekt t) {
 		// TODO Auto-generated method stub
