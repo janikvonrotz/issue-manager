@@ -249,7 +249,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 			cbRolle.setItems(rollenList);
 			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
 			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-				
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			MainView.showError(e);
@@ -329,9 +328,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				try {
 					sachbearbeitercontroller.update(((Sachbearbeiter) person));
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 			} else if (person instanceof Bauleiter){
 				((Bauleiter) person).setNachname(txNachname.getText());
@@ -340,9 +339,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				try {
 					bauleitercontroller.update(((Bauleiter) person));
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 			} else if (person instanceof Kontakt){
 				((Kontakt) person).setNachname(txNachname.getText());
@@ -352,9 +351,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				try {
 					kontaktcontroller.update(((Kontakt) person));
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 			} else if (person instanceof Bauherr){
 				((Bauherr) person).setNachname(txNachname.getText());
@@ -370,9 +369,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				try {
 					bauherrcontroller.update(((Bauherr) person));
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 			}
 
@@ -387,9 +386,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					sachbearbeitercontroller.persist(sachbearbeiter);
 					logincontroller.persist(login);
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 				
 				break;
@@ -402,9 +401,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					bauleitercontroller.persist(bauleiter);
 					logincontroller.persist(login);
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 				
 				break;
@@ -417,9 +416,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					kontaktcontroller.persist(kontaktperson);
 					logincontroller.persist(login);
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 				
 				break;
@@ -432,9 +431,9 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					kontaktcontroller.persist(kontaktadmin);
 					logincontroller.persist(login);
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 				
 				break;
@@ -446,14 +445,15 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				
 				try {
 					bauherrcontroller.persist(bauherr);
-				} catch (Exception e1) {
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					MainView.showError(e);
 				}
 				
 				break;
 			}
 		}	
+		showList();
 	}
 
 	@Override
@@ -465,7 +465,7 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	@Override
 	public void showList() {
 		Viewable<Login, Login> view = MainView.showCenterView("Person");
-		view.initData(null);
+		view.initData(login);
 	}
 	
 	@FXML

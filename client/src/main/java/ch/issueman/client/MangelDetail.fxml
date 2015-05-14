@@ -21,7 +21,7 @@
                         <HBox GridPane.columnIndex="1">
                            <children>
                               <ComboBox fx:id="cbProjekt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" />
-                              <Button fx:id="btShowProjekt" mnemonicParsing="false" styleClass="default" text="i" GridPane.columnIndex="1" />
+                              <Button fx:id="btShowProjekt" mnemonicParsing="false" onAction="#clickShowProject" styleClass="default" text="i" GridPane.columnIndex="1" />
                            </children>
                         </HBox>
                         <ComboBox fx:id="cbStatus" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -29,7 +29,7 @@
                         <HBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <ComboBox fx:id="cbSubunternehmen" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" styleClass="default" text="i" />
+                              <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" onAction="#clickShowSubunternehmen" styleClass="default" text="i" />
                            </children>
                         </HBox>
                         <DatePicker fx:id="dpFrist" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -48,8 +48,8 @@
                   </GridPane>
                   <HBox prefHeight="51.0" prefWidth="1000.0" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" styleClass="default" text="speichern" GridPane.rowIndex="3" />
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3" />
                      </children>
                   </HBox>
                   <Label fx:id="lbMangel" />
@@ -65,8 +65,8 @@
                   </TableView>
                   <HBox GridPane.rowIndex="6">
                      <children>
-                        <TextArea fx:id="taKommentar" styleClass="default" />
-                        <Button fx:id="btSend" mnemonicParsing="false" styleClass="default" text="senden" GridPane.rowIndex="6" />
+                        <TextArea fx:id="taKommentar" styleClass="default" wrapText="true" />
+                        <Button fx:id="btSend" mnemonicParsing="false" onAction="#clickSend" styleClass="default" text="senden" GridPane.rowIndex="6" />
                      </children>
                   </HBox>
                </children>

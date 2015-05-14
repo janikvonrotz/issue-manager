@@ -1,12 +1,16 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,10 +25,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
+import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
@@ -54,8 +60,8 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
 	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 	private Mangel mangel;
-	private ObservableList<Mangelstatus> allStatus;
-	private ObservableList<Mangelstatus> statusList;
+	private List<Mangelstatus> sList;
+	private List<Kommentar> kList;
 	
 	@FXML
 	private Label lbMangel;
@@ -85,13 +91,13 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private TableView<Kommentar> tvKommentar;
 	
 	@FXML
-	private TableColumn<Kommentar, Integer> tcKommentar;
+	private TableColumn<Kommentar, String> tcKommentar;
 	
 	@FXML
-	private TableColumn<Kommentar, Integer> tcAutor;
+	private TableColumn<Kommentar, String> tcAutor;
 	
 	@FXML
-	private TableColumn<Kommentar, Integer> tcZeit;
+	private TableColumn<Kommentar, String> tcZeit;
 	
 	@FXML
 	private Button btSend;
@@ -107,10 +113,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-		Context.login();
-		
+
 		cbProjekt.setCellFactory(new Callback<ListView<Projekt>,ListCell<Projekt>>(){
 			@Override
 			public ListCell<Projekt> call(ListView<Projekt> arg0) {		 
@@ -225,12 +228,19 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			}
 		});
 		
-		tcKommentar.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("kommentar"));
-		tcAutor.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("login_id"));
-		tcZeit.setCellValueFactory(new PropertyValueFactory<Kommentar, Integer>("erstelltam"));
-			
+		tcKommentar.setCellValueFactory(new PropertyValueFactory<Kommentar, String>("kommentar"));
+		tcAutor.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kommentar,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Kommentar, String> param) {
+				return new SimpleStringProperty(param.getValue().getLogin().getPerson().getDisplayName());
+			}  
+		});
+		tcZeit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kommentar,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Kommentar, String> param) {
+				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getErstelltam().getTime()));
+			} 
+		});
+		
 		Refresh();	
-
 	}
 	
 	@Override
@@ -244,42 +254,26 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	txBeschreibung.setText(mangel.getMangel());
 	    	cbSubunternehmen.setValue(mangel.getSubunternehmen());
 //	    	dpFrist.setValue(mangel.getErledigenbis());
-		
+	    	cbStatus.setValue(mangel.getMangelstatus());
+			tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
+	    	tvKommentar.setVisible(true);
+	    	taKommentar.setVisible(true);
+	    	btSend.setVisible(true);
+
 			try {
 				cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
 				cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
-				allStatus = FXCollections.observableArrayList(statuscontroller.getAll());
-
-				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
+				
+				sList = statuscontroller.getAll().stream().filter(s -> s.getRollen().
+						contains(Context.getLogin().getRolle())).collect(Collectors.toList());
+				cbStatus.setItems(FXCollections.observableArrayList(sList));
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 			
-			if(Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
-				statusList.add(mangel.getMangelstatus());
-				statusList.add(allStatus.get(0));
-				statusList.add(allStatus.get(3));
-				cbStatus.getItems().addAll(statusList);
-		    	cbStatus.setValue(mangel.getMangelstatus());
-			}
-			
-			if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
-				statusList.add(mangel.getMangelstatus());
-				statusList.add(allStatus.get(0));
-				statusList.add(allStatus.get(3));
-				cbStatus.getItems().addAll(statusList);
-		    	cbStatus.setValue(mangel.getMangelstatus());
-			}
-
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
-				statusList.add(mangel.getMangelstatus());
-				statusList.add(allStatus.get(1));
-				statusList.add(allStatus.get(4));
-				statusList.add(allStatus.get(2));
-				cbStatus.getItems().addAll(statusList);
-		    	cbStatus.setValue(mangel.getMangelstatus());
-		    	
 		    	txBeschreibung.setDisable(true);
 		    	cbSubunternehmen.setDisable(true);
 		    	dpFrist.setDisable(true);
@@ -295,13 +289,13 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    
 	@FXML
 	public void clickShowProject(){
-		Viewable<Projekt, Projekt> view = MainView.showCenterView("ProjektDetail");
+		ViewableDetail<Projekt> view = MainView.showCenterDetailView("ProjektDetail");
 		view.initData(mangel.getProjekt());
 	}
 	
 	@FXML
 	public void clickShowSubunternehmen(){
-		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("SubunternehmenDetail");
+		ViewableDetail<Subunternehmen> view = MainView.showCenterDetailView("SubunternehmenDetail");
 		view.initData(mangel.getSubunternehmen());
 	}
 	
@@ -377,6 +371,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	@Override
 	public void initData(Mangel t) {
 		mangel = t;
+		Refresh();
 	}
 
 	@Override
