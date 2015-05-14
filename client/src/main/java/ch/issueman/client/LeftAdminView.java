@@ -45,7 +45,7 @@ public class LeftAdminView implements ViewableDetail<Object> {
 	
 	@FXML
 	public void clickBauherr() {
-		MainView.showCenterView("Bauherr");
+		MainView.showCenterView("Person");
 	}
 	
 }
