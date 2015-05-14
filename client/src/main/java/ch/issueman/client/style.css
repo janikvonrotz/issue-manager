@@ -97,19 +97,16 @@ Label.default{
 }
 
 Label.title{
-	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
 	-fx-font-size: 36pt;
 }
 
 Label.subtitle{
-	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
 	-fx-font-size: 20pt;
 }
 
 Label.tableTitle{
-	-fx-background-color: #ffffff;
 	-fx-text-fill: #939382;
 	-fx-font-size: 10pt;
 }
