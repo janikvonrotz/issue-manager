@@ -165,7 +165,7 @@ public class MangelView implements Viewable<Mangel, Mangel> {
 
 	@Override
 	public void showDetail(Mangel t) {
-		ViewableDetail<Mangel> view = MainView.showCenterDetailView("MangelDetailView");
+		ViewableDetail<Mangel> view = MainView.showCenterDetailView("MangelDetail");
 		view.initData(t);
 	}
 

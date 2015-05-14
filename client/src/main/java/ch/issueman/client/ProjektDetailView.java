@@ -357,7 +357,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				MainView.showError(e);
 			}
 
-			
 			if (Context.getLogin().getPerson() instanceof Sachbearbeiter){
 				sbForm();
 			} else if (Context.getLogin().getPerson() instanceof Bauleiter){
@@ -366,16 +365,11 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				
 				try {
 					subunternehmen = ((Kontakt) Context.getLogin().getPerson()).getSubunternehmen();
-//					ObservableList<Kontakt> kontakte = FXCollections.observableArrayList(((kontaktcontroller.getAll()).stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).collect(Collectors.toList())));
-//					cbKontakt.setItems(kontakte);
-//					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
-//							collect(Collectors.toList()).get(0);
-					
-					List<Kontakt> kontakte = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().equals(subunternehmen)).collect(Collectors.toList());
+					List<Kontakt> kontakte = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().getFirmenname().equals(subunternehmen.getFirmenname())).collect(Collectors.toList());
 					cbKontakt.setItems(FXCollections.observableArrayList(kontakte));
+
 					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
 							collect(Collectors.toList()).get(0);
-					
 					cbKontakt.setValue(kOld);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
