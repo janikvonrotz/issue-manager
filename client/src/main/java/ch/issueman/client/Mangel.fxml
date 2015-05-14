@@ -28,7 +28,8 @@
          <children>
             <TableView fx:id="tvDataAbzuklären" layoutX="14.0" layoutY="109.0" onMouseClicked="#doubleClickData" prefHeight="110.0" prefWidth="970.0" styleClass="settle" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="109.0">
               <columns>
-                <TableColumn fx:id="tcMangelAbzuklären" prefWidth="232.0" text="Mangel" />
+                  <TableColumn prefWidth="145.0" text="Referenz" />
+                <TableColumn fx:id="tcMangelAbzuklären" prefWidth="343.0" text="Mangel" />
                 <TableColumn fx:id="tcSubunternehmenAbzuklären" prefWidth="217.0" text="Subunternehmen" />
                   <TableColumn fx:id="tcKommentarAbzuklären" prefWidth="222.0" text="Kommentar" />
               </columns>
@@ -43,6 +44,7 @@
          <children>
             <TableView fx:id="tvDataAbgeschlossen" layoutX="24.0" layoutY="119.0" prefHeight="110.0" prefWidth="970.0" styleClass="completed" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="470.0">
                <columns>
+                  <TableColumn prefWidth="75.0" text="Referenz" />
                   <TableColumn fx:id="tcMangelAbgeschlossen" prefWidth="229.0" text="Mangel" />
                   <TableColumn fx:id="tcSubunternehmenAbgeschlossen" prefWidth="219.0" text="Subunternehmen" />
                   <TableColumn fx:id="tcKommentarAbgeschlossen" prefWidth="223.0" text="Kommentar" />
@@ -54,17 +56,34 @@
          </children>
       </StackPane>
       <Label layoutX="14.0" layoutY="237.0" styleClass="tableTitle" text="beauftragt" AnchorPane.leftAnchor="10.0" />
-      <Label layoutX="462.0" layoutY="237.0" styleClass="tableTitle" text="angenommen" />
-      <Label layoutX="782.0" layoutY="237.0" styleClass="tableTitle" text="behoben" />
-      <StackPane layoutX="16.0" layoutY="260.0" AnchorPane.leftAnchor="10.0">
-         <children>
-            <TableView layoutX="16.0" layoutY="260.0" prefHeight="182.0" prefWidth="237.0" styleClass="process">
-              <columns>
-                <TableColumn prefWidth="125.66666412353516" text="Mangel" />
-                <TableColumn prefWidth="110.33333587646484" text="C2" />
-              </columns>
-            </TableView>
-         </children>
-      </StackPane>
+      <Label layoutX="350.0" layoutY="237.0" styleClass="tableTitle" text="angenommen" />
+      <Label layoutX="690.0" layoutY="237.0" styleClass="tableTitle" text="behoben" />
+      <TableView layoutX="10.0" layoutY="260.0" prefHeight="180.0" prefWidth="300.0" styleClass="process" AnchorPane.leftAnchor="10.0">
+        <columns>
+          <TableColumn prefWidth="74.0" text="Referenz" />
+          <TableColumn prefWidth="224.0" text="Mangel" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TableView layoutX="350.0" layoutY="260.0" prefHeight="180.0" prefWidth="300.0" styleClass="process">
+         <columns>
+            <TableColumn prefWidth="77.0" text="Referenz" />
+            <TableColumn prefWidth="221.0" text="Mangel" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <TableView layoutX="740.0" layoutY="260.0" prefHeight="180.0" prefWidth="300.0" styleClass="process" AnchorPane.rightAnchor="10.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Referenz" />
+            <TableColumn prefWidth="223.0" text="Mangel" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </children>
 </AnchorPane>
