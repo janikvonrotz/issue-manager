@@ -58,7 +58,7 @@
       <Label layoutX="782.0" layoutY="237.0" text="behoben" />
       <StackPane layoutX="16.0" layoutY="260.0" AnchorPane.leftAnchor="10.0">
          <children>
-            <TableView layoutX="16.0" layoutY="260.0" prefHeight="182.0" prefWidth="237.0">
+            <TableView layoutX="16.0" layoutY="260.0" prefHeight="182.0" prefWidth="237.0" styleClass="process">
               <columns>
                 <TableColumn prefWidth="125.66666412353516" text="Mangel" />
                 <TableColumn prefWidth="110.33333587646484" text="C2" />
