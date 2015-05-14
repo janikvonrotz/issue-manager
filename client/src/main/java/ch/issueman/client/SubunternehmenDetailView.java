@@ -2,6 +2,7 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -40,8 +41,9 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Ort, Integer> ortcontroller = new Controller<Ort, Integer>(Ort.class);
 	private Subunternehmen subunternehmen;
+	private List<Kontakt> kList;
 
-	private FilteredList<Kontakt> filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(),	p -> true);
+	private FilteredList<Kontakt> filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(),	t -> true);
 
 	
 	@FXML
@@ -72,21 +74,21 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	private TableView<Kontakt> tvKontakt;
 	
 	@FXML
-	private TableColumn<Kontakt, Integer> tcNachname;
+	private TableColumn<Kontakt, String> tcNachname;
 	
 	@FXML
-	private TableColumn<Kontakt, Integer> tcVorname;
+	private TableColumn<Kontakt, String> tcVorname;
 	
 	@FXML
-	private TableColumn<Kontakt, Integer> tcEmail;
+	private TableColumn<Kontakt, String> tcEmail;
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		tcNachname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("nachname"));
-		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("vorname"));
-		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, Integer>("email"));
+		tcNachname.setCellValueFactory(new PropertyValueFactory<Kontakt, String>("nachname"));
+		tcVorname.setCellValueFactory(new PropertyValueFactory<Kontakt, String>("vorname"));
+		tcEmail.setCellValueFactory(new PropertyValueFactory<Kontakt, String>("email"));
 		
 		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
@@ -153,18 +155,8 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	
 	public void Refresh(){
 		
-		ObservableList<Kontakt> kontaktList = null;
-		
 		try {
 			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
-			
-			filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kontaktcontroller.
-					getAll().stream().filter(p -> p.getSubunternehmen().equals(subunternehmen)).
-					collect(Collectors.toList())),	p -> true);
-			SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
-			sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
-			tvKontakt.setItems(sortedData);
-
 		} catch (Exception e) {
 			MainView.showError(e);
 		}
@@ -174,6 +166,19 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			txFirma.setText(subunternehmen.getFirmenname());
 	    	txStrasse.setText(subunternehmen.getAdresse().getStrasse());
 	    	cbOrt.setValue(subunternehmen.getAdresse().getOrt());
+	    	
+			try {
+				kList = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().getFirmenname().
+						equals(subunternehmen.getFirmenname())).collect(Collectors.toList());
+				filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kList),	t -> true);
+				SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
+				sortedData.comparatorProperty().bind(tvKontakt.comparatorProperty());
+				tvKontakt.setItems(sortedData);
+
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
+
 		
 			if (!Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
 				txFirma.setDisable(true);
