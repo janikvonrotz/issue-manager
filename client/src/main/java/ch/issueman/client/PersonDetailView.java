@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -244,11 +246,14 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	public void Refresh(){
 		
 		try {
-			ObservableList<Rolle> rollenList = FXCollections.observableArrayList(rollecontroller.getAll());
-			rollenList.add(new Rolle("Bauherr"));
-			cbRolle.setItems(rollenList);
+			ObservableList<Rolle> rList = FXCollections.observableArrayList(rollecontroller.getAll());
+			rList.add(new Rolle("Bauherr"));
+			cbRolle.setItems(rList);
+
 			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
-			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+
+			List<Ort> oList = ortcontroller.getAll();
+			cbOrt.setItems(new SortedList<Ort>(FXCollections.observableArrayList(oList)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			MainView.showError(e);

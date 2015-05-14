@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -316,7 +317,9 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	public void Refresh(){
 		
 		try {
-			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+			List<Ort> oList = ortcontroller.getAll();
+			cbOrt.setItems(new SortedList<Ort>(FXCollections.observableArrayList(oList)));
+			
 			cbArbeitstyp.setItems(FXCollections.observableArrayList(arbeitstypcontroller.getAll()));
 			cbProjekttyp.setItems(FXCollections.observableArrayList(projekttypcontroller.getAll()));
 			cbBauherr.setItems(FXCollections.observableArrayList(bauherrcontroller.getAll()));

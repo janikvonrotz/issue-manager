@@ -1,6 +1,8 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.text.Collator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -156,7 +158,8 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	public void Refresh(){
 		
 		try {
-			cbOrt.setItems(FXCollections.observableArrayList(ortcontroller.getAll()));
+			List<Ort> oList = ortcontroller.getAll();
+			cbOrt.setItems(new SortedList<Ort>(FXCollections.observableArrayList(oList)));
 		} catch (Exception e) {
 			MainView.showError(e);
 		}
