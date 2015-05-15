@@ -8,7 +8,6 @@ import ch.issueman.common.Bauherr;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
 import ch.issueman.common.Person;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -43,6 +43,9 @@ public class PersonView implements Viewable<Login, Login> {
 
 	@FXML
 	private TextField txFilter;
+	
+	@FXML
+	private Button btAddPerson;
 
 	@FXML
 	private TableColumn<Login, Integer> tcId;
@@ -154,6 +157,11 @@ public class PersonView implements Viewable<Login, Login> {
 		        }
 		    }
 		});
+	}
+	
+	@FXML
+	public void clickNeu() {
+		 MainView.showCenterDetailView("PersonDetail");
 	}
 
 	@Override
