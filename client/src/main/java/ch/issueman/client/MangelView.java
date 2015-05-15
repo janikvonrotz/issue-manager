@@ -3,11 +3,11 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
@@ -104,8 +104,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbgeschlossen;
-
-	private Projekt projekt;
 
 	
 	@Override
@@ -213,43 +211,31 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@Override
 	public void Refresh() {
-		
-		System.out.println(projekt);
-				
 		try {
-			List<Mangel> list = null;
-			if(projekt != null){
-				list = controller.getAll().stream().filter(p -> p.getProjekt().equals(projekt)).collect(Collectors.toList());
-			}else{
-				list = controller.getAll();
-			}
 			
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(list), p -> p.getMangelstatus().getStatus().equals("abzuklären"));
+			ObservableList<Mangel> list = FXCollections.observableArrayList(controller.getAll());
+			
+			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
 			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
 			tvDataAbzuklären.setItems(sortedDataAbzuklären);
 			
-//			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abzuklären"));
-//			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
-//			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
-//			tvDataAbzuklären.setItems(sortedDataAbzuklären);
-			
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("beauftragt"));
+			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("beauftragt"));
 			SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
 			sortedDataBeauftragt.comparatorProperty().bind(tvDataBeauftragt.comparatorProperty());
 			tvDataBeauftragt.setItems(sortedDataBeauftragt);
 			
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("angenommen"));
+			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("angenommen"));
 			SortedList<Mangel> sortedDataAngenommen = new SortedList<Mangel>(filteredData);
 			sortedDataAngenommen.comparatorProperty().bind(tvDataAngenommen.comparatorProperty());
 			tvDataAngenommen.setItems(sortedDataAngenommen);
 			
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("behoben"));
+			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("behoben"));
 			SortedList<Mangel> sortedDataBehoben = new SortedList<Mangel>(filteredData);
 			sortedDataBehoben.comparatorProperty().bind(tvDataBehoben.comparatorProperty());
 			tvDataBehoben.setItems(sortedDataBehoben);
 			
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
+			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
 			SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
 			sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
 			tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
@@ -325,14 +311,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void clickNeu() {
-		btAddMangel.setOnMousePressed(new EventHandler<MouseEvent>() {
-		    @Override
-		    public void handle(MouseEvent event) {
-		        if (event.isPrimaryButtonDown()) {
-		        	MainView.showCenterDetailView("MangelDetail");
-		        }
-		    }
-		});
+		 MainView.showCenterDetailView("MangelDetail");
 	}
 
 	@Override
