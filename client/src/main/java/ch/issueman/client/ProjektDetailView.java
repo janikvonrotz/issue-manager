@@ -423,15 +423,19 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 					.atZone(ZoneId.systemDefault()).toInstant()));
 			
 			projekt.setBauherr(cbBauherr.getValue());
-			
-//			kOld.getProjekte().remove(projekt);
-//			kNew = cbKontakt.getValue();
-//			kNew.getProjekte().add(projekt);
-			
+						
 			try {
 				projektcontroller.update(projekt);
-//				kontaktcontroller.update(kOld);
-//				kontaktcontroller.update(kNew);
+				
+				if(kOld != null){
+					kOld.getProjekte().remove(projekt);
+					kontaktcontroller.update(kOld);
+				}
+				
+				kNew = cbKontakt.getValue();
+				kNew.getProjekte().add(projekt);
+				kontaktcontroller.update(kNew);			
+				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
