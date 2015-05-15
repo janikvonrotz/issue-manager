@@ -11,6 +11,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,6 +38,9 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@FXML
 	private TextField txFilter;
+	
+	@FXML
+	private Button btAddMangel;
 	
 	// Tabelle "abzuklären"
 	@FXML
@@ -296,6 +300,18 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 		        	Mangel t = tvDataAbgeschlossen.getSelectionModel().getSelectedItem();;
 		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void clickNeu() {
+		btAddMangel.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown()) {
+		        	MainView.showCenterDetailView("MangelDetail");
 		        }
 		    }
 		});
