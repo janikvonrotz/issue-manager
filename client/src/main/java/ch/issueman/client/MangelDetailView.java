@@ -289,6 +289,8 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 
 		} else {
 	    	lbMangel.setText("neuer mangel");
+	    	cbStatus.getSelectionModel().select(0);
+	    	cbStatus.setDisable(true);
 	    	tvKommentar.setVisible(false);
 	    	taKommentar.setVisible(false);
 	    	btSend.setVisible(false);
@@ -340,45 +342,42 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 
 			try {
 				mangelcontroller.update(mangel);
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
 			
 		}else{
 			
-			// Das Erstellen der Referenz sollte vielleicht in die Mangelklasse unter @PrePersist
-			int ref = 0;
+			int ref = 1;
 			try {
-				List<Mangel> mangelList = FXCollections.observableArrayList(mangelcontroller.getAll());
-				for(Mangel m : mangelList){
-					if (m.getProjekt() == cbProjekt.getValue()){
-						if(m.getReferenz() > ref){
-							ref = m.getReferenz();
-						}
-					}
-				}
-			} catch (Exception e1) {
+				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().
+						equals(cbProjekt.getValue())).collect(Collectors.toList());
+				ref = mList.size();
+				
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
-			ref += 1;
 			
 			Calendar c = new GregorianCalendar();
-			c.setTime(Date.from(dpFrist.getValue().atStartOfDay()
-					.atZone(ZoneId.systemDefault()).toInstant()));
-						
+			c.setTime(Date.from(dpFrist.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+			
+			List<Kommentar> kList = new ArrayList<Kommentar>();
+			
 			mangel = new Mangel(ref, txBeschreibung.getText(), Context.getLogin().getPerson(),
-					null, cbStatus.getValue(), cbSubunternehmen.getValue(), c,
+					kList, cbStatus.getValue(), cbSubunternehmen.getValue(), c,
 					cbProjekt.getValue());
 
 			try {
 				mangelcontroller.persist(mangel);
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
-		}	
+		}
+		
+		showList();
 	}
 
 	@Override
