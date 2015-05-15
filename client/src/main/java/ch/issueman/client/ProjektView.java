@@ -2,7 +2,10 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Projekt;
@@ -21,7 +24,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-
 import ch.issueman.client.MainView;
 /**
  * List view for Projekt
@@ -151,8 +153,13 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	}
 	
 	@FXML
-	public void clickExport(){
-		MainView.exportData(filteredData);
+	public void export(){
+		List<String> list = new ArrayList<String>();
+		list.add("ID");
+		list.add("Titel");
+		tvData.getItems().stream().forEach(p -> list.add(p.getId())) 
+				list.add(p.getTitel()));
+		MainView.exportData(list, 2);
 	}
 	@Override
 	public void initData(Projekt t) {
