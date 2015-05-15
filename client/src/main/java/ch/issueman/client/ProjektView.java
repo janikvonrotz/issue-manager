@@ -66,9 +66,6 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));

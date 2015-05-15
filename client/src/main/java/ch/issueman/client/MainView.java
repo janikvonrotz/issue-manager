@@ -146,7 +146,7 @@ public class MainView implements Initializable {
             for(List<String> r : list){
 	        	content += String.join(";", r) + "\n";
 	        }
-	        FileUtils.writeStringToFile(file, content, "UTF-8");
+	        FileUtils.writeStringToFile(file, content);
 	    } catch (Exception e) {
 	    	MainView.showError(e);
 	    }
