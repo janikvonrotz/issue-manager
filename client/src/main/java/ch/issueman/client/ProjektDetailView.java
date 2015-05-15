@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
@@ -101,7 +103,13 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private TextField txProjektleiter;
 	
 	@FXML
+	private Button btProjektleiter;
+	
+	@FXML
 	private TextArea taSubunternehmen;
+	
+	@FXML
+	private Button btSubunternehmen;
 	
 	@FXML
 	private ComboBox<Kontakt> cbKontakt;
@@ -327,7 +335,8 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
-
+    	txProjektleiter.setEditable(false);
+    	taSubunternehmen.setEditable(false);
 		
 		if(projekt != null){
 		
@@ -349,9 +358,8 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				List<Kontakt> kList = kontaktcontroller.getAll().stream().filter(k -> k.getProjekte().contains(projekt)).collect(Collectors.toList());
 				if(kList != null){
 					kList.forEach(k -> s += k.getSubunternehmen().getFirmenname() + ", ");
-				}
-				taSubunternehmen.setText(s.substring(0, s.length()-2));	
-				
+					taSubunternehmen.setText(s.substring(0, s.length()-2));
+				}	
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
@@ -454,11 +462,16 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		view.initData(null);
 	}
 
-	public void showZugewiesene(Projekt p) {
-		Viewable<Projekt, Projekt> view = MainView.showCenterView("Projekt");
-		view.initData(p);
+	public void showProjektleitung() {
+		Viewable<Projekt, Projekt> view = MainView.showCenterView("Projektleitung");
+		view.initData(projekt);
 	}
-	
+
+	public void showZugewiesene() {
+		Viewable<Projekt, Projekt> view = MainView.showCenterView("SubunternehmenZugewiesene");
+		view.initData(projekt);
+	}
+
 	public void sbForm(){
 		txTitel.setDisable(false);
 		txStrasse.setDisable(false);

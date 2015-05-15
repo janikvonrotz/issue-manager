@@ -54,8 +54,18 @@
                         <Label styleClass="default" text="kontaktperson" GridPane.rowIndex="10" />
                         <TextField fx:id="txTitel" prefHeight="65.0" prefWidth="556.0" styleClass="default" GridPane.columnIndex="1" />
                         <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="txProjektleiter" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" styleClass="default" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <TextField fx:id="txProjektleiter" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" text="i" />
+                           </children>
+                        </HBox>
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <children>
+                              <TextArea fx:id="taSubunternehmen" prefHeight="93.0" prefWidth="738.0" styleClass="default" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" text="+" />
+                           </children>
+                        </HBox>
                         <ComboBox fx:id="cbOrt" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ComboBox fx:id="cbArbeitstyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ComboBox fx:id="cbProjekttyp" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />

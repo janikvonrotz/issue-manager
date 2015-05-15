@@ -2,6 +2,7 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -253,7 +254,9 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	cbProjekt.setDisable(true);
 	    	txBeschreibung.setText(mangel.getMangel());
 	    	cbSubunternehmen.setValue(mangel.getSubunternehmen());
-//	    	dpFrist.setValue(mangel.getErledigenbis());
+	    	dpFrist.setValue(mangel.getErledigenbis().toInstant()
+	    			.atZone(ZoneId.systemDefault()).toLocalDate());
+
 	    	cbStatus.setValue(mangel.getMangelstatus());
 			tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 	    	tvKommentar.setVisible(true);
