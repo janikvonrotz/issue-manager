@@ -469,7 +469,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	}
 
 	public void showZugewiesene() {
-		Viewable<Projekt, Projekt> view = MainView.showCenterView("SubunternehmenZugewiesene");
+		Viewable<Projekt, Projekt> view = MainView.showCenterView("SubunternehmenZugewiesen");
 		view.initData(projekt);
 	}
 
