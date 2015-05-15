@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitMenuButton;
 
 /**
  * Default view for top pane.
@@ -14,17 +15,24 @@ import javafx.fxml.FXML;
  */
 
 public class TopDefaultView implements ViewableDetail<Object> {
+	
+	@FXML
+	SplitMenuButton smButton;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Standardmässig Left Mangel view anzeigen
+		smButton.setText("Eingeloggt als: " + Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
+		
 	}
 	
 
 
 	@Override
 	public void Refresh() {
+		
 	}
 
 	@Override
@@ -44,5 +52,16 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickAdmin() {
 		MainView.showLeftView("LeftAdmin");
+	}
+	
+	@FXML
+	public void clickLogout() {
+		Context.logout();
+	}
+	
+	@FXML
+	public void clickPasswortwechsel() {
+		MainView.showCenterDetailView("Passwort");
+	
 	}
 }
