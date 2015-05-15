@@ -153,7 +153,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	}
 	
 	@FXML
-	public void export(){
+	public void clickExport(){
 		List<String> list = new ArrayList<String>();
 		list.add("ID");
 		list.add("Titel");
