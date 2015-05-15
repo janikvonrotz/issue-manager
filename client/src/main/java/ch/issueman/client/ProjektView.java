@@ -157,13 +157,19 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		list.add(new ArrayList<String>(){{
 		    add("Id");
 		    add("Titel");
-		    add("Beginn");
+		    add("Projekttyp");
+		    add("Arbeitstyp");
+		    add("Bauherr");
+		    add("End Datum");
 		}});
 		// add content from list view
 		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
 			add(""+p.getId());
 			add(p.getTitle());
-			add(FormatHelper.formatDate(p.getBeginn()));
+			add(p.getProjekttyp().getProjekttyp());
+			add(p.getArbeitstyp().getArbeitstyp());
+			add(p.getBauherr().getUnternehmen().getFirmenname());
+			add(FormatHelper.formatDate(p.getEnde()));
 		}}));
 		
 		MainView.exportData(list);
