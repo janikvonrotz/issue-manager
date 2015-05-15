@@ -14,7 +14,7 @@
          <children>
             <TableView fx:id="tvData" layoutY="52.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
               <columns>
-                <TableColumn fx:id="tcId" prefWidth="41.0" text="ID" />
+                <TableColumn fx:id="tcReferenz" prefWidth="41.0" text="Referenz" />
                 <TableColumn fx:id="tcTitel" prefWidth="105.0" text="Titel" />
                   <TableColumn fx:id="tcProjekttyp" prefWidth="86.0" text="Projekttyp" />
                   <TableColumn fx:id="tcArbeitstyp" prefWidth="86.0" text="Arbeitstyp" />

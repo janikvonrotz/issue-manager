@@ -44,7 +44,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	private Button btExport;
 
 	@FXML
-	private TableColumn<Projekt, Integer> tcId;
+	private TableColumn<Projekt, String> tcReferenz;
 
 	@FXML
 	private TableColumn<Projekt, String> tcTitel;
@@ -67,7 +67,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
+		tcReferenz.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getDisplayName());
+			}
+		});
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
 		tcProjekttyp.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
@@ -86,7 +90,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 //		});
 		tcBauherr.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				return new SimpleStringProperty(param.getValue().getBauherr().getUnternehmen().getFirmenname());
+				return new SimpleStringProperty(param.getValue().getBauherr().getDisplayName());
 			}  
 		});	
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
@@ -108,7 +112,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 									+ t.getArbeitstyp().getArbeitstyp() 
 									+ t.getProjekttyp().getProjekttyp()
 									+ t.getBauherr().getUnternehmen().getFirmenname()
-									+ t.getId();
+									+ t.getDisplayName();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
@@ -152,7 +156,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		// add header
 		list.add(new ArrayList<String>(){{
-		    add("Id");
+		    add("Referenz");
 		    add("Titel");
 		    add("Projekttyp");
 		    add("Arbeitstyp");
@@ -161,11 +165,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		}});
 		// add content from list view
 		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
-			add(""+p.getId());
+			add(p.getDisplayName());
 			add(p.getTitle());
 			add(p.getProjekttyp().getProjekttyp());
 			add(p.getArbeitstyp().getArbeitstyp());
-			add(p.getBauherr().getUnternehmen().getFirmenname());
+			add(p.getBauherr().getDisplayName());
 			add(FormatHelper.formatDate(p.getEnde()));
 		}}));
 		
