@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,9 +11,13 @@ import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -26,6 +31,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.stage.FileChooser;
 
 /**
  * Main view controller that holds the border pane and handles the view navigation.
@@ -129,38 +135,23 @@ public class MainView implements Initializable {
 		return loader.getController();
 	}
 	
-	public static <T> void exportData(FilteredList<T> list){
-		String CSV_SEPARATOR = ",";
-	    try {
-	        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
-	                new FileOutputStream("results.csv"), "UTF-8"));
-	        for (T l : list ) {
-	        	l.toString();
-	        	Iterator<T> it = list.iterator();
-	            StringBuffer oneLine = new StringBuffer();
-	            
-	            while (it.hasNext()) {
-	                Object value = it.next();
-
-	                if(value !=null){
-	                    oneLine.append(value.toString());
-	                    }
-
-	                if (it.hasNext()) {
-	                    oneLine.append(CSV_SEPARATOR);
-	                }
-	            }
-	            bw.write(oneLine.toString());
-	            bw.newLine();
+	public static void exportData(ArrayList<ArrayList<String>> list){
+		try {
+			FileChooser fileChooser = new FileChooser();
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+            fileChooser.getExtensionFilters().add(extFilter);
+            File file = fileChooser.showSaveDialog(null);
+            
+            String content = "";
+            for(List<String> r : list){
+	        	content += String.join(";", r) + "\n";
 	        }
-	        bw.flush();
-	        bw.close();
-	    } catch (UnsupportedEncodingException e) {
-	    } catch (FileNotFoundException e) {
-	    } catch (IOException e) {
+	        FileUtils.writeStringToFile(file, content, "UTF-8");
+	    } catch (Exception e) {
+	    	MainView.showError(e);
 	    }
 	}
-	
+
 	public static void showError(Exception e) {
 //		Alert alert = new Alert(AlertType.ERROR);
 //		alert.setTitle("Error");

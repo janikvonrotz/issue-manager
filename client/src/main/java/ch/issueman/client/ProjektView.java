@@ -1,13 +1,9 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-
-import ch.issueman.common.ConfigHelper;
+import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Projekt;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -98,7 +94,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});	
 		tcEnddatum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getEnde().getTime()));
+				return new SimpleStringProperty(FormatHelper.formatDate(param.getValue().getEnde()));
 			}  
 		});
 
@@ -152,14 +148,25 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});
 	}
 	
+	@SuppressWarnings("serial")
 	@FXML
 	public void clickExport(){
-		List<String> list = new ArrayList<String>();
-		list.add("ID");
-		list.add("Titel");
-		tvData.getItems().stream().forEach(p -> list.add(p.getId())) 
-				list.add(p.getTitel()));
-		MainView.exportData(list, 2);
+		
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+		// add header
+		list.add(new ArrayList<String>(){{
+		    add("Id");
+		    add("Titel");
+		    add("Beginn");
+		}});
+		// add content from list view
+		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
+			add(""+p.getId());
+			add(p.getTitle());
+			add(FormatHelper.formatDate(p.getBeginn()));
+		}}));
+		
+		MainView.exportData(list);
 	}
 	@Override
 	public void initData(Projekt t) {
