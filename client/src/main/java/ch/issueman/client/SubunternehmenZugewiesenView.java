@@ -4,8 +4,10 @@ import java.net.URL;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 
@@ -50,27 +52,30 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
-	private static Controller<Person, Integer> controller = new Controller<Person, Integer>(Person.class);
-	
+
+	private FilteredList<Kontakt> filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(),	p -> true);
+
 	private Projekt projekt;
+	private List<Kontakt> kontakte;
+	private List<Kontakt> kSelection;
 	
 	@FXML
-	private TableView<Subunternehmen> tvData; 
+	private TableView<Kontakt> tvData; 
 	
 	@FXML
 	private TextField txFilter;
 	
 	@FXML
-	private TableColumn<Subunternehmen, String> tcSubunternehmen; 
+	private TableColumn<Kontakt, String> tcSubunternehmen; 
 	
 	@FXML 
-	private TableColumn<Person, String> tcPerson;
+	private TableColumn<Kontakt, String> tcPerson;
 	
 	@FXML 
 	private ComboBox<Subunternehmen> cbSubunternehmen;
 	
 	@FXML 
-	private ComboBox<Person> cbKontakt;	
+	private ComboBox<Kontakt> cbKontakt;	
 	
 	@FXML
 	private Button btSpeichern; 
@@ -81,15 +86,15 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		tcSubunternehmen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Firmenname, String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Firmenname, String> param) {
-				return new SimpleStringProperty(param.getValue().getSubunternehmen().getDisplayName());
+		tcSubunternehmen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kontakt, String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Kontakt, String> param) {
+				return new SimpleStringProperty(param.getValue().getSubunternehmen().getFirmenname());
 			}  
 		});	
 				
-		tcPerson.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-				return new SimpleStringProperty(param.getValue().getKontaktperson().getDisplayName());
+		tcPerson.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kontakt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Kontakt, String> param) {
+				return new SimpleStringProperty(param.getValue().getDisplayName());
 				}  
 		});	
 		
@@ -102,8 +107,8 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 							}
 
 							String lowerCaseFilter = newValue.toLowerCase();
-							String objectvalues = t.getSubunternehmen().getDisplayName()
-									+ t.getKontaktperson().getDisplayName();
+							String objectvalues = t.getSubunternehmen().getFirmenname()
+									+ t.getDisplayName();
 	
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
@@ -122,7 +127,7 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
                         super.updateItem(s, bln);
                          
                         if(s != null){
-                            setText(s.getDisplayName());
+                            setText(s.getFirmenname());
                         }else{
                             setText(null);
                         }
@@ -132,17 +137,17 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 			}
         });
 		
-		cbKontakt.setConverter(new StringConverter<Kontakt>() {
+		cbSubunternehmen.setConverter(new StringConverter<Subunternehmen>() {
             private Map<String, Object> map = new HashMap<>();
 
  			@Override
-			public Kontakt fromString(String arg0) {
+			public Subunternehmen fromString(String arg0) {
 				return null;
 			}
 
-			public String toString(Kontakt s) {
+			public String toString(Subunternehmen s) {
                if (s != null) {
-                    String str = s.getDisplayName();
+                    String str = s.getFirmenname();
                     map.put(str, s);
                     return str;
                 } else {
@@ -150,6 +155,11 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
                 }
 			}
 		});
+		
+		cbSubunternehmen.setOnAction((event) -> {
+			refreshCbKontakt();
+		});
+
 		
 		cbKontakt.setCellFactory(new Callback<ListView<Kontakt>,ListCell<Kontakt>>(){
 			@Override
@@ -188,39 +198,55 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
                 }
 			}
 		});
+		
 		Refresh();
 	}
 
 	@Override
 	public void Refresh() {
+		
 		try {
-			filteredData = new FilteredList<Subunternehmen>(FXCollections.observableArrayList(projekt.getSubunternehmen()),	p -> true);
-			SortedList<Subunternehmen> sortedData = new SortedList<Subunternehmen>(filteredData);
-			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
-			tvData.setItems(sortedData);
 			
-			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
+			kontakte = kontaktcontroller.getAll().stream().filter(k -> k.getProjekte().contains(projekt)).collect(Collectors.toList());
 			
-			filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(projekt.getKontakt()),	p -> true);
+			
+			filteredData = new FilteredList<Kontakt>(FXCollections.observableArrayList(kontakte),	p -> true);
 			SortedList<Kontakt> sortedData = new SortedList<Kontakt>(filteredData);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 			
-			cbKontakt.setItems(FXCollections.observableArrayList(kontaktcontroller.getAll()));
+			List<Subunternehmen> sSelection = subunternehmencontroller.getAll();
+			kontakte.forEach(k -> sSelection.remove(k.getSubunternehmen()));
+					
+			cbSubunternehmen.setItems(FXCollections.observableArrayList(sSelection));
+			
+			refreshCbKontakt();
+			
 		} catch (Exception e) {
 			MainView.showError(e);
 		}
 	}
+	
+	public void refreshCbKontakt(){
+		try {
+			kSelection = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().getFirmenname().
+					equals(cbSubunternehmen.getValue().getFirmenname())).collect(Collectors.toList());
+			
+			cbKontakt.setItems(FXCollections.observableArrayList(kSelection));
+		} catch (Exception e) {
+			MainView.showError(e);
+		}
+
+	}
 
 	@FXML
 	public void clickSpeichern(){
-		Projektleitung p = new Projektleitung();
-		p.setBauleiter(cbBauleiter.getValue());
 		
-		projekt.getProjektleitungen().add(p);
+		Kontakt k = cbKontakt.getValue();
+		k.getProjekte().add(projekt);
 		
 		try {
-			projektcontroller.update(projekt);
+			kontaktcontroller.update(k);
 		} catch (Exception e) {
 			MainView.showError(e);
 		}
@@ -243,5 +269,4 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 		ViewableDetail<Projekt> view = MainView.showCenterDetailView("ProjektDetail");
 		view.initData(t);
 	}
-
 }

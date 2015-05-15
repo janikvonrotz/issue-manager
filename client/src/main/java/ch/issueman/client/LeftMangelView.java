@@ -4,7 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
+
+import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
+import ch.issueman.common.Subunternehmen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,6 +32,9 @@ public class LeftMangelView implements ViewableDetail<Object> {
 	
 	@FXML
 	private ListView<Projekt> lvProjekt;
+
+
+//	private Projekt t;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -54,15 +61,11 @@ public class LeftMangelView implements ViewableDetail<Object> {
 			                setText(null);
 			            } else {
 			                setText(item.getTitle());
-//			                System.out.println(item.getTitle());
 			            }
 			        }
 			    };
 			});
 			
-			lvProjekt.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			    System.out.println("ListView Selection Changed (selected: " + newValue.toString() + ")");
-			});
 		} catch (Exception e) {			
 			MainView.showError(e);
 		}
@@ -80,6 +83,13 @@ public class LeftMangelView implements ViewableDetail<Object> {
 	}
 	
 	// egänzen list view click methode mit aufruf der der center Mangel View mit Projekt als parameter
+	@FXML
+	public void clickProjekt() {
+		Projekt t = lvProjekt.getSelectionModel().getSelectedItem();
+    	Viewable<Mangel, Projekt> view = MainView.showCenterView("Mangel");
+		view.initData(t);
+//		System.out.println(t);
+	}
 	
 	
 }

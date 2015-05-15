@@ -3,6 +3,7 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -11,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,6 +39,9 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@FXML
 	private TextField txFilter;
+	
+	@FXML
+	private Button btAddMangel;
 	
 	// Tabelle "abzuklären"
 	@FXML
@@ -99,6 +104,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbgeschlossen;
+
+	private Projekt projekt;
 
 	
 	@Override
@@ -206,11 +213,26 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@Override
 	public void Refresh() {
+		
+		System.out.println(projekt);
+				
 		try {
-			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abzuklären"));
+			List<Mangel> list = null;
+			if(projekt != null){
+				list = controller.getAll().stream().filter(p -> p.getProjekt().equals(projekt)).collect(Collectors.toList());
+			}else{
+				list = controller.getAll();
+			}
+			
+			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(list), p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
 			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
 			tvDataAbzuklären.setItems(sortedDataAbzuklären);
+			
+//			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("abzuklären"));
+//			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
+//			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
+//			tvDataAbzuklären.setItems(sortedDataAbzuklären);
 			
 			filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(controller.getAll()),	p -> p.getMangelstatus().getStatus().equals("beauftragt"));
 			SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
@@ -296,6 +318,18 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
 		        	Mangel t = tvDataAbgeschlossen.getSelectionModel().getSelectedItem();;
 		        	showDetail(t);
+		        }
+		    }
+		});
+	}
+	
+	@FXML
+	public void clickNeu() {
+		btAddMangel.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown()) {
+		        	MainView.showCenterDetailView("MangelDetail");
 		        }
 		    }
 		});
