@@ -34,7 +34,7 @@
               </rowConstraints>
                <children>
                   <ComboBox fx:id="cbSubunternehmen" prefWidth="150.0" />
-                  <ComboBox fx:id="cbPerson" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cbKontakt" prefWidth="150.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

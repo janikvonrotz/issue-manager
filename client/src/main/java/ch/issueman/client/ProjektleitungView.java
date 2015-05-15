@@ -33,7 +33,7 @@ import javafx.util.StringConverter;
 /**
  * List view for Projektleitung
  * 
- * @author Sandro Klarer
+ * @author Sandro Klarer, Reno Meyer
  * @version 1.0.0
  * @since 1.0.0
  *
@@ -162,8 +162,6 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
 
 	@Override
 	public void Refresh() {
-		
-		
 		try {
 			filteredData = new FilteredList<Projektleitung>(FXCollections.observableArrayList(projekt.getProjektleitungen()),	p -> true);
 			SortedList<Projektleitung> sortedData = new SortedList<Projektleitung>(filteredData);
