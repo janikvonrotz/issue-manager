@@ -62,10 +62,8 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
-	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 	private Mangel mangel;
 	private List<Mangelstatus> sList;
-	private List<Kommentar> kList;
 	
 	@FXML
 	private Label lbMangel;
