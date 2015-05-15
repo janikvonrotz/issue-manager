@@ -8,40 +8,41 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektView">
+<AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektView">
    <children>
-      <StackPane layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-         <children>
-            <TableView fx:id="tvData" layoutY="52.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-              <columns>
-                <TableColumn fx:id="tcReferenz" prefWidth="41.0" text="Referenz" />
-                <TableColumn fx:id="tcTitel" prefWidth="105.0" text="Titel" />
-                  <TableColumn fx:id="tcProjekttyp" prefWidth="86.0" text="Projekttyp" />
-                  <TableColumn fx:id="tcArbeitstyp" prefWidth="86.0" text="Arbeitstyp" />
-                  <TableColumn fx:id="tcBauleiter" prefWidth="84.0" text="Bauleiter" />
-                  <TableColumn fx:id="tcBauherr" prefWidth="73.0" text="Bauherr" />
-                  <TableColumn fx:id="tcEnddatum" prefWidth="124.0" text="Enddatum" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-         </children>
-      </StackPane>
-      <GridPane layoutX="13.0" layoutY="15.0" prefHeight="25.0" prefWidth="577.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <columns>
+          <TableColumn fx:id="tcReferenz" maxWidth="3000.0" prefWidth="41.0" text="Referenz" />
+          <TableColumn fx:id="tcTitel" prefWidth="105.0" text="Titel" />
+            <TableColumn fx:id="tcProjekttyp" prefWidth="86.0" text="Projekttyp" />
+            <TableColumn fx:id="tcArbeitstyp" prefWidth="86.0" text="Arbeitstyp" />
+            <TableColumn fx:id="tcBauleiter" prefWidth="84.0" text="Bauleiter" />
+            <TableColumn fx:id="tcBauherr" prefWidth="73.0" text="Bauherr" />
+            <TableColumn fx:id="tcEnddatum" prefWidth="124.0" text="Enddatum" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <GridPane layoutX="16.0" layoutY="15.0" prefHeight="38.0" prefWidth="969.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="NEVER" maxWidth="378.0" minWidth="10.0" prefWidth="319.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="207.0" prefWidth="266.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="498.0" minWidth="207.0" prefWidth="266.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="449.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="300.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="25.0" prefWidth="284.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-         	  <Label layoutX="13.0" layoutY="19.0" styleClass="subtitle" text="Projekt" GridPane.rowIndex="1" />
-            <Button fx:id="btExport" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickExport" prefHeight="31.0" prefWidth="156.0" text="Export" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <Button fx:id="btExport" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickExport" text="Export" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         	  <Label styleClass="subtitle" text="Projekt" GridPane.rowIndex="1" />
+            <Button fx:id="btAddProjekt" mnemonicParsing="false" onMouseClicked="#clickNeu" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

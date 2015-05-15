@@ -8,14 +8,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonView">
+<AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonView">
    <children>
       <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
         <columns>
-          <TableColumn fx:id="tcId" prefWidth="41.0" text="ID" />
-          <TableColumn fx:id="tcNachname" prefWidth="112.0" text="Nachname" />
-            <TableColumn fx:id="tcVorname" prefWidth="107.0" text="Vorname" />
-            <TableColumn fx:id="tcEmail" prefWidth="136.0" text="Email" />
+          <TableColumn fx:id="tcId" maxWidth="1500.0" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="tcNachname" prefWidth="100.0" text="Nachname" />
+            <TableColumn fx:id="tcVorname" prefWidth="100.0" text="Vorname" />
+            <TableColumn fx:id="tcEmail" prefWidth="200.0" text="Email" />
             <TableColumn fx:id="tcRolle" prefWidth="91.0" text="Rolle" />
             <TableColumn fx:id="tcFirma" prefWidth="112.0" text="Firma" />
         </columns>
@@ -23,22 +23,21 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane layoutX="15.0" layoutY="15.0" prefHeight="69.0" prefWidth="485.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <GridPane layoutX="15.0" layoutY="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="85.0" prefWidth="85.0" />
             <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints hgrow="NEVER" maxWidth="35.0" minWidth="35.0" prefWidth="35.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="35.0" prefWidth="300.0" />
-            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="525.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="300.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
          	  <Label styleClass="subtitle" text="Person" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="27.0" prefWidth="267.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="4" />
-            <Button fx:id="btAddPerson" mnemonicParsing="false" onMouseClicked="#clickNeu" prefHeight="25.0" prefWidth="29.0" text="+" GridPane.columnIndex="2" />
+            <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="4" />
+            <Button fx:id="btAddPerson" mnemonicParsing="false" onMouseClicked="#clickNeu" prefHeight="25.0" prefWidth="25.0" text="+" GridPane.columnIndex="2" />
          </children>
       </GridPane>
    </children>

@@ -41,6 +41,9 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	private TextField txFilter;
 	
 	@FXML
+	private Button btAddProjekt;
+	
+	@FXML
 	private Button btExport;
 
 	@FXML
@@ -149,10 +152,14 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});
 	}
 	
+	@FXML
+	public void clickNeu() {
+		 MainView.showCenterDetailView("ProjektDetail");
+	}
+	
 	@SuppressWarnings("serial")
 	@FXML
 	public void clickExport(){
-		
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		// add header
 		list.add(new ArrayList<String>(){{
@@ -175,6 +182,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		
 		MainView.exportData(list);
 	}
+	
 	@Override
 	public void initData(Projekt t) {
 		// TODO Auto-generated method stub
