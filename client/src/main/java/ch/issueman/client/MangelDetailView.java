@@ -250,6 +250,20 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	@Override
 	public void Refresh(){
 		
+		try {
+			cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
+			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
+			
+			sList = statuscontroller.getAll().stream().filter(s -> s.getRollen().
+					contains(Context.getLogin().getRolle())).collect(Collectors.toList());
+			cbStatus.setItems(FXCollections.observableArrayList(sList));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			MainView.showError(e);
+		}
+
+		
 		if(mangel != null){
 			
 	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "M" + ("000" + 
@@ -266,19 +280,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	tvKommentar.setVisible(true);
 	    	taKommentar.setVisible(true);
 	    	btSend.setVisible(true);
-
-			try {
-				cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
-				cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
-				
-				sList = statuscontroller.getAll().stream().filter(s -> s.getRollen().
-						contains(Context.getLogin().getRolle())).collect(Collectors.toList());
-				cbStatus.setItems(FXCollections.observableArrayList(sList));
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				MainView.showError(e);
-			}
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
