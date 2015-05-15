@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @SuppressWarnings("serial")
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=true)
 public class Bauherr extends Person {
 	
 	@OneToOne(cascade=CascadeType.ALL)

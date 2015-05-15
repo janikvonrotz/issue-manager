@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @SuppressWarnings("serial")
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper=true)
 public class Subunternehmen extends Unternehmen {
 
 	public Subunternehmen() {

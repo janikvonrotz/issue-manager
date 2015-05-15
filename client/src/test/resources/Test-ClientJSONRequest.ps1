@@ -10,8 +10,10 @@ $Headers = @{
 # Get
 
 $r = $null
-$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/login' -Headers $Headers
+$r = Invoke-WebRequest -Uri 'http://localhost:8080/webservice/mangel' -Headers $Headers
 $r.RawContent
+$r = $r | Convertfrom-json
+$r.count
 
 # Delete
 

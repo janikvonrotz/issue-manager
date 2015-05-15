@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ch.issueman.common;
 
 import javax.persistence.Entity;
@@ -19,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @SuppressWarnings("serial")
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=true)
 public class Sachbearbeiter extends Person {
 	
 	public Sachbearbeiter(){}

@@ -139,7 +139,7 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
         });
 		
 		cbBauleiter.setConverter(new StringConverter<Bauleiter>() {
-            private Map<String, Object> map = new HashMap<>();
+            private Map<Integer, Bauleiter> map = new HashMap<>();
 
  			@Override
 			public Bauleiter fromString(String arg0) {
@@ -148,9 +148,8 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
 
 			public String toString(Bauleiter b) {
                if (b != null) {
-                    String str = b.getDisplayName();
-                    map.put(str, b);
-                    return str;
+                    map.put(b.getId(), b);
+                    return b.getDisplayName();
                 } else {
                     return "";
                 }

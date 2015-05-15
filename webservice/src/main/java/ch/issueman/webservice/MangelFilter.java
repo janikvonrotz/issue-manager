@@ -26,7 +26,7 @@ public class MangelFilter extends TypeFilter<Mangel, Integer> {
 	public List<Mangel> getAll() {
 		if(this.getLogin().getPerson() instanceof Kontakt){
 			return this.getController().getAll().stream()
-					.filter(m -> m.getSubunternehmen().getId() == (((Kontakt) this.getLogin().getPerson()).getSubunternehmen().getId()))
+					.filter(m -> m.getSubunternehmen().equals(((Kontakt) this.getLogin().getPerson()).getSubunternehmen()))
 					.collect(Collectors.toList());
 		}else{
 			return this.getController().getAll();

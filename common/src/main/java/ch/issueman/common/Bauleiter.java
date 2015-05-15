@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @SuppressWarnings("serial")
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=true)
 @JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public class Bauleiter extends Person {
 	
