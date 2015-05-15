@@ -151,7 +151,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	}
 	
 	@FXML
-	public void export(){
+	public void clickExport(){
 		MainView.exportData(filteredData);
 	}
 	@Override
