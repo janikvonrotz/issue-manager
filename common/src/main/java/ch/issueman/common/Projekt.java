@@ -101,11 +101,7 @@ public class Projekt implements Model{
 	 */
 	@JsonIgnore
 	public String getDisplayName(){
-		if(("" + id).length() < 4) {
-			return "P" + ("000" + id).substring(("" + id).length());
-		} else {
-			return "P" + ("" + id).substring(("" + id).length()-3);
-		}
+		return "P" + ("000" + id).substring(("" + id).length()-3);
 	}
 	
 	/**
