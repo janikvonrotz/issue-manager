@@ -4,6 +4,9 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -330,7 +333,8 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			mangel.setMangel(txBeschreibung.getText());
 			mangel.setSubunternehmen(cbSubunternehmen.getValue());
 			mangel.setMangelstatus(cbStatus.getValue());
-//			mangel.setErledigenbis(dpFrist);
+			mangel.getErledigenbis().setTime(Date.from(dpFrist.getValue().atStartOfDay()
+					.atZone(ZoneId.systemDefault()).toInstant()));
 
 			try {
 				mangelcontroller.update(mangel);
@@ -357,10 +361,14 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 				e1.printStackTrace();
 			}
 			ref += 1;
+			
+			Calendar c = new GregorianCalendar();
+			c.setTime(Date.from(dpFrist.getValue().atStartOfDay()
+					.atZone(ZoneId.systemDefault()).toInstant()));
 						
 			mangel = new Mangel(ref, txBeschreibung.getText(), Context.getLogin().getPerson(),
-					null, cbStatus.getValue(), cbSubunternehmen.getValue(), null,
-					cbProjekt.getValue()); //Datum noch lösen (zweites "null")
+					null, cbStatus.getValue(), cbSubunternehmen.getValue(), c,
+					cbProjekt.getValue());
 
 			try {
 				mangelcontroller.persist(mangel);

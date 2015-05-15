@@ -417,9 +417,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			projekt.setArbeitstyp(cbArbeitstyp.getValue());
 			projekt.setProjekttyp(cbProjekttyp.getValue());
 			
-//			projekt.setBeginn();
-//			projekt.setEnde(Date.from(dpEnde.getValue().atStartOfDay()
-//					.atZone(ZoneId.systemDefault()).toInstant()));
+			projekt.getBeginn().setTime(Date.from(dpBeginn.getValue().atStartOfDay()
+					.atZone(ZoneId.systemDefault()).toInstant()));
+			projekt.getEnde().setTime(Date.from(dpEnde.getValue().atStartOfDay()
+					.atZone(ZoneId.systemDefault()).toInstant()));
 			
 			projekt.setBauherr(cbBauherr.getValue());
 			
