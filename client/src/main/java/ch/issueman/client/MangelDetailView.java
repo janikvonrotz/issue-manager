@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -33,20 +31,12 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import ch.issueman.common.Adresse;
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kommentar;
-import ch.issueman.common.Kontakt;
-import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
-import ch.issueman.common.Ort;
-import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
-import ch.issueman.common.Rolle;
-import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
-import ch.issueman.common.Unternehmen;
 
 /**
  * class MangelDetailView
@@ -62,10 +52,8 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
-	private static Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 	private Mangel mangel;
 	private List<Mangelstatus> sList;
-	private List<Kommentar> kList;
 	
 	@FXML
 	private Label lbMangel;
@@ -250,6 +238,20 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	@Override
 	public void Refresh(){
 		
+		try {
+			cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
+			cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
+			
+			sList = statuscontroller.getAll().stream().filter(s -> s.getRollen().
+					contains(Context.getLogin().getRolle())).collect(Collectors.toList());
+			cbStatus.setItems(FXCollections.observableArrayList(sList));
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			MainView.showError(e);
+		}
+
+		
 		if(mangel != null){
 			
 	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "M" + ("000" + 
@@ -266,28 +268,22 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	tvKommentar.setVisible(true);
 	    	taKommentar.setVisible(true);
 	    	btSend.setVisible(true);
-
-			try {
-				cbProjekt.setItems(FXCollections.observableArrayList(projektcontroller.getAll()));
-				cbSubunternehmen.setItems(FXCollections.observableArrayList(subunternehmencontroller.getAll()));
-				
-				sList = statuscontroller.getAll().stream().filter(s -> s.getRollen().
-						contains(Context.getLogin().getRolle())).collect(Collectors.toList());
-				cbStatus.setItems(FXCollections.observableArrayList(sList));
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				MainView.showError(e);
-			}
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
+		    	
+		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
+		    		cbStatus.setDisable(true);
+		    	}
+		    	
 		    	cbSubunternehmen.setDisable(true);
 		    	dpFrist.setDisable(true);
 			}
 
 		} else {
 	    	lbMangel.setText("neuer mangel");
+	    	cbStatus.getSelectionModel().select(0);
+	    	cbStatus.setDisable(true);
 	    	tvKommentar.setVisible(false);
 	    	taKommentar.setVisible(false);
 	    	btSend.setVisible(false);
@@ -339,45 +335,42 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 
 			try {
 				mangelcontroller.update(mangel);
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
 			
 		}else{
 			
-			// Das Erstellen der Referenz sollte vielleicht in die Mangelklasse unter @PrePersist
-			int ref = 0;
+			int ref = 1;
 			try {
-				List<Mangel> mangelList = FXCollections.observableArrayList(mangelcontroller.getAll());
-				for(Mangel m : mangelList){
-					if (m.getProjekt() == cbProjekt.getValue()){
-						if(m.getReferenz() > ref){
-							ref = m.getReferenz();
-						}
-					}
-				}
-			} catch (Exception e1) {
+				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().
+						equals(cbProjekt.getValue())).collect(Collectors.toList());
+				ref = mList.size();
+				
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
-			ref += 1;
 			
 			Calendar c = new GregorianCalendar();
-			c.setTime(Date.from(dpFrist.getValue().atStartOfDay()
-					.atZone(ZoneId.systemDefault()).toInstant()));
-						
+			c.setTime(Date.from(dpFrist.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+			
+			List<Kommentar> kList = new ArrayList<Kommentar>();
+			
 			mangel = new Mangel(ref, txBeschreibung.getText(), Context.getLogin().getPerson(),
-					null, cbStatus.getValue(), cbSubunternehmen.getValue(), c,
+					kList, cbStatus.getValue(), cbSubunternehmen.getValue(), c,
 					cbProjekt.getValue());
 
 			try {
 				mangelcontroller.persist(mangel);
-			} catch (Exception e1) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				MainView.showError(e);
 			}
-		}	
+		}
+		
+		showList();
 	}
 
 	@Override

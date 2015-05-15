@@ -473,7 +473,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 		view.initData(login);
 	}
 	
-	@FXML
 	public void sbForm(){
 		cbSubunternehmen.setVisible(false);
 		txFirma.setVisible(false);
@@ -481,7 +480,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 		cbOrt.setVisible(false);
 	}
 	
-	@FXML
 	public void blForm(){
 		cbSubunternehmen.setVisible(false);
 		txFirma.setVisible(false);
@@ -489,7 +487,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 		cbOrt.setVisible(false);
 	}
 	
-	@FXML
 	public void koForm(){
 		cbSubunternehmen.setVisible(true);
 		txFirma.setVisible(false);
@@ -497,7 +494,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 		cbOrt.setVisible(false);
 	}
 	
-	@FXML
 	public void bhForm(){
 		cbSubunternehmen.setVisible(false);
 		txFirma.setVisible(true);
