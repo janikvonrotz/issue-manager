@@ -16,9 +16,7 @@ import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -33,20 +31,12 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import ch.issueman.common.Adresse;
 import ch.issueman.common.ConfigHelper;
 import ch.issueman.common.Kommentar;
-import ch.issueman.common.Kontakt;
-import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
-import ch.issueman.common.Ort;
-import ch.issueman.common.Person;
 import ch.issueman.common.Projekt;
-import ch.issueman.common.Rolle;
-import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
-import ch.issueman.common.Unternehmen;
 
 /**
  * class MangelDetailView
@@ -281,6 +271,11 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
+		    	
+		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
+		    		cbStatus.setDisable(true);
+		    	}
+		    	
 		    	cbSubunternehmen.setDisable(true);
 		    	dpFrist.setDisable(true);
 			}
