@@ -66,9 +66,6 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Projekt, Integer>("id"));
 		tcTitel.setCellValueFactory(new PropertyValueFactory<Projekt, String>("title"));
@@ -157,13 +154,19 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		list.add(new ArrayList<String>(){{
 		    add("Id");
 		    add("Titel");
-		    add("Beginn");
+		    add("Projekttyp");
+		    add("Arbeitstyp");
+		    add("Bauherr");
+		    add("End Datum");
 		}});
 		// add content from list view
 		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
 			add(""+p.getId());
 			add(p.getTitle());
-			add(FormatHelper.formatDate(p.getBeginn()));
+			add(p.getProjekttyp().getProjekttyp());
+			add(p.getArbeitstyp().getArbeitstyp());
+			add(p.getBauherr().getUnternehmen().getFirmenname());
+			add(FormatHelper.formatDate(p.getEnde()));
 		}}));
 		
 		MainView.exportData(list);
