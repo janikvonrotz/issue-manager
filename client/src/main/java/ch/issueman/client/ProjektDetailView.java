@@ -393,6 +393,11 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		} else {
 			sbForm();
 			lbProjekt.setText("neues projekt");
+			txProjektleiter.setVisible(false);
+			btProjektleiter.setVisible(false);
+			taSubunternehmen.setVisible(false);
+			btSubunternehmen.setVisible(false);
+			chArchivieren.setVisible(false);
 	    }
 	}
 	
@@ -441,11 +446,17 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			}
 		
 		} else {
+			
+			Calendar beginn = new GregorianCalendar();
+			beginn.setTime(Date.from(dpBeginn.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+
+			Calendar ende = new GregorianCalendar();
+			ende.setTime(Date.from(dpEnde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+					
 			try {
 				projektcontroller.persist(new Projekt(txTitel.getText(),
 						new Adresse(txStrasse.getText(), cbOrt.getValue()), cbArbeitstyp.getValue(),
-						cbProjekttyp.getValue(), cbBauherr.getValue(), null, null, null));
-						// add beginn and ende dates (last 2 params)
+						cbProjekttyp.getValue(), cbBauherr.getValue(), new ArrayList<Projektleitung>(), beginn, ende));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
