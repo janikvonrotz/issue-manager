@@ -24,7 +24,7 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// Standardmässig Left Mangel view anzeigen
-		mbBenutzer.setText("Eingeloggt als: " + Context.getLogin().getPerson().getEmail());
+		mbBenutzer.setText(Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
 		
 	}
@@ -53,7 +53,7 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickAdmin() {
 		MainView.showLeftView("LeftAdmin");
-		MainView.showCenterView("Projekt");
+		
 	}
 	
 	@FXML

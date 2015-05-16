@@ -17,7 +17,7 @@ public class LeftAdminView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// anzeigen default center view
-//		MainView.showCenterView("Default");
+		MainView.showCenterView("Projekt");
 		Refresh();
 	}
 
