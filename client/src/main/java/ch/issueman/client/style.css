@@ -29,6 +29,11 @@ Button.topAdmin{
 	-fx-text-fill: white;
 }
 
+MenueButton.top{
+	-fx-background-color: #aaaaaa;
+	-fx-text-fill: white;
+}
+
 ListView.default{
 	-fx-background-color: #ffffff;
 	-fx-text-fill: #486285;
@@ -51,6 +56,10 @@ TextField.default, PasswordField.default, TextArea.default{
 	-fx-background-color: #ffffff;
 }
 
+TableView {
+    -fx-text-fill: white;
+}
+
 TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
@@ -58,6 +67,7 @@ TableView.settle {
     -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
+    -fx-border-widht: 1 1 1 1;
     
 }
 
@@ -67,7 +77,8 @@ TableView.completed {
     -fx-background-color: #719AD1 ;
     -fx-text-fill: white;
     -fx-alignment: center-left;
-}  
+    -fx-border-widht: 1 1 1 1;
+}
 
 TableView.process {
     -fx-base: #939382 ;
@@ -75,6 +86,7 @@ TableView.process {
     -fx-background-color: #486285;
     -fx-text-fill: white;
     -fx-alignment: center-left;
+    -fx-border-widht: 1 1 1 1;
 }  
 
 TableView.comment {
@@ -83,6 +95,7 @@ TableView.comment {
     -fx-background-color: #ffffff;
     -fx-text-fill: #486285;
     -fx-alignment: center-left;
+    -fx-border-widht: 1 1 1 1;
 }  
 
 TableView.default {
@@ -102,6 +115,7 @@ TableView.default {
 .table-view .column-header .label {
     -fx-text-fill: white;
     -fx-alignment: center-left;
+    -fx-font-weight: normal;
 }
 
 Label.default{
@@ -121,5 +135,5 @@ Label.subtitle{
 
 Label.tableTitle{
 	-fx-text-fill: #939382;
-	-fx-font-size: 10pt;
+	-fx-font-size: 20pt;
 }
