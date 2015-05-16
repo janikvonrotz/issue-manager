@@ -52,6 +52,7 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickAdmin() {
 		MainView.showLeftView("LeftAdmin");
+		MainView.showCenterView("Projekt");
 	}
 	
 	@FXML
