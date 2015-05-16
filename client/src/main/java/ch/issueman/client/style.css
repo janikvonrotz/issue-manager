@@ -33,13 +33,18 @@ MenuButton.top{
 	-fx-background-color: white;
 }
 
+
+.menu-item {
+    -fx-text-fill: #486285;
+}
+
 .menu-item .label {
 	 -fx-text-fill: #486285;
 }
 
 .menu-item:focused {
-     -fx-background-color: #939382;
-}
+     -fx-background-color:  #aaaaaa;
+}    
 
 ListView.default{
 	-fx-background-color: #ffffff;
@@ -118,13 +123,13 @@ TableView.default {
     -fx-font-weight: normal;
 }
 
-.table-view .column-header.completed, .table-view .column-header.settle {
-	-fx-font-size: 20pt;
-	-fx-font-weight: bold;
-}
-
 .table-row-cell:empty {
     -fx-background-color: white;
+}
+
+.table-view {
+  -fx-table-cell-border-color: transparent;
+  -fx-background-color: transparent;
 }
 
 Label.default{
