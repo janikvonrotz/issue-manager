@@ -3,6 +3,7 @@ package ch.issueman.client;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Projekt;
 import javafx.beans.property.SimpleStringProperty;
@@ -129,6 +130,14 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	}
 
 	public void Refresh() {
+		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+			btAddProjekt.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+			btAddProjekt.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+			btAddProjekt.setVisible(false);
+		}
+		
 		try {
 			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()), p -> true);
 			SortedList<Projekt> sortedData = new SortedList<Projekt>(filteredData);

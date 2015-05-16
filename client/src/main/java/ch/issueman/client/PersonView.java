@@ -134,6 +134,14 @@ public class PersonView implements Viewable<Login, Login> {
 
 	public void Refresh() {
 		try {
+			if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+				btAddPerson.setVisible(false);
+			} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+				btAddPerson.setVisible(false);
+			} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+				btAddPerson.setVisible(false);
+			}
+			
 			List<Login> list = loginController.getAll();
 			bauherrController.getAll().stream().forEach(b -> list.add(new Login(b, "", null)));
 			

@@ -112,6 +112,14 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 
 	@Override
 	public void Refresh() {
+		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+			btAddSubunternehmen.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+			btAddSubunternehmen.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+			btAddSubunternehmen.setVisible(false);
+		}
+		
 		try {
 			filteredData = new FilteredList<Subunternehmen>(FXCollections.observableArrayList(controller.getAll()),	p -> true);
 			SortedList<Subunternehmen> sortedData = new SortedList<Subunternehmen>(filteredData);
