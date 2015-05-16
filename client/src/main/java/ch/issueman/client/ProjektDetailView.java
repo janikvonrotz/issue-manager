@@ -13,11 +13,8 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -25,30 +22,21 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
-import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
-import ch.issueman.common.Login;
-import ch.issueman.common.Mangel;
-import ch.issueman.common.Mangelstatus;
 import ch.issueman.common.Ort;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Projektleitung;
 import ch.issueman.common.Projekttyp;
 import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
-import ch.issueman.common.Unternehmen;
 
 /**
  * class ProjektDetailView
