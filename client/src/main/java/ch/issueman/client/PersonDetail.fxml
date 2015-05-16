@@ -67,17 +67,17 @@
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="390.0">
                      <children>
-                        <Button fx:id="btPasswort1" mnemonicParsing="false" onAction="#clickPasswort" styleClass="default" text="passwort ändern" GridPane.columnIndex="1">
+                        <Button fx:id="btPasswort" mnemonicParsing="false" onAction="#clickPasswort" styleClass="default" text="passwort ändern" GridPane.columnIndex="1">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btAbbrechen1" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.columnIndex="3">
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.columnIndex="3">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="btSpeichern1" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.columnIndex="5" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.columnIndex="5" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" right="10.0" />
