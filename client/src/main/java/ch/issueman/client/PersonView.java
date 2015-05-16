@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,6 +46,9 @@ public class PersonView implements Viewable<Login, Login> {
 	private TextField txFilter;
 	
 	@FXML
+	private Button btExport;
+	
+	@FXML
 	private Button btAddPerson;
 
 	@FXML
@@ -67,9 +71,6 @@ public class PersonView implements Viewable<Login, Login> {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Login, Integer>("id"));
 		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
@@ -172,6 +173,34 @@ public class PersonView implements Viewable<Login, Login> {
 		 MainView.showCenterDetailView("PersonDetail");
 	}
 
+	@SuppressWarnings("serial")
+	@FXML
+	public void clickExport(){
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+		// add header
+		list.add(new ArrayList<String>(){{
+		    add("Nachname");
+		    add("Vorname");
+		    add("Email");
+		    add("Rolle");
+		    add("Firma");
+		}});
+		// add content from list view
+		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
+			add(p.getPerson().getNachname());
+			add(p.getPerson().getNachname());
+			add(p.getPerson().getEmail());
+			add(p.getRolle().getBezeichnung());
+			if(p.getPerson() instanceof Kontakt){
+				add(((Kontakt) p.getPerson()).getSubunternehmen().getFirmenname());
+			}else if(p.getPerson() instanceof Bauherr){
+				add(((Bauherr) p.getPerson()).getUnternehmen().getFirmenname());
+			}
+		}}));
+		
+		MainView.exportData(list);
+	}
+	
 	@Override
 	public void initData(Login t) {
 		System.out.println(t.getClass().getSimpleName());
