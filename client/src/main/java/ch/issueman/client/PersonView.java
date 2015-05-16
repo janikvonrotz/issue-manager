@@ -90,7 +90,11 @@ public class PersonView implements Viewable<Login, Login> {
 		});
 		tcRolle.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
-				return new SimpleStringProperty(param.getValue().getRolle().getBezeichnung());
+				if(param.getValue().getRolle() != null){
+					return new SimpleStringProperty(param.getValue().getRolle().getBezeichnung());
+				} else {
+					return new SimpleStringProperty("Bauherr");
+				}
 			}  
 		});
 		tcFirma.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
@@ -145,8 +149,9 @@ public class PersonView implements Viewable<Login, Login> {
 			
 			List<Login> list = loginController.getAll();
 			bauherrController.getAll().stream().forEach(b -> list.add(new Login(b, "", null)));
+		
 			
-			filteredData = new FilteredList<Login>(FXCollections.observableArrayList(loginController.getAll()),	p -> true);
+			filteredData = new FilteredList<Login>(FXCollections.observableArrayList(list),	p -> true);
 			SortedList<Login> sortedData = new SortedList<Login>(filteredData);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
