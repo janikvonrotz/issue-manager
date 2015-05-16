@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.Subunternehmen;
@@ -59,9 +60,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
 
 		tcId.setCellValueFactory(new PropertyValueFactory<Subunternehmen, Integer>("id"));
 		tcFirmenname.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("firmenname"));
@@ -154,6 +152,30 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 		view.initData(t);
 	}
 
+	@SuppressWarnings("serial")
+	@FXML
+	public void clickExport(){
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+		// add header
+		list.add(new ArrayList<String>(){{
+		    add("ID");
+		    add("Firma");
+		    add("Strasse");
+		    add("PLZ");
+		    add("Ort");
+		}});
+		// add content from list view
+		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
+			add(""+p.getId());
+			add(p.getFirmenname());
+			add(p.getAdresse().getStrasse());
+			add(""+p.getAdresse().getOrt().getPlz());
+			add(p.getAdresse().getOrt().getOrt());
+		}}));
+		
+		MainView.exportData(list);
+	}
+	
 	@Override
 	public void initData(Subunternehmen t) {
 		// TODO Auto-generated method stub

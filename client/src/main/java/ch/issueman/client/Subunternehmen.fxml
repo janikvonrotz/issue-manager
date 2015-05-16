@@ -27,7 +27,9 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="210.0" prefWidth="210.0" />
             <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
             <ColumnConstraints hgrow="NEVER" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
-            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="400.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="120.0" minWidth="10.0" prefWidth="38.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="246.0" minWidth="45.0" prefWidth="69.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="401.0" minWidth="200.0" prefWidth="334.0" />
             <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" prefWidth="300.0" />
          </columnConstraints>
          <rowConstraints>
@@ -37,6 +39,7 @@
             <Label layoutX="14.0" layoutY="18.0" styleClass="subtitle" text="Subunternehmen" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
             <TextField fx:id="txFilter" layoutX="438.0" layoutY="11.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="4" />
             <Button fx:id="btAddSubunternehmen" mnemonicParsing="false" onMouseClicked="#clickNeu" text="+" GridPane.columnIndex="2" />
+            <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" text="Export" GridPane.columnIndex="4" />
          </children>
       </GridPane>
    </children>
