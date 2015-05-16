@@ -1,4 +1,4 @@
-AnchorPane.default, BorderPane.default{
+AnchorPane, BorderPane, Pane {
 	-fx-background-color: #ffffff;
 }
 
@@ -88,6 +88,8 @@ TableView.comment {
     -fx-background-color: #ffffff;
     -fx-text-fill: #486285;
     -fx-alignment: center-left;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
 }  
 
 TableView.default {
@@ -107,6 +109,11 @@ TableView.default {
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-font-weight: normal;
+}
+
+.table-view .column-header.completed, .table-view .column-header.settle {
+	-fx-font-size: 20pt;
+	-fx-font-weight: bold;
 }
 
 .table-row-cell:empty {
