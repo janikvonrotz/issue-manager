@@ -193,7 +193,7 @@ public class Seed {
 		listAdresse.add(new Adresse("Mathisstrasse", listOrt.get(50)));
 		listAdresse.add(new Adresse("Burgunderstrasse", listOrt.get(50)));
 		listAdresse.add(new Adresse("Sempachstrasse", listOrt.get(50)));
-		listAdresse.add(new Adresse("Fuckstrasse", listOrt.get(80)));
+		listAdresse.add(new Adresse("Mobilestrasse", listOrt.get(80)));
 		listAdresse.add(new Adresse("Testtest", listOrt.get(90)));
 		
 		/**
@@ -235,7 +235,7 @@ public class Seed {
 		listSubunternehmen.add(new Subunternehmen("Gerüstbau AG", listAdresse.get(3)));
 		listSubunternehmen.add(new Subunternehmen("Bodenbeläge GMBH", listAdresse.get(4)));
 		listSubunternehmen.add(new Subunternehmen("Dachdecker GMBH", listAdresse.get(5)));
-		listSubunternehmen.add(new Subunternehmen("Fuck AG", listAdresse.get(17)));
+		listSubunternehmen.add(new Subunternehmen("Duck AG", listAdresse.get(17)));
 		persistList(listSubunternehmen, subunternehmencontroller);
 		
 		/**
@@ -289,7 +289,7 @@ public class Seed {
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{0,2})));
 		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(3), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("test","test","test.test@im.ch", listSubunternehmen.get(4), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
-		listKontakt.add(new Kontakt("fuck","fuck","fuck.fuck@im.ch", listSubunternehmen.get(4), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
+		listKontakt.add(new Kontakt("duck","duck","duck.duck@im.ch", listSubunternehmen.get(4), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
 		persistList(listKontakt, kontaktcontroller);
 		
 		/**
@@ -314,7 +314,7 @@ public class Seed {
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(1)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(2)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(1)));
-		listKommentar.add(new Kommentar("ichbineintest", listLogin.get(8)));
+		listKommentar.add(new Kommentar(kommentartext, listLogin.get(8)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(2)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(0)));
 		persistList(listKommentar, kommentarcontroller);
@@ -334,7 +334,7 @@ public class Seed {
 		listMangel.add(new Mangel(2, kommentartext, listBauleiter.get(4), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), listSubunternehmen.get(3), new GregorianCalendar(2015,1,5), listProjekt.get(4)));
 		listMangel.add(new Mangel(3, kommentartext, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), listSubunternehmen.get(4), new GregorianCalendar(2015,1,5), listProjekt.get(2)));
 		listMangel.add(new Mangel(4, kommentartext, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(5), new GregorianCalendar(2015,1,5), listProjekt.get(2)));
-		listMangel.add(new Mangel(3, "Ichbineintest test", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(6), new GregorianCalendar(2015,1,5), listProjekt.get(0)));
+		listMangel.add(new Mangel(3, kommentartext, listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(6), new GregorianCalendar(2015,1,5), listProjekt.get(0)));
 		persistList(listMangel, mangelcontroller);		
 	}
 	
