@@ -15,6 +15,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,6 +45,9 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	@FXML
 	private TextField txFilter;
 	
+	@FXML
+	private Label lbProjekt;
+
 	@FXML
 	private Button btAddMangel;
 	
@@ -217,6 +221,9 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	public void Refresh() {
 		
 		if(projekt != null){
+			
+			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle()); 
+			
 			try {
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
 				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
@@ -248,7 +255,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			} catch (Exception e) {
 				MainView.showError(e);
 			}
-
 		}
 	}
 

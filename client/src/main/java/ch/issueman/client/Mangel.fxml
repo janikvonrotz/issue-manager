@@ -136,7 +136,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <Label layoutX="10.0" layoutY="20.0" styleClass="title" text="Mangel" />
+                  <Label fx:id="lbProjekt" layoutX="10.0" layoutY="20.0" styleClass="title" />
                   <TextField fx:id="txFilter" layoutX="505.0" layoutY="42.0" prefHeight="27.0" prefWidth="267.0" styleClass="default" GridPane.columnIndex="6" />
                   <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" text="+" GridPane.columnIndex="2" />
                   <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" text="Export" GridPane.columnIndex="4" />
