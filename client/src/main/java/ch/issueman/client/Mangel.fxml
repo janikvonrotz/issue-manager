@@ -30,11 +30,10 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label layoutX="15.0" layoutY="455.0" styleClass="tableTitle" text="abgeschlossen" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="15.0" />
                   <TableView fx:id="tvDataAbgeschlossen" layoutX="10.0" layoutY="480.0" onMouseClicked="#doubleClickDataAbgeschlossen" prefHeight="110.0" prefWidth="970.0" styleClass="completed" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="470.0" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="tcReferenzAbgeschlossen" prefWidth="75.0" text="Referenz" />
-                        <TableColumn fx:id="tcMangelAbgeschlossen" prefWidth="229.0" text="Mangel" />
+                        <TableColumn fx:id="tcReferenzAbgeschlossen" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <TableColumn fx:id="tcMangelAbgeschlossen" prefWidth="229.0" text="abgeschlossen" />
                         <TableColumn fx:id="tcSubunternehmenAbgeschlossen" prefWidth="219.0" text="Subunternehmen" />
                         <TableColumn fx:id="tcKommentarAbgeschlossen" prefWidth="223.0" text="Kommentar" />
                      </columns>
@@ -67,14 +66,13 @@
                      <children>
                         <TableView fx:id="tvDataAngenommen" layoutX="350.0" layoutY="260.0" onMouseClicked="#doubleClickDataAngenommen" prefHeight="180.0" prefWidth="300.0" styleClass="process" GridPane.rowIndex="1">
                            <columns>
-                              <TableColumn fx:id="tcReferenzAngenommen" prefWidth="77.0" text="Referenz" />
-                              <TableColumn fx:id="tcMangelAngenommen" prefWidth="221.0" text="Mangel" />
+                              <TableColumn fx:id="tcReferenzAngenommen" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                              <TableColumn fx:id="tcMangelAngenommen" prefWidth="221.0" text="angenommen" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Label layoutX="350.0" layoutY="237.0" styleClass="tableTitle" text="angenommen" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="350.0" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="10.0" layoutY="237.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="690.0" AnchorPane.topAnchor="240.0">
@@ -88,14 +86,13 @@
                      <children>
                         <TableView fx:id="tvDataBeauftragt" layoutX="10.0" layoutY="260.0" onMouseClicked="#doubleClickDataBeauftragt" prefHeight="180.0" prefWidth="300.0" styleClass="process" GridPane.rowIndex="1">
                           <columns>
-                            <TableColumn fx:id="tcReferenzBeauftragt" prefWidth="74.0" text="Referenz" />
-                            <TableColumn fx:id="tcMangelBeauftragt" prefWidth="224.0" text="Mangel" />
+                            <TableColumn fx:id="tcReferenzBeauftragt" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                            <TableColumn fx:id="tcMangelBeauftragt" prefWidth="224.0" text="beauftragt" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Label layoutX="11.0" layoutY="237.0" styleClass="tableTitle" text="beauftragt" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="10.0" />
                      </children>
                   </GridPane>
                   <GridPane layoutX="690.0" layoutY="237.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="690.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="240.0" GridPane.columnIndex="4">
@@ -109,14 +106,13 @@
                      <children>
                         <TableView fx:id="tvDataBehoben" layoutX="690.0" layoutY="260.0" onMouseClicked="#doubleClickDataBehoben" prefHeight="180.0" prefWidth="300.0" styleClass="process" AnchorPane.rightAnchor="10.0" GridPane.rowIndex="1">
                            <columns>
-                              <TableColumn fx:id="tcReferenzBehoben" prefWidth="75.0" text="Referenz" />
-                              <TableColumn fx:id="tcMangelBehoben" prefWidth="223.0" text="Mangel" />
+                              <TableColumn fx:id="tcReferenzBehoben" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                              <TableColumn fx:id="tcMangelBehoben" prefWidth="223.0" text="behoben" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
-                        <Label layoutX="690.0" layoutY="237.0" styleClass="tableTitle" text="behoben" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="690.0" />
                      </children>
                   </GridPane>
                </children>
@@ -138,8 +134,8 @@
                <children>
                   <Label fx:id="lbProjekt" layoutX="10.0" layoutY="20.0" styleClass="title" />
                   <TextField fx:id="txFilter" layoutX="505.0" layoutY="42.0" prefHeight="27.0" prefWidth="267.0" styleClass="default" GridPane.columnIndex="6" />
-                  <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" text="+" GridPane.columnIndex="2" />
-                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" text="Export" GridPane.columnIndex="4" />
+                  <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="2" />
+                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" />
                </children>
             </GridPane>
             <GridPane layoutX="10.0" layoutY="115.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="115.0" GridPane.rowIndex="1">
@@ -151,11 +147,10 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label styleClass="tableTitle" text="abzuklären" />
                   <TableView fx:id="tvDataAbzuklären" layoutX="14.0" layoutY="109.0" onMouseClicked="#doubleClickDataAbzuklären" prefHeight="110.0" prefWidth="970.0" styleClass="settle" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="109.0" GridPane.rowIndex="1">
                     <columns>
-                        <TableColumn fx:id="tcReferenzAbzuklären" prefWidth="109.0" text="Referenz" />
-                      <TableColumn fx:id="tcMangelAbzuklären" prefWidth="379.0" text="Mangel" />
+                        <TableColumn fx:id="tcReferenzAbzuklären" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                      <TableColumn fx:id="tcMangelAbzuklären" prefWidth="379.0" text="abzuklären" />
                       <TableColumn fx:id="tcSubunternehmenAbzuklären" prefWidth="217.0" text="Subunternehmen" />
                         <TableColumn fx:id="tcKommentarAbzuklären" prefWidth="222.0" text="Kommentar" />
                     </columns>
