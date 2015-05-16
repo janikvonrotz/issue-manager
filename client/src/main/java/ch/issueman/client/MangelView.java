@@ -220,6 +220,13 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@Override
 	public void Refresh() {
+		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
+			btAddMangel.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+			btAddMangel.setVisible(false);
+		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+			btAddMangel.setVisible(false);
+		}
 		
 		if(projekt != null){
 			
