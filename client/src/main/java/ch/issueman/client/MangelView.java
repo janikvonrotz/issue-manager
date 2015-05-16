@@ -60,7 +60,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private TableView<Mangel> tvDataAbzuklären;
 	
 	@FXML
-	private TableColumn<Mangel, Integer> tcReferenzAbzuklären;
+	private TableColumn<Mangel, String> tcReferenzAbzuklären;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelAbzuklären;
@@ -121,8 +121,12 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	
-		// Tabelle "abzuklären"
-		tcReferenzAbzuklären.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		// Tabelle "abzuklären"	
+		tcReferenzAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty("M" + ("000" + param.getValue().getReferenz()).substring((("000" + param.getValue().getReferenz()).length())-3));
+			}
+		});
 		
 		tcMangelAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {

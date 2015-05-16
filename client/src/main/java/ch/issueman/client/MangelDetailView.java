@@ -272,9 +272,9 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
 		    	
-		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
-		    		cbStatus.setDisable(true);
-		    	}
+//		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
+//		    		cbStatus.setDisable(true);
+//		    	}
 		    	
 		    	cbSubunternehmen.setDisable(true);
 		    	dpFrist.setDisable(true);
@@ -283,7 +283,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		} else {
 	    	lbMangel.setText("neuer mangel");
 	    	cbStatus.getSelectionModel().select(0);
-	    	cbStatus.setDisable(true);
+//	    	cbStatus.setDisable(true);
 	    	tvKommentar.setVisible(false);
 	    	taKommentar.setVisible(false);
 	    	btSend.setVisible(false);
@@ -346,7 +346,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			try {
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().
 						equals(cbProjekt.getValue())).collect(Collectors.toList());
-				ref = mList.size();
+				ref = mList.size() + 1;
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
