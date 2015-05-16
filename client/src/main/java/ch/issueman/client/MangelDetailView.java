@@ -254,7 +254,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		
 		if(mangel != null){
 			
-	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "M" + ("000" + 
+	    	lbMangel.setText(mangel.getProjekt().getDisplayName() + "-M" + ("000" + 
 	    			mangel.getReferenz()).substring((("000" + mangel.getReferenz()).length())-3));
 	    	cbProjekt.setValue(mangel.getProjekt());
 	    	cbProjekt.setDisable(true);
