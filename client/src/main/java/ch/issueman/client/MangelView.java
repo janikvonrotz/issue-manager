@@ -1,8 +1,10 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -33,15 +35,20 @@ import ch.issueman.common.Projekt;
  */
 public class MangelView implements Viewable<Mangel, Projekt> {
 
-	private static Controller<Mangel, Integer> controller = new Controller<Mangel, Integer>(Mangel.class);
+	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
+	
+	private Projekt projekt;
 
 	@FXML
 	private TextField txFilter;
 	
 	@FXML
 	private Button btAddMangel;
+	
+	@FXML
+	private Button btExport;
 	
 	// Tabelle "abzuklären"
 	@FXML
@@ -108,9 +115,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO entfernen
-//		Context.setLogin(new Login(new Sachbearbeiter("", "", "sb@im.ch"), "1", null));
-//		Context.login();
 	
 		// Tabelle "abzuklären"
 		tcReferenzAbzuklären.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
@@ -211,36 +215,40 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@Override
 	public void Refresh() {
-		try {
-			
-			ObservableList<Mangel> list = FXCollections.observableArrayList(controller.getAll());
-			
-			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
-			SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
-			sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
-			tvDataAbzuklären.setItems(sortedDataAbzuklären);
-			
-			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("beauftragt"));
-			SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
-			sortedDataBeauftragt.comparatorProperty().bind(tvDataBeauftragt.comparatorProperty());
-			tvDataBeauftragt.setItems(sortedDataBeauftragt);
-			
-			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("angenommen"));
-			SortedList<Mangel> sortedDataAngenommen = new SortedList<Mangel>(filteredData);
-			sortedDataAngenommen.comparatorProperty().bind(tvDataAngenommen.comparatorProperty());
-			tvDataAngenommen.setItems(sortedDataAngenommen);
-			
-			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("behoben"));
-			SortedList<Mangel> sortedDataBehoben = new SortedList<Mangel>(filteredData);
-			sortedDataBehoben.comparatorProperty().bind(tvDataBehoben.comparatorProperty());
-			tvDataBehoben.setItems(sortedDataBehoben);
-			
-			filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
-			SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
-			sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
-			tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
-		} catch (Exception e) {
-			MainView.showError(e);
+		
+		if(projekt != null){
+			try {
+				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
+				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
+				SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
+				sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
+				tvDataAbzuklären.setItems(sortedDataAbzuklären);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("beauftragt"));
+				SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
+				sortedDataBeauftragt.comparatorProperty().bind(tvDataBeauftragt.comparatorProperty());
+				tvDataBeauftragt.setItems(sortedDataBeauftragt);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("angenommen"));
+				SortedList<Mangel> sortedDataAngenommen = new SortedList<Mangel>(filteredData);
+				sortedDataAngenommen.comparatorProperty().bind(tvDataAngenommen.comparatorProperty());
+				tvDataAngenommen.setItems(sortedDataAngenommen);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("behoben"));
+				SortedList<Mangel> sortedDataBehoben = new SortedList<Mangel>(filteredData);
+				sortedDataBehoben.comparatorProperty().bind(tvDataBehoben.comparatorProperty());
+				tvDataBehoben.setItems(sortedDataBehoben);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
+				SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
+				sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
+				tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
+
 		}
 	}
 
@@ -320,10 +328,45 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		view.initData(t);
 	}
 
+	@SuppressWarnings("serial")
+	@FXML
+	public void clickExport(){
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+		List<Mangel> allMangelList = null;
+
+		// add header
+		list.add(new ArrayList<String>(){{
+		    add("Referenz");
+		    add("Status");
+		    add("Mangel");
+		    add("Subunternehmen");
+		    add("Kommentar");
+		}});
+		
+		//Filterung der Mängel
+		try {
+			allMangelList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			MainView.showError(e);
+		}
+		// add content from list view
+		allMangelList.forEach(p -> list.add(new ArrayList<String>(){{
+			List<Kommentar> k = p.getKommentare();
+			add(p.getProjekt().getDisplayName() + "M" + ("000" + 
+	    		p.getReferenz()).substring((("000" + p.getReferenz()).length())-3));
+			add(p.getMangelstatus().getStatus());
+			add(p.getMangel());
+			add(p.getSubunternehmen().getFirmenname());
+			add(k.get(k.size()-1).getKommentar().toString());
+		}}));
+		
+		MainView.exportData(list);
+	}
 	@Override
 	public void initData(Projekt t) {
-		// TODO Auto-generated method stub
-		
+		projekt = t;
+		Refresh();
 	}
 
 }
