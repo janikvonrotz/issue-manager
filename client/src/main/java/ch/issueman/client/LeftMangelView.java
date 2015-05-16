@@ -6,6 +6,10 @@ import java.util.ResourceBundle;
 
 
 
+
+
+
+
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Subunternehmen;
@@ -16,6 +20,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Mangel filter view for left pane.
@@ -29,6 +35,8 @@ public class LeftMangelView implements ViewableDetail<Object> {
 	// Projekte Controller deklarieren
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	
+	@FXML
+	private ImageView ivLogo;
 	
 	@FXML
 	private ListView<Projekt> lvProjekt;
@@ -39,6 +47,9 @@ public class LeftMangelView implements ViewableDetail<Object> {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// anzeigen center mangel view.
+		
+		ivLogo.setImage(new Image ("/IM_Logo4.png"));
+			
 		MainView.showCenterView("Mangel");
 		Refresh();
 	}

@@ -18,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +31,9 @@ import javafx.stage.Stage;
  */
 public class App extends Application implements Initializable {
 
+	@FXML
+	ImageView ivLogo;	
+	
 	@FXML
 	private TextField txBenutzername;
 
@@ -88,6 +93,7 @@ public class App extends Application implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ivLogo.setImage(new Image ("/IM_Logo4.png"));
 		ObservableList<String> list = FXCollections.observableArrayList( 
                 "sb@im.ch", "bl@im.ch", "kp@im.ch", "ka@im.ch");
 		cbLogins.setItems(list);

@@ -19,36 +19,39 @@
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="50.0" minHeight="200.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Benutzername" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Benutzername" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
                   </Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" styleClass="default" text="login" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" styleClass="default" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" styleClass="default" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ImageView fitHeight="148.0" fitWidth="188.0" translateX="81.0" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="@../../../../resources/IM_Logo4.png" />
-                     </image>
-                  </ImageView>
-                  <Label maxHeight="58.0" maxWidth="250.0" minHeight="58.0" minWidth="250.0" prefHeight="58.0" prefWidth="250.0" styleClass="title" text="issue manager" textFill="#939382" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" styleClass="default" text="login" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+                  <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" styleClass="default" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" styleClass="default" text="1" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <ImageView fx:id="ivLogo" fitHeight="148.0" fitWidth="188.0" translateX="81.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="cbLogins" onAction="#clickLoginBox" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="113.0" layoutY="200.0" prefHeight="70.0" prefWidth="350.0" styleClass="title" text="issue manager" textAlignment="CENTER" textFill="#939382" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbLogins" onAction="#clickLoginBox" prefWidth="150.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

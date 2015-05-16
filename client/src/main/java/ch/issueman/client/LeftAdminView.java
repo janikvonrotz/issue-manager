@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Admin filter view for left pane.
@@ -18,9 +20,13 @@ public class LeftAdminView implements ViewableDetail<Object> {
 	public void initialize(URL location, ResourceBundle resources) {
 		// anzeigen default center view
 		MainView.showCenterView("Projekt");
+		ivLogo.setImage(new Image ("/IM_Logo4.png"));
 		Refresh();
 	}
 
+	@FXML
+	ImageView ivLogo;
+	
 	@Override
 	public void Refresh() {
 	}
