@@ -40,9 +40,9 @@
          </rowConstraints>
          <children>
             <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-            <Button fx:id="btExport" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickExport" text="Export" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="btExport" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          	  <Label styleClass="subtitle" text="Projekt" GridPane.rowIndex="1" />
-            <Button fx:id="btAddProjekt" mnemonicParsing="false" onMouseClicked="#clickNeu" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btAddProjekt" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
