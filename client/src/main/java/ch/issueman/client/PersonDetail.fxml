@@ -32,7 +32,7 @@
                   <ComboBox fx:id="cbSubunternehmen" prefHeight="27.0" prefWidth="304.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
                </columnConstraints>
@@ -65,7 +65,7 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="390.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="439.0">
                      <children>
                         <Button fx:id="btPasswort" mnemonicParsing="false" onAction="#clickPasswort" styleClass="default" text="passwort ändern" GridPane.columnIndex="1">
                            <HBox.margin>
