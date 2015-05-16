@@ -21,7 +21,6 @@ import ch.issueman.common.Adresse;
 import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Projekttyp;
 import ch.issueman.common.Bauherr;
-import ch.issueman.common.Projektleitung;
 import ch.issueman.common.Ort;
 /**
  * Testclass ControllerTestProjekt
@@ -49,10 +48,8 @@ public class ControllerTestProjekt {
 	@Test
 	public void testPersist() {
 		try {
-//			Adresse adresse = new Adresse("Controllerstrasse", FilterHelper.filterListIds(new Controller <Ort, Integer>(Ort.class).getAll(), new int[]{2}).get(80));
-//			System.out.println(adresse);
-			Projekt projekt = new Projekt("Renovation Vor Update",
-					null,
+			Projekt projekt = new Projekt("Neubau Vor Update",
+					new Adresse("Controllerstrasse", FilterHelper.filterListIds(new Controller <Ort, Integer>(Ort.class).getAll(), new int[]{2}).get(0)),
 					FilterHelper.filterListIds(new Controller <Arbeitstyp, Integer>(Arbeitstyp.class).getAll(), new int[]{2}).get(0),
 					FilterHelper.filterListIds(new Controller <Projekttyp, Integer>(Projekttyp.class).getAll(), new int[]{2}).get(0),
 					FilterHelper.filterListIds(new Controller <Bauherr, Integer>(Bauherr.class).getAll(), new int[]{2}).get(0),
