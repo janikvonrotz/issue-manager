@@ -89,7 +89,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		});
 		tcBauleiter.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-				return new SimpleStringProperty(param.getValue().getCurrentProjektleiter().getDisplayName());
+				if(param.getValue().getCurrentProjektleiter() != null){
+					return new SimpleStringProperty(param.getValue().getCurrentProjektleiter().getDisplayName());
+				} else {
+					return new SimpleStringProperty("");
+				}
 			}  
 		});
 		tcBauherr.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
