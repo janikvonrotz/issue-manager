@@ -37,6 +37,7 @@ import ch.issueman.common.Projekt;
 public class MangelView implements Viewable<Mangel, Projekt> {
 
 	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
+	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
 	
@@ -222,7 +223,47 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		
 		if(projekt != null){
 			
-			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle()); 
+			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle());
+			
+			try {
+				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
+				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
+				SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
+				sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
+				tvDataAbzuklären.setItems(sortedDataAbzuklären);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("beauftragt"));
+				SortedList<Mangel> sortedDataBeauftragt = new SortedList<Mangel>(filteredData);
+				sortedDataBeauftragt.comparatorProperty().bind(tvDataBeauftragt.comparatorProperty());
+				tvDataBeauftragt.setItems(sortedDataBeauftragt);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("angenommen"));
+				SortedList<Mangel> sortedDataAngenommen = new SortedList<Mangel>(filteredData);
+				sortedDataAngenommen.comparatorProperty().bind(tvDataAngenommen.comparatorProperty());
+				tvDataAngenommen.setItems(sortedDataAngenommen);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("behoben"));
+				SortedList<Mangel> sortedDataBehoben = new SortedList<Mangel>(filteredData);
+				sortedDataBehoben.comparatorProperty().bind(tvDataBehoben.comparatorProperty());
+				tvDataBehoben.setItems(sortedDataBehoben);
+				
+				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abgeschlossen"));
+				SortedList<Mangel> sortedDataAbgeschlossen = new SortedList<Mangel>(filteredData);
+				sortedDataAbgeschlossen.comparatorProperty().bind(tvDataAbgeschlossen.comparatorProperty());
+				tvDataAbgeschlossen.setItems(sortedDataAbgeschlossen);
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
+		} else {
+			try {
+				projekt = projektcontroller.getAll().get(0);
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
+			
+			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle());
 			
 			try {
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
