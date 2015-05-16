@@ -33,7 +33,6 @@ MenuButton.top{
 	-fx-background-color: white;
 }
 
-
 .menu-item {
     -fx-text-fill: #486285;
 }
@@ -46,10 +45,9 @@ MenuButton.top{
      -fx-background-color:  #aaaaaa;
 }    
 
-/*ListView.default{
-	-fx-text-fill: white;
-	-fx-border-color: white;
-*/}
+.list-cell:empty {
+    visibility:hidden;
+}
 
 .list-cell {
 	-fx-text-fill: white;
@@ -58,7 +56,11 @@ MenuButton.top{
 }
 
 .list-cell:empty {
-    visibility:hidden;
+    -fx-background-color: white;
+}
+
+.list-cell:focused {
+	-fx-background-color: #aaaaaa;
 }
 
 ComboBox.default, DatePicker.default{
@@ -81,10 +83,8 @@ TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
     -fx-background-color: #aaaaaa;
-    -fx-border-color: white;
     -fx-text-fill: white;
     -fx-alignment: center-left;
-    
 }
 
 TableView.completed {
@@ -109,8 +109,6 @@ TableView.comment {
     -fx-background-color: #ffffff;
     -fx-text-fill: #486285;
     -fx-alignment: center-left;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
 }  
 
 TableView.default {
@@ -139,6 +137,7 @@ TableView.default {
 .table-view {
   -fx-table-cell-border-color: transparent;
   -fx-background-color: transparent;
+  -fx-text-fill: white;
 }
 
 Label.default{
