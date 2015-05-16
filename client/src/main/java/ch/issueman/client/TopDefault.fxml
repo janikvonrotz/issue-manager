@@ -23,7 +23,7 @@
          <children>
             <Button fx:id="btMangel" mnemonicParsing="false" onAction="#clickMangel" prefWidth="1000.0" styleClass="topMangel" text="Mangel" />
             <Button fx:id="btAdmin" mnemonicParsing="false" onAction="#clickAdmin" prefWidth="1000.0" styleClass="topAdmin" text="Admin" GridPane.columnIndex="1" />
-            <MenuButton fx:id="mbBenutzer" mnemonicParsing="false" prefWidth="175.0" styleClass="default" text="MenuButton" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+            <MenuButton fx:id="mbBenutzer" mnemonicParsing="false" prefWidth="175.0" styleClass="top" text="MenuButton" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#clickPasswortwechsel" text="Passwortwechsel" />
                 <MenuItem mnemonicParsing="false" onAction="#clickLogout" text="Logout" />

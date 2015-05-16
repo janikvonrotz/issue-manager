@@ -8,7 +8,7 @@ Button.abort{
 	-fx-background-radius: 10px
 }
 
-Button.default{
+Button.default {
 	-fx-background-color: #486285;
 	-fx-text-fill: white;
 	-fx-background-radius: 10px
@@ -29,9 +29,16 @@ Button.topAdmin{
 	-fx-text-fill: white;
 }
 
-MenueButton.top{
-	-fx-background-color: #aaaaaa;
-	-fx-text-fill: white;
+MenuButton.top{
+	-fx-background-color: white;
+}
+
+.menu-item .label {
+	 -fx-text-fill: #486285;
+}
+
+.menu-item:focused {
+     -fx-background-color: #939382;
 }
 
 ListView.default{
