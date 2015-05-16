@@ -86,11 +86,11 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 				return new SimpleStringProperty(param.getValue().getArbeitstyp().getArbeitstyp());
 			}  
 		});
-//		tcBauleiter.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
-//			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
-//				return new SimpleStringProperty(param.getValue().getProjektleitungen());
-//			}  
-//		});
+		tcBauleiter.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
+				return new SimpleStringProperty(param.getValue().getCurrentProjektleiter().getDisplayName());
+			}  
+		});
 		tcBauherr.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
 				return new SimpleStringProperty(param.getValue().getBauherr().getDisplayName());
