@@ -56,7 +56,7 @@
                   <RowConstraints vgrow="NEVER" />
                </rowConstraints>
             </GridPane>
-            <Label fx:id="lbPerson" />
+            <Label fx:id="lbPerson" styleClass="title" />
             <GridPane GridPane.rowIndex="4">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" />

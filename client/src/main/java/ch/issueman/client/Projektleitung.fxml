@@ -44,7 +44,7 @@
       </GridPane>
       <Button fx:id="btAbbrechen" layoutX="789.0" layoutY="363.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="31.0" prefWidth="131.0" styleClass="abort" text="abbrechen" />
       <Button fx:id="btSpeichern" layoutX="652.0" layoutY="363.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="31.0" prefWidth="111.0" styleClass="default" text="speichern" />
-      <Label layoutX="11.0" layoutY="11.0" styleClass="subtitle" text="Projektleitung" />
+      <Label layoutX="11.0" layoutY="11.0" styleClass="title" text="Projektleitung" />
       <TextField fx:id="txFilter" layoutX="761.0" layoutY="32.0" styleClass="default" />
    </children>
 </AnchorPane>

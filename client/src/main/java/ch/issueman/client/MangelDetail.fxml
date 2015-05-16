@@ -68,7 +68,7 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label fx:id="lbMangel" />
+                  <Label fx:id="lbMangel" styleClass="title" />
                </children>
             </GridPane>
             <TableView fx:id="tvKommentar" styleClass="comment" GridPane.rowIndex="5">

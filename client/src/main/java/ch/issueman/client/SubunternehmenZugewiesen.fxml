@@ -42,6 +42,6 @@
       <Button fx:id="btAbbrechen" layoutX="630.0" layoutY="363.0" mnemonicParsing="false" onAction="#clickAbbrechen" prefHeight="31.0" prefWidth="131.0" styleClass="abort" text="abbrechen" AnchorPane.rightAnchor="220.0" />
       <Button fx:id="btSpeichern" layoutX="781.0" layoutY="363.0" mnemonicParsing="false" onAction="#clickSpeichern" prefHeight="31.0" prefWidth="111.0" styleClass="default" text="speichern" AnchorPane.rightAnchor="100.0" />
       <TextField fx:id="txFilter" layoutX="761.0" layoutY="36.0" styleClass="default" AnchorPane.rightAnchor="100.0" />
-      <Label layoutX="44.0" layoutY="41.0" styleClass="subtitle" text="Subunternehmen zugewiesen" />
+      <Label layoutX="44.0" layoutY="41.0" styleClass="title" text="Subunternehmen zugewiesen" />
    </children>
 </AnchorPane>

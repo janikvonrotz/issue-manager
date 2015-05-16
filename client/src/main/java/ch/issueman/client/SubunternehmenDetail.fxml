@@ -59,7 +59,7 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <Label fx:id="lbSubunternehmen" />
+                  <Label fx:id="lbSubunternehmen" styleClass="title" />
                   <HBox GridPane.rowIndex="3">
                      <children>
                         <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />

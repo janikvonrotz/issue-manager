@@ -46,10 +46,19 @@ MenuButton.top{
      -fx-background-color:  #aaaaaa;
 }    
 
-ListView.default{
-	-fx-background-color: #ffffff;
-	-fx-text-fill: #486285;
-	-fx-border-color: #486285;
+/*ListView.default{
+	-fx-text-fill: white;
+	-fx-border-color: white;
+*/}
+
+.list-cell {
+	-fx-text-fill: white;
+	-fx-background-color: #486285;
+	-fx-border-color: white;
+}
+
+.list-cell:empty {
+    visibility:hidden;
 }
 
 ComboBox.default, DatePicker.default{
@@ -139,12 +148,7 @@ Label.default{
 
 Label.title{
 	-fx-text-fill: #939382;
-	-fx-font-size: 36pt;
-}
-
-Label.subtitle{
-	-fx-text-fill: #939382;
-	-fx-font-size: 20pt;
+	-fx-font-size: 25pt;
 }
 
 Label.tableTitle{
