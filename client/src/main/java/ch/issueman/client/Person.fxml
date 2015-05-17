@@ -12,7 +12,6 @@
    <children>
       <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
         <columns>
-          <TableColumn fx:id="tcId" maxWidth="1500.0" prefWidth="50.0" text="ID" />
           <TableColumn fx:id="tcNachname" prefWidth="100.0" text="Nachname" />
             <TableColumn fx:id="tcVorname" prefWidth="100.0" text="Vorname" />
             <TableColumn fx:id="tcEmail" prefWidth="200.0" text="Email" />

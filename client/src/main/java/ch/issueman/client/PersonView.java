@@ -52,9 +52,6 @@ public class PersonView implements Viewable<Login, Login> {
 	private Button btAddPerson;
 
 	@FXML
-	private TableColumn<Login, Integer> tcId;
-
-	@FXML
 	private TableColumn<Login, String> tcNachname;
 
 	@FXML
@@ -71,13 +68,13 @@ public class PersonView implements Viewable<Login, Login> {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		tcId.setCellValueFactory(new PropertyValueFactory<Login, Integer>("id"));
+		
 		tcNachname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
 				return new SimpleStringProperty(param.getValue().getPerson().getNachname());
 			}  
 		});
+		
 		tcVorname.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
 				return new SimpleStringProperty(param.getValue().getPerson().getVorname());
@@ -124,7 +121,7 @@ public class PersonView implements Viewable<Login, Login> {
 									+ t.getRolle().getBezeichnung()
 //									+ (((Kontakt) t.getPerson()).getSubunternehmen().getFirmenname())
 //									+ (((Bauherr) t.getPerson()).getUnternehmen().getFirmenname())
-									+ t.getPerson().getId();
+									;
 		
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
