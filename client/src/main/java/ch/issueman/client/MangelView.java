@@ -146,7 +146,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		tcKommentarAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
 				List<Kommentar> k = param.getValue().getKommentare();
-				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
+				if(k.size() > 0){
+					return new SimpleStringProperty(k.get(k.size() - 1).getKommentar());
+				} else {
+					return new SimpleStringProperty("");
+				}
 			}
 		});
 		
@@ -217,7 +221,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		tcKommentarAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
 				List<Kommentar> k = param.getValue().getKommentare();
-				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
+				if(k.size() > 0){
+					return new SimpleStringProperty(k.get(k.size() - 1).getKommentar());
+				} else {
+					return new SimpleStringProperty("");
+				}
 			}
 		});
 
