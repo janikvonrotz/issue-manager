@@ -25,21 +25,21 @@ Button.topMangel{
 }
 
 .menuselected{
-	-fx-background-color: #486285;
+	-fx-background-color: #939382;
 	-fx-text-fill: white;
+	-fx-pref-height: 33;
+	-fx-max-height: 33;
+	-fx-min-height: 33;
+	-fx-alignment: center;
 }
 
 .menuunselected{
-	-fx-background-color: #939382;
+	-fx-background-color: #486285;
 	-fx-text-fill: white;
-}
-
-.menu-item {
-    -fx-text-fill: #486285;
-}
-
-.menu-item .label {
-	 -fx-text-fill: #486285;
+	-fx-pref-height: 33;
+	-fx-max-height: 33;
+	-fx-min-height: 33;
+	-fx-alignment: center;
 }
 
 .menu-item:focused {
@@ -185,11 +185,11 @@ Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
 	-fx-pref-height: 33;
-	-fx-pref-width: 120;
+	-fx-pref-width: 145;
 	-fx-max-height: 33;
-	-fx-max-widht: 120;
+	-fx-max-widht: 145;
 	-fx-min-height: 33;
-	-fx-min-widht: 120;
+	-fx-min-widht: 145;
 	-fx-opacity: 1;
 }
 
