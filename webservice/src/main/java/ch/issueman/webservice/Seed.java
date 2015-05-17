@@ -332,6 +332,14 @@ public class Seed {
 		 */
 		listMangel.add(new Mangel(1, "Mangel 1", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), listSubunternehmen.get(0), new GregorianCalendar(2015,1,5), listProjekt.get(0)));
 		listMangel.add(new Mangel(2, "Mangel 2", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(0), listSubunternehmen.get(1), new GregorianCalendar(2015,2,5), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 3", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), listSubunternehmen.get(2), new GregorianCalendar(2015,2,4), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 4", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), listSubunternehmen.get(0), new GregorianCalendar(2015,10,5), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 5", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), listSubunternehmen.get(1), new GregorianCalendar(2015,3,6), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 6", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), listSubunternehmen.get(2), new GregorianCalendar(2015,1,7), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 7", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(0), new GregorianCalendar(2015,5,5), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 8", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(1), new GregorianCalendar(2015,29,5), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 9", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), listSubunternehmen.get(3), new GregorianCalendar(2015,5,3), listProjekt.get(0)));
+		listMangel.add(new Mangel(2, "Mangel 10", listBauleiter.get(0), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), listSubunternehmen.get(1), new GregorianCalendar(2015,12,4), listProjekt.get(0)));	
 		listMangel.add(new Mangel(1, "Mangel 1", listBauleiter.get(1), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), listSubunternehmen.get(2), new GregorianCalendar(2015,2,15), listProjekt.get(1)));
 		listMangel.add(new Mangel(2, "Mangel 2", listBauleiter.get(1), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(1), listSubunternehmen.get(0), new GregorianCalendar(2015,3,1), listProjekt.get(1)));
 		listMangel.add(new Mangel(1, "Mangel 1", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), listSubunternehmen.get(1), new GregorianCalendar(2015,2,28), listProjekt.get(2)));
@@ -342,7 +350,7 @@ public class Seed {
 		listMangel.add(new Mangel(2, "Mangel 2", listBauleiter.get(4), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(4), listSubunternehmen.get(0), new GregorianCalendar(2015,7,2), listProjekt.get(4)));
 		listMangel.add(new Mangel(3, "Mangel 3", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(2), listSubunternehmen.get(1), new GregorianCalendar(2015,4,10), listProjekt.get(2)));
 		listMangel.add(new Mangel(4, "Mangel 4", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(2), new GregorianCalendar(2015,5,1), listProjekt.get(2)));
-		listMangel.add(new Mangel(3, "Mangel 3", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(0), new GregorianCalendar(2015,2,15), listProjekt.get(0)));
+		listMangel.add(new Mangel(3, "Mangel 3", listBauleiter.get(2), FilterHelper.filterListIds(listKommentar, new int[]{0,3}), listMangelstatus.get(3), listSubunternehmen.get(0), new GregorianCalendar(2015,2,15), listProjekt.get(4)));
 		persistList(listMangel, mangelcontroller);		
 	}
 	
