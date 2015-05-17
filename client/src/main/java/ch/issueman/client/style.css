@@ -14,7 +14,7 @@ Button.default {
 	-fx-background-radius: 10px
 }
 
-Button.leftAdmin{
+MenuButton.leftAdmin{
 	-fx-background-color: #486285;
 	-fx-text-fill: white;
 }
@@ -111,10 +111,6 @@ TableView.settle {
     -fx-alignment: center-left;
     -fx-font-size: 18pt;
     -fx-font-weight: normal;
-}
-
-.table-view .column-header .label {
-	visibility: false;
 }
 
 TableView.completed {
