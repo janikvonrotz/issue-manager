@@ -199,11 +199,11 @@ public class Seed {
 		/**
 		 *  seed Mangelstatus
 		 */
-		listMangelstatus.add(new Mangelstatus("beauftragt", FilterHelper.filterListIds(listRolle, new int[]{0,3})));
-		listMangelstatus.add(new Mangelstatus("abzuklären", FilterHelper.filterListIds(listRolle, new int[]{0,2})));
+		listMangelstatus.add(new Mangelstatus("beauftragt", FilterHelper.filterListIds(listRolle, new int[]{0,1})));
+		listMangelstatus.add(new Mangelstatus("angenommen", FilterHelper.filterListIds(listRolle, new int[]{2,3})));
+		listMangelstatus.add(new Mangelstatus("abzuklären", FilterHelper.filterListIds(listRolle, new int[]{2,3})));
 		listMangelstatus.add(new Mangelstatus("behoben", FilterHelper.filterListIds(listRolle, new int[]{2,3})));
 		listMangelstatus.add(new Mangelstatus("abgeschlossen", FilterHelper.filterListIds(listRolle, new int[]{0,1})));
-		listMangelstatus.add(new Mangelstatus("angenommen", FilterHelper.filterListIds(listRolle, new int[]{1,3})));
 		persistList(listMangelstatus, mangelstatuscontroller);
 		
 		/**
