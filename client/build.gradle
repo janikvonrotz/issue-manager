@@ -2,3 +2,14 @@ dependencies {
   compile project(':common')
   compile 'de.jensd:fontawesomefx:8.+'
 }
+
+task fatJar(type: Jar) {
+    manifest {
+          attributes 'Implementation-Title': 'Client',
+          'Implementation-Version': 1,
+          'Main-Class': 'ch.issueman.client.App'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

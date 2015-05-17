@@ -16,3 +16,14 @@ task seed(type:JavaExec) {
    main = 'ch.issueman.webservice.Seed'
    classpath = sourceSets.main.runtimeClasspath
 }
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Appserver',
+        'Implementation-Version': 1,
+        'Main-Class': 'ch.issueman.webservice.Service'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

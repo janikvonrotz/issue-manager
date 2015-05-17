@@ -37,11 +37,25 @@ import ch.issueman.common.Sachbearbeiter;
 import ch.issueman.common.Subunternehmen;
 import ch.issueman.common.Unternehmen;
 
+/**
+ * Application server service class.
+ * 
+ * @author Janik von Rotz
+ * @version 2.0.0
+ * @since 1.0.0
+ */
 @Slf4j
 public class Service{
 	
 	private static Registry registry;
 	
+	public static void main(String[] args){
+		startRMI();
+	}
+	
+	/**
+	 * Runs the tinylog configurator.
+	 */
 	public static void runLogConfigurator(){
 		Configurator.defaultConfig()
 		   .writer(new RollingFileWriter(ConfigHelper.getConfig("tinylog.location", "log.txt"), 
@@ -57,6 +71,9 @@ public class Service{
 		}
 	}
 	
+	/**
+	 * Start the rmi service.
+	 */
 	public static void startRMI(){
 		
 		runLogConfigurator();
@@ -97,6 +114,9 @@ public class Service{
 		}
 	}
 	
+	/**
+	 * Destory the rmi service.
+	 */
 	public static void destroyRMI(){
 		try {
 			UnicastRemoteObject.unexportObject(registry, true);

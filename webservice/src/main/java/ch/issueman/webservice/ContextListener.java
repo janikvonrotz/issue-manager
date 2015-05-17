@@ -6,10 +6,10 @@ import javax.servlet.annotation.WebListener;
 
 
 /**
- * Runs the rmi endpoints and tinylog configurator.
+ * Runs the tinylog configurator.
  * 
  * @author Janik von Rotz
- * @version 2.0.0
+ * @version 1.0.0
  * @since 1.0.0
  */
 
@@ -21,7 +21,6 @@ public class ContextListener implements ServletContextListener {
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		Service.runLogConfigurator();
 		Service.startRMI();		
 	}
 
