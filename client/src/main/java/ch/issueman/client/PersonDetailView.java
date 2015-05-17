@@ -389,7 +389,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				login = new Login(sachbearbeiter, pfPasswort.getText(), cbRolle.getValue());
 				
 				try {
-					sachbearbeitercontroller.persist(sachbearbeiter);
 					logincontroller.persist(login);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

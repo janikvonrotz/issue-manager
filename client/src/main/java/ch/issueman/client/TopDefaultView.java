@@ -106,6 +106,7 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickLogout() {
 		Context.logout();
+		
 	}
 	
 	@FXML
