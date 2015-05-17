@@ -23,7 +23,7 @@
          </rowConstraints>
          <children>
             <PasswordField fx:id="pfPasswortWiederholen" layoutX="320.0" layoutY="90.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <GridPane fx:id="btAbbrechen" onDragDetected="#clickAbbrechen" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="175.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="171.0" />
