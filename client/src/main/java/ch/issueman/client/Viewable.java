@@ -8,8 +8,8 @@ import javafx.fxml.Initializable;
  * @author Janik von Rotz
  *
  * @param <T> the type of the viewable entities
+ * @param <Filter> the type of the initializable variable.
  * @version 1.0.0
- * @param <Filter>
  * @since 1.0.0
  */
 public interface Viewable<T, Filter> extends Initializable {

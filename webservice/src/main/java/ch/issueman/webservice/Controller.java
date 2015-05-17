@@ -49,8 +49,9 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 		return em.find(clazz, id);
 	}
 	
+	
 	/* (non-Javadoc)
-	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.lang.Object[])
+	 * @see ch.issueman.common.DAO#getAllByProperty(java.lang.String, java.util.List)
 	 */
 	@Override
 	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues){

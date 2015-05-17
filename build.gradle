@@ -76,5 +76,6 @@ subprojects {
       dependsOn delombok
       source = sourceSets.main.ext.delombok
       destinationDir = file("./doc/")
+      exclude '**/*.fxml', '**/*.css', '**/*.csv', '**/*.ps1', '**/*.json', '**/*.jpg'
   }
 }

@@ -86,7 +86,7 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	}
 
 	/* (non-Javadoc)
-	 * @see ch.issueman.webservice.DAORmi#getAllByProperty(java.lang.String, java.lang.Object[])
+	 * @see ch.issueman.webservice.DAORmi#getAllByProperty(java.lang.String, java.util.List)
 	 */
 	@Override
 	public List<T> getAllByProperty(String propertyname, List<String> propertyvalues) throws RemoteException, Exception {

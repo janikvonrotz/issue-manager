@@ -49,6 +49,7 @@ public class MainView implements Initializable {
 	/**
 	 * Display a detail view in the center section.
 	 * 
+	 * @param <T> the type of the viewable detail view.
 	 * @param viewname the name of the detail view to display.
 	 * @return view controller of this view.
 	 */
@@ -67,6 +68,8 @@ public class MainView implements Initializable {
 	/**
 	 * Display a view in the center section.
 	 * 
+	 * @param <T> the type of the viewable view.
+	 * @param <Filter> the type of the initializable view variable.
 	 * @param viewname the name of the view to display.
 	 * @return view controller of this view.
 	 */
@@ -85,6 +88,7 @@ public class MainView implements Initializable {
 	/**
 	 * Display a view in the left section.
 	 * 
+	 * @param <T> the type of the viewable detail view.
 	 * @param viewname the name of the view to display.
 	 * @return view controller of this view.
 	 */
@@ -103,6 +107,7 @@ public class MainView implements Initializable {
 	/**
 	 * Display a view in the top section.
 	 * 
+	 * @param <T> the type of the viewable detail view.
 	 * @param viewname the name of the view to display.
 	 * @return view controller of this view.
 	 */
