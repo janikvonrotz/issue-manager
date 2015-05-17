@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="200.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.LeftAdminView">
    <children>
-      <GridPane layoutX="11.0" layoutY="115.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+      <GridPane layoutX="11.0" layoutY="115.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
         </columnConstraints>
@@ -21,34 +21,34 @@
         </rowConstraints>
          <children>
             <ImageView fx:id="ivLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" />
-            <Accordion GridPane.rowIndex="2">
+            <Accordion prefWidth="190.0" GridPane.rowIndex="2">
               <panes>
-                <TitledPane animated="false" styleClass="default" text="Projekt">
-                  <content>
-                    <AnchorPane>
+                <TitledPane animated="false" prefWidth="188.0" styleClass="default" text="Projekt">
+                     <content>
+                        <Pane maxWidth="190.0" prefHeight="200.0" prefWidth="188.0">
                            <children>
-                              <ListView fx:id="lvProjekt" onMouseClicked="#clickProjekt" />
+                              <ListView fx:id="lvProjekt" onMouseClicked="#clickProjekt" prefHeight="200.0" prefWidth="188.0" />
                            </children>
-                        </AnchorPane>
-                  </content>
+                        </Pane>
+                     </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Subunternehmen">
-                  <content>
-                    <AnchorPane>
+                <TitledPane animated="false" prefWidth="188.0" text="Subunternehmen">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="188.0">
                            <children>
-                              <ListView fx:id="lvSubunternehmen" onMouseClicked="#clickSubunternehmen" />
+                              <ListView fx:id="lvSubunternehmen" onMouseClicked="#clickSubunternehmen" prefHeight="200.0" prefWidth="188.0" />
                            </children>
-                        </AnchorPane>
-                  </content>
+                        </Pane>
+                     </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Person">
-                  <content>
-                    <AnchorPane>
+                <TitledPane animated="false" prefWidth="188.0" text="Person">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="188.0">
                            <children>
-                              <ListView fx:id="lvPerson" onMouseClicked="#clickPerson" />
+                              <ListView fx:id="lvPerson" onMouseClicked="#clickPerson" prefHeight="200.0" prefWidth="188.0" />
                            </children>
-                        </AnchorPane>
-                  </content>
+                        </Pane>
+                     </content>
                 </TitledPane>
               </panes>
             </Accordion>
