@@ -76,7 +76,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private TableView<Mangel> tvDataBeauftragt;
 	
 	@FXML
-	private TableColumn<Mangel, Integer> tcReferenzBeauftragt;
+	private TableColumn<Mangel, String> tcReferenzBeauftragt;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelBeauftragt;
@@ -86,7 +86,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private TableView<Mangel> tvDataAngenommen;
 	
 	@FXML
-	private TableColumn<Mangel, Integer> tcReferenzAngenommen;
+	private TableColumn<Mangel, String> tcReferenzAngenommen;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelAngenommen;
@@ -96,7 +96,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private TableView<Mangel> tvDataBehoben;
 	
 	@FXML
-	private TableColumn<Mangel, Integer> tcReferenzBehoben;
+	private TableColumn<Mangel, String> tcReferenzBehoben;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelBehoben;
@@ -106,7 +106,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private TableView<Mangel> tvDataAbgeschlossen;
 	
 	@FXML
-	private TableColumn<Mangel, Integer> tcReferenzAbgeschlossen;
+	private TableColumn<Mangel, String> tcReferenzAbgeschlossen;
 
 	@FXML
 	private TableColumn<Mangel, String> tcMangelAbgeschlossen;
@@ -148,7 +148,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		});
 		
 		// Tabelle "beauftragt"
-		tcReferenzBeauftragt.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		tcReferenzBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty("M" + ("000" + param.getValue().getReferenz()).substring((("000" + param.getValue().getReferenz()).length())-3));
+			}
+		});
 		
 		tcMangelBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -157,7 +161,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		});
 		
 		// Tabelle "angenommen"
-		tcReferenzAngenommen.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		tcReferenzAngenommen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty("M" + ("000" + param.getValue().getReferenz()).substring((("000" + param.getValue().getReferenz()).length())-3));
+			}
+		});
 				
 		tcMangelAngenommen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -166,7 +174,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		});
 		
 		// Tabelle "behoben"
-		tcReferenzBehoben.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		tcReferenzBehoben.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty("M" + ("000" + param.getValue().getReferenz()).substring((("000" + param.getValue().getReferenz()).length())-3));
+			}
+		});
 				
 		tcMangelBehoben.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -175,7 +187,11 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		});
 		
 		// Tabelle "abgeschlossen"
-		tcReferenzAbgeschlossen.setCellValueFactory(new PropertyValueFactory<Mangel, Integer>("referenz"));
+		tcReferenzAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty("M" + ("000" + param.getValue().getReferenz()).substring((("000" + param.getValue().getReferenz()).length())-3));
+			}
+		});
 		
 		tcMangelAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
