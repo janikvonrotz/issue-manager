@@ -327,7 +327,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		
 		if(projekt != null){
 		
-			lbProjekt.setText(projekt.getDisplayName());
+			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle());
 	    	txTitel.setText(projekt.getTitle());
 	    	txStrasse.setText(projekt.getAdresse().getStrasse());
 	    	cbOrt.setValue(projekt.getAdresse().getOrt());

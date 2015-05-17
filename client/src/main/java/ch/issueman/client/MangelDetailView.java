@@ -115,7 +115,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
                         super.updateItem(p, bln);
                          
                         if(p != null){
-                            setText(p.getDisplayName());
+                            setText(p.getDisplayName() + " - " + p.getTitle());
                         }else{
                             setText(null);
                         }
@@ -135,7 +135,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 
 			public String toString(Projekt p) {
                if (p != null) {
-                    String str = p.getDisplayName();
+                    String str = p.getDisplayName() + " - " + p.getTitle();
                     map.put(str, p);
                     return str;
                 } else {
