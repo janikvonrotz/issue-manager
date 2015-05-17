@@ -18,7 +18,7 @@
             <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
             <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" GridPane.rowIndex="3">
