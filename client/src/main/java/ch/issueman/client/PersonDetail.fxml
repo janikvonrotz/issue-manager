@@ -22,7 +22,7 @@
                   <TextField fx:id="txNachname" styleClass="default" GridPane.columnIndex="1" />
                   <TextField fx:id="txVorname" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <ComboBox fx:id="cbRolle" prefWidth="771.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="cbOrt" prefWidth="924.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+                  <ComboBox fx:id="cbOrt" minHeight="0.0" prefHeight="0.0" prefWidth="300.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="16" />
                   <Label fx:id="lbProjekt" />
                   <TextField fx:id="txEmail" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="txFirma" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="12" />
@@ -32,7 +32,7 @@
                   <ComboBox fx:id="cbSubunternehmen" prefHeight="27.0" prefWidth="304.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="130.0" prefWidth="150.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
                </columnConstraints>
@@ -92,9 +92,9 @@
          <rowConstraints>
             <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-            <RowConstraints minHeight="325.0" prefHeight="325.0" vgrow="NEVER" />
+            <RowConstraints minHeight="380.0" prefHeight="380.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-            <RowConstraints vgrow="NEVER" />
+            <RowConstraints minHeight="25.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" vgrow="NEVER" />
          </rowConstraints>
       </GridPane>
