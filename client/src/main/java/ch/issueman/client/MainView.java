@@ -12,9 +12,11 @@ import org.apache.commons.io.FileUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * Main view controller that holds the border pane and handles the view navigation.
@@ -24,7 +26,6 @@ import javafx.stage.FileChooser;
  * @since 1.0.0
  */
 public class MainView implements Initializable {
-
 	@FXML
 	private Pane pnTop;
 
@@ -172,5 +173,19 @@ public class MainView implements Initializable {
 //		alert.showAndWait();
 		e.printStackTrace();
 	}
-	
+
+	public static void showLogin() {
+		
+		try {
+			Stage stage = new Stage();
+			FXMLLoader loader =  new FXMLLoader();
+			loader.setLocation(MainView.class.getResource("Login.fxml"));
+			stage.setScene(new Scene(loader.load()));
+			stage.setTitle("Issue Manger");
+			stage.show();
+			((Stage) root.getScene().getWindow()).close();
+		} catch (IOException e) {
+			showError(e);
+		}
+	}
 }

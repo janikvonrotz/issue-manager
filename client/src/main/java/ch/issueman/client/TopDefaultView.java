@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.SplitMenuButton;
 
 /**
  * Default view for top pane.
@@ -30,10 +29,8 @@ public class TopDefaultView implements ViewableDetail<Object> {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// Standardmässig Left Mangel view anzeigen
 		mbBenutzer.setText(Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
-		
 		btMangel.getStyleClass().clear();
 		mbAdmin.getStyleClass().clear();
 		mbBenutzer.getStyleClass().clear();
@@ -41,8 +38,6 @@ public class TopDefaultView implements ViewableDetail<Object> {
 		mbAdmin.getStyleClass().add("menuunselected");
 		mbBenutzer.getStyleClass().add("menuunselected");	
 	}
-	
-
 
 	@Override
 	public void Refresh() {
@@ -57,7 +52,6 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	public void showList() {
 	}
 	
-	// egänzen button click methoden mit aufruf der left views.
 	@FXML
 	public void clickMangel() {
 		MainView.showLeftView("LeftMangel");
@@ -106,7 +100,7 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickLogout() {
 		Context.logout();
-		
+		MainView.showLogin();
 	}
 	
 	@FXML

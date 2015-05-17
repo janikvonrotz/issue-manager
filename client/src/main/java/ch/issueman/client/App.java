@@ -74,7 +74,7 @@ public class App extends Application implements Initializable {
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.setTitle("Issue Manger");
-				stage.show();
+				stage.show();				
 			} catch (IOException e) {
 				MainView.showError(e);
 			}
