@@ -36,14 +36,13 @@
                </rowConstraints>
                <children>
                   <Label layoutX="14.0" layoutY="18.0" styleClass="title" text="Subunternehmen" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                  <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" />
+                  <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="6.0" prefWidth="300.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" />
                   <Button fx:id="btAddSubunternehmen" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="2" />
                   <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" />
                </children>
             </GridPane>
             <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" GridPane.rowIndex="3">
               <columns>
-                <TableColumn fx:id="tcId" maxWidth="1000.0" prefWidth="50.0" text="ID" />
                 <TableColumn fx:id="tcFirmenname" prefWidth="150.0" text="Firma" />
                   <TableColumn fx:id="tcStrasse" prefWidth="184.0" text="Strasse" />
                   <TableColumn fx:id="tcPlz" maxWidth="2000.0" prefWidth="70.0" text="PLZ" />
