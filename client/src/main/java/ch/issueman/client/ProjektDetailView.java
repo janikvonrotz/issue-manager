@@ -419,7 +419,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			projekt.setBauherr(cbBauherr.getValue());
 						
 			try {
-				projektcontroller.update(projekt);
+				if(Context.getLogin().getPerson() instanceof Sachbearbeiter || 
+						Context.getLogin().getPerson() instanceof Bauleiter){
+					projektcontroller.update(projekt);
+				}
 				
 				if(kOld != null){
 					kOld.getProjekte().remove(projekt);
