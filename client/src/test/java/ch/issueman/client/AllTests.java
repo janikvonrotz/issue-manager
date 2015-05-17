@@ -17,7 +17,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		ControllerTestArbeitstyp.class, ControllerTestBauherr.class,
 		ControllerTestBauleiter.class, ControllerTestKontakt.class,
 		ControllerTestMangel.class, ControllerTestRolle.class,
-		ControllerTestSachbearbeiter.class })
+		ControllerTestSachbearbeiter.class, ControllerTestLogin.class,
+		ControllerTestProjekt.class})
 public class AllTests {
 
 }
