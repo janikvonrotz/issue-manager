@@ -300,6 +300,12 @@ public class Seed {
 		listLogin.add(new Login(listSachbearbeiter.get(1), "1", listRolle.get(0)));
 		listLogin.add(new Login(listBauleiter.get(0), "1", listRolle.get(1)));
 		listLogin.add(new Login(listBauleiter.get(1), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(2), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(3), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(4), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(5), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(6), "1", listRolle.get(1)));
+		listLogin.add(new Login(listBauleiter.get(7), "1", listRolle.get(1)));
 		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
 		listLogin.add(new Login(listKontakt.get(1), "1", listRolle.get(2)));
 		listLogin.add(new Login(listKontakt.get(2), "1", listRolle.get(2)));
