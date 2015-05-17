@@ -44,9 +44,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	private Button btAddSubunternehmen;
 
 	@FXML
-	private TableColumn<Subunternehmen, Integer> tcId;
-
-	@FXML
 	private TableColumn<Subunternehmen, String> tcFirmenname;
 
 	@FXML
@@ -61,7 +58,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		tcId.setCellValueFactory(new PropertyValueFactory<Subunternehmen, Integer>("id"));
 		tcFirmenname.setCellValueFactory(new PropertyValueFactory<Subunternehmen, String>("firmenname"));
 		
 		tcStrasse.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Subunternehmen,String>,ObservableValue<String>>() {  
