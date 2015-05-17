@@ -36,12 +36,12 @@
                   <RowConstraints maxHeight="50.0" minHeight="50.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Benutzername" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="tableTitle" text="Benutzername" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <padding>
                         <Insets right="50.0" />
                      </padding>
                   </Label>
-                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="subtitle" text="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="300.0" prefHeight="40.0" prefWidth="300.0" styleClass="tableTitle" text="Passwort" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <Button fx:id="btLogin" alignment="CENTER" maxHeight="30.0" maxWidth="148.0" minHeight="30.0" minWidth="148.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="30.0" prefWidth="148.0" styleClass="default" text="login" translateX="202.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <TextField fx:id="txBenutzername" layoutX="77.0" layoutY="273.0" maxHeight="40.0" maxWidth="350.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="350.0" styleClass="default" text="sb@im.ch" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <PasswordField fx:id="pfPasswort" maxHeight="40.0" maxWidth="300.0" minHeight="40.0" minWidth="350.0" prefHeight="40.0" prefWidth="300.0" styleClass="default" text="1" GridPane.columnIndex="1" GridPane.rowIndex="12" />

@@ -135,9 +135,13 @@ TableView.default {
 }
 
 .table-view {
-  -fx-table-cell-border-color: transparent;
-  -fx-background-color: transparent;
-  -fx-text-fill: white;
+  	-fx-table-cell-border-color: transparent;
+  	-fx-background-color: transparent;
+  	-fx-text-fill: white;
+}
+
+.table-row-cell.overdue {
+	-fx-background-color: #FF6B68;
 }
 
 Label.default{
