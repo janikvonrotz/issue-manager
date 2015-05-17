@@ -36,7 +36,7 @@
                </rowConstraints>
                <children>
                   <Label layoutX="14.0" layoutY="18.0" styleClass="title" text="Subunternehmen" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
-                  <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" prefHeight="6.0" prefWidth="300.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" />
+                  <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" />
                   <Button fx:id="btAddSubunternehmen" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="2" />
                   <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" />
                </children>
