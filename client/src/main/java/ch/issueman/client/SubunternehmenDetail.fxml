@@ -12,7 +12,7 @@
          <children>
             <GridPane prefHeight="914.0" prefWidth="761.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <TableView fx:id="tvKontakt" styleClass="default" GridPane.rowIndex="6">
+                  <TableView fx:id="tvKontakt" onMouseClicked="#doubleClickData" styleClass="default" GridPane.rowIndex="6">
                     <columns>
                       <TableColumn fx:id="tcNachname" minWidth="-1.0" prefWidth="158.0" text="nachname" />
                       <TableColumn fx:id="tcVorname" minWidth="-1.0" prefWidth="186.0" text="vorname" />

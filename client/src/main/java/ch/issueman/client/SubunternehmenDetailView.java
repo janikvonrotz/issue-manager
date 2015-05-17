@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,6 +24,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
@@ -247,5 +249,21 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 	public void showList() {
 		Viewable<Subunternehmen, Subunternehmen> view = MainView.showCenterView("Subunternehmen");
 		view.initData(subunternehmen);
+	}
+	
+	@FXML
+	public void doubleClickData() {
+		tvKontakt.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	Kontakt t = tvKontakt.getSelectionModel().getSelectedItem();
+		        	ViewableDetail<Kontakt> view = MainView.showCenterDetailView("PersonDetail");
+		    		view.initData(t);
+		        }
+		    }
+		});
+		
+	
 	}
 }
