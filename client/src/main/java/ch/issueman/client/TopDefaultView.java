@@ -34,6 +34,9 @@ public class TopDefaultView implements ViewableDetail<Object> {
 		mbBenutzer.setText(Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
 		
+		btMangel.getStyleClass().clear();
+		mbAdmin.getStyleClass().clear();
+		mbBenutzer.getStyleClass().clear();
 		btMangel.getStyleClass().add("menuselected");
 		mbAdmin.getStyleClass().add("menuunselected");
 		mbBenutzer.getStyleClass().add("menuunselected");	
