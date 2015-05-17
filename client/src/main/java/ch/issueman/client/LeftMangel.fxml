@@ -21,7 +21,7 @@
             <RowConstraints vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <ListView fx:id="lvProjekt" layoutX="11.0" layoutY="115.0" maxHeight="1000.0" onMouseClicked="#clickProjekt" styleClass="default" GridPane.rowIndex="3">
+            <ListView fx:id="lvProjekt" layoutX="11.0" layoutY="115.0" onMouseClicked="#clickProjekt" styleClass="default" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" />
                </GridPane.margin></ListView>

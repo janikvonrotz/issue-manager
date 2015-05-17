@@ -23,7 +23,7 @@
             <ImageView fx:id="ivLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" />
             <Accordion GridPane.rowIndex="2">
               <panes>
-                <TitledPane animated="false" text="Projekt">
+                <TitledPane animated="false" styleClass="default" text="Projekt">
                   <content>
                     <AnchorPane>
                            <children>

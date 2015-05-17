@@ -24,13 +24,13 @@ Button.topMangel{
 	-fx-text-fill: white;
 }
 
-Button.topAdmin{
-	-fx-background-color: #486285;
-	-fx-text-fill: white;
-}
-
 MenuButton.top{
 	-fx-background-color: white;
+}
+
+MenuButton.admin{
+	-fx-background-color: #486285;
+	-fx-text-fill: white;
 }
 
 .menu-item {
@@ -73,6 +73,21 @@ ComboBox.default, DatePicker.default{
 	
 }
 
+TitlePane.default {
+	-fx-background-color: #486285;
+	-fx-text-fill: white;
+	-fx-pref-height: 33;
+	-fx-pref-width: 196;
+	-fx-min-height: 33;
+	-fx-min-width: 196;
+	-fx-max-height: 33;
+	-fx-max-width: 196;
+}
+
+.connectivity {
+  -fx-text-fill: white;
+}
+
 TextField.title{
 	-fx-text-color: #939382;
 	-fx-text-size: 36px;
@@ -91,12 +106,30 @@ TableView.settle {
     -fx-alignment: center-left;
 }
 
+.settle.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-font-size: 18pt;
+    -fx-font-weight: normal;
+}
+
+.table-view .column-header .label {
+	visibility: false;
+}
+
 TableView.completed {
     -fx-base: #719AD1 ;
     -fx-control-inner-background: #719AD1 ;
     -fx-background-color: #719AD1 ;
     -fx-text-fill: white;
     -fx-alignment: center-left;
+}
+
+.completed.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-font-size: 18pt;
+    -fx-font-weight: normal;
 }
 
 TableView.process {
@@ -106,6 +139,13 @@ TableView.process {
     -fx-text-fill: white;
     -fx-alignment: center-left;
 }  
+
+.process.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-font-size: 18pt;
+    -fx-font-weight: normal;
+}
 
 TableView.comment {
     -fx-base: #aaaaaa;
@@ -144,10 +184,6 @@ TableView.default {
   	-fx-text-fill: white;
 }
 
-.overdue {
-	-fx-background-color: #FF6B68;
-}
-
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
@@ -156,7 +192,7 @@ Label.default{
 	-fx-max-height: 33;
 	-fx-max-widht: 120;
 	-fx-min-height: 33;
-	-fx-min-wiht: 120;
+	-fx-min-widht: 120;
 	-fx-opacity: 1;
 }
 

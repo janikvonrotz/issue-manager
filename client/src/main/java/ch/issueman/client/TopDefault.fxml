@@ -28,7 +28,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#clickLogout" text="Logout" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="mbAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefWidth="1000.0" text="Admin" GridPane.columnIndex="1">
+            <MenuButton fx:id="mbAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefWidth="1000.0" styleClass="leftAdmin" text="Admin" GridPane.columnIndex="1">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#clickProjekt" text="Projekt" />
                 <MenuItem mnemonicParsing="false" onAction="#clickSubunternehmen" text="Subunternehmen" />
