@@ -23,9 +23,9 @@
          <children>
             <GridPane layoutX="15.0" layoutY="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.rowIndex="1">
                <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-                  <ColumnConstraints hgrow="NEVER" minWidth="25.0" />
+                  <ColumnConstraints hgrow="NEVER" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
                   <ColumnConstraints hgrow="NEVER" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
