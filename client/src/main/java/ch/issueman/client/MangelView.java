@@ -20,9 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
@@ -70,6 +70,9 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbzuklären;
+	
+	@FXML
+	private TableColumn<Mangel, String> tcEndeAbzuklären;
 	
 	// Tabelle "beauftragt"
 	@FXML
@@ -145,6 +148,12 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				List<Kommentar> k = param.getValue().getKommentare();
 				return new SimpleStringProperty(param.getValue().getKommentare().get(k.size() - 1).getKommentar());
 			}
+		});
+		
+		tcEndeAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
+			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
+				return new SimpleStringProperty(FormatHelper.formatDate(param.getValue().getErledigenbis()));
+			}  
 		});
 		
 		// Tabelle "beauftragt"
