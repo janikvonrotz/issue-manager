@@ -13,6 +13,7 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
           <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
             <RowConstraints minHeight="420.0" prefHeight="420.0" vgrow="NEVER" />
@@ -21,8 +22,7 @@
           <RowConstraints minHeight="10.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <Label fx:id="lbProjekt" prefHeight="4.0" prefWidth="15.0" styleClass="title" />
-            <GridPane prefHeight="887.0" prefWidth="1000.0" GridPane.rowIndex="2">
+            <GridPane prefHeight="887.0" prefWidth="1000.0" GridPane.rowIndex="3">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
                 <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
@@ -70,13 +70,13 @@
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="16">
                      <children>
                         <TextField fx:id="txProjektleiter" prefHeight="27.0" prefWidth="285.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" text="i" />
+                        <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" styleClass="default" text="i" />
                      </children>
                   </HBox>
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="18">
                      <children>
                         <TextArea fx:id="taSubunternehmen" prefHeight="25.0" prefWidth="297.0" styleClass="default" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" prefHeight="25.0" prefWidth="52.0" text="+" />
+                        <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" prefHeight="25.0" prefWidth="52.0" styleClass="default" text="+" />
                      </children>
                   </HBox>
                   <ComboBox fx:id="cbOrt" prefHeight="27.0" prefWidth="339.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -86,12 +86,11 @@
                   <ComboBox fx:id="cbBauherr" prefHeight="27.0" prefWidth="323.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <DatePicker fx:id="dpBeginn" prefHeight="27.0" prefWidth="334.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                   <DatePicker fx:id="dpEnde" prefHeight="27.0" prefWidth="336.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                  <Label fx:id="lbProjekt" />
                   <Label styleClass="default" text="archiviert" GridPane.rowIndex="22" />
                   <CheckBox fx:id="chArchivieren" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="22" />
                </children>
             </GridPane>
-            <GridPane prefHeight="25.0" prefWidth="755.0" GridPane.rowIndex="4">
+            <GridPane prefHeight="25.0" prefWidth="755.0" GridPane.rowIndex="5">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" />
                </columnConstraints>
@@ -118,6 +117,7 @@
                   </HBox>
                </children>
             </GridPane>
+            <Label fx:id="lbProjekt" styleClass="title" />
          </children>
       </GridPane>
    </children>

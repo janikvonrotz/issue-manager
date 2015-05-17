@@ -67,6 +67,10 @@ ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
 	-fx-text-fill-color: #486285;
+	-fx-pref-height: 33;
+	-fx-max-height: 33;
+	-fx-min-height: 33;
+	
 }
 
 TextField.title{
@@ -140,13 +144,20 @@ TableView.default {
   	-fx-text-fill: white;
 }
 
-.table-row-cell.overdue {
+.overdue {
 	-fx-background-color: #FF6B68;
 }
 
 Label.default{
 	-fx-background-color: #aaaaaa;
 	-fx-text-fill: white;
+	-fx-pref-height: 33;
+	-fx-pref-width: 120;
+	-fx-max-height: 33;
+	-fx-max-widht: 120;
+	-fx-min-height: 33;
+	-fx-min-wiht: 120;
+	-fx-opacity: 1;
 }
 
 Label.title{
