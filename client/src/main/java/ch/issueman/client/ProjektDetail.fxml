@@ -99,14 +99,14 @@
                <children>
                   <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="450.0">
                      <children>
-                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3">
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Button>
                         <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3">
                            <HBox.margin>
                               <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3">
+                           <HBox.margin>
+                              <Insets left="10.0" />
                            </HBox.margin>
                         </Button>
                      </children>
