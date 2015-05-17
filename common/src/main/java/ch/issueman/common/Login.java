@@ -1,6 +1,5 @@
 package ch.issueman.common;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,7 +25,7 @@ public class Login implements Model {
 	@Id
 	@GeneratedValue
 	private int id;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@NotNull
 	private Person person;
 	@NotNull

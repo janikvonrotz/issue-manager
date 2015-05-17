@@ -386,9 +386,11 @@ public class PersonDetailView implements ViewableDetail<Person> {
 			case "Sachbearbeiter":
 				Sachbearbeiter sachbearbeiter = new Sachbearbeiter(txNachname.getText(),
 						txVorname.getText(), txEmail.getText());
-				login = new Login(sachbearbeiter, pfPasswort.getText(), cbRolle.getValue());
+				login = new Login(null, pfPasswort.getText(), cbRolle.getValue());
 				
 				try {
+					sachbearbeitercontroller.persist(sachbearbeiter);
+					login.setPerson(sachbearbeitercontroller.getAll().get(sachbearbeitercontroller.getAll().size()-1));
 					logincontroller.persist(login);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
