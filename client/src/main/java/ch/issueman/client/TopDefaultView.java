@@ -20,6 +20,9 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	MenuButton mbBenutzer;
 	
+	@FXML
+	MenuButton mbAdmin;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -51,9 +54,21 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	}
 	
 	@FXML
-	public void clickAdmin() {
+	public void clickProjekt() {
 		MainView.showLeftView("LeftAdmin");
-		
+		MainView.showCenterView("Projekt");
+	}
+	
+	@FXML
+	public void clickSubunternehmen() {
+		MainView.showLeftView("LeftAdmin");
+		MainView.showCenterView("Subunternehmen");
+	}
+	
+	@FXML
+	public void clickPerson() {
+		MainView.showLeftView("LeftAdmin");
+		MainView.showCenterView("Person");
 	}
 	
 	@FXML

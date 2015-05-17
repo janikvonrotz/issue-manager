@@ -114,6 +114,8 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		
+		
 		cbOrt.setCellFactory(new Callback<ListView<Ort>,ListCell<Ort>>(){
 			@Override
 			public ListCell<Ort> call(ListView<Ort> arg0) {		 

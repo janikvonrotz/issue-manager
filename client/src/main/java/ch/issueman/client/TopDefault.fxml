@@ -22,11 +22,17 @@
         </rowConstraints>
          <children>
             <Button fx:id="btMangel" mnemonicParsing="false" onAction="#clickMangel" prefWidth="1000.0" styleClass="topMangel" text="Mangel" />
-            <Button fx:id="btAdmin" mnemonicParsing="false" onAction="#clickAdmin" prefWidth="1000.0" styleClass="topAdmin" text="Admin" GridPane.columnIndex="1" />
             <MenuButton fx:id="mbBenutzer" mnemonicParsing="false" prefWidth="175.0" styleClass="top" text="MenuButton" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#clickPasswortwechsel" text="Passwortwechsel" />
                 <MenuItem mnemonicParsing="false" onAction="#clickLogout" text="Logout" />
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="mbAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefWidth="1000.0" text="Admin" GridPane.columnIndex="1">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#clickProjekt" text="Projekt" />
+                <MenuItem mnemonicParsing="false" onAction="#clickSubunternehmen" text="Subunternehmen" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickPerson" text="Person" />
               </items>
             </MenuButton>
          </children>
