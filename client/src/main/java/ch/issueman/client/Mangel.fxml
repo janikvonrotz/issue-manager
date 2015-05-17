@@ -117,15 +117,16 @@
                   </GridPane>
                </children>
             </GridPane>
-            <GridPane layoutX="10.0" layoutY="20.0" prefHeight="70.0" prefWidth="376.0" AnchorPane.bottomAnchor="510.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
+            <GridPane layoutX="10.0" layoutY="20.0" AnchorPane.bottomAnchor="510.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="747.3333129882812" minWidth="370.0" prefWidth="370.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
                   <ColumnConstraints hgrow="NEVER" maxWidth="547.0" minWidth="0.0" prefWidth="0.0" />
-                  <ColumnConstraints hgrow="NEVER" maxWidth="547.0" minWidth="30.0" prefWidth="42.0" />
-                  <ColumnConstraints hgrow="NEVER" maxWidth="547.0" minWidth="11.0" prefWidth="11.0" />
-                  <ColumnConstraints hgrow="NEVER" maxWidth="547.0" minWidth="30.0" prefWidth="112.0" />
-                  <ColumnConstraints hgrow="NEVER" maxWidth="547.0" minWidth="30.0" prefWidth="196.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.3333435058594" minWidth="10.0" prefWidth="251.0" />
+                  <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="NEVER" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="NEVER" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="300.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -133,9 +134,9 @@
                </rowConstraints>
                <children>
                   <Label fx:id="lbProjekt" layoutX="10.0" layoutY="20.0" styleClass="title" />
-                  <TextField fx:id="txFilter" layoutX="505.0" layoutY="42.0" prefHeight="27.0" prefWidth="267.0" styleClass="default" GridPane.columnIndex="6" />
-                  <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="2" />
-                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" />
+                  <TextField fx:id="txFilter" layoutX="505.0" layoutY="42.0" prefHeight="27.0" prefWidth="267.0" styleClass="default" GridPane.columnIndex="7" />
+                  <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="3" />
+                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="5" />
                </children>
             </GridPane>
             <GridPane layoutX="10.0" layoutY="115.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="115.0" GridPane.rowIndex="1">
