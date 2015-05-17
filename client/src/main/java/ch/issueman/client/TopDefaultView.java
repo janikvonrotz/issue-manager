@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.SplitMenuButton;
 
@@ -18,10 +19,13 @@ import javafx.scene.control.SplitMenuButton;
 public class TopDefaultView implements ViewableDetail<Object> {
 	
 	@FXML
-	MenuButton mbBenutzer;
+	private Button btMangel;
 	
 	@FXML
-	MenuButton mbAdmin;
+	private MenuButton mbBenutzer;
+	
+	@FXML
+	private MenuButton mbAdmin;
 	
 
 	@Override
@@ -30,6 +34,9 @@ public class TopDefaultView implements ViewableDetail<Object> {
 		mbBenutzer.setText(Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
 		
+		btMangel.setStyle("menuselected");
+		mbAdmin.setStyle("menuunselected");
+		mbBenutzer.setStyle("menuunselected");	
 	}
 	
 
@@ -51,24 +58,39 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickMangel() {
 		MainView.showLeftView("LeftMangel");
+		btMangel.setStyle("menuselected");
+		mbAdmin.setStyle("menuunselected");
+		mbBenutzer.setStyle("menuunselected");
 	}
 	
 	@FXML
 	public void clickProjekt() {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Projekt");
+		
+		btMangel.setStyle("menuunselected");
+		mbAdmin.setStyle("menuselected");
+		mbBenutzer.setStyle("menuunselected");
 	}
 	
 	@FXML
 	public void clickSubunternehmen() {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Subunternehmen");
+		
+		btMangel.setStyle("menuunselected");
+		mbAdmin.setStyle("menuselected");
+		mbBenutzer.setStyle("menuunselected");
 	}
 	
 	@FXML
 	public void clickPerson() {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Person");
+		
+		btMangel.setStyle("menuunselected");
+		mbAdmin.setStyle("menuselected");
+		mbBenutzer.setStyle("menuunselected");
 	}
 	
 	@FXML
@@ -79,6 +101,5 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickPasswortwechsel() {
 		MainView.showCenterDetailView("Passwort");
-	
 	}
 }
