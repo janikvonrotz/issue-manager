@@ -8,21 +8,20 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.ProjektDetailView">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-          <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-            <RowConstraints minHeight="420.0" prefHeight="420.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
+            <RowConstraints minHeight="510.0" prefHeight="420.0" vgrow="NEVER" />
           <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
           <RowConstraints minHeight="10.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <GridPane prefHeight="887.0" prefWidth="1000.0" GridPane.rowIndex="3">
+            <GridPane prefHeight="887.0" prefWidth="1000.0" GridPane.rowIndex="2">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
                 <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
@@ -90,7 +89,7 @@
                   <CheckBox fx:id="chArchivieren" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="22" />
                </children>
             </GridPane>
-            <GridPane prefHeight="25.0" prefWidth="755.0" GridPane.rowIndex="5">
+            <GridPane prefHeight="25.0" prefWidth="755.0" GridPane.rowIndex="4">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" />
                </columnConstraints>
