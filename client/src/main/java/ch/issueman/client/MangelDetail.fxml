@@ -99,7 +99,7 @@
             <GridPane GridPane.rowIndex="3">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" minWidth="75.0" prefWidth="75.0" />
-                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="30.0" prefWidth="30.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" prefWidth="75.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="868.0" minWidth="10.0" prefWidth="868.0" />
                </columnConstraints>
@@ -108,7 +108,7 @@
                </rowConstraints>
                <children>
                   <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" />
-                  <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.columnIndex="2" />
+                  <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </children>

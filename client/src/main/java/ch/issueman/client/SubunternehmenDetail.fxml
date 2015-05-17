@@ -75,7 +75,7 @@
                   <HBox alignment="TOP_RIGHT" prefWidth="450.0">
                      <children>
                         <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" GridPane.rowIndex="3" />
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3">
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.rowIndex="3">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>

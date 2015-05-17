@@ -99,7 +99,7 @@
                <children>
                   <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="450.0">
                      <children>
-                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="default" text="speichern" GridPane.rowIndex="3">
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.rowIndex="3">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
