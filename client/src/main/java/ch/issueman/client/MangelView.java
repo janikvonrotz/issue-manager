@@ -2,6 +2,8 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -269,9 +271,18 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			
 			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle());
 			
+			// Comparator für die Sortierung nach Erledigungsdatum
+		    Comparator<? super Mangel> comparatorMangelByDate = new Comparator<Mangel>() {
+				@Override
+				public int compare(Mangel m1, Mangel m2) {
+					return m1.getErledigenbis().compareTo(m2.getErledigenbis());
+				}
+		    };
+			
 			try {
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
 				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
+				Collections.sort(list, comparatorMangelByDate);;
 				
 				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 				SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
