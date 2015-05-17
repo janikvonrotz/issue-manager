@@ -34,9 +34,9 @@ public class TopDefaultView implements ViewableDetail<Object> {
 		mbBenutzer.setText(Context.getLogin().getPerson().getEmail());
 		MainView.showLeftView("LeftMangel");
 		
-		btMangel.setStyle("menuselected");
-		mbAdmin.setStyle("menuunselected");
-		mbBenutzer.setStyle("menuunselected");	
+		btMangel.getStyleClass().add("menuselected");
+		mbAdmin.getStyleClass().add("menuunselected");
+		mbBenutzer.getStyleClass().add("menuunselected");	
 	}
 	
 
@@ -58,29 +58,36 @@ public class TopDefaultView implements ViewableDetail<Object> {
 	@FXML
 	public void clickMangel() {
 		MainView.showLeftView("LeftMangel");
-		btMangel.setStyle("menuselected");
-		mbAdmin.setStyle("menuunselected");
-		mbBenutzer.setStyle("menuunselected");
+		btMangel.getStyleClass().clear();
+		mbAdmin.getStyleClass().clear();
+		mbBenutzer.getStyleClass().clear();
+		btMangel.getStyleClass().add("menuselected");
+		mbAdmin.getStyleClass().add("menuunselected");
+		mbBenutzer.getStyleClass().add("menuunselected");
 	}
 	
 	@FXML
 	public void clickProjekt() {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Projekt");
-		
-		btMangel.setStyle("menuunselected");
-		mbAdmin.setStyle("menuselected");
-		mbBenutzer.setStyle("menuunselected");
+		btMangel.getStyleClass().clear();
+		mbAdmin.getStyleClass().clear();
+		mbBenutzer.getStyleClass().clear();	
+		btMangel.getStyleClass().add("menuunselected");
+		mbAdmin.getStyleClass().add("menuselected");
+		mbBenutzer.getStyleClass().add("menuunselected");
 	}
 	
 	@FXML
 	public void clickSubunternehmen() {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Subunternehmen");
-		
-		btMangel.setStyle("menuunselected");
-		mbAdmin.setStyle("menuselected");
-		mbBenutzer.setStyle("menuunselected");
+		btMangel.getStyleClass().clear();
+		mbAdmin.getStyleClass().clear();
+		mbBenutzer.getStyleClass().clear();
+		btMangel.getStyleClass().add("menuunselected");
+		mbAdmin.getStyleClass().add("menuselected");
+		mbBenutzer.getStyleClass().add("menuunselected");
 	}
 	
 	@FXML
@@ -88,9 +95,9 @@ public class TopDefaultView implements ViewableDetail<Object> {
 		MainView.showLeftView("LeftAdmin");
 		MainView.showCenterView("Person");
 		
-		btMangel.setStyle("menuunselected");
-		mbAdmin.setStyle("menuselected");
-		mbBenutzer.setStyle("menuunselected");
+		btMangel.getStyleClass().add("menuunselected");
+		mbAdmin.getStyleClass().add("menuselected");
+		mbBenutzer.getStyleClass().add("menuunselected");
 	}
 	
 	@FXML

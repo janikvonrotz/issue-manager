@@ -306,6 +306,10 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
                 }
 			}
 		});
+		
+		txProjektleiter.setOnAction((event) -> {
+			showProjektleitung();
+		});
 
 		Refresh();	
 
@@ -340,10 +344,15 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    	dpEnde.setValue(projekt.getEnde().toInstant()
 	    			.atZone(ZoneId.systemDefault()).toLocalDate());
 	    	cbBauherr.setValue(projekt.getBauherr());
-	    	txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
+	    	
+	    	if(projekt.getCurrentProjektleiter() != null){
+	    		txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
+	    	} else {
+	    		txProjektleiter.setText("");
+	    	}
+	    	
 	    	
 			try {
-				
 				List<Kontakt> kList = kontaktcontroller.getAll().stream().filter(k -> k.getProjekte().contains(projekt)).collect(Collectors.toList());
 				if(kList != null){
 					kList.forEach(k -> s += k.getSubunternehmen().getFirmenname() + ", ");
@@ -489,7 +498,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpBeginn.setDisable(false);
 		dpEnde.setDisable(false);
 		cbBauherr.setVisible(true);
-		txProjektleiter.setDisable(false);
+		txProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(true);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(true);
@@ -504,7 +513,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpBeginn.setDisable(false);
 		dpEnde.setDisable(false);
 		cbBauherr.setVisible(true);
-		txProjektleiter.setDisable(false);
+		txProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(true);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(false);
@@ -519,7 +528,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpBeginn.setDisable(true);
 		dpEnde.setDisable(true);
 		cbBauherr.setVisible(false);
-		txProjektleiter.setDisable(true);
+		txProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(false);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(false);
@@ -534,7 +543,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpBeginn.setDisable(true);
 		dpEnde.setDisable(true);
 		cbBauherr.setVisible(false);
-		txProjektleiter.setDisable(true);
+		txProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(false);
 		cbKontakt.setVisible(true);
 		chArchivieren.setVisible(false);
