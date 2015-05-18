@@ -199,10 +199,15 @@ public class PersonView implements Viewable<Login, Login> {
 			add(p.getPerson().getNachname());
 			add(p.getPerson().getNachname());
 			add(p.getPerson().getEmail());
-			add(p.getRolle().getBezeichnung());
+			if(!(p.getPerson() instanceof Bauherr)){
+				add(p.getRolle().getBezeichnung());
+			}
+					
 			if(p.getPerson() instanceof Kontakt){
 				add(((Kontakt) p.getPerson()).getSubunternehmen().getFirmenname());
-			}else if(p.getPerson() instanceof Bauherr){
+			}
+			
+			if(p.getPerson() instanceof Bauherr && ((Bauherr) p.getPerson()).getUnternehmen() != null){
 				add(((Bauherr) p.getPerson()).getUnternehmen().getFirmenname());
 			}
 		}}));

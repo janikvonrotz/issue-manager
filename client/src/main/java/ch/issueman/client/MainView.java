@@ -129,7 +129,7 @@ public class MainView implements Initializable {
 	public static void exportData(ArrayList<ArrayList<String>> list){
 		try {
 			FileChooser fileChooser = new FileChooser();
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "utf8");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
             fileChooser.getExtensionFilters().add(extFilter);
             File file = fileChooser.showSaveDialog(null);
             

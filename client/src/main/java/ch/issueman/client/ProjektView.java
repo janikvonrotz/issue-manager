@@ -196,18 +196,26 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 		list.add(new ArrayList<String>(){{
 		    add("Referenz");
 		    add("Titel");
+		    add("Strasse");
+		    add("PLZ");
+		    add("Ort");
 		    add("Projekttyp");
 		    add("Arbeitstyp");
 		    add("Bauherr");
+		    add("Anf Datum");
 		    add("End Datum");
 		}});
 		// add content from list view
 		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
 			add(p.getDisplayName());
 			add(p.getTitle());
+			add(p.getAdresse().getStrasse());
+			add(""+p.getAdresse().getOrt().getPlz());
+			add(p.getAdresse().getOrt().getOrt());
 			add(p.getProjekttyp().getProjekttyp());
 			add(p.getArbeitstyp().getArbeitstyp());
 			add(p.getBauherr().getDisplayName());
+			add(FormatHelper.formatDate(p.getBeginn()));
 			add(FormatHelper.formatDate(p.getEnde()));
 		}}));
 		

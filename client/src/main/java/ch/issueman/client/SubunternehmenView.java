@@ -154,7 +154,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		// add header
 		list.add(new ArrayList<String>(){{
-		    add("ID");
 		    add("Firma");
 		    add("Strasse");
 		    add("PLZ");
@@ -162,7 +161,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 		}});
 		// add content from list view
 		tvData.getItems().stream().forEach(p -> list.add(new ArrayList<String>(){{
-			add(""+p.getId());
 			add(p.getFirmenname());
 			add(p.getAdresse().getStrasse());
 			add(""+p.getAdresse().getOrt().getPlz());
