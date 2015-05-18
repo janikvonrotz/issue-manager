@@ -162,7 +162,7 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
 	@Override
 	public void Refresh() {
 		try {
-			if(projekt.getProjektleitungen() != null){
+			if(projekt != null && projekt.getProjektleitungen() != null){
 				filteredData = new FilteredList<Projektleitung>(FXCollections.observableArrayList(projekt.getProjektleitungen()),	p -> true);
 				SortedList<Projektleitung> sortedData = new SortedList<Projektleitung>(filteredData);
 				sortedData.comparatorProperty().bind(tvData.comparatorProperty());

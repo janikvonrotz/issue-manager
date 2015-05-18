@@ -68,7 +68,7 @@
                   <TextField fx:id="txStrasse" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <HBox GridPane.columnIndex="1" GridPane.rowIndex="16">
                      <children>
-                        <TextField fx:id="txProjektleiter" prefHeight="27.0" prefWidth="285.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextField fx:id="txProjektleiter" prefHeight="67.0" prefWidth="202.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" styleClass="default" text="i" />
                      </children>
                   </HBox>

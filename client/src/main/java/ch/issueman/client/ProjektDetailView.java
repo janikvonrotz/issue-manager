@@ -310,24 +310,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
                 }
 			}
 		});
-		
-		txProjektleiter.setOnMousePressed(new EventHandler<MouseEvent>() {
-		    @Override
-		    public void handle(MouseEvent event) {
-		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-		        	showProjektleitung();
-		        }
-		    }
-		});
-
-		taSubunternehmen.setOnMousePressed(new EventHandler<MouseEvent>() {
-		    @Override
-		    public void handle(MouseEvent event) {
-		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-		        	showZugewiesene();
-		        }
-		    }
-		});
 
 		Refresh();	
 
@@ -532,6 +514,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpEnde.setDisable(false);
 		cbBauherr.setVisible(true);
 		txProjektleiter.setVisible(true);
+		btProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(true);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(true);
