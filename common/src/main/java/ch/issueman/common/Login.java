@@ -2,8 +2,10 @@ package ch.issueman.common;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
@@ -31,6 +33,7 @@ public class Login implements Model {
 	private Person person;
 	@NotNull
 	private String passwort;
+	@ManyToOne(fetch=FetchType.EAGER)
 	@NotNull
 	private Rolle rolle;
 	
