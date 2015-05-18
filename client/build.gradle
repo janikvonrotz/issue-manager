@@ -1,3 +1,7 @@
+plugins {
+  id 'com.github.johnrengelman.shadow' version '1.2.1'
+}
+
 version = '1.0.0'
 sourceSets.main.resources.srcDir 'src/main/java'
 
@@ -9,10 +13,18 @@ task fatJar(type: Jar) {
     manifest {
           attributes 'Implementation-Title': 'Client',
           'Implementation-Version': version,
-          'Main-Class': 'ch.issueman.client.App',
-          'Class-Path': configurations.compile.files.collect { it.name }.join(' ')
+          'Main-Class': 'ch.issueman.client.App'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+shadowJar {
+  mergeServiceFiles()
+  manifest {
+        attributes 'Implementation-Title': 'Client',
+        	'Implementation-Version': version,
+        	'Main-Class': 'ch.issueman.client.App'
+    }
 }

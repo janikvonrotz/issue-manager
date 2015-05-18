@@ -1,1 +1,1 @@
-java -jar webservice-all-1.0.0.jar
+java -jar webservice-1.0.0-all.jar

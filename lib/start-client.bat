@@ -1,1 +1,1 @@
-java -jar client-all-1.0.0.jar
+java -jar client-1.0.0-all.jar

@@ -1,5 +1,5 @@
-﻿$path = "C:\Users\S\Documents\GitHub\issue-manager\export.docx"
-$PDFpath = "C:\Users\S\Documents\GitHub\issue-manager\export.docx"
+﻿$path = "C:\OneDrive\Shared\GitHub\issue-manager\export.docx"
+$PDFpath = "C:\OneDrive\Shared\GitHub\issue-manager\export.pdf"
 
 # Required Word Variables
 $wdExportFormatPDF = 17
@@ -18,20 +18,11 @@ Get-ChildItem -Recurse -Filter "*.java" | ForEach-Object{
     $Selection.Style = 'Überschrift 1'
     $Selection.TypeText($_.BaseName)
     $Selection.TypeParagraph()
-    $selection.typeText($(Get-Content $_.FullName -Raw) + "`v")
+    $selection.typeText($(Get-Content $_.FullName -Raw))
     $selection.InsertBreak(7)
 }
 
-
-
 $doc.saveas($path, $saveFormat::wdFormatDocument)
-
-<#
-$doc.ExportAsFixedFormat($PDFpath,$wdExportFormatPDF)
-#>
-
+#$doc.ExportAsFixedFormat($PDFpath,$wdExportFormatPDF)
 $doc.close($wdDoNotSaveChanges)
 $word.Quit()
-
-
-
