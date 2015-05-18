@@ -1,8 +1,12 @@
+version = '1.0.0'
+
 apply plugin: 'jetty'
+apply plugin: 'war'
 
 dependencies {
   compile project(':common')
   compile 'mysql:mysql-connector-java:5.+'
+  compile 'org.postgresql:postgresql:9.+'
   compile 'org.jboss.resteasy:resteasy-jackson-provider:2.+'
   providedCompile 'javax.servlet:javax.servlet-api:3.+'
 
@@ -20,10 +24,18 @@ task seed(type:JavaExec) {
 task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Appserver',
-        'Implementation-Version': 1,
+        'Implementation-Version': version,
         'Main-Class': 'ch.issueman.webservice.Service'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+task deploy (dependsOn: war){
+    copy {
+        from "build/libs"
+        into "../../libs"
+        include "*.war"
+    }
 }

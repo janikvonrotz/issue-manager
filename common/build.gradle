@@ -4,11 +4,11 @@ dependencies {
 
   compile 'org.codehaus.jackson:jackson-core-asl:1.+'
   compile 'org.codehaus.jackson:jackson-mapper-asl:1.+'
-  
+
   compile 'org.jboss.resteasy:resteasy-jaxrs:3.+'
   compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.+'
   compile 'org.jboss.resteasy:resteasy-client:3.+'
-  
+
   compile 'org.apache.commons:commons-csv:1.+'
   compile 'com.typesafe:config:1.+'
 

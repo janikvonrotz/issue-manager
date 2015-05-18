@@ -1,12 +1,14 @@
+version = '1.0.0'
+sourceSets.main.resources.srcDir 'src/main/java'
+
 dependencies {
   compile project(':common')
-  compile 'de.jensd:fontawesomefx:8.+'
 }
 
 task fatJar(type: Jar) {
     manifest {
           attributes 'Implementation-Title': 'Client',
-          'Implementation-Version': 1,
+          'Implementation-Version': version,
           'Main-Class': 'ch.issueman.client.App'
     }
     baseName = project.name + '-all'

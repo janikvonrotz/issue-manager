@@ -4,27 +4,11 @@ Learn how to setup the project.
 
 ## Requirements
 
-* chocolatey
-* eclipse
+* MySQL
+* Tomcat, Jetty, JBoss or any other application server
 
-## Install
+## Run
 
-On the command line:
-
-    choco install gradle
-    cd /issue-manager/
-    gradle build
-    gradle eclipse
-
-Then import the project in eclipse
-
-## Events
-
-Reocurring events and their actions.
-
-### DB Scheme Update
-
-If the db scheme has been updated run this command.
-
-    gradle flywayMigrate
-
+ * Copy `webservice.war` to the webapps folder of your webservice server.
+ * Start `start-webservice.bat` on the application server.
+ * Run `start-client.bat` on the client

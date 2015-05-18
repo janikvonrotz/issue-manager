@@ -48,6 +48,7 @@ public class App extends Application implements Initializable {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		primaryStage.setTitle("Issue Manager");
 		try {
 			primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Login.fxml"))));
