@@ -7,8 +7,9 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.FormatHelper;
-import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
+import ch.issueman.client.MainView;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
-import ch.issueman.client.MainView;
+
 /**
  * List view for Projekt
  * 

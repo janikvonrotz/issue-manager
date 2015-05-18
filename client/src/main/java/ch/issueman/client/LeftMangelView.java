@@ -2,21 +2,11 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
-
-
-
-
-
-
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
-import ch.issueman.common.Subunternehmen;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
