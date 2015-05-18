@@ -45,7 +45,8 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 	private FilteredList<Login> filteredData = new FilteredList<Login>(FXCollections.observableArrayList(),	p -> true);
 
 	private Projekt projekt;
-	private List<Login> lList;
+	private List<Login> kpList;
+	private List<Login> kaList;
 	private List<Login> kSelection;
 	
 	@FXML
@@ -84,7 +85,7 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 		tcPerson.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Login,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Login, String> param) {
 				return new SimpleStringProperty(((Kontakt) param.getValue().getPerson()).getDisplayName());
-				}  
+			}  
 		});	
 		
 		txFilter.textProperty().addListener(
@@ -144,12 +145,7 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
                 }
 			}
 		});
-		
-		cbSubunternehmen.setOnAction((event) -> {
-			refreshCbKontakt();
-		});
-
-		
+				
 		cbKontakt.setCellFactory(new Callback<ListView<Login>,ListCell<Login>>(){
 			@Override
 			public ListCell<Login> call(ListView<Login> arg0) {		 
@@ -197,21 +193,35 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 		try {
 			
 			if(projekt != null){
-				lList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
+				kpList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
+						getBezeichnung().equals("Kontaktperson")) && (((Kontakt) l.getPerson()).
+						getProjekte().contains(projekt))).collect(Collectors.toList());
+				
+				kaList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
 						getBezeichnung().equals("Kontaktadmin")) && (((Kontakt) l.getPerson()).
 						getProjekte().contains(projekt))).collect(Collectors.toList());
 				
-				filteredData = new FilteredList<Login>(FXCollections.observableArrayList(lList),	p -> true);
+				List<Login> list = kaList;
+				
+				for(Login p : kpList){
+					for(Login l : list){
+						if(((Kontakt) l.getPerson()).getSubunternehmen().equals(((Kontakt) p.
+								getPerson()).getSubunternehmen())){
+							list.remove(l);
+							list.add(p);
+						}
+					}
+				}
+				
+				filteredData = new FilteredList<Login>(FXCollections.observableArrayList(list),	p -> true);
 				SortedList<Login> sortedData = new SortedList<Login>(filteredData);
 				sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 				tvData.setItems(sortedData);
 				
 				List<Subunternehmen> sSelection = subunternehmencontroller.getAll();
-				lList.forEach(k -> sSelection.remove(((Kontakt) k.getPerson()).getSubunternehmen()));
+				kaList.forEach(k -> sSelection.remove(((Kontakt) k.getPerson()).getSubunternehmen()));
 						
 				cbSubunternehmen.setItems(FXCollections.observableArrayList(sSelection));
-				
-				refreshCbKontakt();
 			}
 			
 		} catch (Exception e) {
@@ -219,25 +229,31 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 		}
 	}
 	
+	@FXML
 	public void refreshCbKontakt(){
-		try {
-			kSelection = logincontroller.getAll().stream().filter(k -> k.getPerson() instanceof
-					Kontakt).collect(Collectors.toList());
-			kSelection.stream().filter(k -> ((Kontakt) k.getPerson()).getSubunternehmen().
-					equals(cbSubunternehmen.getValue())).collect(Collectors.toList());
-			
-			cbKontakt.setItems(FXCollections.observableArrayList(kSelection));
-		} catch (Exception e) {
-			MainView.showError(e);
+		
+		if(cbSubunternehmen.getValue() != null){
+			try {
+				kSelection = logincontroller.getAll().stream().filter(l -> ((l.getRolle().
+						getBezeichnung().contains("Kontakt")) && (((Kontakt) l.getPerson()).getSubunternehmen().
+						equals(cbSubunternehmen.getValue())))).collect(Collectors.toList());
+				
+				cbKontakt.setItems(FXCollections.observableArrayList(kSelection));
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
 		}
-
+		
 	}
 
 	@FXML
 	public void clickSpeichern(){
 		
 		try {
-			Login kaLogin = logincontroller.getAll().stream().filter(k -> (((Kontakt) k.getPerson()).
+			List<Login> lList = logincontroller.getAll().stream().filter(l -> l.getPerson() instanceof
+					Kontakt).collect(Collectors.toList());
+			
+			Login kaLogin = lList.stream().filter(k -> (((Kontakt) k.getPerson()).
 					getSubunternehmen().equals(cbSubunternehmen.getValue())) && k.getRolle().
 					getBezeichnung().equals("Kontaktadmin")).collect(Collectors.toList()).get(0);
 			
@@ -249,17 +265,16 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 			MainView.showError(e);
 		}
 
-		Login lOld = kSelection.stream().filter(p -> (((Kontakt) p.getPerson()).getProjekte().
+		List<Login> lOldList = kSelection.stream().filter(p -> (((Kontakt) p.getPerson()).getProjekte().
 				contains(projekt)) && p.getRolle().getBezeichnung().equals("Kontaktperson")).
-				collect(Collectors.toList()).get(0);
+				collect(Collectors.toList());
 		try {
 
-			if(lOld != null){
-				Kontakt kOld = ((Kontakt) lOld.getPerson());
+			if(lOldList.size() > 0){
+				Kontakt kOld = ((Kontakt) lOldList.get(0).getPerson());
 				kOld.getProjekte().remove(projekt);
 				kontaktcontroller.update(kOld);
 			}
-			
 			if(cbKontakt.getValue() != null && cbKontakt.getValue().getRolle().
 					getBezeichnung().equals("Kontaktperson")){
 				Kontakt kNew = (Kontakt) cbKontakt.getValue().getPerson();

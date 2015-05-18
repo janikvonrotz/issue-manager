@@ -42,7 +42,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="cbSubunternehmen" prefHeight="27.0" prefWidth="300.0" />
+                  <ComboBox fx:id="cbSubunternehmen" onAction="#refreshCbKontakt" prefHeight="27.0" prefWidth="300.0" />
                   <ComboBox fx:id="cbKontakt" prefHeight="27.0" prefWidth="300.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
