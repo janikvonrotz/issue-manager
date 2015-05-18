@@ -349,8 +349,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    		txProjektleiter.setText(projekt.getCurrentProjektleiter().getDisplayName());
 	    	} else {
 	    		txProjektleiter.setText("");
-	    	}
-	    	
+	    	}	    	
 	    	
 			try {
 				List<Login> lList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
@@ -516,6 +515,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		txProjektleiter.setVisible(true);
 		btProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(true);
+		btSubunternehmen.setVisible(true);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(true);
 	}
@@ -530,7 +530,9 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 		dpEnde.setDisable(false);
 		cbBauherr.setVisible(true);
 		txProjektleiter.setVisible(true);
+		btProjektleiter.setVisible(true);
 		taSubunternehmen.setVisible(true);
+		btSubunternehmen.setVisible(true);
 		cbKontakt.setVisible(false);
 		chArchivieren.setVisible(false);
 	}
