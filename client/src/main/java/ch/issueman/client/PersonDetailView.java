@@ -1,8 +1,6 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.text.Collator;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;

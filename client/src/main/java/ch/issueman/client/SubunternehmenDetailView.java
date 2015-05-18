@@ -1,8 +1,6 @@
 package ch.issueman.client;
 
 import java.net.URL;
-import java.text.Collator;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +8,6 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
@@ -27,6 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+
 import ch.issueman.common.Adresse;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Ort;
