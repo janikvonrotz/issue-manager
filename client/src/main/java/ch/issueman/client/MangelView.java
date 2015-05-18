@@ -438,29 +438,36 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 		// add header
 		list.add(new ArrayList<String>(){{
-		    add("Referenz");
+			add("Projekt");
+			add("Referenz");
 		    add("Status");
 		    add("Mangel");
+		    add("Erfasser");
 		    add("Subunternehmen");
+		    add("Kontaktperson");
 		    add("Kommentar");
+		    add("erledigen bis");
 		}});
 		
 		//Filterung der Mängel
 		try {
 			allMangelList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
 		// add content from list view
 		allMangelList.forEach(p -> list.add(new ArrayList<String>(){{
 			List<Kommentar> k = p.getKommentare();
+			add(p.getProjekt().getDisplayName() + " - " + projekt.getTitle());
 			add(p.getProjekt().getDisplayName() + "M" + ("000" + 
 	    		p.getReferenz()).substring((("000" + p.getReferenz()).length())-3));
 			add(p.getMangelstatus().getStatus());
 			add(p.getMangel());
+			add(p.getErfasser().getDisplayName());
 			add(p.getSubunternehmen().getFirmenname());
+//			add()
 			add(k.get(k.size()-1).getKommentar().toString());
+			add(FormatHelper.formatDate(p.getErledigenbis()));
 		}}));
 		
 		MainView.exportData(list);

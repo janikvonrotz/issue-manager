@@ -75,7 +75,7 @@ public class ControllerTestLogin {
 		try {
 			List<Login> listLogin = logincontroller.getAll();
 			Login login = listLogin.get(listLogin.size()-1);
-			login.setPasswort("Super");
+			login.setPasswort("passwort");
 			logincontroller.update(login);
 		} catch (Exception e) {
 			e.printStackTrace();
