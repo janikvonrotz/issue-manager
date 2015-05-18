@@ -2,13 +2,17 @@ package ch.issueman.client;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import ch.issueman.common.FormatHelper;
+import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
@@ -120,7 +124,10 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 									+ t.getArbeitstyp().getArbeitstyp() 
 									+ t.getProjekttyp().getProjekttyp()
 									+ t.getBauherr().getUnternehmen().getFirmenname()
-									+ t.getDisplayName();
+									+ t.getDisplayName()
+									+ t.getCurrentProjektleiter().getDisplayName()
+									+ t.getBauherr().getDisplayName()
+									+ t.getEnde();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
@@ -142,9 +149,19 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 			btAddProjekt.setVisible(false);
 		}
 		
+		// Comparator für die Sortierung nach Enddatum
+	    Comparator<? super Projekt> comparatorProjektByDate = new Comparator<Projekt>() {
+			@Override
+			public int compare(Projekt p1, Projekt p2) {
+				return p1.getEnde().compareTo(p2.getEnde());
+			}
+	    };
+		
 		try {
-			filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()), p -> true);
-			SortedList<Projekt> sortedData = new SortedList<Projekt>(filteredData);
+			ObservableList<Projekt> list = FXCollections.observableArrayList(filteredData);
+			Collections.sort(list, comparatorProjektByDate);
+			list = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()), p -> true);
+			SortedList<Projekt> sortedData = new SortedList<Projekt>(list);
 			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 			tvData.setItems(sortedData);
 		} catch (Exception e) {

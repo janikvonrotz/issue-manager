@@ -282,7 +282,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			try {
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
 				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
-				Collections.sort(list, comparatorMangelByDate);;
+				Collections.sort(list, comparatorMangelByDate);
 				
 				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 				SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
