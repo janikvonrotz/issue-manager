@@ -92,6 +92,9 @@ public class Seed {
 		List<Kontakt> listKontakt = new ArrayList<Kontakt>();
 		List<Mangel> listMangel = new ArrayList<Mangel>();
 		List<Login> listLogin = new ArrayList<Login>();
+		List<Login> listLoginSachbearbeiter = new ArrayList<Login>();
+		List<Login> listLoginBauleiter = new ArrayList<Login>();
+		List<Login> listLoginKontakt = new ArrayList<Login>();
 		List<Kommentar> listKommentar = new ArrayList<Kommentar>();
 		
 		Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
@@ -99,30 +102,30 @@ public class Seed {
 		Controller<Rolle, Integer> rollecontroller = new Controller<Rolle, Integer>(Rolle.class);
 		Controller<Projekttyp, Integer> projekttypcontroller = new Controller<Projekttyp, Integer>(Projekttyp.class);
 		Controller<Mangelstatus, Integer> mangelstatuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
-		Controller<Sachbearbeiter, Integer> sachbearbeitercontroller = new Controller<Sachbearbeiter, Integer>(Sachbearbeiter.class);
-		Controller<Bauleiter, Integer> bauleitercontroller = new Controller<Bauleiter, Integer>(Bauleiter.class);
 		Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 		Controller<Bauherr, Integer> bauherrcontroller = new Controller<Bauherr, Integer>(Bauherr.class);
 		Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
-		Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
 		Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 		Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 		Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
 		
 		mangelcontroller.deleteAll();
 		kommentarcontroller.deleteAll();
-		logincontroller.deleteAll();
-		kontaktcontroller.deleteAll();
+		logincontroller.getAll().stream().filter(l -> l.getPerson() instanceof Kontakt).forEach(l -> logincontroller.delete(l));
+//		kontaktcontroller.deleteAll();
 		projektcontroller.deleteAll();
 		bauherrcontroller.deleteAll();
 		subunternehmencontroller.deleteAll();
-		bauleitercontroller.deleteAll();
-		sachbearbeitercontroller.deleteAll();
+//		bauleitercontroller.deleteAll();
+		logincontroller.getAll().stream().filter(l -> l.getPerson() instanceof Bauleiter).forEach(l -> logincontroller.delete(l));
+//		sachbearbeitercontroller.deleteAll();
+		logincontroller.getAll().stream().filter(l -> l.getPerson() instanceof Sachbearbeiter).forEach(l -> logincontroller.delete(l));
 		mangelstatuscontroller.deleteAll();
 		projekttypcontroller.deleteAll();
 		rollecontroller.deleteAll();
 		ortcontroller.deleteAll();
 		arbeitstypcontroller.deleteAll();
+		logincontroller.deleteAll();
 		
 		/**
 		 * seed Ort from csv
@@ -211,7 +214,11 @@ public class Seed {
 		*/ 
 		listSachbearbeiter.add(new Sachbearbeiter("sb","sb","sb@im.ch"));
 		listSachbearbeiter.add(new Sachbearbeiter("Peter","Lustig","peter.lustig@im.ch"));
-		persistList(listSachbearbeiter, sachbearbeitercontroller);
+//		persistList(listSachbearbeiter, sachbearbeitercontroller);
+		listLoginSachbearbeiter.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
+		listLoginSachbearbeiter.add(new Login(listSachbearbeiter.get(1), "1", listRolle.get(0)));
+		persistList(listLoginSachbearbeiter, logincontroller);
+		listLogin.addAll(listLoginSachbearbeiter);
 		
 		/**
 		 *  seed Bauleiter
@@ -224,7 +231,17 @@ public class Seed {
 		listBauleiter.add(new Bauleiter("Malgin", "Igor", "igor.malgin@power.ch"));
 		listBauleiter.add(new Bauleiter("Loser", "Bruno", "bruno.loser@grebo.ch"));
 		listBauleiter.add(new Bauleiter("Dell", "Walter", "walter.dell@doit.ch"));
-		persistList(listBauleiter, bauleitercontroller);
+//		persistList(listBauleiter, bauleitercontroller);
+		listLoginBauleiter.add(new Login(listBauleiter.get(0), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(1), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(2), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(3), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(4), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(5), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(6), "1", listRolle.get(1)));
+		listLoginBauleiter.add(new Login(listBauleiter.get(7), "1", listRolle.get(1)));
+		persistList(listLoginBauleiter, logincontroller);
+		listLogin.addAll(listLoginBauleiter);
 		
 		/**
 		 * seed Subunternehmen
@@ -232,10 +249,10 @@ public class Seed {
 		listSubunternehmen.add(new Subunternehmen("Hausbau AG", listAdresse.get(0)));
 		listSubunternehmen.add(new Subunternehmen("Gartenbau AG", listAdresse.get(1)));
 		listSubunternehmen.add(new Subunternehmen("Mauerbau AG", listAdresse.get(2)));
-//		listSubunternehmen.add(new Subunternehmen("Gerüstbau AG", listAdresse.get(3)));
-//		listSubunternehmen.add(new Subunternehmen("Bodenbeläge GMBH", listAdresse.get(4)));
-//		listSubunternehmen.add(new Subunternehmen("Dachdecker GMBH", listAdresse.get(5)));
-//		listSubunternehmen.add(new Subunternehmen("Duck AG", listAdresse.get(17)));
+		listSubunternehmen.add(new Subunternehmen("Gerüstbau AG", listAdresse.get(3)));
+		listSubunternehmen.add(new Subunternehmen("Bodenbeläge GMBH", listAdresse.get(4)));
+		listSubunternehmen.add(new Subunternehmen("Dachdecker GMBH", listAdresse.get(5)));
+		listSubunternehmen.add(new Subunternehmen("Duck AG", listAdresse.get(17)));
 		persistList(listSubunternehmen, subunternehmencontroller);
 		
 		/**
@@ -291,28 +308,15 @@ public class Seed {
 		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(0), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
 		listKontakt.add(new Kontakt("test","test","test.test@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
 		listKontakt.add(new Kontakt("duck","duck","duck.duck@im.ch", listSubunternehmen.get(2), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
-		persistList(listKontakt, kontaktcontroller);
-		
-		/**
-		 * seed Login
-		 */
-		listLogin.add(new Login(listSachbearbeiter.get(0), "1", listRolle.get(0)));
-		listLogin.add(new Login(listSachbearbeiter.get(1), "1", listRolle.get(0)));
-		listLogin.add(new Login(listBauleiter.get(0), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(1), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(2), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(3), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(4), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(5), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(6), "1", listRolle.get(1)));
-		listLogin.add(new Login(listBauleiter.get(7), "1", listRolle.get(1)));
-		listLogin.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
-		listLogin.add(new Login(listKontakt.get(1), "1", listRolle.get(2)));
-		listLogin.add(new Login(listKontakt.get(2), "1", listRolle.get(2)));
-		listLogin.add(new Login(listKontakt.get(3), "1", listRolle.get(3)));
-		listLogin.add(new Login(listKontakt.get(4), "1", listRolle.get(3)));
-		listLogin.add(new Login(listKontakt.get(5), "1", listRolle.get(3)));
-		persistList(listLogin, logincontroller);
+//		persistList(listKontakt, kontaktcontroller);
+		listLoginKontakt.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
+		listLoginKontakt.add(new Login(listKontakt.get(1), "1", listRolle.get(2)));
+		listLoginKontakt.add(new Login(listKontakt.get(2), "1", listRolle.get(2)));
+		listLoginKontakt.add(new Login(listKontakt.get(3), "1", listRolle.get(3)));
+		listLoginKontakt.add(new Login(listKontakt.get(4), "1", listRolle.get(3)));
+		listLoginKontakt.add(new Login(listKontakt.get(5), "1", listRolle.get(3)));
+		persistList(listLoginKontakt, logincontroller);
+		listLogin.addAll(listLoginKontakt);
 
 		/**
 		 * seed Kommentar

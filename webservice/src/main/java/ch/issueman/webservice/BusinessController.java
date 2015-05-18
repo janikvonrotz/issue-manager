@@ -54,6 +54,8 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void persist(T t) throws RemoteException, Exception {
+		System.out.println(filter.getLogin());
+		System.out.println(filter.getLogin().getRolle());
 		if(filter.ifUserHasRoleByMethod("POST") != false){
 			filter.persist(t);
 		}else{
