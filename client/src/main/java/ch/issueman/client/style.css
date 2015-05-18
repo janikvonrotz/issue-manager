@@ -197,7 +197,10 @@ TableView.default {
 .table-view {
   	-fx-table-cell-border-color: transparent;
   	-fx-background-color: transparent;
+}
 
+.delay {
+	-fx-background-color: #FF6B68; 
 }
 
 Label.default{

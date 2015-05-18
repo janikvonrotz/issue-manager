@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -167,6 +169,28 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}  
 		});
 		
+		tvDataAbzuklären.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
+	        @Override
+	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
+	            final TableRow<Mangel> row = new TableRow<Mangel>() {
+	                @Override
+	                protected void updateItem(Mangel m, boolean empty){
+	                    super.updateItem(m, empty);
+	                    
+	                    if(m != null){
+	                    	if (m.getErledigenbis().before(new GregorianCalendar())) {
+		                        if (! getStyleClass().contains("delay")) {
+		                            getStyleClass().add("delay");
+		                        }
+		                    }
+	                    }
+	                }
+	            };
+          return row;
+	        }
+	    });
+
+		
 		// Tabelle "beauftragt"
 		tcReferenzBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -179,6 +203,27 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				return new SimpleStringProperty(param.getValue().getMangel());
 			}
 		});
+		
+		tvDataBeauftragt.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
+	        @Override
+	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
+	            final TableRow<Mangel> row = new TableRow<Mangel>() {
+	                @Override
+	                protected void updateItem(Mangel m, boolean empty){
+	                    super.updateItem(m, empty);
+	                    
+	                    if(m != null){
+	                    	if (m.getErledigenbis().before(new GregorianCalendar())) {
+		                        if (! getStyleClass().contains("delay")) {
+		                            getStyleClass().add("delay");
+		                        }
+		                    }
+	                    }
+	                }
+	            };
+          return row;
+	        }
+	    });
 		
 		// Tabelle "angenommen"
 		tcReferenzAngenommen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
@@ -193,6 +238,28 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		tvDataAngenommen.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
+	        @Override
+	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
+	            final TableRow<Mangel> row = new TableRow<Mangel>() {
+	                @Override
+	                protected void updateItem(Mangel m, boolean empty){
+	                    super.updateItem(m, empty);
+	                    
+	                    if(m != null){
+	                    	if (m.getErledigenbis().before(new GregorianCalendar())) {
+		                        if (! getStyleClass().contains("delay")) {
+		                            getStyleClass().add("delay");
+		                        }
+		                    }
+	                    }
+	                }
+	            };
+          return row;
+	        }
+	    });
+
+		
 		// Tabelle "behoben"
 		tcReferenzBehoben.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -205,6 +272,28 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				return new SimpleStringProperty(param.getValue().getMangel());
 			}
 		});
+		
+		tvDataBehoben.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
+	        @Override
+	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
+	            final TableRow<Mangel> row = new TableRow<Mangel>() {
+	                @Override
+	                protected void updateItem(Mangel m, boolean empty){
+	                    super.updateItem(m, empty);
+	                    
+	                    if(m != null){
+	                    	if (m.getErledigenbis().before(new GregorianCalendar())) {
+		                        if (! getStyleClass().contains("delay")) {
+		                            getStyleClass().add("delay");
+		                        }
+		                    }
+	                    }
+	                }
+	            };
+          return row;
+	        }
+	    });
+
 		
 		// Tabelle "abgeschlossen"
 		tcReferenzAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
@@ -235,6 +324,28 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				}
 			}
 		});
+		
+		tvDataAbgeschlossen.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
+	        @Override
+	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
+	            final TableRow<Mangel> row = new TableRow<Mangel>() {
+	                @Override
+	                protected void updateItem(Mangel m, boolean empty){
+	                    super.updateItem(m, empty);
+	                    
+	                    if(m != null){
+	                    	if (m.getErledigenbis().before(new GregorianCalendar())) {
+		                        if (! getStyleClass().contains("delay")) {
+		                            getStyleClass().add("delay");
+		                        }
+		                    }
+	                    }
+	                }
+	            };
+          return row;
+	        }
+	    });
+
 
 		// Filterung der Tabelle
 		txFilter.textProperty().addListener(
