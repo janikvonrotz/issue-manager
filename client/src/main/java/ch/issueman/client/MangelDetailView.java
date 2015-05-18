@@ -32,6 +32,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.ConfigHelper;
+import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Mangelstatus;
@@ -75,6 +76,9 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	
 	@FXML
 	private ComboBox<Mangelstatus> cbStatus;
+	
+	@FXML
+	private TextField txErfasst;
 	
 	@FXML
 	private DatePicker dpFrist;
@@ -260,6 +264,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	cbProjekt.setDisable(true);
 	    	txBeschreibung.setText(mangel.getMangel());
 	    	cbSubunternehmen.setValue(mangel.getSubunternehmen());
+	    	txErfasst.setText(FormatHelper.formatDate(mangel.getErstelltam()));
 	    	dpFrist.setValue(mangel.getErledigenbis().toInstant()
 	    			.atZone(ZoneId.systemDefault()).toLocalDate());
 
@@ -268,6 +273,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    	tvKommentar.setVisible(true);
 	    	taKommentar.setVisible(true);
 	    	btSend.setVisible(true);
+	    	txErfasst.setDisable(true);
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);

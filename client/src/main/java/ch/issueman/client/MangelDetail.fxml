@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.MangelDetailView">
    <children>
-      <GridPane prefHeight="512.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane GridPane.rowIndex="1">
+            <GridPane GridPane.rowIndex="2">
                <children>
                   <Label styleClass="default" text="projekt" />
                   <Label styleClass="default" text="beschreibung" GridPane.rowIndex="2" />
                   <Label styleClass="default" text="subunternehmen" GridPane.rowIndex="4" />
                   <Label styleClass="default" text="status" GridPane.rowIndex="6" />
-                  <Label styleClass="default" text="frist" GridPane.rowIndex="8" />
-                  <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="250.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <TextField fx:id="txBeschreibung" prefHeight="27.0" prefWidth="746.0" styleClass="default" />
-                     </children>
-                  </GridPane>
+                  <Label styleClass="default" text="frist" GridPane.rowIndex="10" />
+                  <TextField fx:id="txBeschreibung" prefHeight="27.0" prefWidth="746.0" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <HBox GridPane.columnIndex="2">
                      <children>
-                        <ComboBox fx:id="cbProjekt" prefWidth="250.0" styleClass="default" GridPane.columnIndex="1" />
-                        <Button fx:id="btShowProjekt" mnemonicParsing="false" onAction="#clickShowProject" prefHeight="25.0" prefWidth="26.0" styleClass="default" text="i" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="cbProjekt" prefWidth="317.0" styleClass="default" GridPane.columnIndex="1" />
                      </children>
                   </HBox>
-                  <ComboBox fx:id="cbStatus" prefWidth="250.0" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="cbStatus" prefWidth="323.0" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                   <Label fx:id="lbProjekt" />
                   <HBox GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
-                        <ComboBox fx:id="cbSubunternehmen" prefWidth="250.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" onAction="#clickShowSubunternehmen" prefHeight="25.0" prefWidth="25.0" styleClass="default" text="i" />
+                        <ComboBox fx:id="cbSubunternehmen" prefWidth="318.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </HBox>
-                  <DatePicker fx:id="dpFrist" prefWidth="250.0" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                  <DatePicker fx:id="dpFrist" prefWidth="327.0" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                  <Label styleClass="default" text="erstellt am" GridPane.rowIndex="8" />
+                  <TextField fx:id="txErfasst" styleClass="default" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                  <Button fx:id="btShowProjekt" mnemonicParsing="false" onAction="#clickShowProject" prefHeight="25.0" prefWidth="26.0" styleClass="default" text="i" GridPane.columnIndex="4" />
+                  <Button fx:id="btShowSubunternehmen" mnemonicParsing="false" onAction="#clickShowSubunternehmen" prefHeight="25.0" prefWidth="25.0" styleClass="default" text="i" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" maxWidth="500.0" minWidth="100.0" prefWidth="150.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="130.0" prefWidth="150.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="NEVER" />
                </columnConstraints>
                <rowConstraints>
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
                   <RowConstraints vgrow="NEVER" />
                   <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
                   <RowConstraints vgrow="NEVER" />
@@ -71,7 +67,7 @@
                   <Label fx:id="lbMangel" styleClass="title" />
                </children>
             </GridPane>
-            <TableView fx:id="tvKommentar" styleClass="comment" GridPane.rowIndex="5">
+            <TableView fx:id="tvKommentar" styleClass="comment" GridPane.rowIndex="6">
               <columns>
                 <TableColumn fx:id="tcKommentar" prefWidth="674.0" text="kommentar" />
                 <TableColumn fx:id="tcAutor" prefWidth="159.0" text="autor" />
@@ -81,7 +77,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <GridPane GridPane.rowIndex="7">
+            <GridPane GridPane.rowIndex="8">
                <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" minWidth="30.0" prefWidth="950.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
@@ -96,19 +92,24 @@
                   <Button fx:id="btSend" mnemonicParsing="false" onAction="#clickSend" prefHeight="31.0" prefWidth="77.0" styleClass="default" text="senden" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <GridPane GridPane.rowIndex="3">
+            <GridPane GridPane.rowIndex="4">
                <columnConstraints>
-                  <ColumnConstraints hgrow="NEVER" minWidth="75.0" prefWidth="75.0" />
-                  <ColumnConstraints hgrow="NEVER" minWidth="30.0" prefWidth="30.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" prefWidth="75.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="868.0" minWidth="10.0" prefWidth="868.0" />
+                  <ColumnConstraints hgrow="NEVER" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="35.0" prefWidth="35.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" />
-                  <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.columnIndex="2" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="461.0">
+                     <children>
+                        <Button fx:id="btAbbrechen" mnemonicParsing="false" onAction="#clickAbbrechen" styleClass="abort" text="abbrechen" />
+                        <Button fx:id="btSpeichern" mnemonicParsing="false" onAction="#clickSpeichern" styleClass="save" text="speichern" GridPane.columnIndex="2">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin></Button>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>
@@ -116,15 +117,15 @@
             <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="NEVER" />
+            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-            <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
             <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="ALWAYS" />
-            <RowConstraints minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
          </rowConstraints>
       </GridPane>
    </children>

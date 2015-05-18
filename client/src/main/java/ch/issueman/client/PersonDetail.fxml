@@ -5,11 +5,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="420.0" prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonDetailView">
+<AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.PersonDetailView">
    <children>
-      <GridPane layoutY="50.0" prefHeight="730.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutY="50.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane prefHeight="750.0" prefWidth="1000.0" GridPane.rowIndex="2">
+            <GridPane GridPane.rowIndex="2">
                <children>
                   <Label styleClass="default" text="nachname" />
                   <Label styleClass="default" text="vorname" GridPane.rowIndex="2" />
@@ -92,9 +92,9 @@
          <rowConstraints>
             <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
-            <RowConstraints minHeight="380.0" prefHeight="380.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-            <RowConstraints minHeight="25.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="10.0" vgrow="NEVER" />
          </rowConstraints>
       </GridPane>
