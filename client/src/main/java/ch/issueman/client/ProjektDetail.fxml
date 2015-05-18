@@ -85,7 +85,7 @@
                   <DatePicker fx:id="dpEnde" prefHeight="27.0" prefWidth="336.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                   <Label styleClass="default" text="archiviert" GridPane.rowIndex="22" />
                   <CheckBox fx:id="chArchivieren" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="22" />
-                  <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" styleClass="default" text="i" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+                  <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" styleClass="default" text="+" GridPane.columnIndex="2" GridPane.rowIndex="16" />
                   <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" prefHeight="25.0" prefWidth="52.0" styleClass="default" text="+" GridPane.columnIndex="2" GridPane.rowIndex="18" />
                </children>
             </GridPane>
