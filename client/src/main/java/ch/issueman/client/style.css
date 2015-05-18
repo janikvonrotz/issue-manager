@@ -23,7 +23,7 @@ Button.save {
 Button.default {
 	-fx-background-color: #486285;
 	-fx-text-fill: white;
-	-fx-background-radius: 10px
+	-fx-background-radius: 50px
 }
 
 MenuButton.leftAdmin{
@@ -100,9 +100,23 @@ TextField.title{
 	-fx-text-size: 36px;
 }
 
-TextField.default, PasswordField.default, TextArea.default{
+TextField.default, PasswordField.default {
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;
+	-fx-pref-width: 33;
+	-fx-pref-width: 300;
+	-fx-max-height: 33;
+	-fx-max-widht: 300;
+	-fx-min-height: 33;
+	-fx-min-widht: 300;	
+}
+
+TextArea.default {
+	-fx-border-color: #486285;
+	-fx-background-color: #ffffff;	
+	-fx-pref-width: 300;
+	-fx-max-widht: 300;
+	-fx-min-widht: 300;	
 }
 
 TableView.settle {
@@ -196,7 +210,6 @@ Label.default{
 	-fx-max-widht: 145;
 	-fx-min-height: 33;
 	-fx-min-widht: 145;
-	-fx-opacity: 1;
 }
 
 Label.title{

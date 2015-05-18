@@ -85,7 +85,7 @@
                <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" minWidth="30.0" prefWidth="950.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
-                  <ColumnConstraints hgrow="ALWAYS" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" />
+                  <ColumnConstraints hgrow="ALWAYS" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" />
                   <ColumnConstraints hgrow="NEVER" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
@@ -93,7 +93,7 @@
                </rowConstraints>
                <children>
                   <TextArea fx:id="taKommentar" prefHeight="25.0" prefWidth="448.0" styleClass="default" wrapText="true" />
-                  <Button fx:id="btSend" mnemonicParsing="false" onAction="#clickSend" styleClass="default" text="senden" GridPane.columnIndex="2" />
+                  <Button fx:id="btSend" mnemonicParsing="false" onAction="#clickSend" prefHeight="31.0" prefWidth="77.0" styleClass="default" text="senden" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="3">
