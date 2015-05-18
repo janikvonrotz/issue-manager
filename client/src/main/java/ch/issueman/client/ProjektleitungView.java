@@ -162,10 +162,12 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
 	@Override
 	public void Refresh() {
 		try {
-			filteredData = new FilteredList<Projektleitung>(FXCollections.observableArrayList(projekt.getProjektleitungen()),	p -> true);
-			SortedList<Projektleitung> sortedData = new SortedList<Projektleitung>(filteredData);
-			sortedData.comparatorProperty().bind(tvData.comparatorProperty());
-			tvData.setItems(sortedData);
+			if(projekt.getProjektleitungen() != null){
+				filteredData = new FilteredList<Projektleitung>(FXCollections.observableArrayList(projekt.getProjektleitungen()),	p -> true);
+				SortedList<Projektleitung> sortedData = new SortedList<Projektleitung>(filteredData);
+				sortedData.comparatorProperty().bind(tvData.comparatorProperty());
+				tvData.setItems(sortedData);
+			}
 			
 			cbBauleiter.setItems(FXCollections.observableArrayList(bauleitercontroller.getAll()));
 		} catch (Exception e) {

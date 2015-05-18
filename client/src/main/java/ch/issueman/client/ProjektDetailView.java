@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -24,6 +25,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import ch.issueman.common.Adresse;
@@ -31,6 +33,7 @@ import ch.issueman.common.Arbeitstyp;
 import ch.issueman.common.Bauherr;
 import ch.issueman.common.Bauleiter;
 import ch.issueman.common.Kontakt;
+import ch.issueman.common.Login;
 import ch.issueman.common.Ort;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Projektleitung;
@@ -53,11 +56,12 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Arbeitstyp, Integer> arbeitstypcontroller = new Controller<Arbeitstyp, Integer>(Arbeitstyp.class);
 	private static Controller<Kontakt, Integer> kontaktcontroller = new Controller<Kontakt, Integer>(Kontakt.class);
+	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 	private Projekt projekt;
 	private Subunternehmen subunternehmen;
 	private String s = "";
-	private Kontakt kOld;
-	private Kontakt kNew;
+	private Login lOld;
+	private Login kaLogin;
 
 	@FXML
 	private Label lbProjekt;
@@ -99,7 +103,7 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	private Button btSubunternehmen;
 	
 	@FXML
-	private ComboBox<Kontakt> cbKontakt;
+	private ComboBox<Login> cbKontakt;
 
 	@FXML
 	private CheckBox chArchivieren;
@@ -269,16 +273,16 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			}
 		});
 
-		cbKontakt.setCellFactory(new Callback<ListView<Kontakt>,ListCell<Kontakt>>(){
+		cbKontakt.setCellFactory(new Callback<ListView<Login>,ListCell<Login>>(){
 			@Override
-			public ListCell<Kontakt> call(ListView<Kontakt> arg0) {		 
-				final ListCell<Kontakt> cell = new ListCell<Kontakt>(){				 
+			public ListCell<Login> call(ListView<Login> arg0) {		 
+				final ListCell<Login> cell = new ListCell<Login>(){				 
                     @Override
-                    protected void updateItem(Kontakt k, boolean bln) {
+                    protected void updateItem(Login k, boolean bln) {
                         super.updateItem(k, bln);
                          
                         if(k != null){
-                            setText(k.getDisplayName());
+                            setText(k.getPerson().getDisplayName());
                         }else{
                             setText(null);
                         }
@@ -288,17 +292,17 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			}
         });
 		
-		cbKontakt.setConverter(new StringConverter<Kontakt>() {
+		cbKontakt.setConverter(new StringConverter<Login>() {
             private Map<String, Object> map = new HashMap<>();
 
  			@Override
-			public Kontakt fromString(String arg0) {
+			public Login fromString(String arg0) {
 				return null;
 			}
 
-			public String toString(Kontakt k) {
+			public String toString(Login k) {
                if (k != null) {
-                    String str = k.getDisplayName();
+                    String str = k.getPerson().getDisplayName();
                     map.put(str, k);
                     return str;
                 } else {
@@ -307,8 +311,22 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			}
 		});
 		
-		txProjektleiter.setOnAction((event) -> {
-			showProjektleitung();
+		txProjektleiter.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	showProjektleitung();
+		        }
+		    }
+		});
+
+		taSubunternehmen.setOnMousePressed(new EventHandler<MouseEvent>() {
+		    @Override
+		    public void handle(MouseEvent event) {
+		        if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+		        	showZugewiesene();
+		        }
+		    }
 		});
 
 		Refresh();	
@@ -353,9 +371,12 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 	    	
 	    	
 			try {
-				List<Kontakt> kList = kontaktcontroller.getAll().stream().filter(k -> k.getProjekte().contains(projekt)).collect(Collectors.toList());
-				if(kList != null){
-					kList.forEach(k -> s += k.getSubunternehmen().getFirmenname() + ", ");
+				List<Login> lList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
+						getBezeichnung().equals("Kontaktadmin")) && (((Kontakt) l.getPerson()).
+								getProjekte().contains(projekt))).collect(Collectors.toList());
+				if(lList.size() > 0){
+					lList.forEach(l -> s += ((Kontakt) l.getPerson()).getSubunternehmen().
+							getFirmenname() + ", ");
 					taSubunternehmen.setText(s.substring(0, s.length()-2));
 				}	
 			} catch (Exception e) {
@@ -371,20 +392,32 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				
 				try {
 					subunternehmen = ((Kontakt) Context.getLogin().getPerson()).getSubunternehmen();
-					List<Kontakt> kontakte = kontaktcontroller.getAll().stream().filter(k -> k.getSubunternehmen().getFirmenname().equals(subunternehmen.getFirmenname())).collect(Collectors.toList());
-					cbKontakt.setItems(FXCollections.observableArrayList(kontakte));
+					List<Login> lList = logincontroller.getAll().stream().filter(l ->
+							((Kontakt) l.getPerson()).getSubunternehmen().equals(subunternehmen)).
+							collect(Collectors.toList());
+					cbKontakt.setItems(FXCollections.observableArrayList(lList));
 
-					kOld = kontakte.stream().filter(p -> p.getProjekte().contains(projekt)).
-							collect(Collectors.toList()).get(0);
-					cbKontakt.setValue(kOld);
+					lOld = lList.stream().filter(p -> (((Kontakt) p.getPerson()).getProjekte().
+							contains(projekt)) && p.getRolle().getBezeichnung().
+							equals("Kontaktperson")).collect(Collectors.toList()).get(0);
+					
+					kaLogin = lList.stream().filter(p -> (((Kontakt) p.getPerson()).getProjekte().
+							contains(projekt)) && p.getRolle().getBezeichnung().
+							equals("Kontaktadmin")).collect(Collectors.toList()).get(0);
+					
+					if(lOld != null){
+						cbKontakt.setValue(lOld);
+					} else if(kaLogin != null){
+						cbKontakt.setValue(kaLogin);
+					}
+					
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				
 				if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
 					kaForm();
-				} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
+				} else {
 					kpForm();
 				}
 			}
@@ -431,17 +464,17 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 				if(Context.getLogin().getPerson() instanceof Sachbearbeiter || 
 						Context.getLogin().getPerson() instanceof Bauleiter){
 					projektcontroller.update(projekt);
+				} else if((Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin"))){
+					if(lOld != null){
+						Kontakt kOld = ((Kontakt) lOld.getPerson());
+						kOld.getProjekte().remove(projekt);
+						kontaktcontroller.update(kOld);
+					}
+					
+					Kontakt kNew = (Kontakt) cbKontakt.getValue().getPerson();
+					kNew.getProjekte().add(projekt);
+					kontaktcontroller.update(kNew);			
 				}
-				
-				if(kOld != null){
-					kOld.getProjekte().remove(projekt);
-					kontaktcontroller.update(kOld);
-				}
-				
-				kNew = cbKontakt.getValue();
-				kNew.getProjekte().add(projekt);
-				kontaktcontroller.update(kNew);			
-				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
