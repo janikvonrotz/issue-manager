@@ -4,6 +4,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -177,11 +178,10 @@ public class ProjektleitungView implements Viewable<Projekt, Projekt> {
 
 	@FXML
 	public void clickSpeichern(){
-		Projektleitung p = new Projektleitung();
-		p.setBauleiter(cbBauleiter.getValue());
-		p.getBeginn().setTime(Date.from(dpBeginn.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+		Projektleitung p = new Projektleitung(cbBauleiter.getValue(), new GregorianCalendar(), new GregorianCalendar());
+		p.getBeginn().setTime(Date.from(dpBeginn.getValue().atStartOfDay()
+				.atZone(ZoneId.systemDefault()).toInstant()));
 		p.getEnde().setTime(Date.from(dpEnde.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-		
 		projekt.getProjektleitungen().add(p);
 		
 		try {
