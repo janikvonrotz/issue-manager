@@ -117,11 +117,19 @@ public class PersonView implements Viewable<Login, Login> {
 							String lowerCaseFilter = newValue.toLowerCase();
 							String objectvalues = t.getPerson().getNachname() 
 									+ t.getPerson().getVorname()
-									+ t.getPerson().getEmail()
-									+ t.getRolle().getBezeichnung()
-//									+ (((Kontakt) t.getPerson()).getSubunternehmen().getFirmenname())
-//									+ (((Bauherr) t.getPerson()).getUnternehmen().getFirmenname())
-									;
+									+ t.getPerson().getEmail();
+									
+							if(!(t.getPerson() instanceof Bauherr)){
+								objectvalues += t.getRolle().getBezeichnung();
+							}
+									
+							if(t.getPerson() instanceof Kontakt){
+								objectvalues += ((Kontakt) t.getPerson()).getSubunternehmen().getFirmenname();
+							}
+							
+							if(t.getPerson() instanceof Bauherr && ((Bauherr) t.getPerson()).getUnternehmen() != null){
+								objectvalues += ((Bauherr) t.getPerson()).getUnternehmen().getFirmenname();
+							}
 		
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
@@ -146,7 +154,6 @@ public class PersonView implements Viewable<Login, Login> {
 			
 			List<Login> list = loginController.getAll();
 			bauherrController.getAll().stream().forEach(b -> list.add(new Login(b, "", null)));
-		
 			
 			filteredData = new FilteredList<Login>(FXCollections.observableArrayList(list),	p -> true);
 			SortedList<Login> sortedData = new SortedList<Login>(filteredData);
