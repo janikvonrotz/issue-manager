@@ -26,11 +26,6 @@ Button.default {
 	-fx-background-radius: 50px
 }
 
-.clickable {
-	-fx-background-color: #486285;
-	-fx-text-fill: white;
-}
-
 MenuButton.leftAdmin{
 	-fx-background-color: #486285;
 	-fx-text-fill: white;
