@@ -43,11 +43,3 @@ shadowJar {
         	'Main-Class': 'ch.issueman.webservice.Service'
     }
 }
-
-task deploy (dependsOn: war){
-    copy {
-        from "build/libs"
-        into "../../libs"
-        include "*.war"
-    }
-}
