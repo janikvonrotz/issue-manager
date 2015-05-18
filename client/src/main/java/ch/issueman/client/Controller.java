@@ -88,6 +88,7 @@ public class Controller<T, Id extends Serializable> implements DAO<T, Id> {
 	@Override
 	public void persist(T t) throws Exception {
 		WebTarget target = client.target(url);		
+		System.out.println(mapper.writeValueAsString(t));
 		Response response =	target.request(MediaType.APPLICATION_JSON).post(Entity.json(mapper.writeValueAsString(t)));
 		if(response.getStatus() == Status.OK.getStatusCode()){
 		}else{

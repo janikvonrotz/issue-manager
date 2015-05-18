@@ -43,12 +43,15 @@ public class PasswortView implements ViewableDetail<Login> {
 	
 	@FXML	
 	public void clickSpeichern(){
+		String pwneu = pfPasswortWiederholen.getText();
+		String pwneuneu=pfNeuesPasswort.getText();
 		try{
 		// Passwort vergleichen
-			if (pfPasswortWiederholen.getText() != pfNeuesPasswort.getText()){
+			if (!pwneu.equals(pwneuneu)){
+				System.out.println(pwneu +"="+ pwneuneu);
 				throw new Exception("Passwords do not match.");
 			}
-			Context.setNewPassword(pfPasswortWiederholen.getText());
+			Context.setNewPassword(pwneu);
 		}catch (Exception e){
 			// Fehler ausgeben
 			MainView.showError(e);
