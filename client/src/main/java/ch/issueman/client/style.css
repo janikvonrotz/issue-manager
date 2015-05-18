@@ -96,6 +96,10 @@ TitlePane.default {
     -fx-border-color: white;
 }
 
+.titled-pane {
+    -fx-text-fill: white;
+}
+
 .connectivity {
   -fx-text-fill: white;
 }
