@@ -9,7 +9,8 @@ task fatJar(type: Jar) {
     manifest {
           attributes 'Implementation-Title': 'Client',
           'Implementation-Version': version,
-          'Main-Class': 'ch.issueman.client.App'
+          'Main-Class': 'ch.issueman.client.App',
+          'Class-Path': configurations.compile.files.collect { it.name }.join(' ')
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

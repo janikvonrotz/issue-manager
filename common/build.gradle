@@ -8,6 +8,7 @@ dependencies {
   compile 'org.jboss.resteasy:resteasy-jaxrs:3.+'
   compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.+'
   compile 'org.jboss.resteasy:resteasy-client:3.+'
+  compile 'org.jboss.resteasy:resteasy-jackson-provider:2.+'
 
   compile 'org.apache.commons:commons-csv:1.+'
   compile 'com.typesafe:config:1.+'
