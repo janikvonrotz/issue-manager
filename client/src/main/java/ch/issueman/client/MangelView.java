@@ -26,6 +26,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Kommentar;
+//import ch.issueman.common.Kontakt;
+//import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
 
@@ -40,10 +42,13 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
+//	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
 	
 	private Projekt projekt;
+//	private List<Login> kpList;
+//	private List<Login> kaList;
 
 	@FXML
 	private TextField txFilter;
@@ -433,6 +438,31 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	@SuppressWarnings("serial")
 	@FXML
 	public void clickExport(){
+		
+//		try {
+//			if(projekt != null){
+//				kpList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
+//						getBezeichnung().equals("Kontaktperson")) && (((Kontakt) l.getPerson()).
+//						getProjekte().contains(projekt))).collect(Collectors.toList());
+//				
+//				kaList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
+//						getBezeichnung().equals("Kontaktadmin")) && (((Kontakt) l.getPerson()).
+//						getProjekte().contains(projekt))).collect(Collectors.toList());
+//				
+//				for(Login p : kpList){
+//					for(Login a : kaList){
+//						if(((Kontakt) a.getPerson()).getSubunternehmen().equals(((Kontakt) p.
+//								getPerson()).getSubunternehmen())){
+//							kaList.remove(a);
+//							kaList.add(p);
+//						}
+//					}
+//				}
+//			}
+//		} catch (Exception e) {
+//			MainView.showError(e);
+//		}
+		
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		List<Mangel> allMangelList = null;
 
@@ -444,7 +474,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		    add("Mangel");
 		    add("Erfasser");
 		    add("Subunternehmen");
-		    add("Kontaktperson");
+//		    add("Kontaktperson");
 		    add("Kommentar");
 		    add("erledigen bis");
 		}});
@@ -465,8 +495,10 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			add(p.getMangel());
 			add(p.getErfasser().getDisplayName());
 			add(p.getSubunternehmen().getFirmenname());
-//			add()
-			add(k.get(k.size()-1).getKommentar().toString());
+//			add(((kaList.stream().filter(a -> (((Kontakt) a.getPerson()).
+//					getSubunternehmen().equals(p.getSubunternehmen()))).collect(Collectors.toList()).
+//					get(0))).getPerson().getDisplayName());
+			add(k.get(k.size()-1).getKommentar());
 			add(FormatHelper.formatDate(p.getErledigenbis()));
 		}}));
 		
