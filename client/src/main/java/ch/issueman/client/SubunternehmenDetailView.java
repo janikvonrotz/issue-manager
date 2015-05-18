@@ -237,6 +237,12 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 		showList();
 	}
 	
+	@FXML
+	public void clickAddKontakt(){
+    	ViewableDetail<Kontakt> view = MainView.showCenterDetailView("PersonDetail");
+		view.initData(null);
+	}
+	
 	@Override
 	public void initData(Subunternehmen t) {
 		subunternehmen = t;

@@ -60,7 +60,7 @@
                         <Label styleClass="tableTitle" text="kontakte" />
                      </children>
                   </HBox>
-                  <Button fx:id="btAddKontakt" mnemonicParsing="false" styleClass="default" text="+" GridPane.columnIndex="2" />
+                  <Button fx:id="btAddKontakt" mnemonicParsing="false" onAction="#clickAddKontakt" styleClass="default" text="+" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <Label fx:id="lbSubunternehmen" styleClass="title" />
