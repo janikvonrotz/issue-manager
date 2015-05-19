@@ -10,7 +10,7 @@
 
 <AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.MangelView">
    <children>
-      <ScrollPane fitToWidth="true" layoutX="10.0" prefViewportHeight="700.0" prefViewportWidth="980.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToWidth="true" layoutX="10.0" prefHeight="702.0" prefViewportHeight="700.0" prefViewportWidth="980.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <GridPane layoutX="10.0" layoutY="13.0" prefHeight="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                <columnConstraints>
@@ -131,14 +131,10 @@
                   </GridPane>
                   <TableView fx:id="tvDataAbzuklären" layoutX="14.0" layoutY="109.0" onMouseClicked="#doubleClickDataAbzuklären" prefHeight="110.0" styleClass="settle" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="109.0" GridPane.rowIndex="3">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="abzuklären">
-                           <columns>
-                              <TableColumn fx:id="tcReferenzAbzuklären" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                            <TableColumn fx:id="tcMangelAbzuklären" prefWidth="278.0" />
-                            <TableColumn fx:id="tcSubunternehmenAbzuklären" prefWidth="341.0" />
-                              <TableColumn fx:id="tcKommentarAbzuklären" prefWidth="320.0" />
-                           </columns>
-                        </TableColumn>
+                        <TableColumn fx:id="tcReferenzAbzuklären" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                      <TableColumn fx:id="tcMangelAbzuklären" prefWidth="278.0" text="abzuklären" />
+                      <TableColumn fx:id="tcSubunternehmenAbzuklären" prefWidth="341.0" />
+                        <TableColumn fx:id="tcKommentarAbzuklären" prefWidth="320.0" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

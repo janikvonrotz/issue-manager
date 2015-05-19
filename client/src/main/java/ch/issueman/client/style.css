@@ -159,6 +159,10 @@ TableView.settle {
     -fx-font-weight: normal;
 }
 
+.settle.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+
 TableView.completed {
     -fx-base: #719AD1 ;
     -fx-control-inner-background: #719AD1 ;
@@ -174,6 +178,12 @@ TableView.completed {
     -fx-font-weight: normal;
 }
 
+.completed.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+}
+
+
+
 TableView.process {
     -fx-base: #939382 ;
     -fx-control-inner-background: #486285;
@@ -187,6 +197,10 @@ TableView.process {
     -fx-alignment: center-left;
     -fx-font-size: 18pt;
     -fx-font-weight: normal;
+}
+
+.process.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
 }
 
 TableView.comment {
