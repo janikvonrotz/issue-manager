@@ -2,7 +2,11 @@ AnchorPane, BorderPane, Pane {
 	-fx-background-color: #ffffff;
 }
 
-Button.abort {
+.scroll-pane {
+	-fx-background: #ffffff;
+}
+
+ Button.abort {
 	-fx-background-color: #FF6B68;
 	-fx-text-fill: white;
 	-fx-background-radius: 10px;
