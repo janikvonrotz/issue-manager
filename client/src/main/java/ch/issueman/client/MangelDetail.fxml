@@ -9,7 +9,7 @@
    <children>
       <GridPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane GridPane.rowIndex="2">
+            <GridPane GridPane.rowIndex="3">
                <children>
                   <Label styleClass="default" text="projekt" />
                   <Label styleClass="default" text="beschreibung" GridPane.rowIndex="2" />
@@ -56,18 +56,18 @@
                   <RowConstraints vgrow="NEVER" />
                </rowConstraints>
             </GridPane>
-            <GridPane>
+            <GridPane GridPane.rowIndex="1">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="ALWAYS" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="NEVER" />
                </rowConstraints>
                <children>
                   <Label fx:id="lbMangel" styleClass="title" />
                </children>
             </GridPane>
-            <TableView fx:id="tvKommentar" styleClass="comment" GridPane.rowIndex="6">
+            <TableView fx:id="tvKommentar" styleClass="comment" GridPane.rowIndex="7">
               <columns>
                 <TableColumn fx:id="tcKommentar" prefWidth="674.0" text="kommentar" />
                 <TableColumn fx:id="tcAutor" prefWidth="159.0" text="autor" />
@@ -77,7 +77,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <GridPane GridPane.rowIndex="8">
+            <GridPane GridPane.rowIndex="9">
                <columnConstraints>
                   <ColumnConstraints hgrow="ALWAYS" minWidth="30.0" prefWidth="950.0" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
@@ -92,7 +92,7 @@
                   <Button fx:id="btSend" mnemonicParsing="false" onAction="#clickSend" prefHeight="31.0" prefWidth="77.0" styleClass="default" text="senden" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <GridPane GridPane.rowIndex="4">
+            <GridPane GridPane.rowIndex="5">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" />
                   <ColumnConstraints hgrow="NEVER" minWidth="35.0" prefWidth="35.0" />
@@ -117,7 +117,8 @@
             <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="51.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
