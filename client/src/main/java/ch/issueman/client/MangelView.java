@@ -576,7 +576,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 				add("");
 			}
 			add(k.get(k.size()-1).getKommentar());
-			add(FormatHelper.formatDate(p.getErledigenbis()));
+			add((FormatHelper.formatDate(p.getErledigenbis())));
+			
 		}}));
 		
 		MainView.exportData(list);
