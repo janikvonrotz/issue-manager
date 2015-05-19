@@ -5,6 +5,7 @@ import java.rmi.NoSuchObjectException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -50,7 +51,10 @@ public class Service{
 	private static Registry registry;
 	
 	public static void main(String[] args){
-		startRMI();
+		if(Arrays.asList(args).contains("seed")){
+			Seed.main(null);
+		}
+		startRMI();		
 	}
 	
 	/**
