@@ -1,11 +1,15 @@
+/*Background settings*/
+
 AnchorPane, BorderPane, Pane {
 	-fx-background-color: #ffffff;
 }
 
 .scroll-pane {
 	-fx-background: #ffffff;
+	-fx-box-border: #ffffff;
 }
 
+/*Button settings*/
  Button.abort {
 	-fx-background-color: #FF6B68;
 	-fx-text-fill: white;
@@ -30,6 +34,7 @@ Button.default {
 	-fx-background-radius: 50px
 }
 
+/*Top-Default settings*/
 .menuselected{
 	-fx-background-color: #939382;
 	-fx-text-fill: white;
@@ -62,6 +67,7 @@ Button.default {
      -fx-background-color:  #939382;
 }   
 
+/*Left Mangel settings*/
 .list-cell:empty {
     visibility:hidden;
 }
@@ -80,6 +86,7 @@ Button.default {
 	-fx-background-color: #aaaaaa;
 }
 
+/*Combo Box settings*/
 ComboBox.default, DatePicker.default{
 	-fx-background-color: #ffffff;
 	-fx-border-color: #486285;
@@ -88,6 +95,7 @@ ComboBox.default, DatePicker.default{
 	-fx-max-height: 33;
 	-fx-min-height: 33;
 }
+
 
 TitlePane.default {
 	-fx-background-color: #486285;
