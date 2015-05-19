@@ -36,10 +36,13 @@ import javafx.util.Callback;
  */
 public class ProjektView implements Viewable<Projekt, Projekt> {
 
+	// Controller erstellen
 	private static Controller<Projekt, Integer> controller = new Controller<Projekt, Integer>(Projekt.class);
 
+	// FilteredList erstellen
 	private FilteredList<Projekt> filteredData = new FilteredList<Projekt>(FXCollections.observableArrayList(),	p -> true);
 
+	// Erzeugung der FXML ELementen
 	@FXML
 	private TableView<Projekt> tvData;
 
@@ -76,6 +79,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		// Jedes FXML Element mit Daten befüllen
 		tcReferenz.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Projekt,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Projekt, String> param) {
 				return new SimpleStringProperty(param.getValue().getDisplayName());
@@ -112,6 +116,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 			}  
 		});
 
+		// Filter Funktion
 		txFilter.textProperty().addListener(
 				(observable, oldValue, newValue) -> {
 					filteredData.setPredicate(t -> {
@@ -120,7 +125,9 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 								return true;
 							}
 
+							// Unabhängig von Gross-/Kleinschreibung filtern
 							String lowerCaseFilter = newValue.toLowerCase();
+							// Angabe nach welchen Elementen gefiltert werden soll
 							String objectvalues = t.getTitle() 
 									+ t.getArbeitstyp().getArbeitstyp() 
 									+ t.getProjekttyp().getProjekttyp()
@@ -142,6 +149,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	}
 
 	public void Refresh() {
+		// Hinzufügen von Projekten nur für Sachbearbeiter erlaubt
 		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
 			btAddProjekt.setVisible(false);
 		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
@@ -159,6 +167,7 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	    };
 		
 		try {
+			// Alle Projekte abfragen und die TableView abfüllen
 			ObservableList<Projekt> list = FXCollections.observableArrayList(filteredData);
 			Collections.sort(list, comparatorProjektByDate);
 			list = new FilteredList<Projekt>(FXCollections.observableArrayList(controller.getAll()), p -> true);
@@ -172,6 +181,8 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@FXML
 	public void doubleClickData() {
+		// Bei Doppelklick auf ein Projekt wird das Projektobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvData.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -185,12 +196,14 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	
 	@FXML
 	public void clickNeu() {
+		// Ansicht für die Erfassung eines neues Mangels wird geöffnet
 		 MainView.showCenterDetailView("ProjektDetail");
 	}
 	
 	@SuppressWarnings("serial")
 	@FXML
 	public void clickExport(){
+		// Export von Projekte
 		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 		// add header
 		list.add(new ArrayList<String>(){{
@@ -229,6 +242,8 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 
 	@Override
 	public void showDetail(Projekt t) {
+		// Ansicht für die Anzeige von Projekt Details wird geöffnet und das Projektobjekt
+		// wird gleichzeitig übergeben
 		ViewableDetail<Projekt> view = MainView.showCenterDetailView("ProjektDetail");
 		view.initData(t);
 	}

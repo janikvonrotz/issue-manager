@@ -322,6 +322,13 @@ public class PersonDetailView implements ViewableDetail<Person> {
 	@FXML
 	public void clickSpeichern(){
 		if (person != null) {
+			try{
+				login = logincontroller.getAll().stream().filter(l -> l.getPerson().
+						equals(person)).collect(Collectors.toList()).get(0);
+			} catch (Exception e) {
+				MainView.showError(e);
+			}
+
 	        
 			if (person instanceof Sachbearbeiter){
 				((Sachbearbeiter) person).setNachname(txNachname.getText());
@@ -371,6 +378,13 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				} catch (Exception e) {
 					MainView.showError(e);
 				}
+			}
+			
+			login.setPasswort(pfPasswort.getText());
+			try {
+				logincontroller.update(login);
+			} catch (Exception e) {
+				MainView.showError(e);
 			}
 
 		} else {
