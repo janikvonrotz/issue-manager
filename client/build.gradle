@@ -9,19 +9,9 @@ dependencies {
   compile project(':common')
 }
 
-task fatJar(type: Jar) {
-    manifest {
-          attributes 'Implementation-Title': 'Client',
-          'Implementation-Version': version,
-          'Main-Class': 'ch.issueman.client.App'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
-
 shadowJar {
   mergeServiceFiles()
+  baseName = 'client'
   manifest {
         attributes 'Implementation-Title': 'Client',
         	'Implementation-Version': version,
