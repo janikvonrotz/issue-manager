@@ -48,7 +48,6 @@ public class PasswortView implements ViewableDetail<Login> {
 		try{
 		// Passwort vergleichen
 			if (!pwneu.equals(pwneuneu)){
-				System.out.println(pwneu +"="+ pwneuneu);
 				throw new Exception("Passwords do not match.");
 			}
 			Context.setNewPassword(pwneu);

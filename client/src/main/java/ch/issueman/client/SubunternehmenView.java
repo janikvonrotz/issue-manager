@@ -171,6 +171,6 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 	
 	@Override
 	public void initData(Subunternehmen t) {
-		// TODO Auto-generated method stub
+
 	}
 }
