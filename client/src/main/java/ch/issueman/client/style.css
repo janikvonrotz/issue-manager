@@ -86,17 +86,7 @@ Button.default {
 	-fx-background-color: #aaaaaa;
 }
 
-/*Combo Box settings*/
-ComboBox.default, DatePicker.default{
-	-fx-background-color: #ffffff;
-	-fx-border-color: #486285;
-	-fx-text-fill-color: #486285;
-	-fx-pref-height: 33;
-	-fx-max-height: 33;
-	-fx-min-height: 33;
-}
-
-
+/*Left Admin settings*/
 TitlePane.default {
 	-fx-background-color: #486285;
 	-fx-text-fill: white;
@@ -116,10 +106,17 @@ TitlePane.default {
 	-fx-mark-color: white;
 }
 
-.connectivity {
-  -fx-text-fill: white;
+/*Combo Box settings*/
+ComboBox.default, DatePicker.default{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #486285;
+	-fx-text-fill-color: #486285;
+	-fx-pref-height: 33;
+	-fx-max-height: 33;
+	-fx-min-height: 33;
 }
 
+/*Text Field settings*/
 TextField.title{
 	-fx-text-color: #939382;
 	-fx-text-size: 36px;
@@ -136,6 +133,7 @@ TextField.default, PasswordField.default {
 	-fx-min-widht: 300;	
 }
 
+/*Text Area settings*/
 TextArea.default {
 	-fx-border-color: #486285;
 	-fx-background-color: #ffffff;	
@@ -144,6 +142,7 @@ TextArea.default {
 	-fx-min-widht: 300;	
 }
 
+/*Table Views*/
 TableView.settle {
     -fx-base: #aaaaaa;
     -fx-control-inner-background: #aaaaaa;
