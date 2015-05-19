@@ -42,16 +42,19 @@ import ch.issueman.common.Subunternehmen;
  */
 public class MangelView implements Viewable<Mangel, Projekt> {
 
+	// Controller erstellen
 	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 
+	// FilteredList erstellen
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
 	
 	private Projekt projekt;
 	private List<Login> kpList;
 	private List<Login> kaList;
 	
+	// Erzeugung der FXML ELementen
 	@FXML
 	private Label lbProjekt;
 
@@ -157,6 +160,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		// Mängel, bei welchen das Erledigungsdatum in der Vergangenheit liegen, werden rot markiert
 		tvDataAbzuklären.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -191,6 +195,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		// Mängel, bei welchen das Erledigungsdatum in der Vergangenheit liegen, werden rot markiert
 		tvDataBeauftragt.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -225,6 +230,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		// Mängel, bei welchen das Erledigungsdatum in der Vergangenheit liegen, werden rot markiert
 		tvDataAngenommen.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -246,7 +252,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	        }
 	    });
 
-		
 		// Tabelle "behoben"
 		tcReferenzBehoben.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -260,6 +265,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		// Mängel, bei welchen das Erledigungsdatum in der Vergangenheit liegen, werden rot markiert
 		tvDataBehoben.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -280,7 +286,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
           return row;
 	        }
 	    });
-
 		
 		// Tabelle "abgeschlossen"
 		tcReferenzAbgeschlossen.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
@@ -312,6 +317,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
+		// Mängel, bei welchen das Erledigungsdatum in der Vergangenheit liegen, werden rot markiert
 		tvDataAbgeschlossen.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -338,6 +344,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@Override
 	public void Refresh() {
+		// Hinzufügen von neuen Mängel ist nur für Sachbearbeiter und Bauleiter möglich.
+		// Bei anderen Benutzern wird der Button ausgeblendet.
 		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter") ||
 				Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
 			btAddMangel.setVisible(true);
@@ -345,8 +353,10 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			btAddMangel.setVisible(false);
 		}
 		
+		// Wenn links ein Projekt aus der Filterung ausgewählt wird
 		if(projekt != null){
 			
+			// Anzeige der Projektreferenz und Projektname
 			lbProjekt.setText(projekt.getDisplayName() + " - " + projekt.getTitle());
 			
 			// Comparator für die Sortierung nach Erledigungsdatum
@@ -358,10 +368,13 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 		    };
 			
 			try {
+				// Alle Mängel auslesen, welche mit dem ausgwählten Projekt referenziert sind
 				List<Mangel> mList = mangelcontroller.getAll().stream().filter(m -> m.getProjekt().equals(projekt)).collect(Collectors.toList());
 				ObservableList<Mangel> list = FXCollections.observableArrayList(mList);
+				// Sortierung nach Erledigungsdatum
 				Collections.sort(list, comparatorMangelByDate);
 				
+				// Je nach Satatus werden die Mängel in der entsprechenden TableView angezeigt
 				filteredData = new FilteredList<Mangel>(list, p -> p.getMangelstatus().getStatus().equals("abzuklären"));
 				SortedList<Mangel> sortedDataAbzuklären = new SortedList<Mangel>(filteredData);
 				sortedDataAbzuklären.comparatorProperty().bind(tvDataAbzuklären.comparatorProperty());
@@ -391,6 +404,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		} else {
 			try {
+				// Wenn kein Projekt angeklickt wurde, wird einfach das erste Projekt aus der Liste ausgewählt
 				projekt = projektcontroller.getAll().get(0);
 			} catch (Exception e) {
 				MainView.showError(e);
@@ -434,6 +448,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 
 	@FXML
 	public void doubleClickDataAbzuklären() {
+		// Bei Doppelklick auf ein Mangel wird das Mangelobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvDataAbzuklären.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -447,6 +463,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void doubleClickDataBeauftragt() {
+		// Bei Doppelklick auf ein Mangel wird das Mangelobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvDataBeauftragt.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -460,6 +478,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void doubleClickDataAngenommen() {
+		// Bei Doppelklick auf ein Mangel wird das Mangelobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvDataAngenommen.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -473,6 +493,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void doubleClickDataBehoben() {
+		// Bei Doppelklick auf ein Mangel wird das Mangelobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvDataBehoben.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -486,6 +508,8 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void doubleClickDataAbgeschlossen() {
+		// Bei Doppelklick auf ein Mangel wird das Mangelobjekt mit der showDetail-Methode
+		// an die Detail-Ansicht übergeben
 		tvDataAbgeschlossen.setOnMousePressed(new EventHandler<MouseEvent>() {
 		    @Override
 		    public void handle(MouseEvent event) {
@@ -499,11 +523,14 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	public void clickNeu() {
-		 MainView.showCenterDetailView("MangelDetail");
+		// Ansicht für die Erfassung eines neues Mangels wird geöffnet
+		MainView.showCenterDetailView("MangelDetail");
 	}
 
 	@Override
 	public void showDetail(Mangel t) {
+		// Ansicht für die Anzeige von Mangel Details wird geöffnet und das Mangelobjekt
+		// wird gleichzeitig übergeben
 		ViewableDetail<Mangel> view = MainView.showCenterDetailView("MangelDetail");
 		view.initData(t);
 	}
@@ -511,7 +538,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	@SuppressWarnings("serial")
 	@FXML
 	public void clickExport(){
-		
+		// Export von Mängel
 		try {
 			if(projekt != null){
 				kpList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
@@ -584,6 +611,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	}
 	@Override
 	public void initData(Projekt t) {
+		// Formular mit Projekt initilisieren
 		projekt = t;
 		Refresh();
 	}
