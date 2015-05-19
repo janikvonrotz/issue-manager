@@ -258,7 +258,9 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 					getBezeichnung().equals("Kontaktadmin")).collect(Collectors.toList()).get(0);
 			
 			Kontakt kaKontakt = (Kontakt) kaLogin.getPerson();
-			kaKontakt.getProjekte().add(projekt);
+			if(!(kaKontakt.getProjekte().contains(projekt))){
+				kaKontakt.getProjekte().add(projekt);
+			}
 			
 			kontaktcontroller.update(kaKontakt);
 		} catch (Exception e) {
