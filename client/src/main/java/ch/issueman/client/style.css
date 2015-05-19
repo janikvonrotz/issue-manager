@@ -100,6 +100,10 @@ TitlePane.default {
     -fx-text-fill: white;
 }
 
+.titled-pane>*.title>*.arrow-button>*.arrow {
+	-fx-mark-color: white;
+}
+
 .connectivity {
   -fx-text-fill: white;
 }
