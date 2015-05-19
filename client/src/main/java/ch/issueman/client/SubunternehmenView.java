@@ -90,8 +90,7 @@ public class SubunternehmenView implements Viewable<Subunternehmen, Subunternehm
 							String objectvalues = t.getFirmenname() 
 									+ t.getAdresse().getStrasse()
 									+ t.getAdresse().getOrt().getPlz()
-									+ t.getAdresse().getOrt().getOrt() 
-									+ t.getId();
+									+ t.getAdresse().getOrt().getOrt();
 							
 							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
 								return true; 
