@@ -43,8 +43,9 @@ public class PasswortView implements ViewableDetail<Login> {
 	
 	@FXML	
 	public void clickSpeichern(){
-		String pwneu = pfPasswortWiederholen.getText();
-		String pwneuneu=pfNeuesPasswort.getText();
+		String pwneu=pfNeuesPasswort.getText();
+		String pwneuneu = pfPasswortWiederholen.getText();
+		
 		try{
 		// Passwort vergleichen
 			if (!pwneu.equals(pwneuneu)){
