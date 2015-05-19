@@ -269,11 +269,13 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    			.atZone(ZoneId.systemDefault()).toLocalDate());
 
 	    	cbStatus.setValue(mangel.getMangelstatus());
+	    	cbStatus.setDisable(false);
 			tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 	    	tvKommentar.setVisible(true);
 	    	taKommentar.setVisible(true);
 	    	btSend.setVisible(true);
 	    	txErfasst.setDisable(true);
+	    	txErfasst.setVisible(true);
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
@@ -289,10 +291,11 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		} else {
 	    	lbMangel.setText("neuer mangel");
 	    	cbStatus.getSelectionModel().select(0);
-//	    	cbStatus.setDisable(true);
+	    	cbStatus.setDisable(true);
 	    	tvKommentar.setVisible(false);
 	    	taKommentar.setVisible(false);
 	    	btSend.setVisible(false);
+	    	txErfasst.setVisible(false);
 		}
 	}
 	    
