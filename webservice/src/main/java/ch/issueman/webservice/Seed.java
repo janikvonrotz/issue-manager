@@ -1,9 +1,7 @@
 package ch.issueman.webservice;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -130,20 +128,18 @@ public class Seed {
 		/**
 		 * seed Ort from csv
 		 */
-		ClassLoader classLoader = getClass().getClassLoader();
-		File csv = new File(classLoader.getResource(ConfigHelper.getConfig("seed.Ort", "Orschaften.csv")).getFile());
 		try {
-			FileReader fr = new FileReader(csv);
-			CSVParser parser = new CSVParser(fr, CSVFormat.EXCEL.withDelimiter(';').withHeader());
+			ClassLoader classLoader = getClass().getClassLoader();
+			InputStream is = classLoader.getResourceAsStream(ConfigHelper.getConfig("seed.Ort", "Orschaften.csv"));
+			InputStreamReader isr = new InputStreamReader(is, "UTF-8");
+			CSVParser parser = new CSVParser(isr, CSVFormat.EXCEL.withDelimiter(';').withHeader());
 			 for (CSVRecord r : parser) {
 				 listOrt.add(new Ort(Integer.parseInt(r.get("PLZ")), r.get("Ortsbezeichnung")));
 			 }
 			 parser.close();
 			 persistList(listOrt, ortcontroller);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 		}
 		
 		/**

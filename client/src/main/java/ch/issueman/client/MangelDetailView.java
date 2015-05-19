@@ -232,7 +232,11 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		});
 		tcZeit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kommentar,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Kommentar, String> param) {
-				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getErstelltam().getTime()));
+				if(param.getValue().getErstelltam() != null){
+					return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getErstelltam().getTime()));
+				} else {
+					return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(new GregorianCalendar().getTime()));
+				}
 			} 
 		});
 		
@@ -269,11 +273,13 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 	    			.atZone(ZoneId.systemDefault()).toLocalDate());
 
 	    	cbStatus.setValue(mangel.getMangelstatus());
+	    	cbStatus.setDisable(false);
 			tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 	    	tvKommentar.setVisible(true);
 	    	taKommentar.setVisible(true);
 	    	btSend.setVisible(true);
 	    	txErfasst.setDisable(true);
+	    	txErfasst.setVisible(true);
 			
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
@@ -289,10 +295,11 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		} else {
 	    	lbMangel.setText("neuer mangel");
 	    	cbStatus.getSelectionModel().select(0);
-//	    	cbStatus.setDisable(true);
+	    	cbStatus.setDisable(true);
 	    	tvKommentar.setVisible(false);
 	    	taKommentar.setVisible(false);
 	    	btSend.setVisible(false);
+	    	txErfasst.setVisible(false);
 		}
 	}
 	    
@@ -315,7 +322,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		
 			try {
 				mangelcontroller.update(mangel);
-				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
+				tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);

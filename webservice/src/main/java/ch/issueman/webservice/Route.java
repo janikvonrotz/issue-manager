@@ -385,7 +385,7 @@ public class Route{
 	@Path("projekt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateProjekt(Projekt t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("projekt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekt")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -393,7 +393,7 @@ public class Route{
 	@Path("projekt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistProjekt(Projekt t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("projekt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("projekt")).persist(t);
 	}
 	

@@ -21,7 +21,7 @@ public class ContextListener implements ServletContextListener {
 	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		Service.startRMI();		
+		Service.runLogConfigurator();		
 	}
 
 	/* (non-Javadoc)
@@ -29,7 +29,6 @@ public class ContextListener implements ServletContextListener {
 	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
-		Service.destroyRMI();
 	}
 }
 
