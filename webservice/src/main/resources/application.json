@@ -2,8 +2,8 @@
   "javax": {
     "persistence": {
       "jdbc": {
-        "driver": "com.mysql.jdbc.Driver",
-        "url": "jdbc:mysql://localhost/issuemanager",
+        "driver": "org.postgresql.Driver",
+        "url": "jdbc:postgresql://localhost/issuemanager",
         "user": "issuemanager",
         "password": "issuemanager"
       },
