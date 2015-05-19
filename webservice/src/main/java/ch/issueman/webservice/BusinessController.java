@@ -102,10 +102,10 @@ public class BusinessController<T, Id extends Serializable> extends UnicastRemot
 	 */
 	@Override
 	public void update(T t) throws RemoteException, Exception {
-		if(filter.ifUserHasRoleByMethod("POST") != false){
+		if(filter.ifUserHasRoleByMethod("PUT") != false){
 			filter.update(t);
 		}else{
-			throw new Exception("Required Roles for POST on " + clazz.getSimpleName() + " don't match");
+			throw new Exception("Required Roles for PUT on " + clazz.getSimpleName() + " don't match");
 		}
 	}
 

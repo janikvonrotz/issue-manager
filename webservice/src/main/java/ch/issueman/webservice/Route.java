@@ -265,7 +265,7 @@ public class Route{
 	@Path("kontakt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateKontakt(Kontakt t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("kontakt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kontakt")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -273,7 +273,7 @@ public class Route{
 	@Path("kontakt")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistKontakt(Kontakt t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("kontakt").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kontakt")).persist(t);
 	}
 	
