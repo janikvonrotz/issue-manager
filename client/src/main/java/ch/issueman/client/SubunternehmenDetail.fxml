@@ -92,9 +92,9 @@
             <RowConstraints minHeight="10.0" prefHeight="51.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
-            <RowConstraints minHeight="120.0" prefHeight="120.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
-            <RowConstraints minHeight="25.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="50.0" vgrow="NEVER" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
