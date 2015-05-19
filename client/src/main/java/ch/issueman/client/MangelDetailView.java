@@ -232,7 +232,11 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		});
 		tcZeit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Kommentar,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Kommentar, String> param) {
-				return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getErstelltam().getTime()));
+				if(param.getValue().getErstelltam() != null){
+					return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(param.getValue().getErstelltam().getTime()));
+				} else {
+					return new SimpleStringProperty((new SimpleDateFormat(ConfigHelper.getConfig("format.date", "dd.MM.yyyy"))).format(new GregorianCalendar().getTime()));
+				}
 			} 
 		});
 		
@@ -318,7 +322,7 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 		
 			try {
 				mangelcontroller.update(mangel);
-				tvKommentar.setItems(FXCollections.observableArrayList(kommentarcontroller.getAll()));
+				tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				MainView.showError(e);
