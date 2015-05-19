@@ -17,7 +17,7 @@ $selection = $word.selection
 $files = Get-ChildItem -Filter "*.ps1"
 $files += Get-ChildItem -Filter "*.gradle" -Recurse -Exclude ".gradle"
 $files += Get-ChildItem -Directory | where{$_.BaseName -eq "client" -or $_.BaseName -eq "webservice" -or $_.BaseName -eq "common"} | ForEach-Object{    
-    Get-ChildItem -Recurse -Include ("*.java", "application.json") -Path (Join-Path $_ "src")
+    Get-ChildItem -Recurse -Include ("*.java", "application.json", "*.xml", "*.ps1") -Path (Join-Path $_ "src")
 }
 $files = $files | Sort-Object "BaseName"
 
