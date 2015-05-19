@@ -54,9 +54,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private Projekt projekt;
 	private List<Login> kpList;
 	private List<Login> kaList;
-
-	@FXML
-	private TextField txFilter;
 	
 	@FXML
 	private Label lbProjekt;
@@ -82,10 +79,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbzuklären;
-	
-	@FXML
-	private TableColumn<Mangel, String> tcEndeAbzuklären;
-	
+		
 	// Tabelle "beauftragt"
 	@FXML
 	private TableView<Mangel> tvDataBeauftragt;
@@ -166,12 +160,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
-		tcEndeAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
-				return new SimpleStringProperty(FormatHelper.formatDate(param.getValue().getErledigenbis()));
-			}  
-		});
-		
 		tvDataAbzuklären.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -193,7 +181,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	        }
 	    });
 
-		
 		// Tabelle "beauftragt"
 		tcReferenzBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -349,40 +336,15 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	        }
 	    });
 
-
-		// Filterung der Tabelle
-		txFilter.textProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					filteredData.setPredicate(t -> {
-						
-							if (newValue == null || newValue.isEmpty()) {
-								return true;
-							}
-							List<Kommentar> k = t.getKommentare();
-							String lowerCaseFilter = newValue.toLowerCase();
-							// Angabe nach welchen Attributen es gefiltert werden soll
-							String objectvalues = t.getMangel() 
-									+ t.getSubunternehmen().getFirmenname()
-									+ t.getKommentare().get(k.size() - 1).getKommentar()
-									+ t.getId();
-							
-							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
-								return true; 
-							}
-							return false;
-						});
-				});		
-
 		Refresh();
 	}
 
 	@Override
 	public void Refresh() {
-		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
-			btAddMangel.setVisible(false);
-		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
-			btAddMangel.setVisible(false);
-		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter") ||
+				Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+			btAddMangel.setVisible(true);
+		} else {
 			btAddMangel.setVisible(false);
 		}
 		
