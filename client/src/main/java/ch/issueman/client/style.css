@@ -37,6 +37,7 @@ Button.default {
 	-fx-max-height: 33;
 	-fx-min-height: 33;
 	-fx-alignment: center;
+	-fx-mid-text-color: white;
 }
 
 .menuunselected{
@@ -46,19 +47,20 @@ Button.default {
 	-fx-max-height: 33;
 	-fx-min-height: 33;
 	-fx-alignment: center;
+	-fx-mid-text-color: white;
 }
 
 .menu-button:openvertically>*.arrow-button>*.arrow {
 	-fx-mark-color: white;
 }
 
-.menu-button.lable.text {
-	-fx-fill: white;
+.menu-item {
+	-fx-background-color: #aaaaaa;
 }
 
 .menu-item:focused {
-     -fx-background-color:  #aaaaaa;
-}    
+     -fx-background-color:  #939382;
+}   
 
 .list-cell:empty {
     visibility:hidden;
