@@ -42,16 +42,19 @@ import ch.issueman.common.Subunternehmen;
  */
 public class MangelView implements Viewable<Mangel, Projekt> {
 
+	// Controller erstellen
 	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Login, Integer> logincontroller = new Controller<Login, Integer>(Login.class);
 
+	// FilteredList erstellen
 	private FilteredList<Mangel> filteredData = new FilteredList<Mangel>(FXCollections.observableArrayList(), p -> true);
 	
 	private Projekt projekt;
 	private List<Login> kpList;
 	private List<Login> kaList;
 	
+	// Erzeugung der FXML ELementen
 	@FXML
 	private Label lbProjekt;
 
