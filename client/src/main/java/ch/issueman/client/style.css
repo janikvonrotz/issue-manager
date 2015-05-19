@@ -190,12 +190,11 @@ TableView.process {
 }
 
 TableView.comment {
-    -fx-base: #aaaaaa;
-    -fx-control-inner-background: #ffffff;
-    -fx-background-color: #ffffff;
-    -fx-text-fill: #486285;
+	-fx-base: #719AD1 ;
+    -fx-control-inner-background: #719AD1 ;
+    -fx-background-color: #719AD1 ;
+    -fx-text-fill: white;
     -fx-alignment: center-left;
-    -fx-text-background-color: white;
 }  
 
 TableView.default {
