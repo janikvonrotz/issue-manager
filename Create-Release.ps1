@@ -5,11 +5,13 @@ function create-7zip([String] $aDirectory, [String] $aZipfile){
 }
 
 git checkout master
+git pull
 gradle shadowjar
 gradle assemble
 create-7zip ".\lib\*"  "mysql.zip"
 
 git checkout postgres
+git merge master
 gradle shadowjar
 gradle assemble
 create-7zip ".\lib\*"  "postgres.zip"
