@@ -1,6 +1,7 @@
 package ch.issueman.client;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -197,29 +198,25 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 						getBezeichnung().equals("Kontaktperson")) && (((Kontakt) l.getPerson()).
 						getProjekte().contains(projekt))).collect(Collectors.toList());
 				
+				List<Subunternehmen> sList = new ArrayList<Subunternehmen>();
+				kpList.forEach(p -> sList.add(((Kontakt) p.getPerson()).getSubunternehmen()));
+				
 				kaList = logincontroller.getAll().stream().filter(l -> (l.getRolle().
 						getBezeichnung().equals("Kontaktadmin")) && (((Kontakt) l.getPerson()).
 						getProjekte().contains(projekt))).collect(Collectors.toList());
 				
-				List<Login> list = kaList;
+				kaList.removeAll(kaList.stream().filter(a -> sList.contains(((Kontakt)
+						a.getPerson()).getSubunternehmen())).collect(Collectors.toList()));
 				
-				for(Login p : kpList){
-					for(Login l : list){
-						if(((Kontakt) l.getPerson()).getSubunternehmen().equals(((Kontakt) p.
-								getPerson()).getSubunternehmen())){
-							list.remove(l);
-							list.add(p);
-						}
-					}
-				}
+				kpList.addAll(kaList);
 				
-				filteredData = new FilteredList<Login>(FXCollections.observableArrayList(list),	p -> true);
+				filteredData = new FilteredList<Login>(FXCollections.observableArrayList(kpList),	p -> true);
 				SortedList<Login> sortedData = new SortedList<Login>(filteredData);
 				sortedData.comparatorProperty().bind(tvData.comparatorProperty());
 				tvData.setItems(sortedData);
 				
 				List<Subunternehmen> sSelection = subunternehmencontroller.getAll();
-				kaList.forEach(k -> sSelection.remove(((Kontakt) k.getPerson()).getSubunternehmen()));
+				kpList.forEach(k -> sSelection.remove(((Kontakt) k.getPerson()).getSubunternehmen()));
 						
 				cbSubunternehmen.setItems(FXCollections.observableArrayList(sSelection));
 			}
@@ -260,9 +257,8 @@ public class SubunternehmenZugewiesenView implements Viewable<Projekt, Projekt> 
 			Kontakt kaKontakt = (Kontakt) kaLogin.getPerson();
 			if(!(kaKontakt.getProjekte().contains(projekt))){
 				kaKontakt.getProjekte().add(projekt);
+				kontaktcontroller.update(kaKontakt);
 			}
-			
-			kontaktcontroller.update(kaKontakt);
 		} catch (Exception e) {
 			MainView.showError(e);
 		}
