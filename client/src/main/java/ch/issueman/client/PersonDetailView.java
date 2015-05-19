@@ -254,7 +254,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 			List<Ort> oList = ortcontroller.getAll();
 			cbOrt.setItems(new SortedList<Ort>(FXCollections.observableArrayList(oList)));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
 
@@ -271,7 +270,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				login = logincontroller.getAll().stream().filter(p -> p.getPerson()
 						.equals(person)).collect(Collectors.toList()).get(0);												
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 			
@@ -333,7 +331,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					sachbearbeitercontroller.update(((Sachbearbeiter) person));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 			} else if (person instanceof Bauleiter){
@@ -344,7 +341,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					bauleitercontroller.update(((Bauleiter) person));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 			} else if (person instanceof Kontakt){
@@ -356,7 +352,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					kontaktcontroller.update(((Kontakt) person));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 			} else if (person instanceof Bauherr){
@@ -374,7 +369,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					bauherrcontroller.update(((Bauherr) person));
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 			}
@@ -392,7 +386,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					login.setPerson(sachbearbeitercontroller.getAll().get(sachbearbeitercontroller.getAll().size()-1));
 					logincontroller.persist(login);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				
@@ -407,7 +400,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					bauleitercontroller.persist(bauleiter);
 					logincontroller.persist(login);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				
@@ -422,7 +414,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					kontaktcontroller.persist(kontaktperson);
 					logincontroller.persist(login);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				
@@ -437,7 +428,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 					kontaktcontroller.persist(kontaktadmin);
 					logincontroller.persist(login);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				
@@ -451,7 +441,6 @@ public class PersonDetailView implements ViewableDetail<Person> {
 				try {
 					bauherrcontroller.persist(bauherr);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					MainView.showError(e);
 				}
 				

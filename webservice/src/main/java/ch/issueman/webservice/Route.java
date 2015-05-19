@@ -245,7 +245,7 @@ public class Route{
 	@Path("kommentar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateKommentar(Kommentar t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("kommentar").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kommentar")).update(t);
 	}		
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -253,7 +253,7 @@ public class Route{
 	@Path("kommentar")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response persistKommentar(Kommentar t, @Context HttpServletRequest request) {
-		rbm.get("login").setLogin((Login) request.getSession(true).getAttribute("login"));
+		rbm.get("kommentar").setLogin((Login) request.getSession(true).getAttribute("login"));
 		return ((DAOResponseBuilder) rbm.get("kommentar")).persist(t);
 	}
 	

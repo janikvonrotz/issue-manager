@@ -1,6 +1,7 @@
 package ch.issueman.common;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -27,7 +28,7 @@ public class Adresse implements Model {
 	private int id;
 	@NotNull
 	private String strasse;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@NotNull
 	private Ort ort;
 	

@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
@@ -30,8 +29,6 @@ import ch.issueman.common.FormatHelper;
 import ch.issueman.common.Kommentar;
 import ch.issueman.common.Kontakt;
 import ch.issueman.common.Login;
-//import ch.issueman.common.Kontakt;
-//import ch.issueman.common.Login;
 import ch.issueman.common.Mangel;
 import ch.issueman.common.Projekt;
 import ch.issueman.common.Subunternehmen;
@@ -54,9 +51,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	private Projekt projekt;
 	private List<Login> kpList;
 	private List<Login> kaList;
-
-	@FXML
-	private TextField txFilter;
 	
 	@FXML
 	private Label lbProjekt;
@@ -82,10 +76,7 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	
 	@FXML
 	private TableColumn<Mangel, String> tcKommentarAbzuklären;
-	
-	@FXML
-	private TableColumn<Mangel, String> tcEndeAbzuklären;
-	
+		
 	// Tabelle "beauftragt"
 	@FXML
 	private TableView<Mangel> tvDataBeauftragt;
@@ -166,12 +157,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			}
 		});
 		
-		tcEndeAbzuklären.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
-			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
-				return new SimpleStringProperty(FormatHelper.formatDate(param.getValue().getErledigenbis()));
-			}  
-		});
-		
 		tvDataAbzuklären.setRowFactory(new Callback<TableView<Mangel>, TableRow<Mangel>>() {
 	        @Override
 	        public TableRow<Mangel> call(TableView<Mangel> tableView) {
@@ -193,7 +178,6 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	        }
 	    });
 
-		
 		// Tabelle "beauftragt"
 		tcReferenzBeauftragt.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Mangel,String>,ObservableValue<String>>() {  
 			public ObservableValue<String> call(CellDataFeatures<Mangel, String> param) {
@@ -349,40 +333,15 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 	        }
 	    });
 
-
-		// Filterung der Tabelle
-		txFilter.textProperty().addListener(
-				(observable, oldValue, newValue) -> {
-					filteredData.setPredicate(t -> {
-						
-							if (newValue == null || newValue.isEmpty()) {
-								return true;
-							}
-							List<Kommentar> k = t.getKommentare();
-							String lowerCaseFilter = newValue.toLowerCase();
-							// Angabe nach welchen Attributen es gefiltert werden soll
-							String objectvalues = t.getMangel() 
-									+ t.getSubunternehmen().getFirmenname()
-									+ t.getKommentare().get(k.size() - 1).getKommentar()
-									+ t.getId();
-							
-							if (objectvalues.toLowerCase().indexOf(lowerCaseFilter) != -1) {
-								return true; 
-							}
-							return false;
-						});
-				});		
-
 		Refresh();
 	}
 
 	@Override
 	public void Refresh() {
-		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter")){
-			btAddMangel.setVisible(false);
-		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktperson")){
-			btAddMangel.setVisible(false);
-		} else if(Context.getLogin().getRolle().getBezeichnung().equals("Kontaktadmin")){
+		if(Context.getLogin().getRolle().getBezeichnung().equals("Bauleiter") ||
+				Context.getLogin().getRolle().getBezeichnung().equals("Sachbearbeiter")){
+			btAddMangel.setVisible(true);
+		} else {
 			btAddMangel.setVisible(false);
 		}
 		
@@ -607,11 +566,18 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			add(p.getMangel());
 			add(p.getErfasser().getDisplayName());
 			add(p.getSubunternehmen().getFirmenname());
-			add(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).
-					getSubunternehmen().equals(p.getSubunternehmen()))).collect(Collectors.toList()).
-					get(0))).getPerson().getDisplayName());
+			
+			if(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).getSubunternehmen().
+					equals(p.getSubunternehmen()))).collect(Collectors.toList()))).size() > 0){
+				add(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).
+						getSubunternehmen().equals(p.getSubunternehmen()))).collect(Collectors.toList()).
+						get(0))).getPerson().getDisplayName());
+			} else {
+				add("");
+			}
 			add(k.get(k.size()-1).getKommentar());
-			add(FormatHelper.formatDate(p.getErledigenbis()));
+			add((FormatHelper.formatDate(p.getErledigenbis())));
+			
 		}}));
 		
 		MainView.exportData(list);

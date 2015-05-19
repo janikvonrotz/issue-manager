@@ -25,6 +25,7 @@ local.properties
 .project
 .metadata
 .settings
+*.zip
 
 # JavaDoc
 doc

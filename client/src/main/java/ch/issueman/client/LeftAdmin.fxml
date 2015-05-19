@@ -23,7 +23,7 @@
             <ImageView fx:id="ivLogo" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" />
             <Accordion prefWidth="190.0" GridPane.rowIndex="2">
               <panes>
-                <TitledPane animated="false" prefWidth="188.0" styleClass="default" text="Projekt">
+                <TitledPane animated="false" prefWidth="188.0" styleClass="default" text="projekt">
                      <content>
                         <Pane maxWidth="190.0" prefHeight="200.0" prefWidth="188.0">
                            <children>
@@ -32,7 +32,7 @@
                         </Pane>
                      </content>
                 </TitledPane>
-                <TitledPane animated="false" prefWidth="188.0" text="Subunternehmen">
+                <TitledPane animated="false" prefWidth="188.0" text="subunternehmen">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="188.0">
                            <children>
@@ -41,7 +41,7 @@
                         </Pane>
                      </content>
                 </TitledPane>
-                <TitledPane animated="false" prefWidth="188.0" text="Person">
+                <TitledPane animated="false" prefWidth="188.0" text="person">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="188.0">
                            <children>

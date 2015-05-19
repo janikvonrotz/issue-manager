@@ -3,6 +3,7 @@ package ch.issueman.common;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -29,7 +30,7 @@ public class Projektleitung implements Model{
 	@GeneratedValue
 	private int id;
 	@NotNull
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Bauleiter bauleiter;
 	@NotNull
 	@Temporal(TemporalType.DATE)

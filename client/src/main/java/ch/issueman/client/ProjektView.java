@@ -224,7 +224,6 @@ public class ProjektView implements Viewable<Projekt, Projekt> {
 	
 	@Override
 	public void initData(Projekt t) {
-		// TODO Auto-generated method stub
 		
 	}
 

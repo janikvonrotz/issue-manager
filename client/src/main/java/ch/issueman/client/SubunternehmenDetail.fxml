@@ -10,7 +10,7 @@
    <children>
       <GridPane layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tvKontakt" onMouseClicked="#doubleClickData" styleClass="default" GridPane.rowIndex="8">
+            <TableView fx:id="tvKontakt" onMouseClicked="#doubleClickData" styleClass="default" GridPane.rowIndex="9">
               <columns>
                 <TableColumn fx:id="tcNachname" minWidth="-1.0" prefWidth="158.0" text="nachname" />
                 <TableColumn fx:id="tcVorname" minWidth="-1.0" prefWidth="186.0" text="vorname" />
@@ -20,7 +20,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <GridPane GridPane.rowIndex="2">
+            <GridPane GridPane.rowIndex="3">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="130.0" prefWidth="150.0" />
                 <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
@@ -42,7 +42,7 @@
                   <ComboBox fx:id="cbOrt" prefWidth="300.0" styleClass="default" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" />
                </children>
             </GridPane>
-            <GridPane GridPane.rowIndex="6">
+            <GridPane GridPane.rowIndex="7">
               <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" />
                   <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
@@ -63,8 +63,8 @@
                   <Button fx:id="btAddKontakt" mnemonicParsing="false" onAction="#clickAddKontakt" styleClass="default" text="+" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <Label fx:id="lbSubunternehmen" styleClass="title" />
-            <GridPane GridPane.rowIndex="4">
+            <Label fx:id="lbSubunternehmen" styleClass="title" GridPane.rowIndex="1" />
+            <GridPane GridPane.rowIndex="5">
                <columnConstraints>
                   <ColumnConstraints hgrow="NEVER" />
                </columnConstraints>
@@ -89,7 +89,8 @@
             <ColumnConstraints hgrow="SOMETIMES" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="100.0" prefHeight="100.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="51.0" vgrow="NEVER" />
+            <RowConstraints vgrow="NEVER" />
             <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="NEVER" />
             <RowConstraints minHeight="120.0" prefHeight="120.0" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />

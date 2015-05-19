@@ -323,7 +323,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 			cbProjekttyp.setItems(FXCollections.observableArrayList(projekttypcontroller.getAll()));
 			cbBauherr.setItems(FXCollections.observableArrayList(bauherrcontroller.getAll()));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
     	txProjektleiter.setEditable(false);
@@ -359,7 +358,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 					taSubunternehmen.setText(s.substring(0, s.length()-2));
 				}	
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 
@@ -455,7 +453,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 					kontaktcontroller.update(kNew);			
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 		
@@ -472,7 +469,6 @@ public class ProjektDetailView implements ViewableDetail<Projekt> {
 						new Adresse(txStrasse.getText(), cbOrt.getValue()), cbArbeitstyp.getValue(),
 						cbProjekttyp.getValue(), cbBauherr.getValue(), new ArrayList<Projektleitung>(), beginn, ende));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 		}	

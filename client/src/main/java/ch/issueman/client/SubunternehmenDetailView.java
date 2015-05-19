@@ -213,7 +213,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 			try {
 				subunternehmencontroller.update(subunternehmen);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
@@ -223,7 +222,6 @@ public class SubunternehmenDetailView implements ViewableDetail<Subunternehmen> 
 				subunternehmencontroller.persist(new Subunternehmen(txFirma.getText(),
 						new Adresse(txStrasse.getText(), cbOrt.getValue())));
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

@@ -1,5 +1,5 @@
-﻿$path = "C:\OneDrive\Shared\GitHub\issue-manager\export.docx"
-$PDFpath = "C:\OneDrive\Shared\GitHub\issue-manager\export.pdf"
+﻿$basepath = Split-Path -parent $MyInvocation.MyCommand.Definition
+$path = Join-Path $basepath "export.docx"
 
 # Required Word Variables
 $wdExportFormatPDF = 17
@@ -14,15 +14,65 @@ $doc = $word.documents.add()
 $content = @()
 $selection = $word.selection
 
-Get-ChildItem -Recurse -Filter "*.java" | ForEach-Object{
-    $Selection.Style = 'Überschrift 1'
-    $Selection.TypeText($_.BaseName)
+$files = Get-ChildItem -Filter "*.ps1"
+$files += Get-ChildItem -Filter "*.gradle" -Recurse -Exclude ".gradle"
+$files += Get-ChildItem -Directory | where{$_.BaseName -eq "client" -or $_.BaseName -eq "webservice" -or $_.BaseName -eq "common"} | ForEach-Object{    
+    Get-ChildItem -Recurse -Include ("*.java", "application.json", "*.xml", "*.ps1") -Path (Join-Path $_ "src")
+}
+$files = $files | Sort-Object "BaseName"
+
+$Selection.Style = 'Überschrift 1'
+$Selection.TypeText("Deploy")
+$Selection.TypeParagraph()
+
+$files | where-Object{(Split-Path $_ -Parent) -eq $basepath} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
+    $Selection.Style = 'Überschrift 2'
+    $Selection.TypeText($_.BaseName + $_.Extension)
+    $Selection.TypeParagraph()
+    $selection.typeText($(Get-Content $_.FullName -Raw))
+    $selection.InsertBreak(7)
+}
+
+$Selection.Style = 'Überschrift 1'
+$Selection.TypeText("Common")
+$Selection.TypeParagraph()
+
+$files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\common*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
+    $Selection.Style = 'Überschrift 2'
+    $Selection.TypeText($_.BaseName + $_.Extension)
+    $Selection.TypeParagraph()
+    $selection.typeText($(Get-Content $_.FullName -Raw))
+    $selection.InsertBreak(7)
+}
+
+$Selection.Style = 'Überschrift 1'
+$Selection.TypeText("Webservice")
+$Selection.TypeParagraph()
+
+$files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\webservice*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
+    $Selection.Style = 'Überschrift 2'
+    $Selection.TypeText($_.BaseName + $_.Extension)
+    $Selection.TypeParagraph()
+    $selection.typeText($(Get-Content $_.FullName -Raw))
+    $selection.InsertBreak(7)
+}
+
+$Selection.Style = 'Überschrift 1'
+$Selection.TypeText("Client")
+$Selection.TypeParagraph()
+
+$files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\client*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
+    $Selection.Style = 'Überschrift 2'
+    $Selection.TypeText($_.BaseName + $_.Extension)
     $Selection.TypeParagraph()
     $selection.typeText($(Get-Content $_.FullName -Raw))
     $selection.InsertBreak(7)
 }
 
 $doc.saveas($path, $saveFormat::wdFormatDocument)
-#$doc.ExportAsFixedFormat($PDFpath,$wdExportFormatPDF)
 $doc.close($wdDoNotSaveChanges)
 $word.Quit()
