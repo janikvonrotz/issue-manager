@@ -566,9 +566,15 @@ public class MangelView implements Viewable<Mangel, Projekt> {
 			add(p.getMangel());
 			add(p.getErfasser().getDisplayName());
 			add(p.getSubunternehmen().getFirmenname());
-			add(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).
-					getSubunternehmen().equals(p.getSubunternehmen()))).collect(Collectors.toList()).
-					get(0))).getPerson().getDisplayName());
+			
+			if(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).getSubunternehmen().
+					equals(p.getSubunternehmen()))).collect(Collectors.toList()))).size() > 0){
+				add(((kpList.stream().filter(a -> (((Kontakt) a.getPerson()).
+						getSubunternehmen().equals(p.getSubunternehmen()))).collect(Collectors.toList()).
+						get(0))).getPerson().getDisplayName());
+			} else {
+				add("");
+			}
 			add(k.get(k.size()-1).getKommentar());
 			add(FormatHelper.formatDate(p.getErledigenbis()));
 		}}));
