@@ -30,16 +30,6 @@ Button.default {
 	-fx-background-radius: 50px
 }
 
-MenuButton.leftAdmin{
-	-fx-background-color: #486285;
-	-fx-text-fill: white;
-}
-
-Button.topMangel{
-	-fx-background-color: #939382;
-	-fx-text-fill: white;
-}
-
 .menuselected{
 	-fx-background-color: #939382;
 	-fx-text-fill: white;
@@ -56,6 +46,14 @@ Button.topMangel{
 	-fx-max-height: 33;
 	-fx-min-height: 33;
 	-fx-alignment: center;
+}
+
+.menu-button:openvertically>*.arrow-button>*.arrow {
+	-fx-mark-color: white;
+}
+
+.menu-button.lable.text {
+	-fx-fill: white;
 }
 
 .menu-item:focused {
