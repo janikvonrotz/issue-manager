@@ -49,7 +49,6 @@ import ch.issueman.common.Subunternehmen;
 public class MangelDetailView implements ViewableDetail<Mangel> {
 	
 	private static Controller<Mangel, Integer> mangelcontroller = new Controller<Mangel, Integer>(Mangel.class);
-	private static Controller<Kommentar, Integer> kommentarcontroller = new Controller<Kommentar, Integer>(Kommentar.class);
 	private static Controller<Projekt, Integer> projektcontroller = new Controller<Projekt, Integer>(Projekt.class);
 	private static Controller<Subunternehmen, Integer> subunternehmencontroller = new Controller<Subunternehmen, Integer>(Subunternehmen.class);
 	private static Controller<Mangelstatus, Integer> statuscontroller = new Controller<Mangelstatus, Integer>(Mangelstatus.class);
@@ -255,7 +254,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			cbStatus.setItems(FXCollections.observableArrayList(sList));
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			MainView.showError(e);
 		}
 
@@ -284,9 +282,9 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			if(Context.getLogin().getRolle().getBezeichnung().contains("Kontakt")){
 		    	txBeschreibung.setDisable(true);
 		    	
-//		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
-//		    		cbStatus.setDisable(true);
-//		    	}
+		    	if(mangel.getMangelstatus().getStatus().equals("abgeschlossen")){
+		    		cbStatus.setDisable(true);
+		    	}
 		    	
 		    	cbSubunternehmen.setDisable(true);
 		    	dpFrist.setDisable(true);
@@ -324,9 +322,9 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 				mangelcontroller.update(mangel);
 				tvKommentar.setItems(FXCollections.observableArrayList(mangel.getKommentare()));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
+			taKommentar.setText("");
 		}
 	}
 
@@ -349,7 +347,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			try {
 				mangelcontroller.update(mangel);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 			
@@ -362,7 +359,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 				ref = mList.size() + 1;
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 			
@@ -378,7 +374,6 @@ public class MangelDetailView implements ViewableDetail<Mangel> {
 			try {
 				mangelcontroller.persist(mangel);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				MainView.showError(e);
 			}
 		}
