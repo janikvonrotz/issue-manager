@@ -52,6 +52,7 @@ public class PasswortView implements ViewableDetail<Login> {
 				throw new Exception("Passwords do not match.");
 			}
 			Context.setNewPassword(pwneu);
+			MainView.showTopView("TopDefault");
 		}catch (Exception e){
 			// Fehler ausgeben
 			MainView.showError(e);

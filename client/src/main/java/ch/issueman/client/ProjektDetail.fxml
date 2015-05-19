@@ -27,7 +27,8 @@
                     <columnConstraints>
                       <ColumnConstraints hgrow="NEVER" minWidth="100.0" prefWidth="150.0" />
                       <ColumnConstraints hgrow="NEVER" minWidth="20.0" prefWidth="300.0" />
-                        <ColumnConstraints hgrow="NEVER" minWidth="40.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints vgrow="NEVER" />
@@ -63,7 +64,7 @@
                         <Label styleClass="default" text="beginn" GridPane.rowIndex="10" />
                         <Label styleClass="default" text="ende" GridPane.rowIndex="12" />
                         <Label styleClass="default" text="bauherr" GridPane.rowIndex="14" />
-                        <Label styleClass="default" text="projektleiter" GridPane.rowIndex="16" />
+                        <Label styleClass="default" text="bauleiter" GridPane.rowIndex="16" />
                         <Label styleClass="default" text="subunternehmen" GridPane.rowIndex="18" />
                         <Label styleClass="default" text="kontaktperson" GridPane.rowIndex="20" />
                         <TextField fx:id="txTitel" prefHeight="12.0" prefWidth="738.0" styleClass="default" GridPane.columnIndex="1" />
@@ -87,8 +88,8 @@
                         <DatePicker fx:id="dpEnde" prefHeight="27.0" prefWidth="336.0" styleClass="default" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <Label styleClass="default" text="archiviert" GridPane.rowIndex="22" />
                         <CheckBox fx:id="chArchivieren" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="22" />
-                        <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" prefHeight="25.0" prefWidth="40.0" styleClass="default" text="+" GridPane.columnIndex="2" GridPane.rowIndex="16" />
-                        <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" prefHeight="25.0" prefWidth="52.0" styleClass="default" text="+" GridPane.columnIndex="2" GridPane.rowIndex="18" />
+                        <Button fx:id="btProjektleiter" mnemonicParsing="false" onAction="#showProjektleitung" styleClass="default" text="+" GridPane.columnIndex="3" GridPane.rowIndex="16" />
+                        <Button fx:id="btSubunternehmen" mnemonicParsing="false" onAction="#showZugewiesene" styleClass="default" text="+" GridPane.columnIndex="3" GridPane.rowIndex="18" />
                      </children>
                   </GridPane>
                   <GridPane prefHeight="25.0" prefWidth="755.0" GridPane.rowIndex="4">

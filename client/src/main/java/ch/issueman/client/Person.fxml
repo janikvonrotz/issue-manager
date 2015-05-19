@@ -35,19 +35,19 @@
                   <RowConstraints vgrow="NEVER" />
                </rowConstraints>
                <children>
-               	  <Label styleClass="title" text="Person" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+               	  <Label styleClass="title" text="person" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
                   <TextField fx:id="txFilter" layoutX="437.0" layoutY="14.0" styleClass="default" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" GridPane.columnIndex="6" />
                   <Button fx:id="btAddPerson" mnemonicParsing="false" onMouseClicked="#clickNeu" prefHeight="25.0" prefWidth="25.0" styleClass="default" text="+" GridPane.columnIndex="2" />
-                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="4" />
+                  <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="export" GridPane.columnIndex="4" />
                </children>
             </GridPane>
             <TableView fx:id="tvData" layoutY="50.0" onMouseClicked="#doubleClickData" styleClass="default" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" GridPane.rowIndex="3">
               <columns>
-                <TableColumn fx:id="tcNachname" prefWidth="100.0" text="Nachname" />
-                  <TableColumn fx:id="tcVorname" prefWidth="100.0" text="Vorname" />
-                  <TableColumn fx:id="tcEmail" prefWidth="200.0" text="Email" />
-                  <TableColumn fx:id="tcRolle" prefWidth="91.0" text="Rolle" />
-                  <TableColumn fx:id="tcFirma" prefWidth="112.0" text="Firma" />
+                <TableColumn fx:id="tcNachname" prefWidth="100.0" text="nachname" />
+                  <TableColumn fx:id="tcVorname" prefWidth="100.0" text="vorname" />
+                  <TableColumn fx:id="tcEmail" prefWidth="200.0" text="email" />
+                  <TableColumn fx:id="tcRolle" prefWidth="91.0" text="rolle" />
+                  <TableColumn fx:id="tcFirma" prefWidth="112.0" text="firma" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

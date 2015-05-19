@@ -126,7 +126,7 @@
                      <children>
                         <Label fx:id="lbProjekt" layoutX="10.0" layoutY="20.0" styleClass="title" />
                         <Button fx:id="btAddMangel" mnemonicParsing="false" onMouseClicked="#clickNeu" styleClass="default" text="+" GridPane.columnIndex="3" />
-                        <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="Export" GridPane.columnIndex="5" />
+                        <Button fx:id="btExport" mnemonicParsing="false" onAction="#clickExport" styleClass="default" text="export" GridPane.columnIndex="5" />
                      </children>
                   </GridPane>
                   <TableView fx:id="tvDataAbzuklären" layoutX="14.0" layoutY="109.0" onMouseClicked="#doubleClickDataAbzuklären" prefHeight="110.0" styleClass="settle" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="109.0" GridPane.rowIndex="3">

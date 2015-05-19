@@ -36,7 +36,7 @@
                </rowConstraints>
                <children>
                   <TextField fx:id="txFilter" styleClass="default" GridPane.columnIndex="2" />
-                  <Label styleClass="title" text="Projektleitung" />
+                  <Label styleClass="title" text="bauleitung" />
                </children>
             </GridPane>
             <TableView fx:id="tvData" layoutY="100.0" styleClass="default" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" GridPane.rowIndex="3">

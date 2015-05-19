@@ -73,7 +73,8 @@ public class Context {
 		String oldpassword = login.getPasswort();
 		login.setPasswort(newpassword);
 		try{
-			(new Controller<Login, Integer>(Login.class)).persist(login);
+			(new Controller<Login, Integer>(Login.class)).update(login);
+			login();
 		} catch (Exception e){
 			login.setPasswort(oldpassword);
 			throw e;
