@@ -34,7 +34,7 @@
          <children>
             <TextField fx:id="txUsername" layoutX="171.0" layoutY="104.0" />
             <PasswordField fx:id="pfPassword" layoutX="171.0" layoutY="140.0" />
-            <Button fx:id="btLogin" layoutX="236.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickLogin" text="Login" />
+            <Button fx:id="btLogin" layoutX="236.0" layoutY="190.0" mnemonicParsing="false" onAction="#clickLogin" text="login" />
          </children>
       </Pane>
    </children>

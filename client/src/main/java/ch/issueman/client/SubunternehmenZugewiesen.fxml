@@ -56,7 +56,7 @@
                   <RowConstraints vgrow="NEVER" />
                </rowConstraints>
                <children>
-                  <Label styleClass="title" text="Subunternehmen zugewiesen" />
+                  <Label styleClass="title" text="subunternehmen zuweisen" />
                   <TextField fx:id="txFilter" styleClass="default" GridPane.columnIndex="2" />
                </children>
             </GridPane>

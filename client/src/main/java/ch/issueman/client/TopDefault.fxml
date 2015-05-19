@@ -21,18 +21,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btMangel" mnemonicParsing="false" onAction="#clickMangel" prefWidth="1000.0" text="Mangel" />
+            <Button fx:id="btMangel" mnemonicParsing="false" onAction="#clickMangel" prefWidth="1000.0" text="mangel" />
             <MenuButton fx:id="mbBenutzer" mnemonicParsing="false" prefWidth="175.0" text="MenuButton" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#clickPasswortwechsel" text="Passwortwechsel" />
-                <MenuItem mnemonicParsing="false" onAction="#clickLogout" text="Logout" />
+                <MenuItem mnemonicParsing="false" onAction="#clickPasswortwechsel" text="passwortwechsel" />
+                <MenuItem mnemonicParsing="false" onAction="#clickLogout" text="logout" />
               </items>
             </MenuButton>
-            <MenuButton fx:id="mbAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefWidth="1000.0" text="Admin" GridPane.columnIndex="1">
+            <MenuButton fx:id="mbAdmin" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefWidth="1000.0" text="admin" GridPane.columnIndex="1">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#clickProjekt" text="Projekt" />
-                <MenuItem mnemonicParsing="false" onAction="#clickSubunternehmen" text="Subunternehmen" />
-                  <MenuItem mnemonicParsing="false" onAction="#clickPerson" text="Person" />
+                <MenuItem mnemonicParsing="false" onAction="#clickProjekt" text="projekt" />
+                <MenuItem mnemonicParsing="false" onAction="#clickSubunternehmen" text="subunternehmen" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickPerson" text="person" />
               </items>
             </MenuButton>
          </children>
