@@ -299,10 +299,10 @@ public class Seed {
 		 * seed Kontakt
 		 */
 		listKontakt.add(new Kontakt("kp","kp","kp@im.ch", listSubunternehmen.get(0), FilterHelper.filterListIds(listProjekt, new int[]{0,1})));
-		listKontakt.add(new Kontakt("Sub2","sub2","sub2.sub2@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
+		listKontakt.add(new Kontakt("Sub2","sub2","sub2.sub2@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{0,3,4})));
 		listKontakt.add(new Kontakt("Sepp","Blatter","sepp.blatter@im.ch", listSubunternehmen.get(2), FilterHelper.filterListIds(listProjekt, new int[]{0,2})));
 		listKontakt.add(new Kontakt("ka","ka","ka@im.ch", listSubunternehmen.get(0), FilterHelper.filterListIds(listProjekt, new int[]{0,3})));
-		listKontakt.add(new Kontakt("test","test","test.test@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
+		listKontakt.add(new Kontakt("test","test","test.test@im.ch", listSubunternehmen.get(1), FilterHelper.filterListIds(listProjekt, new int[]{0,3,4})));
 		listKontakt.add(new Kontakt("duck","duck","duck.duck@im.ch", listSubunternehmen.get(2), FilterHelper.filterListIds(listProjekt, new int[]{3,4})));
 //		persistList(listKontakt, kontaktcontroller);
 		listLoginKontakt.add(new Login(listKontakt.get(0), "1", listRolle.get(2)));
@@ -317,7 +317,7 @@ public class Seed {
 		/**
 		 * seed Kommentar
 		 */
-		String kommentartext = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+		String kommentartext = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy.";
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(0)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(1)));
 		listKommentar.add(new Kommentar(kommentartext, listLogin.get(2)));
