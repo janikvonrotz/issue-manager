@@ -26,6 +26,7 @@ $Selection.TypeText("Deploy")
 $Selection.TypeParagraph()
 
 $files | where-Object{(Split-Path $_ -Parent) -eq $basepath} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
     $Selection.Style = 'Überschrift 2'
     $Selection.TypeText($_.BaseName + $_.Extension)
     $Selection.TypeParagraph()
@@ -38,6 +39,7 @@ $Selection.TypeText("Common")
 $Selection.TypeParagraph()
 
 $files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\common*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
     $Selection.Style = 'Überschrift 2'
     $Selection.TypeText($_.BaseName + $_.Extension)
     $Selection.TypeParagraph()
@@ -50,6 +52,7 @@ $Selection.TypeText("Webservice")
 $Selection.TypeParagraph()
 
 $files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\webservice*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
     $Selection.Style = 'Überschrift 2'
     $Selection.TypeText($_.BaseName + $_.Extension)
     $Selection.TypeParagraph()
@@ -62,6 +65,7 @@ $Selection.TypeText("Client")
 $Selection.TypeParagraph()
 
 $files | where-Object{(Split-Path $_ -Parent) -like ($basepath + "\client*")} | ForEach-Object{
+    Write-Host "Add $($_.BaseName + $_.Extension)"
     $Selection.Style = 'Überschrift 2'
     $Selection.TypeText($_.BaseName + $_.Extension)
     $Selection.TypeParagraph()
