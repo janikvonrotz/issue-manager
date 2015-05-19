@@ -10,7 +10,7 @@
 
 <AnchorPane prefWidth="1000.0" styleClass="default" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.issueman.client.MangelView">
    <children>
-      <ScrollPane fitToWidth="true" layoutX="10.0" prefHeight="702.0" prefViewportHeight="700.0" prefViewportWidth="980.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToWidth="true" layoutX="10.0" prefHeight="702.0" prefViewportHeight="700.0" prefViewportWidth="980.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <GridPane layoutX="10.0" layoutY="13.0" prefHeight="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                <columnConstraints>
@@ -144,6 +144,9 @@
                      </columnResizePolicy>
                   </TableView>
                </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </GridPane>
          </content>
       </ScrollPane>
