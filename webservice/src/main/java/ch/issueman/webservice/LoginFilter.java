@@ -53,7 +53,7 @@ public class LoginFilter extends TypeFilter<Login, Integer> {
 	@Override
 	public void update(Login t) throws Exception {
 		if(this.ifUserHasRole("Sachbearbeiter")){
-			this.getController().persist(t);
+			this.getController().update(t);
 		}else if(this.getLogin().getId()==t.getId()){
 			this.getController().update(t);
 		}else{
