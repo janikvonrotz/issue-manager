@@ -2,6 +2,14 @@
 
 Learn how to setup the project.
 
+# Architecture
+
+![](https://raw.githubusercontent.com/janikvonrotz/issue-manager/master/Architektur.png)
+
+# Data model
+
+![](https://raw.githubusercontent.com/janikvonrotz/issue-manager/master/Klassenmodell.png)
+
 ## Requirements
 
 * MySQL or PostgreSQL
